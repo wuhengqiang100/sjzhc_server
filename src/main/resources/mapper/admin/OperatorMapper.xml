@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kexin.admin.mapper.OperatorMapper">
+
+<!--    <resultMap id="BaseResultMap" type="com.kexin.admin.entity.tables.Operator">
+        <id column="MACHINE_TYPE_ID" property="machineTypeId" />
+        <result column="MACHINE_TYPE_CODE" property="machineTypeCode" />
+        <result column="MACHINE_TYPE_NAME" property="machineTypeName" />
+        <result column="USE_FLAG" property="useFlag" />
+        <result column="START_DATE" property="startDate" />
+        <result column="END_DATE" property="endDate" />
+        <result column="NOTE" property="note" />
+    </resultMap>-->
+<!--    <select id="selectOperatorPage" resultMap="BaseResultMap">
+        select MACHINE_TYPE_ID,MACHINE_TYPE_CODE,MACHINE_TYPE_NAME,USE_FLAG,START_DATE,END_DATE,NOTE
+        FROM dic_machine_types
+        <where>
+            <if test="useFlag!=3">
+                USE_FLAG=#{useFlag}
+            </if>
+            <if test="facilityTypeName!='' and facilityTypeName!=null">
+                and  MACHINE_TYPE_NAME like  '%${facilityTypeName}%'
+            </if>
+
+        </where>
+        GROUP BY MACHINE_TYPE_ID
+        order by START_DATE ASC
+    </select>-->
+
+
+
+
+</mapper>

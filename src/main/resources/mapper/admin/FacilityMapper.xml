@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kexin.admin.mapper.FacilityMapper">
+
+    <resultMap id="BaseResultMap" type="com.kexin.admin.entity.tables.Facility">
+        <id column="MACHINE_ID" property="machineId" />
+        <result column="MACHINE_CODE" property="machineCode" />
+        <result column="MACHINE_NAME" property="machineName" />
+        <result column="GROUP_STRING" property="groupString" />
+        <result column="ORDER_NUM" property="orderNum" />
+        <result column="OPERATOR_ID" property="operatorId" />
+        <result column="USE_FLAG" property="useFlag" />
+        <result column="START_DATE" property="startDate" />
+        <result column="END_DATE" property="endDate" />
+        <result column="NOTE" property="note" />
+        <collection property="facilityType" ofType="com.kexin.admin.entity.tables.FacilityType" column="MACHINE_TYPE_ID">
+            <id column="MACHINE_TYPE_ID" property="machineTypeId"></id>
+            <result column="MACHINE_TYPE_CODE" property="machineTypeCode"></result>
+            <result column="MACHINE_TYPE_NAME" property="machineTypeName"></result>
+        </collection>
+        <collection property="user" ofType="com.kexin.admin.entity.tables.User" column="OPERATOR_ID">
+            <id column="OPERATOR_ID" property="operatorId"></id>
+            <result column="OPERATOR_NAME" property="operatorName"></result>
+        </collection>
+        <collection property="facilityGroupList" ofType="com.kexin.admin.entity.tables.FacilityGroup">
+            <id column="GROUP_ID" property="groupId"></id>
+            <result column="GROUP_CODE" property="groupCode"></result>
+            <result column="GROUP_NAME" property="groupName"></result>
+        </collection>
+    </resultMap>
+
+    <resultMap id="ResultMap01" type="com.kexin.admin.entity.tables.Facility">
+        <id column="MACHINE_ID" property="machineId" />
+        <result column="MACHINE_CODE" property="machineCode" />
+        <result column="MACHINE_NAME" property="machineName" />
+        <result column="MACHINE_TYPE_ID" property="machineTypeId" />
+        <result column="GROUP_STRING" property="groupString" />
+        <result column="ORDER_NUM" property="orderNum" />
+        <result column="OPERATOR_ID" property="operatorId" />
+        <result column="USE_FLAG" property="useFlag" />
+        <result column="START_DATE" property="startDate" />
+        <result column="END_DATE" property="endDate" />
+        <result column="NOTE" property="note" />
+    </resultMap>
+    <select id="selectPageFacility" resultMap="BaseResultMap">
+        select
+        dm.MACHINE_ID,dm.MACHINE_CODE,dm.MACHINE_NAME,dm.USE_FLAG,dm.START_DATE,dm.END_DATE,dm.NOTE,dm.GROUP_STRING,dm.ORDER_NUM,
+        dmt.MACHINE_TYPE_ID,dmt.MACHINE_TYPE_CODE,dmt.MACHINE_TYPE_NAME,
+        dg.GROUP_ID,dg.GROUP_CODE,dg.GROUP_NAME,
+        do.OPERATOR_ID,do.OPERATOR_NAME
+        FROM dic_machines dm
+        left join dic_machine_types dmt on dmt.MACHINE_TYPE_ID=dm.MACHINE_TYPE_ID
+        left join dic_group_machines dgm on dgm.MACHINE_ID=dm.MACHINE_ID
+        left join dic_groups dg on dg.GROUP_ID=dgm.GROUP_ID
+        left join dic_operators do on do.OPERATOR_ID=dm.OPERATOR_ID
+        <where>
+            <if test="useFlag!=3">
+                dm.USE_FLAG=#{useFlag}
+            </if>
+            <if test="facilityName!='' and facilityName!=null">
+                and  dm.MACHINE_NAME like  '%${facilityName}%'
+            </if>
+
+        </where>
+        GROUP BY dm.MACHINE_ID
+        order by dm.START_DATE ASC
+    </select>
+
+    <select id="selectFacilityByGroupId" resultMap="ResultMap01">
+       select
+        dm.MACHINE_ID,dm.MACHINE_CODE,dm.MACHINE_NAME,dm.USE_FLAG,dm.START_DATE,dm.END_DATE,dm.NOTE,dm.GROUP_STRING,dm.ORDER_NUM,
+        dm.MACHINE_TYPE_ID
+
+        FROM dic_machines dm
+        left join dic_machine_types dmt on dmt.MACHINE_TYPE_ID=dm.MACHINE_TYPE_ID
+        left join dic_group_machines dgm on dgm.MACHINE_ID=dm.MACHINE_ID
+        left join dic_groups dg on dg.GROUP_ID=dgm.GROUP_ID
+        where dg.GROUP_ID =  3
+
+        order by dm.START_DATE ASC
+    </select>
+    <select id="selectMonitorList" resultType="com.kexin.admin.entity.monitor.MonitorView" parameterType="java.lang.Integer">
+        select
+            dm.MACHINE_ID as machineId,dm.MACHINE_NAME as machineName,dm.ONLINE as online ,
+            do.OPERATOR_ID as operatorId,do.OPERATOR_NAME as operatorName,
+            wrr.RECEIVE_NUM as receiceNum,wrt.RECOUNT_NUM as recountNum
+        from dic_machines dm LEFT JOIN  dic_operators do on dm.OPERATOR_ID=do.OPERATOR_ID
+        left join wip_receive_records wrr on wrr.RECEIVE_OPERATOR_ID =do.OPERATOR_ID
+        left join wip_recount_tasks wrt on do.OPERATOR_ID=wrt.RECORD_OPERATOR_ID
+        left join dic_group_machines dgm on dgm.MACHINE_ID=dm.MACHINE_ID
+        left join dic_groups dg on dg.GROUP_ID=dgm.GROUP_ID
+        <where>
+            <if test="groupId!=null">
+                dg.GROUP_ID =  #{groupId}
+            </if>
+        </where>
+        group by machineId
+    </select>
+    <select id="selectMaxOrder" resultType="java.lang.Integer">
+        SELECT MAX(ORDER_NUM)+1  FROM dic_machines
+    </select>
+    <select id="getTotal" resultType="java.lang.Integer">
+        SELECT count(dm.MACHINE_ID) as total FROM dic_machines dm
+        left join dic_group_machines dgm on dgm.MACHINE_ID=dm.MACHINE_ID
+        left join dic_groups dg on dg.GROUP_ID=dgm.GROUP_ID
+        <where>
+            <if test="groupId!=null and groupId!=''">
+                dg.GROUP_ID =  #{groupId}
+            </if>
+        </where>
+    </select>
+    <select id="getOnline" resultType="java.lang.Integer">
+        select count(dm.MACHINE_ID) as onlineNum FROM  dic_machines dm
+        left join dic_group_machines dgm on dgm.MACHINE_ID=dm.MACHINE_ID
+        left join dic_groups dg on dg.GROUP_ID=dgm.GROUP_ID
+        <where>
+            <if test="groupId!=null and groupId!=''">
+                dg.GROUP_ID =  #{groupId}
+            </if>
+            and ONLINE=1
+        </where>
+    </select>
+    <select id="selectMonitorPubList" resultType="com.kexin.admin.entity.monitor.MonitorAssignPo">
+        SELECT
+        do.OPERATOR_ID as operatorId,
+        do.OPERATOR_NAME as operatorName,
+        dm.MACHINE_ID as machineId,
+        dm.MACHINE_NAME as machineName
+        FROM dic_operators do
+        left join grant_operator_roles grf on grf.OPERATOR_ID=do.OPERATOR_ID
+        left join dic_roles dr on dr.ROLE_ID=grf.ROLE_ID
+        left join dic_machines dm on dm.OPERATOR_ID=do.OPERATOR_ID
+        where dr.ROLE_ID=3
+    </select>
+    <select id="getFacilityByOperatorId" resultMap="ResultMap01">
+     select
+        MACHINE_ID,MACHINE_TYPE_ID,MACHINE_CODE,MACHINE_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,GROUP_STRING,ORDER_NUM,OPERATOR_ID
+        FROM dic_machines
+        where OPERATOR_ID =  #{operatodId}
+    </select>
+    <select id="selectMonitorByMachineId" resultType="com.kexin.admin.entity.monitor.MonitorView">
+               select
+            dm.MACHINE_ID as machineId,dm.MACHINE_NAME as machineName,dm.ONLINE as online ,
+            do.OPERATOR_ID as operatorId,do.OPERATOR_NAME as operatorName,
+            wrr.RECEIVE_NUM as receiceNum,wrt.RECOUNT_NUM as recountNum
+        from dic_machines dm LEFT JOIN  dic_operators do on dm.OPERATOR_ID=do.OPERATOR_ID
+        left join wip_receive_records wrr on wrr.RECEIVE_OPERATOR_ID =do.OPERATOR_ID
+        left join wip_recount_tasks wrt on do.OPERATOR_ID=wrt.RECORD_OPERATOR_ID
+        where dm.MACHINE_ID=#{machineId}
+        group by machineId
+    </select>
+    <select id="listByGroupId" resultType="com.kexin.admin.entity.tables.Facility">
+        select dm.*  FROM  dic_machines dm
+        left join dic_group_machines dgm on dgm.MACHINE_ID=dm.MACHINE_ID
+        left join dic_groups dg on dg.GROUP_ID=dgm.GROUP_ID
+        <where>
+            <if test="groupId!=null and groupId!=''">
+                dg.GROUP_ID =  #{groupId}
+            </if>
+        </where>
+    </select>
+    <select id="getUnallocatedUser" resultType="com.kexin.admin.entity.tables.User">
+        select OPERATOR_ID,OPERATOR_NAME
+        from dic_operators where OPERATOR_ID not in
+        (
+        select OPERATOR_ID
+        FROM dic_machines WHERE OPERATOR_ID is not null) and OPERATOR_ID !=1
+    </select>
+    <select id="getUnallocatedAndCurrentUser" resultType="com.kexin.admin.entity.tables.User">
+        select OPERATOR_ID,OPERATOR_NAME
+        from dic_operators where OPERATOR_ID not in
+        (
+        select OPERATOR_ID
+        FROM dic_machines WHERE OPERATOR_ID is not null ) and OPERATOR_ID !=1 or OPERATOR_ID = #{operatorId}
+    </select>
+    <select id="searchFacility" resultType="com.kexin.admin.entity.monitor.MonitorView">
+        select
+        dm.MACHINE_ID as machineId,dm.MACHINE_NAME as machineName,dm.ONLINE as online ,
+        do.OPERATOR_ID as operatorId,do.OPERATOR_NAME as operatorName,do.OPERATOR_CODE as operatorCode,
+        wrr.RECEIVE_NUM as receiceNum,wrt.RECOUNT_NUM as recountNum ,wrt.FINISHED_FLAG as finished
+        from dic_machines dm
+        LEFT JOIN  dic_operators do on dm.OPERATOR_ID=do.OPERATOR_ID
+        left join wip_receive_records wrr on wrr.RECEIVE_OPERATOR_ID =do.OPERATOR_ID
+        left join wip_recount_tasks wrt on do.OPERATOR_ID=wrt.RECORD_OPERATOR_ID
+        left join dic_group_machines dgm on dgm.MACHINE_ID=dm.MACHINE_ID
+        left join dic_groups dg on dg.GROUP_ID=dgm.GROUP_ID
+        <where>
+            <if test="groupId!=null">
+                and dg.GROUP_ID =  #{groupId}
+            </if>
+            <if test="online!=null">
+                and dm.ONLINE =#{online}
+            </if>
+            <if test="finished!=null and finished==0">
+                and wrr.RECEIVE_NUM > wrt.RECOUNT_NUM
+            </if>
+            <if test="finished!=null and finished==1">
+                and wrr.RECEIVE_NUM = wrt.RECOUNT_NUM
+            </if>
+        </where>
+        group by machineId
+    </select>
+
+
+</mapper>

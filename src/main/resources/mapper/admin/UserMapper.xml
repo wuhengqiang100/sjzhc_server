@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kexin.admin.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.kexin.admin.entity.tables.LoginUser">
+<!--        <id column="OPERATOR_ID" property="operatorId" />
+        <result column="OPERATOR_CODE" property="operatorCode" />
+        <result column="OPERATOR_NAME" property="operatorName" />
+        <result column="OPERATOR_LOGIN_NAME" property="operatorLoginName" />
+&lt;!&ndash;        <result column="OPERATOR_LOGIN_PASS" property="operatorLoginPass" />&ndash;&gt;
+        <result column="ROLE_STRING" property="roleString" />
+        <result column="USE_FLAG" property="useFlag" />
+        <result column="START_DATE" property="startDate" />
+        <result column="END_DATE" property="endDate" />
+        <result column="NOTE" property="note" />
+        <collection property="identity" ofType="com.kexin.admin.entity.tables.Identity" column="OPERATOR_TYPE_ID">
+            <id column="OPERATOR_TYPE_ID" property="operatorTypeId"></id>
+            <result column="OPERATOR_TYPE_CODE" property="operatorTypeCode"></result>
+            <result column="OPERATOR_TYPE_NAME" property="operatorTypeName"></result>
+        </collection>
+        <collection property="roleList" ofType="com.kexin.admin.entity.tables.Role">
+            <id column="ROLE_ID" property="roleId"></id>
+            <result column="ROLE_CODE" property="roleCode"></result>
+            <result column="ROLE_NAME" property="roleName"></result>
+            <result column="FUNCTION_STRING" property="functionString"></result>
+        </collection>-->
+    </resultMap>
+
+<!--    <resultMap id="ResultMap01" type="com.kexin.admin.entity.tables.LoginUser">
+        <id column="OPERATOR_ID" property="operatorId" />
+        <result column="OPERATOR_TYPE_ID" property="operatorTypeId" />
+        <result column="OPERATOR_CODE" property="operatorCode" />
+        <result column="OPERATOR_NAME" property="operatorName" />
+        <result column="OPERATOR_LOGIN_NAME" property="operatorLoginName" />
+&lt;!&ndash;        <result column="OPERATOR_LOGIN_PASS" property="operatorLoginPass" />&ndash;&gt;
+        <result column="OPERATOR_TYPE_ID" property="operatorTypeId" />
+        <result column="ROLE_STRING" property="roleString" />
+        <result column="USE_FLAG" property="useFlag" />
+        <result column="START_DATE" property="startDate" />
+        <result column="END_DATE" property="endDate" />
+        <result column="NOTE" property="note" />
+    </resultMap>
+
+    <resultMap id="ResultMap02" type="com.kexin.admin.entity.tables.User">
+        <id column="OPERATOR_ID" property="operatorId" />
+        <result column="OPERATOR_CODE" property="operatorCode" />
+        <result column="OPERATOR_NAME" property="operatorName" />
+        <result column="OPERATOR_LOGIN_NAME" property="operatorLoginName" />
+&lt;!&ndash;        <result column="OPERATOR_LOGIN_PASS" property="operatorLoginPass" />&ndash;&gt;
+        <result column="ROLE_STRING" property="roleString" />
+        <result column="USE_FLAG" property="useFlag" />
+        <result column="START_DATE" property="startDate" />
+        <result column="END_DATE" property="endDate" />
+        <result column="NOTE" property="note" />
+        <collection property="identity" ofType="com.kexin.admin.entity.tables.Identity" column="OPERATOR_TYPE_ID">
+            <id column="OPERATOR_TYPE_ID" property="operatorTypeId"></id>
+            <result column="OPERATOR_TYPE_CODE" property="operatorTypeCode"></result>
+            <result column="OPERATOR_TYPE_NAME" property="operatorTypeName"></result>
+        </collection>
+    </resultMap>-->
+<!--
+    <resultMap id="ResultMap03" type="com.kexin.admin.entity.tables.User">
+        <id column="OPERATOR_ID" property="operatorId" />
+        <result column="OPERATOR_NAME" property="operatorName" />
+    </resultMap>
+    <update id="updateUserinfo">
+        UPDATE dic_operators
+        <set>
+            <if test="operatorCode!=null">
+                OPERATOR_CODE=#{operatorCode},
+            </if>
+            <if test="operatorName!='' and operatorName!=null">
+                OPERATOR_NAME=#{operatorName},
+            </if>
+            <if test="operatorLoginName!='' and operatorLoginName!=null">
+                OPERATOR_LOGIN_NAME=#{operatorLoginName},
+            </if>
+            <if test="note!=null">
+                NOTE=#{note}
+            </if>
+        </set>
+        WHERE OPERATOR_ID=#{operatorId}
+    </update>
+    <select id="selectPageUser" resultMap="BaseResultMap">
+        select
+        do.OPERATOR_ID,do.OPERATOR_CODE,do.OPERATOR_NAME,do.OPERATOR_LOGIN_NAME,do.USE_FLAG,do.START_DATE,do.END_DATE,do.NOTE,do.ROLE_STRING,
+        dot.OPERATOR_TYPE_ID,dot.OPERATOR_TYPE_CODE,dot.OPERATOR_TYPE_NAME,
+        dr.ROLE_ID,dr.ROLE_CODE,dr.ROLE_NAME
+        FROM dic_operators do
+        left join dic_operator_types dot on dot.OPERATOR_TYPE_ID=do.OPERATOR_TYPE_ID
+        left join grant_operator_roles gor on gor.OPERATOR_ID=do.OPERATOR_ID
+        left join dic_roles dr on dr.ROLE_ID=gor.ROLE_ID
+        <where>
+            <if test="useFlag!=3">
+                do.USE_FLAG=#{useFlag}
+            </if>
+            <if test="userName!='' and userName!=null">
+                and  do.OPERATOR_NAME like  '%${userName}%'
+            </if>
+            and do.OPERATOR_ID!=1
+        </where>
+        GROUP BY do.OPERATOR_ID
+        order by do.START_DATE ASC
+    </select>
+    <select id="selectUserByRoleId" resultMap="ResultMap01">
+        select
+        do.OPERATOR_ID,do.OPERATOR_CODE,do.OPERATOR_NAME,do.USE_FLAG,do.START_DATE,do.END_DATE,do.NOTE,do.ROLE_STRING,do.OPERATOR_TYPE_ID
+        FROM dic_operators do
+        left join dic_operator_types dot on dot.OPERATOR_TYPE_ID=do.OPERATOR_TYPE_ID
+        left join grant_operator_roles gor on gor.OPERATOR_ID=do.OPERATOR_ID
+        left join dic_roles dr on dr.ROLE_ID=gor.ROLE_ID
+        where dr.ROLE_ID =#{roleId}
+        order by do.START_DATE ASC
+    </select>
+    <select id="findUserById" resultMap="ResultMap02">
+        select
+        do.OPERATOR_ID,do.OPERATOR_CODE,do.OPERATOR_NAME,do.OPERATOR_LOGIN_NAME,do.USE_FLAG,do.START_DATE,do.END_DATE,do.NOTE,do.ROLE_STRING,
+        dot.OPERATOR_TYPE_ID,dot.OPERATOR_TYPE_ID,dot.OPERATOR_TYPE_CODE,dot.OPERATOR_TYPE_NAME
+        FROM dic_operators do
+        left join dic_operator_types dot on dot.OPERATOR_TYPE_ID=do.OPERATOR_TYPE_ID
+        where do.OPERATOR_ID =#{userId}
+        order by do.START_DATE ASC
+    </select>
+    <select id="getUserAllInfoById" resultMap="BaseResultMap">
+        select
+        do.OPERATOR_ID,do.OPERATOR_CODE,do.OPERATOR_NAME,do.OPERATOR_LOGIN_NAME,do.USE_FLAG,do.START_DATE,do.END_DATE,do.NOTE,do.ROLE_STRING,
+        dot.OPERATOR_TYPE_ID,dot.OPERATOR_TYPE_CODE,dot.OPERATOR_TYPE_NAME,
+        dr.ROLE_ID,dr.ROLE_CODE,dr.ROLE_NAME,dr.FUNCTION_STRING
+        FROM dic_operators do
+        left join dic_operator_types dot on dot.OPERATOR_TYPE_ID=do.OPERATOR_TYPE_ID
+        left join grant_operator_roles gor on gor.OPERATOR_ID=do.OPERATOR_ID
+        left join dic_roles dr on dr.ROLE_ID=gor.ROLE_ID
+        where do.OPERATOR_ID=#{userId}
+        order by do.START_DATE ASC
+    </select>
+    <select id="selectByMapCount" resultType="java.lang.Integer">
+        select count(*) from dic_operators
+        <where>
+            <if test="operatorCode!=null and operatorCode!=''">
+                OPERATOR_CODE=#{operatorCode},
+            </if>
+            <if test="operatorName!=null and operatorName!=''">
+                and OPERATOR_NAME=#{operatorName},
+            </if>
+            <if test="operatorLoginName!=null and operatorLoginName!=''">
+                and OPERATOR_NAME=#{operatorLoginName}
+            </if>
+        </where>
+    </select>
+    <select id="selectStaffList" resultMap="ResultMap03">
+        select do.OPERATOR_ID,do.OPERATOR_NAME
+        from dic_operators do
+        left join grant_operator_roles grf on grf.OPERATOR_ID=do.OPERATOR_ID
+        left join dic_roles dr on dr.ROLE_ID=grf.ROLE_ID
+        LEFT JOIN   dic_machines dm on dm.OPERATOR_ID=do.OPERATOR_ID
+        left join dic_group_machines dgm on dgm.MACHINE_ID=dm.MACHINE_ID
+        left join dic_groups dg on dg.GROUP_ID=dgm.GROUP_ID
+        <where>
+             dr.ROLE_ID=#{roleId}
+        </where>
+
+    </select>-->
+    <select id="selectUserByName" resultType="com.kexin.admin.entity.tables.LoginUser">
+        SELECT * from  SYS_LOGIN_USER WHERE LOGIN_NAME=#{userName}
+
+    </select>
+</mapper>

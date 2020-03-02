@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kexin.admin.mapper.DeviceTypeMapper">
+
+    <resultMap id="BaseMapper" type="com.kexin.admin.entity.tables.DeviceType">
+        <id property="machineTypeId" column="MACHINE_TYPE_ID" jdbcType="INTEGER"></id>
+        <result property="machineTypeCode"     column="MACHINE_TYPE_CODE"  jdbcType="VARCHAR"/>
+        <result property="machineTypeName"     column="MACHINE_TYPE_NAME" jdbcType="VARCHAR"/>
+        <result property="useFlag"     column="USE_FLAG" jdbcType="INTEGER"/>
+        <result property="startDate"    column="START_DATE" jdbcType="DATE"/>
+        <result property="endDate"     column="END_DATE" jdbcType="DATE"/>
+        <result property="note"     column="NOTE" jdbcType="VARCHAR"/>
+        <!--    <result property="useMachineWasteNoJudge"     column="USE_MACHINE_TYPE_WASTE_NO_JUDGE" jdbcType="INTEGER"/>-->
+        <!--    <result property="ftpModelPath"     column="FTP_MODEL_PATH" jdbcType="VARCHAR"/>-->
+
+
+        <!--    <result property="machineTypeCodeMes"     column="MACHINE_TYPE_CODE_MES" jdbcType="VARCHAR"/>-->
+        <!--    <collection property="children" select="selectShowMenuByUser"  column="{parentId = id,userId = myuserId}">-->
+        <!--    </collection>-->
+    </resultMap>
+
+
+
+
+</mapper>

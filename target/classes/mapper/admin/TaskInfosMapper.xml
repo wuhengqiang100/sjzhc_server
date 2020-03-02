@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kexin.admin.mapper.TaskInfosMapper">
+
+<!--    <resultMap id="BaseResultMap" type="com.kexin.admin.entity.tables.TaskInfos">-->
+<!--        <id column="MACHINE_ID" property="machineId" />-->
+<!--        <result column="MACHINE_CODE" property="machineCode" />-->
+<!--        <result column="MACHINE_NAME" property="machineName" />-->
+<!--        <result column="GROUP_STRING" property="groupString" />-->
+<!--        <result column="ORDER_NUM" property="orderNum" />-->
+<!--        <result column="OPERATOR_ID" property="operatorId" />-->
+<!--        <result column="USE_FLAG" property="useFlag" />-->
+<!--        <result column="START_DATE" property="startDate" />-->
+<!--        <result column="END_DATE" property="endDate" />-->
+<!--        <result column="NOTE" property="note" />-->
+<!--        <collection property="facilityType" ofType="com.kexin.admin.entity.tables.TaskInfosType" column="MACHINE_TYPE_ID">-->
+<!--            <id column="MACHINE_TYPE_ID" property="machineTypeId"></id>-->
+<!--            <result column="MACHINE_TYPE_CODE" property="machineTypeCode"></result>-->
+<!--            <result column="MACHINE_TYPE_NAME" property="machineTypeName"></result>-->
+<!--        </collection>-->
+<!--        <collection property="facilityGroupList" ofType="com.kexin.admin.entity.tables.TaskInfosGroup">-->
+<!--            <id column="GROUP_ID" property="groupId"></id>-->
+<!--            <result column="GROUP_CODE" property="groupCode"></result>-->
+<!--            <result column="GROUP_NAME" property="groupName"></result>-->
+<!--        </collection>-->
+<!--    </resultMap>-->
+    <resultMap id="BaseResultMap" type="com.kexin.admin.entity.tables.TaskInfos">
+        <id column="RECOUNT_TASK_INFO_ID" property="recountTaskInfoId" />
+        <result column="RECOUNT_TASK_ID" property="recountTaskId" />
+<!--        <result column="PRODUCT_ID" property="productId" />-->
+        <result column="RECOUNT_NUM" property="recountNum" />
+        <result column="NOTE" property="note" />
+        <collection property="product" ofType="com.kexin.admin.entity.tables.Products" column="productId">
+            <id column="PRODUCT_ID" property="productId"></id>
+            <result column="PRODUCT_SERIES_CODE" property="productSeriesCode"></result>
+            <result column="PRODUCT_CODE" property="productCode"></result>
+            <result column="PRODUCT_NAME" property="productName"></result>
+            <result column="PRODUCT_AMOUNT" property="productAmount"></result>
+        </collection>
+    </resultMap>
+    <delete id="deleteTaskInfosByTaskId" parameterType="java.lang.Integer">
+        DELETE FROM wip_recount_task_infos WHERE RECOUNT_TASK_ID=#{taskId}
+    </delete>
+    <delete id="deleteTaskInfosZero">
+         DELETE FROM wip_recount_task_infos WHERE RECOUNT_TASK_ID=#{taskId} and RECOUNT_NUM=0
+    </delete>
+    <select id="getInfosByTaskId" resultMap="BaseResultMap">
+        SELECT wrti.RECOUNT_TASK_INFO_ID,wrti.RECOUNT_TASK_ID,wrti.PRODUCT_ID,wrti.RECOUNT_NUM,wrti.NOTE,
+                dp.PRODUCT_SERIES_CODE,dp.PRODUCT_CODE,dp.PRODUCT_NAME,dp.PRODUCT_AMOUNT
+        FROM wip_recount_task_infos wrti left join dic_products dp on wrti.PRODUCT_ID=dp.PRODUCT_ID
+        WHERE wrti.RECOUNT_TASK_ID =#{taskId}
+    </select>
+    <select id="getInfosByTaskList" resultType="com.kexin.admin.entity.tables.TaskInfos">
+        SELECT wrti.RECOUNT_TASK_INFO_ID,wrti.RECOUNT_TASK_ID,wrti.PRODUCT_ID,wrti.RECOUNT_NUM,wrti.NOTE,
+                dp.PRODUCT_SERIES_CODE,dp.PRODUCT_CODE,dp.PRODUCT_NAME,dp.PRODUCT_AMOUNT
+        FROM wip_recount_task_infos wrti left join dic_products dp on wrti.PRODUCT_ID=dp.PRODUCT_ID
+        WHERE wrti.RECOUNT_TASK_ID =#{taskId}
+    </select>
+    <select id="getProductTaskByTaskId" resultType="com.kexin.admin.entity.tasks.ProductTaskAdd">
+       SELECT wrti.PRODUCT_ID as productId,dp.PRODUCT_NAME as productName ,wrti.RECOUNT_NUM as count
+        FROM wip_recount_task_infos wrti left join dic_products dp on wrti.PRODUCT_ID=dp.PRODUCT_ID
+        WHERE wrti.RECOUNT_TASK_ID =#{taskId}
+    </select>
+
+
+</mapper>

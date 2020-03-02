@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kexin.admin.mapper.RoleMapper">
+
+
+    <resultMap id="BaseResultMap" type="com.kexin.admin.entity.tables.Role">
+        <id column="ROLE_ID" property="roleId" />
+        <result column="ROLE_CODE" property="roleCode" />
+        <result column="ROLE_NAME" property="roleName" />
+        <result column="USE_FLAG" property="useFlag" />
+        <result column="FUNCTION_STRING" property="functionString" />
+        <result column="START_DATE" property="startDate" />
+        <result column="END_DATE" property="endDate" />
+        <result column="NOTE" property="note" />
+    </resultMap>
+
+    <resultMap id="grantRoleFunctionResult" type="com.kexin.admin.entity.tables.GrantRoleFunctions">
+        <id column="GRANT_ID" property="grantId" />
+        <result column="ROLE_ID" property="roleId" />
+        <result column="FUNCTION_ID" property="functionId" />
+        <result column="NOTE" property="note" />
+    </resultMap>
+    <resultMap id="grantRoleFunctionResult02" type="com.kexin.admin.entity.tables.GrantRoleFunctions">
+        <result column="FUNCTION_ID" property="functionId" />
+    </resultMap>
+
+  <!-- 通用查询映射结果 -->
+  <resultMap id="RoleResultMap" type="com.kexin.admin.entity.tables.Role">
+    <id column="ROLE_ID" property="roleId" />
+    <result column="ROLE_CODE" property="roleCode" />
+    <result column="ROLE_NAME" property="roleName" />
+    <result column="USE_FLAG" property="useFlag" />
+      <result column="FUNCTION_STRING" property="functionString" />
+    <result column="START_DATE" property="startDate" />
+    <result column="END_DATE" property="endDate" />
+    <result column="NOTE" property="note" />
+    <collection property="functionsList"  ofType="com.kexin.admin.entity.tables.Functions">
+      <result property="functionId" column="FUNCTON_ID"/>
+      <result property="functionCode" column="FUNCTON_CODE"/>
+      <result property="functionName" column="FUNCTON_NAME"/>
+    </collection>
+  </resultMap>
+
+    <insert id="updateGrantRoleAndFunctions">
+        INSERT  INTO GRANT_ROLE_FUNCTIONS (ROLE_ID,FUNCTION_ID) values  (#{roleId},#{functionId})
+    </insert>
+    <insert id="saveNewRole" parameterType="com.kexin.admin.entity.tables.Role" useGeneratedKeys="true" keyColumn="ROLE_ID" keyProperty="roleId">
+        INSERT  INTO DIC_ROLES (ROLE_CODE,ROLE_NAME) values (#{roleCode},#{roleName})
+    </insert>
+    <insert id="insertGrantOperatorAndRole">
+        insert into grant_operator_roles (OPERATOR_ID,ROLE_ID) values  (#{operatorId},#{roleId})
+    </insert>
+    <delete id="deleteGrantOperatorAndRole">
+        delete from grant_operator_roles where OPERATOR_ID=#{operatorId}
+    </delete>
+
+    <update id="updateRole">
+        UPDATE DIC_ROLES
+        <set>
+            <if test="roleCode!='' and roleCode!=null">
+                ROLE_CODE=#{roleCode},
+            </if>
+             <if test="roleName!='' and roleName!=null">
+                ROLE_NAME=#{roleName},
+            </if>
+            <if test="functionString!='' and functionString!=null">
+                FUNCTION_STRING=#{functionString},
+            </if>
+            <if test="useFlag!=null">
+                USE_FLAG=#{useFlag}
+            </if>
+        </set>
+        WHERE ROLE_ID=#{roleId}
+    </update>
+    <update id="forbiddenRole">
+        update DIC_ROLES set USE_FLAG =0 WHERE ROLE_ID=#{roleId}
+    </update>
+    <delete id="deleteGrantRole">
+        delete from grant_role_functions where ROLE_ID = #{roleId}
+    </delete>
+
+
+
+    <select id="selectPageRole" resultMap="RoleResultMap">
+       select
+      dr.ROLE_ID,dr.ROLE_CODE,dr.ROLE_NAME,dr.USE_FLAG,dr.FUNCTION_STRING,dr.START_DATE,dr.END_DATE,dr.NOTE,
+      df.FUNCTON_ID,df.FUNCTON_NAME,df.FUNCTON_CODE
+      FROM dic_roles dr
+      LEFT JOIN grant_role_functions  grf on dr.ROLE_ID=grf.ROLE_ID
+      LEFT JOIN dic_functions df on df.FUNCTON_ID=grf.FUNCTION_ID
+      <where>
+          <if test="useFlag!=3">
+              dr.USE_FLAG=#{useFlag}
+          </if>
+          <if test="roleName!='' and roleName!=null">
+              and  dr.ROLE_NAME like  '%${roleName}%'
+
+          </if>
+
+      </where>
+        GROUP BY dr.ROLE_ID
+        order by dr.START_DATE ASC
+  </select>
+    <select id="selectUserPageNotGroupById" resultMap="RoleResultMap">
+       select
+      dr.ROLE_ID,dr.ROLE_CODE,dr.ROLE_NAME,dr.USE_FLAG,dr.START_DATE,dr.END_DATE,dr.NOTE,
+      df.FUNCTON_ID,df.FUNCTON_NAME,df.FUNCTON_CODE
+      FROM dic_roles dr
+      LEFT JOIN grant_role_functions  grf on dr.ROLE_ID=grf.ROLE_ID
+      LEFT JOIN dic_functions df on df.FUNCTON_ID=grf.FUNCTION_ID
+      <where>
+          dr.USE_FLAG=#{useFlag}
+      </where>
+        order by
+        dr.START_DATE ASC
+  </select>
+    <select id="getByMap" resultMap="BaseResultMap">
+         SELECT
+                role_id,
+                ROLE_CODE,
+                ROLE_NAME,
+                USE_FLAG,
+                START_DATE,
+                END_DATE,
+                NOTE
+            FROM
+                dic_roles
+            <where>
+                <if test="roleId!=''">
+                     ROLE_ID=#{roleId}
+                </if>
+                <if test="roleCode!=''">
+                    and ROLE_CODE=#{roleCode}
+                </if>
+                 <if test="roleName!=''and roleName!=null">
+                    and ROLE_NAME=#{roleName}
+                 </if>
+            </where>
+    </select>
+    <select id="getByMapOr" resultType="com.kexin.admin.entity.tables.Role">
+        SELECT
+        role_id,
+        ROLE_CODE,
+        ROLE_NAME,
+        USE_FLAG,
+        START_DATE,
+        END_DATE,
+        NOTE
+        FROM
+        dic_roles
+        <where>
+            <if test="roleId!=''">
+                 ROLE_ID=#{roleId}
+            </if>
+            <if test="roleCode!=''">
+                or ROLE_CODE=#{roleCode}
+            </if>
+            <if test="roleName!=''and roleName!=null">
+                or ROLE_NAME=#{roleName}
+            </if>
+        </where>
+    </select>
+    <select id="getOwnRoleByOperatorId" resultType="com.kexin.admin.entity.tables.Role">
+            SELECT dc.ROLE_ID,dc.ROLE_CODE,dc.ROLE_NAME
+            FROM `dic_roles` dc
+            left join grant_operator_roles gor on gor.ROLE_ID=dc.ROLE_ID
+            left join dic_operators dop on dop.OPERATOR_ID=gor.OPERATOR_ID
+            where dop.OPERATOR_ID=#{operatorId}
+
+    </select>
+    <select id="getFunctionIdsByRoleId" resultMap="grantRoleFunctionResult">
+        select FUNCTION_ID from grant_role_functions WHERE ROLE_ID= #{roleId}
+     </select>
+
+
+</mapper>

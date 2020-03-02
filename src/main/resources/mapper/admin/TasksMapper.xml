@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kexin.admin.mapper.TasksMapper">
+
+
+    <resultMap id="BaseResultMap" type="com.kexin.admin.entity.tables.Tasks">
+        <id column="RECOUNT_TASK_ID" property="recountTaskId" />
+        <result column="RECOUNT_TASK_CODE" property="recountTaskCode" />
+        <result column="RECOUNT_TASK_DATE" property="recountTaskDate" />
+        <result column="RECOUNT_NUM" property="recountNum" />
+        <result column="RECORD_OPERATOR_ID" property="recordOperatorId" />
+        <result column="FINISHED_FLAG" property="finishedFlag" />
+        <result column="CONFIRM_OPERATOR_ID" property="confirmOperatorId" />
+        <result column="START_DATE" property="startDate" />
+        <result column="END_DATE" property="endDate" />
+        <result column="NOTE" property="note" />
+    </resultMap>
+
+
+    <resultMap id="ResultMap01" type="com.kexin.admin.entity.tables.Tasks">
+        <id column="RECOUNT_TASK_ID" property="recountTaskId" />
+        <result column="RECOUNT_TASK_CODE" property="recountTaskCode" />
+        <result column="RECOUNT_TASK_DATE" property="recountTaskDate" />
+        <result column="RECOUNT_NUM" property="recountNum" />
+        <!--        <result column="RECORD_OPERATOR_ID" property="recordOperatorId" />-->
+        <result column="FINISHED_FLAG" property="finishedFlag" />
+        <!--        <result column="CONFIRM_OPERATOR_ID" property="confirmOperatorId" />-->
+        <result column="START_DATE" property="startDate" />
+        <result column="END_DATE" property="endDate" />
+        <result column="NOTE" property="note" />
+        <collection property="recordOperator" ofType="com.kexin.admin.entity.tables.User" column="recordOperatorId">
+            <id column="OPERATOR_ID" property="operatorId"></id>
+            <result column="OPERATOR_CODE" property="operatorCode"></result>
+            <result column="OPERATOR_NAME" property="operatorName"></result>
+        </collection>
+        <collection property="confirmOperator" ofType="com.kexin.admin.entity.tables.User" column="confirmOperatorId">
+            <id column="OPERATOR_ID" property="operatorId"></id>
+            <result column="OPERATOR_CODE" property="operatorCode"></result>
+            <result column="OPERATOR_NAME" property="operatorName"></result>
+        </collection>
+    </resultMap>
+
+    <select id="getTasksByDate" resultType="com.kexin.admin.entity.tasks.HistoryTaskInfos">
+        SELECT do.OPERATOR_ID as operatorId,do.OPERATOR_NAME as operatorName,
+                    wrt.RECOUNT_TASK_ID as recountTaskId,wrt.RECOUNT_NUM as totalNum,wrt.RECOUNT_TASK_DATE as recountTaskDate,
+                    wrti.RECOUNT_TASK_INFO_ID as recountTaskInfoId,wrti.RECOUNT_NUM as recountNum,
+                    dp.PRODUCT_ID as productId,dp.PRODUCT_NAME as productName,dp.PRODUCT_AMOUNT as productAmount
+        FROM wip_recount_tasks wrt
+        left join wip_recount_task_infos wrti on wrti.RECOUNT_TASK_ID = wrt.RECOUNT_TASK_ID
+        left join dic_products dp on dp.PRODUCT_ID =wrti.PRODUCT_ID
+        left join dic_operators do on do.OPERATOR_ID=wrt.RECORD_OPERATOR_ID
+        where
+            wrt.RECORD_OPERATOR_ID=#{userId}
+
+           and  DATEDIFF(DATE_FORMAT(wrt.RECOUNT_TASK_DATE,'%Y-%m-%d %H:%i:%s'),DATE_FORMAT(#{queryDate},'%Y-%m-%d %H:%i:%s'))=0
+
+
+    </select>
+
+    <select id="getTasksToday" resultType="com.kexin.admin.entity.tables.Tasks">
+        SELECT RECOUNT_TASK_ID,RECOUNT_TASK_CODE,RECOUNT_TASK_DATE,RECOUNT_NUM,RECORD_OPERATOR_ID,FINISHED_FLAG,CONFIRM_OPERATOR_ID,START_DATE,END_DATE,NOTE
+        FROM wip_recount_tasks
+        WHERE DATEDIFF(DATE_FORMAT(RECOUNT_TASK_DATE,'%Y-%m-%d %H:%i:%s'),NOW())=0 and RECORD_OPERATOR_ID=#{userId}
+    </select>
+    <select id="getTasksTodayUndone" resultMap="ResultMap01">
+      SELECT
+        wrt.RECOUNT_TASK_ID,wrt.RECOUNT_TASK_CODE,wrt.RECOUNT_TASK_DATE,wrt.RECOUNT_NUM,wrt.RECORD_OPERATOR_ID,wrt.FINISHED_FLAG,wrt.CONFIRM_OPERATOR_ID,wrt.START_DATE,wrt.END_DATE,wrt.NOTE,
+        do1.OPERATOR_ID,do1.OPERATOR_CODE,do1.OPERATOR_NAME,
+        do2.OPERATOR_ID,do2.OPERATOR_CODE,do2.OPERATOR_NAME
+        FROM wip_recount_tasks wrt
+        left join dic_operators do1 on do1.OPERATOR_ID=wrt.RECORD_OPERATOR_ID
+        left join dic_operators do2 on do2.OPERATOR_ID=wrt.CONFIRM_OPERATOR_ID
+        where wrt.FINISHED_FLAG=0 and DATEDIFF(DATE_FORMAT(wrt.RECOUNT_TASK_DATE,'%Y-%m-%d %H:%i:%s'),NOW())=0 and wrt.RECORD_OPERATOR_ID=#{userId}
+    </select>
+    <select id="getTasksYesterdayUndone" resultMap="ResultMap01">
+      SELECT
+        wrt.RECOUNT_TASK_ID,wrt.RECOUNT_TASK_CODE,wrt.RECOUNT_TASK_DATE,wrt.RECOUNT_NUM,wrt.RECORD_OPERATOR_ID,wrt.FINISHED_FLAG,wrt.CONFIRM_OPERATOR_ID,wrt.START_DATE,wrt.END_DATE,wrt.NOTE,
+        do1.OPERATOR_ID,do1.OPERATOR_CODE,do1.OPERATOR_NAME,
+        do2.OPERATOR_ID,do2.OPERATOR_CODE,do2.OPERATOR_NAME
+        FROM wip_recount_tasks wrt
+        left join dic_operators do1 on do1.OPERATOR_ID=wrt.RECORD_OPERATOR_ID
+        left join dic_operators do2 on do2.OPERATOR_ID=wrt.CONFIRM_OPERATOR_ID
+        where wrt.FINISHED_FLAG=0 and DATEDIFF(DATE_FORMAT(wrt.RECOUNT_TASK_DATE,'%Y-%m-%d %H:%i:%s'),NOW())=-1 and wrt.RECORD_OPERATOR_ID=#{userId}
+    </select>
+    <select id="getUndoneTasks" resultMap="ResultMap01">
+        SELECT
+        wrt.RECOUNT_TASK_ID,wrt.RECOUNT_TASK_CODE,wrt.RECOUNT_TASK_DATE,wrt.RECOUNT_NUM,wrt.RECORD_OPERATOR_ID,wrt.FINISHED_FLAG,wrt.CONFIRM_OPERATOR_ID,wrt.START_DATE,wrt.END_DATE,wrt.NOTE,
+        do1.OPERATOR_ID,do1.OPERATOR_CODE,do1.OPERATOR_NAME,
+        do2.OPERATOR_ID,do2.OPERATOR_CODE,do2.OPERATOR_NAME
+        FROM wip_recount_tasks wrt
+        left join dic_operators do1 on do1.OPERATOR_ID=wrt.RECORD_OPERATOR_ID
+        left join dic_operators do2 on do2.OPERATOR_ID=wrt.CONFIRM_OPERATOR_ID
+        where wrt.FINISHED_FLAG=0  and wrt.RECORD_OPERATOR_ID=#{userId}
+        order by wrt.START_DATE asc
+
+    </select>
+
+
+</mapper>
