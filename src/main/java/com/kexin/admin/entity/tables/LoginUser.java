@@ -31,25 +31,25 @@ public class LoginUser{
     /**
      * 启用状态:0 禁止,1 启用
      */
-    @TableField(value = "USE_FLAG", fill = FieldFill.INSERT_UPDATE)
-    protected Boolean useFlag;
+/*    @TableField(value = "USE_FLAG", fill = FieldFill.INSERT_UPDATE)
+    protected Boolean useFlag;*/
     /**
      * 启用时间,写入时间
      */
-    @TableField(value = "START_DATE",strategy= FieldStrategy.IGNORED)
-    protected Date startDate;
+/*    @TableField(value = "START_DATE",strategy= FieldStrategy.IGNORED)
+    protected Date startDate;*/
     /**
      * 禁用时间,结束时间
      */
-    @TableField(value = "END_DATE",  strategy = FieldStrategy.IGNORED)
-    protected Date endDate;
+/*    @TableField(value = "END_DATE",  strategy = FieldStrategy.IGNORED)
+    protected Date endDate;*/
 
     /**
      * 说明
      */
-    @TableField(value = "NOTE")
+ /*   @TableField(value = "NOTE")
     protected String note;
-
+*/
 
     public Integer getLoginId() {
         return loginId;
@@ -83,7 +83,7 @@ public class LoginUser{
         this.loginPass = loginPass;
     }
 
-    public Boolean getUseFlag() {
+/*    public Boolean getUseFlag() {
         return useFlag;
     }
 
@@ -115,5 +115,5 @@ public class LoginUser{
 
     public void setNote(String note) {
         this.note = note;
-    }
+    }*/
 }

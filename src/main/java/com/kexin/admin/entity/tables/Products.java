@@ -15,42 +15,57 @@ import java.util.Date;
 public class Products{
     private static final long serialVersionUID = 1L;
 
-
     @TableId(type = IdType.INPUT)
     @TableField(value = "PRODUCT_ID")
-    private Integer productId;//产品主键id
+    private Integer productId;//产品id
 
     @TableField(value = "PRODUCT_CODE")
     private String productCode;//产品编号
 
     @TableField(value = "PRODUCT_NAME")
     private String productName;//产品名称
-    @TableField(value = "ROLL_NUM")
-    private Integer rollNum;//卷数
-    @TableField(value = "WIDTH_NUM")
-    private Integer widthNum;//幅数
 
-    /**
-     * 启用状态:0 禁止,1 启用
-     */
-    @TableField(value = "USE_FLAG", fill = FieldFill.INSERT_UPDATE)
-    protected Boolean useFlag;
-    /**
-     * 启用时间,写入时间
-     */
-    @TableField(value = "START_DATE",strategy= FieldStrategy.IGNORED)
-    protected Date startDate;
-    /**
-     * 禁用时间,结束时间
-     */
-    @TableField(value = "END_DATE",  strategy = FieldStrategy.IGNORED)
-    protected Date endDate;
+    @TableField(value = "CARTNUM_FIRST_ID", strategy = FieldStrategy.IGNORED)
+    private Integer cartnumFirstId;//外键（首字母）
 
-    /**
-     * 说明
-     */
+    @TableField(value = "CARTNUM_FIRST_DATE")
+    private Date cartnumFirstDate;//首字母启用日期
+
+    @TableField(value = "CARTNUM_FIRST_COUNT")
+    private Integer cartnumFirstCount;//首字母启用次数
+
+    @TableField(value = "ROW_NUMBER")
+    private Integer rowNumber;//印刷行数
+
+    @TableField(value = "COL_NUMBER")
+    private Integer colNumber;//印刷列数
+
+    @TableField(value = "CONVERT_SHEET_NUMBER")
+    private Integer convertSheetNumber;//总开数
+
+    @TableField(value = "USE_FLAG")
+        private Boolean useFlag;//启用状态
+
+    @TableField(value = "START_DATE", strategy = FieldStrategy.IGNORED)
+    private Date startDate;//开始日期
+
+    @TableField(value = "END_DATE", strategy = FieldStrategy.IGNORED)
+    private Date endDate;//结束日期
+
     @TableField(value = "NOTE")
-    protected String note;
+    private String note;//备注
+
+    @TableField(value = "SHEET_WASTER_NUM")
+    private Integer sheetWasterNum;//大张废数量
+
+//    @TableField(value = "FTP_REPORT_PATH")
+//    private String ftpReportPath;//ftp上传路径
+
+//    @TableField(value = "PRODUCT_CODE_MES")
+//    private String productCodeMes;//MES产品代码
+
+
+
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -80,20 +95,53 @@ public class Products{
         this.productName = productName;
     }
 
-    public Integer getRollNum() {
-        return rollNum;
+    public Integer getCartnumFirstId() {
+        return cartnumFirstId;
     }
 
-    public void setRollNum(Integer rollNum) {
-        this.rollNum = rollNum;
+    public void setCartnumFirstId(Integer cartnumFirstId) {
+        this.cartnumFirstId = cartnumFirstId;
     }
 
-    public Integer getWidthNum() {
-        return widthNum;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    public Date getCartnumFirstDate() {
+        return cartnumFirstDate;
     }
 
-    public void setWidthNum(Integer widthNum) {
-        this.widthNum = widthNum;
+    public void setCartnumFirstDate(Date cartnumFirstDate) {
+        this.cartnumFirstDate = cartnumFirstDate;
+    }
+
+    public Integer getCartnumFirstCount() {
+        return cartnumFirstCount;
+    }
+
+    public void setCartnumFirstCount(Integer cartnumFirstCount) {
+        this.cartnumFirstCount = cartnumFirstCount;
+    }
+
+    public Integer getRowNumber() {
+        return rowNumber;
+    }
+
+    public void setRowNumber(Integer rowNumber) {
+        this.rowNumber = rowNumber;
+    }
+
+    public Integer getColNumber() {
+        return colNumber;
+    }
+
+    public void setColNumber(Integer colNumber) {
+        this.colNumber = colNumber;
+    }
+
+    public Integer getConvertSheetNumber() {
+        return convertSheetNumber;
+    }
+
+    public void setConvertSheetNumber(Integer convertSheetNumber) {
+        this.convertSheetNumber = convertSheetNumber;
     }
 
     public Boolean getUseFlag() {
@@ -103,15 +151,16 @@ public class Products{
     public void setUseFlag(Boolean useFlag) {
         this.useFlag = useFlag;
     }
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getStartDate() {
         return startDate;
     }
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getEndDate() {
         return endDate;
     }
@@ -127,4 +176,13 @@ public class Products{
     public void setNote(String note) {
         this.note = note;
     }
+
+    public Integer getSheetWasterNum() {
+        return sheetWasterNum;
+    }
+
+    public void setSheetWasterNum(Integer sheetWasterNum) {
+        this.sheetWasterNum = sheetWasterNum;
+    }
+
 }
