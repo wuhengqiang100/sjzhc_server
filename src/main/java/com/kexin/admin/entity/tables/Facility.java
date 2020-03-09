@@ -14,6 +14,7 @@ import java.util.List;
  * 设备信息主表
  */
 @TableName("dic_machines")
+@KeySequence(value = "SQ_DIC_MACHINES", clazz = Integer.class)
 public class Facility {
     @TableId(type = IdType.AUTO)
     @TableField(value = "MACHINE_ID")
