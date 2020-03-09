@@ -6,10 +6,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 
 /**
- * 节点实体类
+ * 工序实体类
  */
 @TableName("DIC_OPERATIONS")
-@KeySequence(value = "SQ_DIC_OPERATION", clazz = Integer.class)
+@KeySequence(value = "SQ_DIC_OPERATIONS", clazz = Integer.class)
 public class Operation {
 
     private static final long serialVersionUID = 1L;
@@ -17,21 +17,22 @@ public class Operation {
 
     @TableId(type = IdType.INPUT)
     @TableField(value = "OPERATION_ID")
-    private Integer operationId;//节点id
-
-    @TableField(value = "OPERATION_TYPE_ID")
-    private Integer operationTypeId;//节点类别id
+    private Integer operationId;//工序id
 
     @TableField(value = "OPERATION_CODE")
-    private String operationCode; //节点代码
+    private String operationCode; //工序代码
 
     @TableField(value = "OPERATION_NAME")
-    private String operationName; //节点名称
+    private String operationName; //工序名称
+
+    @TableField(value = "OPERATION_TYPE")
+    private Integer operationType; //工序种类
+
     /**
      * 启用状态:0 禁止,1 启用
      */
-    @TableField(value = "USE_FLAG", fill = FieldFill.INSERT_UPDATE)
-    protected Boolean useFlag;
+    @TableField(value = "USE_FLAG")
+    private Boolean useFlag;//启用状态
     /**
      * 启用时间,写入时间
      */
@@ -49,8 +50,6 @@ public class Operation {
     @TableField(value = "NOTE")
     protected String note;
 
-    @TableField(exist = false)
-    private OperationType operationType;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -62,14 +61,6 @@ public class Operation {
 
     public void setOperationId(Integer operationId) {
         this.operationId = operationId;
-    }
-
-    public Integer getOperationTypeId() {
-        return operationTypeId;
-    }
-
-    public void setOperationTypeId(Integer operationTypeId) {
-        this.operationTypeId = operationTypeId;
     }
 
     public String getOperationCode() {
@@ -95,7 +86,6 @@ public class Operation {
     public void setUseFlag(Boolean useFlag) {
         this.useFlag = useFlag;
     }
-
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
@@ -108,13 +98,7 @@ public class Operation {
         this.note = note;
     }
 
-    public OperationType getOperationType() {
-        return operationType;
-    }
 
-    public void setOperationType(OperationType operationType) {
-        this.operationType = operationType;
-    }
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getStartDate() {
@@ -130,5 +114,11 @@ public class Operation {
         return endDate;
     }
 
+    public Integer getOperationType() {
+        return operationType;
+    }
 
+    public void setOperationType(Integer operationType) {
+        this.operationType = operationType;
+    }
 }

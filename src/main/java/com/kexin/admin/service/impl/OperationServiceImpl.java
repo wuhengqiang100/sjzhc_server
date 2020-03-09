@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 
 /**
- * 节点配置service层
+ * 工序配置service层
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
