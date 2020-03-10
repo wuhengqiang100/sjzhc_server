@@ -3,5 +3,8 @@
     1 产品信息管理 ProductController /base/product
     2 工序信息管理 OperationController /base/operation
     3 设备信息管理 MachineController /base/machine
-二:核查信息管理
-    1 上传日志查询
+二:核查信息管理    VerifyLogController
+    1 上传日志查询 /log/dataup
+    2 操作日志查询 /log/operation
+    3 设备日志查询 /log/machine
+    4 生产日志查询 /log/produce

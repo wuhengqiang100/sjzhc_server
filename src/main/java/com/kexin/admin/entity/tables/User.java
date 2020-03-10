@@ -2,9 +2,6 @@ package com.kexin.admin.entity.tables;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.kexin.admin.entity.vo.CheckOptionsGroup;
-import com.kexin.admin.entity.vo.CheckOptionsType;
-import com.kexin.common.base.TableEntity;
 
 import java.util.Date;
 import java.util.List;
@@ -36,8 +33,6 @@ public class User{
     @TableField(value = "ROLE_STRING")
     private String roleString; //用户角色临时保存字段
 
-    @TableField(exist = false)
-    private Identity identity;//人员的身份,在工作中的真实身份
 
     @TableField(exist = false)
     private List<Role> roleList;//用户的角色集合
@@ -49,11 +44,7 @@ public class User{
     @TableField(exist = false)
     private int[] checkUserIdentity;//用户身份数组
 
-    @TableField(exist = false)
-    private CheckOptionsGroup checkOptionsRole;//角色options
 
-    @TableField(exist = false)
-    private CheckOptionsType checkOptionsIdentity;//分组options
     /**
      * 启用状态:0 禁止,1 启用
      */
@@ -127,21 +118,7 @@ public class User{
         this.checkUserIdentity = checkUserIdentity;
     }
 
-    public CheckOptionsGroup getCheckOptionsRole() {
-        return checkOptionsRole;
-    }
 
-    public void setCheckOptionsRole(CheckOptionsGroup checkOptionsRole) {
-        this.checkOptionsRole = checkOptionsRole;
-    }
-
-    public CheckOptionsType getCheckOptionsIdentity() {
-        return checkOptionsIdentity;
-    }
-
-    public void setCheckOptionsIdentity(CheckOptionsType checkOptionsIdentity) {
-        this.checkOptionsIdentity = checkOptionsIdentity;
-    }
 
     public String getRoleString() {
         return roleString;
@@ -151,13 +128,7 @@ public class User{
         this.roleString = roleString;
     }
 
-    public Identity getIdentity() {
-        return identity;
-    }
 
-    public void setIdentity(Identity identity) {
-        this.identity = identity;
-    }
 
     public List<Role> getRoleList() {
         return roleList;

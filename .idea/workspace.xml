@@ -2,14 +2,183 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="021d88d3-fb85-4ccf-b86b-80724cbf2d83" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Machine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/MachineMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/MachineService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/DataupLog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/MachineLog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/OperationLog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/ProduceLog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/WipJobs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/WipProdLogs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/DataupLogMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/MachineLogMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/OperationLogMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/ProduceLogMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/DataupLogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/MachineLogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/OperationLogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/ProduceLogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/DataupLogServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineLogServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/OperationLogServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/ProduceLogServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/document/api" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/document/技术协议书" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Facility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Facility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Facility.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Facility.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/DeviceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/DeviceTypeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/LonginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperationTypeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/TaskController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/UserController00.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/UserControllerBeifen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/DicOperators.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/Group.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/Role01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/InitApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/InitData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/InitMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/InitUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Device.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/DeviceType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Facility.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/FacilityGroup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/FacilityType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/GrantRoleFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/GrantRoleFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Identity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/LoginUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/LoginUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Machine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Machine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/OperationType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/TaskInfos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Tasks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tasks/HistoryTaskInfos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tasks/ProductTaskAdd.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/AddUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/CheckOptionsGroup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/CheckOptionsType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/DeviceMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/DeviceTypeMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/FacilityGroupMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/FacilityMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/FacilityTypeMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/IdentityMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/OperationTypeMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/RoleMapper01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/TaskInfosMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/TasksMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/DeviceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/DeviceTypeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/FacilityGroupService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/FacilityService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/FacilityTypeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/IdentityService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/InitService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/OperationTypeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/RoleService01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/TaskInfosService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/TasksService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/DeviceServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/DeviceTypeServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/FacilityGroupServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/FacilityTypeServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/IdentityServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/InitServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/OperationTypeServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/RoleService01Impl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/TaskInfosServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/TasksServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/document/Controller设计" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/document/Controller设计" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/document/项目实施计划" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/DeviceMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/DeviceTypeMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/FacilityGroupMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/FacilityMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/FacilityTypeMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/IdentityMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/TaskInfosMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/TasksMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/DeviceController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/DeviceTypeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/LoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/LonginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/OperationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/OperationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/OperationTypeController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/OperatorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/OperatorController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/TaskController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/UserController00.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/UserControllerBeifen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/DicOperators.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/Group.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/Role01.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/pojo/InitApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/pojo/InitData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/pojo/InitMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/pojo/InitUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Device.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/DeviceType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Facility.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/FacilityGroup.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/FacilityType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Identity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/LoginUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/LoginUser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Machine.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Machine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/OperationType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Operator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Operator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/TaskInfos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Tasks.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tasks/HistoryTaskInfos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tasks/ProductTaskAdd.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/vo/AddUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/vo/CheckOptionsGroup.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/vo/CheckOptionsType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/DeviceMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/DeviceTypeMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/FacilityGroupMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/FacilityMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/FacilityTypeMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/IdentityMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/OperationTypeMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/RoleMapper01.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/TaskInfosMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/TasksMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/DeviceService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/DeviceTypeService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/FacilityGroupService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/FacilityService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/FacilityTypeService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/IdentityService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/InitService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/OperationTypeService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/RoleService01.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/TaskInfosService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/TasksService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/DeviceServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/DeviceTypeServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/FacilityGroupServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/FacilityTypeServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/IdentityServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/InitServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/OperationTypeServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/RoleService01Impl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/TaskInfosServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/TasksServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/document/Controller设计" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/document/Controller设计" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/document/项目实施计划" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/DeviceMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/DeviceTypeMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/FacilityGroupMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/FacilityMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/FacilityTypeMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/IdentityMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/TaskInfosMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/TasksMapper.xml" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -20,51 +189,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="67" column="17" lean-forward="true" selection-start-line="67" selection-start-column="17" selection-end-line="67" selection-end-column="17" />
-              <folding>
-                <element signature="e#2939#3288#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Machine.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/MachineLog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-              <folding>
-                <element signature="e#1348#1349#0" expanded="true" />
-                <element signature="e#1384#1385#0" expanded="true" />
-                <element signature="e#1443#1444#0" expanded="true" />
-                <element signature="e#1493#1494#0" expanded="true" />
-                <element signature="e#1534#1535#0" expanded="true" />
-                <element signature="e#1571#1572#0" expanded="true" />
-                <element signature="e#1631#1632#0" expanded="true" />
-                <element signature="e#1683#1684#0" expanded="true" />
-                <element signature="e#2505#2506#0" expanded="true" />
-                <element signature="e#2537#2538#0" expanded="true" />
-                <element signature="e#2588#2589#0" expanded="true" />
-                <element signature="e#2630#2631#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperationController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="73" selection-start-line="73" selection-end-line="73" />
+            <state relative-caret-position="261">
+              <caret line="19" column="32" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -77,13 +210,24 @@
       <find>节点</find>
       <find>Operation</find>
       <find>OPERATION</find>
+      <find>operation</find>
+      <find>dataupLog</find>
+      <find>machineLog</find>
+      <find>prodLog</find>
     </findStrings>
     <replaceStrings>
       <replace>machine</replace>
       <replace>设备</replace>
       <replace>工序</replace>
-      <replace>Machine</replace>
       <replace>MACHINE</replace>
+      <replace>DataupLog</replace>
+      <replace>dataupLog</replace>
+      <replace>Machine</replace>
+      <replace>machineLog</replace>
+      <replace>OperationLog</replace>
+      <replace>operationLog</replace>
+      <replace>ProduceLog</replace>
+      <replace>produceLog</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -94,11 +238,9 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/resources/mapper/admin/LoginUserMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/LoginUser.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/document/Controller设计" />
         <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Products.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/ProductsServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperationController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/OperationServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operation.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Facility.java" />
@@ -107,10 +249,38 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/MachineMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Machine.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/InitApp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/OperationType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/TaskInfos.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/GrantRoleFunctions.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperationController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/document/Controller设计" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/WipProdLogs.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/OperationLogService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/ProdLogMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/ProdLog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/DataupLogService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/DataupLogMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/DataupLogServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/MachineLogMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/OperationLogServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/OperationLogMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/ProdLogServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/ProdLogService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/MachineLogService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineLogServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/MachineLog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/ProduceLog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/ProduceLogMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/ProduceLogService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/ProduceLogServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
     <option name="width" value="978" />
@@ -121,6 +291,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -172,6 +343,71 @@
               <item name="kexin" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjzhc_server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="kexin" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjzhc_server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="kexin" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjzhc_server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="kexin" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="monitor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjzhc_server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="kexin" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="pojo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjzhc_server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="kexin" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="tables" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjzhc_server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="kexin" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="vo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="server" type="b2602c69:ProjectViewProjectNode" />
@@ -241,6 +477,14 @@
             <path>
               <item name="server" type="b2602c69:ProjectViewProjectNode" />
               <item name="sjzhc_server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sjzhc_server" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -248,7 +492,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -259,18 +502,26 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.kexin.admin.mapper" />
       <recent name="com.kexin.admin.service.impl" />
       <recent name="com.kexin.admin.service" />
-      <recent name="com.kexin.admin.controller" />
+      <recent name="com.kexin.admin.mapper" />
       <recent name="com.kexin.admin.entity.tables" />
+      <recent name="com.kexin.admin.controller" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\kexinwork\shijiazhuang\sjzhc_server\src\main\java\com\kexin\admin\mapper" />
+      <recent name="D:\kexinwork\shijiazhuang\sjzhc_server\src\main\java\com\kexin\admin\service\impl" />
+      <recent name="D:\kexinwork\shijiazhuang\sjzhc_server\src\main\java\com\kexin\admin\service" />
+      <recent name="D:\kexinwork\shijiazhuang\sjzhc_server\src\main\java\com\kexin\admin\entity\tables" />
+      <recent name="D:\kexinwork\shijiazhuang\sjzhc_server\src\main\resources\document" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -309,17 +560,19 @@
       <updated>1583116502381</updated>
       <workItem from="1583116505635" duration="1320000" />
       <workItem from="1583715704637" duration="16602000" />
+      <workItem from="1583801639776" duration="3541000" />
+      <workItem from="1583805237532" duration="8993000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17922000" />
+    <option name="totallyTimeSpent" value="30456000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="848" extended-state="7" />
+    <frame x="-7" y="-7" width="782" height="848" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.230563" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20027624" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -328,9 +581,9 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.1801676" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.48743016" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.17178771" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -338,7 +591,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.26955307" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32960895" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.18156424" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
       <window_info anchor="bottom" id="Version Control" order="14" />
@@ -440,38 +693,47 @@
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperationController.java</url>
-          <line>73</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java</url>
+          <line>76</line>
           <properties />
-          <option name="timeStamp" value="25" />
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineController.java</url>
-          <line>71</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java</url>
+          <line>75</line>
           <properties />
-          <option name="timeStamp" value="30" />
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java</url>
+          <line>73</line>
+          <properties />
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java</url>
+          <line>72</line>
+          <properties />
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java</url>
+          <line>154</line>
+          <properties />
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java</url>
+          <line>184</line>
+          <properties />
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/UserController00.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3388">
-          <caret line="48" column="5" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/admin/LoginUserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
-          <folding>
-            <element signature="e#290#1712#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/InitMenu.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/InitUser.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Functions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -479,100 +741,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/Token.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/LoginUser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/UserController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/OperationType.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="44" column="35" selection-start-line="44" selection-start-column="35" selection-end-line="44" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/document/项目实施计划">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/document/Controller设计">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/ProductsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="51" column="18" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/common/config/MyMetaObjectHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="22" column="66" lean-forward="true" selection-start-line="22" selection-start-column="66" selection-end-line="22" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/common/config/MyHandlerInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
+        <state relative-caret-position="198">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/common/config/MybatisPlusConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-174">
-          <caret line="17" column="9" lean-forward="true" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="77" column="24" lean-forward="true" selection-start-line="77" selection-start-column="24" selection-end-line="77" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/ProductsServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="46" column="40" lean-forward="true" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/ProductController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="136" selection-start-line="136" selection-end-line="136" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="28" column="33" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="33" />
-          <folding>
-            <element signature="e#1845#1846#0" expanded="true" />
-            <element signature="e#1875#1876#0" expanded="true" />
-            <element signature="e#1922#1923#0" expanded="true" />
-            <element signature="e#1960#1961#0" expanded="true" />
-            <element signature="e#2665#2666#0" expanded="true" />
-            <element signature="e#2701#2702#0" expanded="true" />
-            <element signature="e#2760#2761#0" expanded="true" />
-            <element signature="e#2810#2811#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -589,97 +776,310 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Facility.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/TaskInfos.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Role.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+        <state relative-caret-position="308">
+          <caret line="28" column="48" lean-forward="true" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/OperationService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/AddUser.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/AllFunction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="50" column="64" lean-forward="true" selection-start-line="11" selection-end-line="50" selection-end-column="64" />
+        <state relative-caret-position="110">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/MachineService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/DicOperators.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/Group.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/ShowMenuVo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="10" selection-end-column="3" />
+        <state relative-caret-position="88">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/Role01.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/Rescource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/GrantRoleFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-300">
+          <caret line="130" selection-start-line="130" selection-end-line="130" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/admin/OperatorMapper.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Machine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1845#1846#0" expanded="true" />
+            <element signature="e#1875#1876#0" expanded="true" />
+            <element signature="e#1922#1923#0" expanded="true" />
+            <element signature="e#1960#1961#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-597">
-          <caret line="23" column="13" lean-forward="true" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding>
-            <element signature="e#1802#1803#0" expanded="true" />
-            <element signature="e#1863#1864#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="117">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/MachineMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="6" column="14" lean-forward="true" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/OperationServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-66">
-          <caret line="17" column="49" lean-forward="true" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/OperationMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/document/api">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="19" column="38" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/WipProdLogs.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/WipJobs.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/OperationLogService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="43" lean-forward="true" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/DataupLogService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="43" lean-forward="true" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/DataupLogServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="35" column="49" lean-forward="true" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/DataupLogMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/document/Controller设计">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="25" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/MachineLogMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/OperationLogServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="68" selection-start-line="13" selection-start-column="68" selection-end-line="13" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/OperationLogMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/ProdLogMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/ProdLogService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/MachineLogService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineLogServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="70" column="40" lean-forward="true" selection-start-line="70" selection-start-column="40" selection-end-line="70" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
-          <caret line="67" column="17" lean-forward="true" selection-start-line="67" selection-start-column="17" selection-end-line="67" selection-end-column="17" />
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/DataupLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="28" column="30" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/OperationLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="18" column="46" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/ProdLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/ProduceLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="18" column="36" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/ProduceLogMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="59" selection-start-line="6" selection-start-column="59" selection-end-line="6" selection-end-column="59" />
           <folding>
-            <element signature="e#2939#3288#0" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperationController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/ProduceLogService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
+        <state relative-caret-position="22">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Machine.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/ProduceLogServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+        <state relative-caret-position="286">
+          <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
           <folding>
-            <element signature="e#1348#1349#0" expanded="true" />
-            <element signature="e#1384#1385#0" expanded="true" />
-            <element signature="e#1443#1444#0" expanded="true" />
-            <element signature="e#1493#1494#0" expanded="true" />
-            <element signature="e#1534#1535#0" expanded="true" />
-            <element signature="e#1571#1572#0" expanded="true" />
-            <element signature="e#1631#1632#0" expanded="true" />
-            <element signature="e#1683#1684#0" expanded="true" />
-            <element signature="e#2505#2506#0" expanded="true" />
-            <element signature="e#2537#2538#0" expanded="true" />
-            <element signature="e#2588#2589#0" expanded="true" />
-            <element signature="e#2630#2631#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/ProdLogServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/MachineLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="32" />
         </state>
       </provider>
     </entry>

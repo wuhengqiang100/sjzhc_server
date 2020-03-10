@@ -1,24 +1,13 @@
 package com.kexin.admin.controller;
 
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.kexin.admin.entity.tables.*;
-import com.kexin.admin.entity.vo.CheckOptionsGroup;
-import com.kexin.admin.entity.vo.CheckOptionsType;
 import com.kexin.admin.service.*;
-import com.kexin.common.base.PageData;
-import com.kexin.common.util.ResponseEntity;
 import com.kexin.common.util.ResponseEty;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * 用户管理controller层

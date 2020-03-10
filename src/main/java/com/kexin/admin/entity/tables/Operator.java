@@ -2,12 +2,8 @@ package com.kexin.admin.entity.tables;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.kexin.admin.entity.vo.CheckOptionsGroup;
-import com.kexin.admin.entity.vo.CheckOptionsType;
-import com.kexin.common.base.TableEntity;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * 人员实体类

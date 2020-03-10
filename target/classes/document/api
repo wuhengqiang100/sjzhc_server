@@ -1,0 +1,49 @@
+1 系统管理
+    目标:能够实现对现有核查系统的权限信息进行配置与管理，同时对各个子系统进行升级，实现权限控制。
+    权限管理 /admin/system/menu/list    MenuController
+    角色管理 /admin/system/role/list    RoleController
+    用户管理 /admin/system/user/list    UserController
+2 基础信息管理 /base
+    目标:能够实现对现有核查系统的基础信息（品种、设备、工序、人员等）进行配置和管理。
+    产品和作废工序对应管理  /base/product/waste/list               ProductWasteController
+    产品废品类型管理        /base/waste/type/list                  WasteTypeController
+    产品废品工序管理        /base/waste/process/list               WasteProcessController
+    设备信息管理            /base/device/info/list                 DeviceInfoController
+    工序信息管理            /base/process/info/list                ProcessInfoController
+    产品信息管理            /base/product/info/list                ProductInfoController
+    快捷键转换管理          /base/key/list                         KeyController
+3 核查信息管理 /verify
+    核查信息查询            /verify/info/list         VerifyInfoController
+        目标:能够实现对现有核查系统进行综合查询
+        多几个模块综合查询，单独独立出来，多样化查询
+    核查日志查询            /verify/log/list          VerifyLogController
+    生产日志查询            /verify/log/prod/list          VerifyLogController
+    机器日志查询            /verify/log/machine/list          VerifyLogController
+    操作日志查询            /verify/log/operation/list          VerifyLogController
+    上传日志查询            /verify/log/dataup/list          VerifyLogController
+        目标:能够实现对现有核查系统的日志信息进行综合查询，同时对各个子系统进行升级，将关键日志信息写入中心数据库。
+4 机检信息管理 /machine
+    机检信息审核   /machine/info/check                MachineCheckController
+        目标:能够实现对现有机检信息进行审核，只有通过人工审核后的车次才能进行判废环节。
+        检测张数（不同工序 阈值） 缺陷数量（阈值） 未检数量（阈值），已审核的车次多一个状态是否已分活
+        已审核的车次要用时间来检索，已分活功能去掉
+        快速审核，有一定的条件限制，和检测张数和缺陷数量的阈值有关，自动就已审核
+    机检模板管理   /machine/template/info             MachineTemplateController
+        目标:能够实现对集中判废模板的集中管理与自动下载。
+
+
+2019.11.20石家庄需求交流
+
+
+1.导出石家庄核查的数据库表结构以及部分数据(测试数据)?----重点
+2.机检审核信息的表结构,审核的字段确定,以及审核通过的枚举值,确定是否审核过,到下一步可以分活?
+   审核以什么形式----单个(批量),是否能回退? 回退支持单个,前提条件是没有被分活
+3.判费模板存在哪儿?(数据库,服务器?)?
+4.判费模板自动下载,有没有查看功能(在网页上面可以查看)? 没有查看功能,新增模板上传功能,ftp连接(demo实验)
+5.核查信息管理里面的,核查信息和核查日志有表没有? 没有表,待建
+6.将关键日志写入中心数据库,怎么样的方式写入,直连?接口?  直接连中心数据库
+7.能够实现对现有核查系统的日志信息进行综合查询，同时对各个子系统进行升级?(这句话是什么意思?) 所有日志在一张表,根据type类别区分
+8.基础信息（品种、设备、工序等）进行配置,等有没有具体的那些配置?
+
+--车次: 工序,品种,设备
+

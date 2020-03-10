@@ -4,7 +4,6 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.kexin.admin.entity.tables.DeviceType;
 import com.kexin.admin.entity.tables.Operator;
 import com.kexin.admin.service.OperatorService;
 import com.kexin.common.annotation.SysLog;
