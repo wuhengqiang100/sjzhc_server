@@ -1,185 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="021d88d3-fb85-4ccf-b86b-80724cbf2d83" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/DataupLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/MachineLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/OperationLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/ProduceLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/WipJobs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/WipProdLogs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/DataupLogMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/MachineLogMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/OperationLogMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/ProduceLogMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/DataupLogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/MachineLogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/OperationLogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/ProduceLogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/DataupLogServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineLogServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/OperationLogServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/ProduceLogServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/document/api" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/document/技术协议书" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/DeviceController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/DeviceTypeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/LoginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/LonginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperationTypeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperatorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/TaskController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/UserController00.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/UserControllerBeifen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/DicOperators.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/Group.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/Role01.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/InitApp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/InitData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/InitMenu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/InitUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Device.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/DeviceType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Facility.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/FacilityGroup.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/FacilityType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/GrantRoleFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/GrantRoleFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Identity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/LoginUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/LoginUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Machine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Machine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/OperationType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/TaskInfos.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Tasks.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tasks/HistoryTaskInfos.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tasks/ProductTaskAdd.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/AddUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/CheckOptionsGroup.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/CheckOptionsType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/DeviceMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/DeviceTypeMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/FacilityGroupMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/FacilityMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/FacilityTypeMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/IdentityMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/OperationTypeMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/RoleMapper01.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/TaskInfosMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/TasksMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/DeviceService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/DeviceTypeService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/FacilityGroupService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/FacilityService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/FacilityTypeService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/IdentityService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/InitService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/OperationTypeService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/RoleService01.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/TaskInfosService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/TasksService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/DeviceServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/DeviceTypeServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/FacilityGroupServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/FacilityTypeServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/IdentityServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/InitServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/OperationTypeServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/RoleService01Impl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/TaskInfosServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/TasksServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/document/Controller设计" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/document/Controller设计" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/document/项目实施计划" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/DeviceMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/DeviceTypeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/FacilityGroupMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/FacilityMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/FacilityTypeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/IdentityMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/TaskInfosMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/TasksMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/DeviceController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/DeviceTypeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/LonginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/OperationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/OperationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/OperationTypeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/OperatorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/OperatorController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/TaskController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/UserController00.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/UserControllerBeifen.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/DicOperators.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/Group.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/Role01.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/pojo/InitApp.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/pojo/InitData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/pojo/InitMenu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/pojo/InitUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Device.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/DeviceType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Facility.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/FacilityGroup.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/FacilityType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Identity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/LoginUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/LoginUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Machine.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Machine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/OperationType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Operator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Operator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/TaskInfos.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Tasks.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tasks/HistoryTaskInfos.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tasks/ProductTaskAdd.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/vo/AddUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/vo/CheckOptionsGroup.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/vo/CheckOptionsType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/DeviceMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/DeviceTypeMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/FacilityGroupMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/FacilityMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/FacilityTypeMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/IdentityMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/OperationTypeMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/RoleMapper01.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/TaskInfosMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/TasksMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/DeviceService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/DeviceTypeService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/FacilityGroupService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/FacilityService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/FacilityTypeService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/IdentityService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/InitService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/OperationTypeService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/RoleService01.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/TaskInfosService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/TasksService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/DeviceServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/DeviceTypeServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/FacilityGroupServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/FacilityTypeServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/IdentityServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/InitServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/OperationTypeServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/RoleService01Impl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/TaskInfosServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/TasksServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/document/Controller设计" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/document/Controller设计" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/document/项目实施计划" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/DeviceMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/DeviceTypeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/FacilityGroupMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/FacilityMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/FacilityTypeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/IdentityMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/TaskInfosMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/TasksMapper.xml" beforeDir="false" />
-    </list>
+    <list default="true" id="021d88d3-fb85-4ccf-b86b-80724cbf2d83" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -193,11 +15,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/MachineLog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="19" column="32" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="32" />
+            <state relative-caret-position="418">
+              <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/OperationLog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="415">
+              <caret line="44" column="36" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/ProduceLog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-682">
+              <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/WipProdLogs.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/WipJobs.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="17" column="33" lean-forward="true" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -280,7 +138,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
     <option name="width" value="978" />
@@ -561,18 +419,18 @@
       <workItem from="1583116505635" duration="1320000" />
       <workItem from="1583715704637" duration="16602000" />
       <workItem from="1583801639776" duration="3541000" />
-      <workItem from="1583805237532" duration="8993000" />
+      <workItem from="1583805237532" duration="10501000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30456000" />
+    <option name="totallyTimeSpent" value="31964000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="782" height="848" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20027624" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18230563" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -583,12 +441,12 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.1801676" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.17178771" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.5614525" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.26955307" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.36871508" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.18156424" />
@@ -870,12 +728,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/WipProdLogs.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/WipJobs.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/OperationLogService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -1008,24 +860,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/OperationLog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="18" column="46" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/ProdLog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/ProduceLog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="18" column="36" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -1078,8 +916,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/MachineLog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="19" column="32" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="32" />
+        <state relative-caret-position="418">
+          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/OperationLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="44" column="36" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/WipProdLogs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/WipJobs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="17" column="33" lean-forward="true" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/ProduceLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-682">
+          <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
         </state>
       </provider>
     </entry>
