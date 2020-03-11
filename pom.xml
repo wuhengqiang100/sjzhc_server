@@ -42,7 +42,7 @@
         <commons-lang3.version>3.4</commons-lang3.version>
         <commons-codec.version>1.11</commons-codec.version>
         <fastjson.version>1.2.41</fastjson.version>
-        <!--<jackson.version>2.9.0</jackson.version>-->
+        <jackson.version>2.10.2</jackson.version>
 <!--        &lt;!&ndash; Frontend插件版本,用于集成angular服务 &ndash;&gt;-->
 <!--        <plugin.frontend.version>1.6</plugin.frontend.version>-->
 <!--        &lt;!&ndash; node插件版本,用于集成angular服务 &ndash;&gt;-->
@@ -129,7 +129,21 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
 
         <!-- mybatis-plus begin -->
         <dependency>
