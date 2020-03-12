@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  */
 
 //@KeySequence(value = "SQ_DIC_MACHINES", clazz = Integer.class)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @TableName("SYS_MENUS")
 public class SysMenus {
     

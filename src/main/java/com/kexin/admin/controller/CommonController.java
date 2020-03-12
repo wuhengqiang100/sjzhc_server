@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.Machine;
 import com.kexin.admin.entity.tables.SysMenus;
 import com.kexin.admin.entity.tables.SysMenusMeta;
+import com.kexin.admin.service.LoginUserService;
 import com.kexin.admin.service.MachineService;
 import com.kexin.admin.service.SysMenusMetaService;
 import com.kexin.admin.service.SysMenusService;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 公用controller
@@ -35,6 +37,18 @@ public class CommonController {
     @Autowired
     SysMenusMetaService sysMenusMetaService;
 
+    @Autowired
+    LoginUserService loginUserService;
+
+    /**
+     * @Title:
+     * @Description: TODO(数据库动态获取router)
+     * @param @param
+     * @return @return
+     * @author 13015
+     * @throws
+     * @date 2020/3/12 14:25
+     */
     @PostMapping("menu")
     @ResponseBody
     @SysLog("获取动态路由菜单")
@@ -67,6 +81,37 @@ public class CommonController {
         responseEty.setSuccess(20000);
         responseEty.setAny("asyncRoutes",sysMenusList);
         return responseEty;
+    }
+
+
+    /**
+     * @Title:用户登陆
+     * @param @param
+     * @return @return
+     * @author 巫恒强
+     * @throws
+     * @date 2020/3/12 14:26
+     */
+    @PostMapping("login")
+    @ResponseBody
+    public ResponseEty login(@RequestBody Map map){
+
+        return loginUserService.login(map);
+    }
+
+    /**
+     * @Title:获取用户的基本信息
+     * @param @param
+     * @return @return
+     * @author 巫恒强
+     * @throws
+     * @date 2020/3/12 14:27
+     */
+    @GetMapping("info")
+    @ResponseBody
+    public ResponseEty info(@RequestParam String token){
+        System.out.println(token);
+        return loginUserService.userInfo(token);
     }
 
 }

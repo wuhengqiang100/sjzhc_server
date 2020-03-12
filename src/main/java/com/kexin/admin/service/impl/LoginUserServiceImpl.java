@@ -1,22 +1,15 @@
 package com.kexin.admin.service.impl;
 
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kexin.admin.entity.login.TokenUser;
 import com.kexin.admin.entity.login.Tokens;
-import com.kexin.admin.entity.pojo.Token;
 import com.kexin.admin.entity.tables.LoginUser;
-import com.kexin.admin.entity.tables.Role;
 import com.kexin.admin.entity.tables.User;
 import com.kexin.admin.mapper.LoginUserMapper;
 import com.kexin.admin.service.LoginUserService;
-import com.kexin.admin.service.UserService;
-import com.kexin.common.util.ResponseEntity;
 import com.kexin.common.util.ResponseEty;
-import com.kexin.common.util.StringUtilSubstring;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -66,5 +59,49 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
         responseEty.setSuccess(20000);
         responseEty.setData(tokenUser);
         return responseEty;
+    }
+
+    //新增和编辑加上,事务回滚时用到
+    //@Transactional(rollbackFor = Exception.class)
+
+
+
+
+
+    @Override
+    public Integer loginUserCountByName(String loginName) {
+        QueryWrapper<LoginUser> wrapper = new QueryWrapper<>();
+        wrapper.eq("LOGIN_NAME",loginName);
+        Integer count = baseMapper.selectCount(wrapper);
+        return count;
+    }
+
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void saveLoginUser(LoginUser loginUser) {
+//        Encodes.entryptPassword(user);
+//        user.setIsLock(0);
+        baseMapper.insert(loginUser);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateLoginUser(LoginUser loginUser) {
+//        dropUserRolesByUserId(user.getLoginId());
+        baseMapper.updateById(loginUser);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteLoginUser(LoginUser loginUser) {
+        baseMapper.deleteById(loginUser.getLoginId());
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void lockLoginUser(LoginUser loginUser) {
+        loginUser.setUseFlag(loginUser.getUseFlag()?false:true);
+        baseMapper.updateById(loginUser);
     }
 }
