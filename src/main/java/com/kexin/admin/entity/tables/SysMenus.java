@@ -164,7 +164,7 @@ public class SysMenus {
                 "id=" + id +
                 ", parentId=" + parentId +
                 ", path='" + path + '\'' +
-                ", component='" + component + '\'' +
+                ", component='" + component.replace("\"", "") + '\'' +
                 ", redirect='" + redirect + '\'' +
                 ", name='" + name + '\'' +
                 ", hidden=" + hidden +

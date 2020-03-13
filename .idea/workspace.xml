@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="021d88d3-fb85-4ccf-b86b-80724cbf2d83" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/MenuTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/RoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/RoleMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/RoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/RoleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/document/Controller设计" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/document/Controller设计" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysMenus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysMenus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/CommonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/CommonController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/SysMenus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/SysMenus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/RoleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/RoleServiceImpl.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Role.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-90">
-              <caret line="26" column="7" lean-forward="true" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+              <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
               <folding>
                 <element signature="e#857#858#0" expanded="true" />
                 <element signature="e#886#887#0" expanded="true" />
@@ -54,7 +54,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/document/Controller设计">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
-              <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+              <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -63,7 +63,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="59" column="51" lean-forward="true" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
+              <caret line="59" column="51" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -71,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
+            <state relative-caret-position="642">
+              <caret line="96" column="21" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -81,7 +81,69 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/RoleMapper.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="264">
-              <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+              <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/CommonController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="36" column="2" selection-start-line="36" selection-start-column="2" selection-end-line="37" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="84" column="13" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/MenuTree.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="123">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+              <folding>
+                <element signature="e#355#356#0" expanded="true" />
+                <element signature="e#380#381#0" expanded="true" />
+                <element signature="e#417#418#0" expanded="true" />
+                <element signature="e#445#446#0" expanded="true" />
+                <element signature="e#477#478#0" expanded="true" />
+                <element signature="e#505#506#0" expanded="true" />
+                <element signature="e#547#548#0" expanded="true" />
+                <element signature="e#581#582#0" expanded="true" />
+                <element signature="e#620#621#0" expanded="true" />
+                <element signature="e#651#652#0" expanded="true" />
+                <element signature="e#703#704#0" expanded="true" />
+                <element signature="e#743#744#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="154" selection-start-line="154" selection-end-line="154" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysMenus.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -90,7 +152,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/RoleService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="550">
-              <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+              <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,11 +160,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/RoleServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
-              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
               <folding>
                 <element signature="e#1668#1669#0" expanded="true" />
                 <element signature="e#1723#1724#0" expanded="true" />
@@ -112,6 +174,13 @@
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -132,8 +201,8 @@
       <find>user</find>
       <find>User</find>
       <find>设备</find>
-      <find>Machine</find>
       <find>MACHINE</find>
+      <find>Machine</find>
       <find>deviceType</find>
     </findStrings>
     <replaceStrings>
@@ -161,8 +230,8 @@
       <replace>loginUser</replace>
       <replace>LoginUser</replace>
       <replace>用户</replace>
-      <replace>Role</replace>
       <replace>ROLE</replace>
+      <replace>Role</replace>
       <replace>role</replace>
     </replaceStrings>
   </component>
@@ -172,8 +241,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Machine.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/LoginController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/InitApp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/OperationType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/TaskInfos.java" />
@@ -209,9 +276,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/SysMenusService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysMenusServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysMenusMeta.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/CommonController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysMenus.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/LoginUser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/LoginUserMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/UserController.java" />
@@ -223,13 +288,17 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/RoleService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/RoleServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysMenus.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/MenuTree.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/CommonController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="y" value="-10" />
-    <option name="width" value="979" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="978" />
     <option name="height" value="1060" />
   </component>
   <component name="ProjectView">
@@ -310,40 +379,7 @@
               <item name="kexin" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
               <item name="entity" type="462c0819:PsiDirectoryNode" />
-              <item name="login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjzhc_server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kexin" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-              <item name="monitor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjzhc_server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kexin" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
               <item name="pojo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sjzhc_server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kexin" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-              <item name="tables" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="server" type="b2602c69:ProjectViewProjectNode" />
@@ -500,18 +536,18 @@
       <workItem from="1583805237532" duration="14220000" />
       <workItem from="1583887295351" duration="15837000" />
       <workItem from="1583974851564" duration="8007000" />
-      <workItem from="1584060871858" duration="5240000" />
+      <workItem from="1584060871858" duration="12637000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64767000" />
+    <option name="totallyTimeSpent" value="72164000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.230563" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22050938" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -522,18 +558,18 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.1801676" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.13407822" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.35893854" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.23743017" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32402235" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.3170391" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.36731842" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.35893854" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -549,6 +585,32 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -667,24 +729,127 @@
           <properties />
           <option name="timeStamp" value="40" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/CommonController.java</url>
+          <line>82</line>
+          <properties />
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>90</line>
+          <properties />
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>50</line>
+          <properties />
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>51</line>
+          <properties />
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>57</line>
+          <properties />
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>58</line>
+          <properties />
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>81</line>
+          <properties />
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>79</line>
+          <properties />
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>74</line>
+          <properties />
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>73</line>
+          <properties />
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>62</line>
+          <properties />
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>63</line>
+          <properties />
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>64</line>
+          <properties />
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>70</line>
+          <properties />
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>68</line>
+          <properties />
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>75</line>
+          <properties />
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>77</line>
+          <properties />
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>76</line>
+          <properties />
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>sysMenusList.get(i).getId()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/MachineLogService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineLogServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/ProdLog.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/ProduceLogMapper.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -746,16 +911,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="37">
           <caret line="63" column="27" lean-forward="true" selection-start-line="63" selection-start-column="27" selection-end-line="63" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="187" selection-start-line="187" selection-end-line="187" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -902,13 +1057,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/CommonController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1232">
-          <caret line="77" selection-start-line="77" selection-end-line="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/LoginUserService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -926,13 +1074,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysMenus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
         </state>
       </provider>
     </entry>
@@ -984,7 +1125,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Role.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-90">
-          <caret line="26" column="7" lean-forward="true" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+          <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
           <folding>
             <element signature="e#857#858#0" expanded="true" />
             <element signature="e#886#887#0" expanded="true" />
@@ -1009,7 +1150,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/RoleMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
-          <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -1023,7 +1164,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/RoleService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
-          <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1040,7 +1181,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/document/Controller设计">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
-          <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -1057,25 +1198,77 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="59" column="51" lean-forward="true" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
+          <caret line="59" column="51" selection-start-line="59" selection-start-column="51" selection-end-line="59" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/RoleServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
           <folding>
             <element signature="e#1668#1669#0" expanded="true" />
             <element signature="e#1723#1724#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="154" selection-start-line="154" selection-end-line="154" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/MenuTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#355#356#0" expanded="true" />
+            <element signature="e#380#381#0" expanded="true" />
+            <element signature="e#417#418#0" expanded="true" />
+            <element signature="e#445#446#0" expanded="true" />
+            <element signature="e#477#478#0" expanded="true" />
+            <element signature="e#505#506#0" expanded="true" />
+            <element signature="e#547#548#0" expanded="true" />
+            <element signature="e#581#582#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+            <element signature="e#651#652#0" expanded="true" />
+            <element signature="e#703#704#0" expanded="true" />
+            <element signature="e#743#744#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/CommonController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="36" column="2" selection-start-line="36" selection-start-column="2" selection-end-line="37" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="642">
+          <caret line="96" column="21" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysMenus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="84" column="13" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
         </state>
       </provider>
     </entry>
