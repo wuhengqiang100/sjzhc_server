@@ -1,8 +1,8 @@
 
 一:基础信息配置
-    1 产品信息管理 ProductController   /base/product
-    2 工序信息管理 OperationController /base/operation
-    3 设备信息管理 MachineController   /base/machine
+    1 产品信息管理 ProductController   /product
+    2 工序信息管理 OperationController /operation
+    3 设备信息管理 MachineController   /machine
 二:核查信息管理    VerifyLogController
     1 上传日志查询 /log/dataup
     2 操作日志查询 /log/operation
@@ -12,6 +12,13 @@
     1 机检信息审核 MachineCheckController      /machine/check
     2 机检模板管理 MachineTemplateController   /machine/template
 四:系统管理
-    1 菜单管理 /system/menu   MenuController
-    2 角色管理 /system/role   RoleController
-    3 用户管理 /system/user   UserController
+    1 菜单管理 /menu   MenuController
+    2 角色管理 /role   RoleController
+    3 用户管理 /loginUser  UserController
+
+
+sql:表修改
+    1 菜单表:SYS_MENUS表重新设计
+    2 菜单附属表:SYS_MENUS_META新增
+    3 登陆用户表:IS_LOCK改为了USE_FLAG
+    4 角色表重新设计:SYS_ROLE,所有字段都更改了

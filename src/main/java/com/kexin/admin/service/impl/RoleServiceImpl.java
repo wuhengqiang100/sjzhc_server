@@ -1,16 +1,21 @@
 package com.kexin.admin.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kexin.admin.entity.tables.GrantRoleFunctions;
 import com.kexin.admin.entity.tables.Role;
+import com.kexin.admin.entity.tables.Role;
+import com.kexin.admin.mapper.LoginUserMapper;
 import com.kexin.admin.mapper.RoleMapper;
 import com.kexin.admin.service.RoleService;
 import com.kexin.common.util.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,116 +25,43 @@ import java.util.List;
 @Transactional(rollbackFor = Exception.class)
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
 
-//    @Override
-//    public IPage<Role> selectUserPage(Page<Role> page, Integer useFlag) {
-//        return baseMapper.selectPageRole(page,useFlag);
-//    }
+
 
     @Override
-    public IPage<Role> selecRolePage(Page<Role> page, Integer useFlag, String roleName) {
-        return baseMapper.selectPageRole(page,useFlag,roleName);
-    }
-
-    @Override
-    public IPage<Role> selectUserPageNotGroupById(Page<Role> page, Integer useFlag) {
-        return baseMapper.selectUserPageNotGroupById(page,useFlag);
-    }
-
-    @Override
-    public Boolean updateGrantRoleAndFunctions(int roleId, int functionId) {
-        return baseMapper.updateGrantRoleAndFunctions(roleId,functionId);
-    }
-
-    @Override
-    public Role getByMap(Role role) {
-        return baseMapper.getByMap(role);
-    }
-
-    @Override
-    public Role getByMapOr(Role role) {
-        return baseMapper.getByMapOr(role);
+    public Integer roleCountByName(String roleName) {
+        QueryWrapper<Role> wrapper = new QueryWrapper<>();
+        wrapper.eq("ROLE_NAME",roleName);
+        Integer count = baseMapper.selectCount(wrapper);
+        return count;
     }
 
 
     @Override
-    public Role saveNewRole(Role role) {
-        return baseMapper.saveNewRole(role);
+    @Transactional(rollbackFor = Exception.class)
+    public void saveRole(Role role) {
+//        Encodes.entryptPassword(user);
+//        user.setIsLock(0);
+        baseMapper.insert(role);
     }
 
     @Override
-    public Integer updateRole(Role role) {
-        return baseMapper.updateRole(role);
+    @Transactional(rollbackFor = Exception.class)
+    public void updateRole(Role role) {
+//        dropUserRolesByUserId(user.getLoginId());
+        baseMapper.updateById(role);
     }
 
     @Override
-    public ResponseEntity deleteRoleAbout(int roleId) {
-        try {
-            baseMapper.deleteGrantRole(roleId);//删除关联表信息
-            baseMapper.deleteById(roleId);//删除角色表信息
-            return ResponseEntity.success("删除角色成功");
-        } catch (Exception e) {
-            return ResponseEntity.success("删除角色失败");
-        }
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteRole(Role role) {
+        baseMapper.deleteById(role.getRoleId());
     }
 
     @Override
-    public ResponseEntity forbiddenRole(int roleId) {
-        Role role=baseMapper.selectById(roleId);
-        if (!role.getUseFlag()){
-            role.setUseFlag(true);
-            Integer i=baseMapper.updateRole(role);
-            if (i!=0){
-                return ResponseEntity.success("启用角色成功");
-            }else{
-                return ResponseEntity.success("启用角色失败");
-            }
-        }else{
-            role.setUseFlag(false);
-            Integer i=baseMapper.updateRole(role);
-            if (i!=0){
-                return ResponseEntity.success("禁止角色成功");
-            }else{
-                return ResponseEntity.success("禁止角色失败");
-            }
-        }
-
+    @Transactional(rollbackFor = Exception.class)
+    public void lockRole(Role role) {
+        role.setUseFlag(role.getUseFlag()?false:true);
+        baseMapper.updateById(role);
     }
 
-    @Override
-    public Integer deleteGrantRole(int roleId) {
-        return baseMapper.deleteGrantRole(roleId);
-    }
-
-    @Override
-    public Boolean updateGrantRoleAndOperator(int operatorId, int[] roleIds) {
-        //先删除再更新
-        Integer i=baseMapper.deleteGrantOperatorAndRole(operatorId);
-        if (i>=0){
-            try {
-                for (int groupId:roleIds) {
-                    baseMapper.insertGrantOperatorAndRole(operatorId,groupId);//新增关系数据
-                }
-                return  true;
-            } catch (Exception e) {
-                return false;
-            }
-        }else{
-            return false;
-        }
-    }
-
-    @Override
-    public List<Role> getOwnRoleByOperatorId(int operatorId) {
-        return baseMapper.getOwnRoleByOperatorId(operatorId);
-    }
-
-    @Override
-    public Integer deleteGrantOperatorAndRole(int operatorId) {
-        return baseMapper.deleteGrantOperatorAndRole(operatorId);
-    }
-
-    @Override
-    public List<GrantRoleFunctions> getFunctionIdsByRoleId(int roleId) {
-        return baseMapper.getFunctionIdsByRoleId(roleId);
-    }
 }

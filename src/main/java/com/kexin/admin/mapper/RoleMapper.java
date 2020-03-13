@@ -9,6 +9,9 @@ import com.kexin.admin.entity.tables.Role;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 角色接口层
+ */
 public interface RoleMapper extends BaseMapper<Role> {
 
 
@@ -23,7 +26,7 @@ public interface RoleMapper extends BaseMapper<Role> {
      * @return 分页对象
      */
 //    IPage<Role> selectPageRole(Page page, @Param("USE_FLAG") Integer useFlag);
-    IPage<Role> selectPageRole(Page<Role> page, Integer useFlag,String roleName);
+/*    IPage<Role> selectPageRole(Page<Role> page, Integer useFlag,String roleName);
     IPage<Role> selectUserPageNotGroupById(Page<Role> page, Integer useFlag);
 
     Boolean updateGrantRoleAndFunctions(int roleId,int functionId);
@@ -40,16 +43,16 @@ public interface RoleMapper extends BaseMapper<Role> {
 
     Integer forbiddenRole(int roleId);
 
-    /**
+    *//**
      * 根据账户id查已经拥有的角色list
      * @param operatorId
      * @return
-     */
+     *//*
     List<Role> getOwnRoleByOperatorId(int operatorId);
 
     Integer deleteGrantOperatorAndRole(int operatorId);
 
     Integer insertGrantOperatorAndRole(int operatorId,int roleId);
 
-    List<GrantRoleFunctions> getFunctionIdsByRoleId(int roleId);
+    List<GrantRoleFunctions> getFunctionIdsByRoleId(int roleId);*/
 }
