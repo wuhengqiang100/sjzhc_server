@@ -24,6 +24,9 @@ public class Role{
      @TableField(value = "ROLE_NAME")
     private String roleName; //角色名称
 
+    @TableField(exist = false)
+    private Integer [] menuIds;//菜单权限ids
+
     /**
      * 启用状态:0 禁止,1 启用
      */
@@ -35,6 +38,15 @@ public class Role{
      */
     @TableField(value = "NOTE")
     protected String note;
+
+
+    public Integer[] getMenuIds() {
+        return menuIds;
+    }
+
+    public void setMenuIds(Integer[] menuIds) {
+        this.menuIds = menuIds;
+    }
 
     public Integer getRoleId() {
         return roleId;

@@ -2,9 +2,12 @@ package com.kexin.admin.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.kexin.admin.entity.tables.Role;
 import com.kexin.admin.entity.tables.SysMenus;
 import com.kexin.admin.entity.tables.SysMenusMeta;
+import com.kexin.admin.entity.tables.SysRoleMenus;
 import com.kexin.admin.entity.vo.MenuTree;
+import com.kexin.admin.service.RoleMenuService;
 import com.kexin.admin.service.SysMenusMetaService;
 import com.kexin.admin.service.SysMenusService;
 import com.kexin.common.annotation.SysLog;
@@ -29,6 +32,9 @@ public class MenuController {
     @Autowired
     SysMenusMetaService sysMenusMetaService;
 
+    @Autowired
+    RoleMenuService roleMenuService;//角色菜单关系service
+
 
     /**
      * @Title:
@@ -42,7 +48,7 @@ public class MenuController {
     @GetMapping("listOption")
     @ResponseBody
     @SysLog("角色权限分配,获取所有菜单")
-    public ResponseEty create(){
+    public ResponseEty listOption(){
         ResponseEty responseEty=new ResponseEty();
 
         QueryWrapper<SysMenus> sysMenusQueryWrapper = new QueryWrapper<>();
@@ -90,131 +96,39 @@ public class MenuController {
         responseEty.setAny("menuTree",menuTree);
         return responseEty;
     }
-/*
 
-    @Autowired
-    MenuService menuService;
 
-    @GetMapping("list")
-    @SysLog("跳转菜单列表")
-    public String list(){
-        return "admin/menu/list";
-    }
-
-//    @RequiresPermissions("sys:menu:list")
-    @RequestMapping("treeList")
+    /**
+     * @Title: 获取角色已分配的去权限,修改中使用
+     * @param @param
+     * @return @return
+     * @author 巫恒强
+     * @throws
+     * @date 2020/3/16 13:56
+     */
+    @PostMapping("listOwn")
     @ResponseBody
-    public ResponseEntity treeList(){
-        ResponseEntity responseEntity = ResponseEntity.success("操作成功");
-        responseEntity.setAny("code",0);
-        responseEntity.setAny("msg","");
-        responseEntity.setAny("count","");
-        HashMap map = new HashMap();
-        map.put("del_flag",false);
-        List<Menu> menus = menuService.selectAllMenuList(map);
-        menus.forEach( menu -> {
-            if(StringUtils.isBlank(menu.getParentId())) {
-                menu.setParentId("-1");
+    @SysLog("角色已分配的权限")
+    public ResponseEty listOwn(@RequestParam(value = "roleId",required = false)Integer roleId){
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        if(roleId==null){
+            return ResponseEty.failure("参数错误");
+        }
+        QueryWrapper<SysRoleMenus> roleMenusQueryWrapper = new QueryWrapper<>();
+        roleMenusQueryWrapper.eq("ROLE_ID",roleId);
+        List<SysRoleMenus> sysRoleMenusList=roleMenuService.list(roleMenusQueryWrapper);
+        if (sysRoleMenusList.size()!=0){
+            Integer[] menuIds=new Integer[sysRoleMenusList.size()];
+            for (int i = 0; i <sysRoleMenusList.size() ; i++) {
+                menuIds[i]=sysRoleMenusList.get(i).getMenuId();
             }
-        });
-        menus.sort(Comparator.comparing(Menu::getSort));
-        return responseEntity.setAny("data",menus);
+            responseEty.setAny("menuIds",menuIds);
+            return responseEty;
+        }
+        responseEty.setAny("menuIds",null);
+        return responseEty;
     }
 
-    @GetMapping("add")
-    public String add(@RequestParam(value = "parentId",required = false) String parentId, ModelMap modelMap){
-        if(parentId != null){
-            Menu menu = menuService.selectById(parentId);
-            modelMap.put("parentMenu",menu);
-        }
-        return "admin/menu/add";
-    }
-
-//    @RequiresPermissions("sys:menu:add")
-    @PostMapping("add")
-    @ResponseBody
-    @SysLog("保存新增菜单数据")
-    public ResponseEntity add(Menu menu){
-        if(StringUtils.isBlank(menu.getName())){
-            return ResponseEntity.failure("菜单名称不能为空");
-        }
-        if(menuService.getCountByName(menu.getName())>0){
-            return ResponseEntity.failure("菜单名称已存在");
-        }
-        if(StringUtils.isNotBlank(menu.getPermission())){
-            if(menuService.getCountByPermission(menu.getPermission())>0){
-                return ResponseEntity.failure("权限标识已经存在");
-            }
-        }
-        if(menu.getParentId() == null){
-            menu.setLevel(1);
-            menu.setSort(menuService.selectFirstLevelMenuMaxSort());
-        }else{
-            Menu parentMenu = menuService.selectById(menu.getParentId());
-            if(parentMenu==null){
-                return ResponseEntity.failure("父菜单不存在");
-            }
-            menu.setParentIds(parentMenu.getParentIds());
-            menu.setLevel(parentMenu.getLevel()+1);
-            menu.setSort(menuService.seleclMenuMaxSortByPArentId(menu.getParentId()));
-        }
-        menuService.saveOrUpdateMenu(menu);
-        menu.setParentIds(StringUtils.isBlank(menu.getParentIds()) ? menu.getId()+"," : menu.getParentIds() + menu.getId()+",");
-        menuService.saveOrUpdateMenu(menu);
-        return ResponseEntity.success("操作成功");
-    }
-
-    @GetMapping("edit")
-    public String edit(String id,ModelMap modelMap){
-        Menu menu = menuService.selectById(id);
-        modelMap.addAttribute("menu",menu);
-        return "admin/menu/edit";
-    }
-
-//    @RequiresPermissions("sys:menu:edit")
-    @PostMapping("edit")
-    @ResponseBody
-    @SysLog("保存编辑菜单数据")
-    public ResponseEntity edit(Menu menu){
-        if(StringUtils.isBlank(menu.getId())){
-            return ResponseEntity.failure("菜单ID不能为空");
-        }
-        if (StringUtils.isBlank(menu.getName())) {
-            return ResponseEntity.failure("菜单名称不能为空");
-        }
-        Menu oldMenu = menuService.selectById(menu.getId());
-        if(!oldMenu.getName().equals(menu.getName())) {
-            if(menuService.getCountByName(menu.getName())>0){
-                return ResponseEntity.failure("菜单名称已存在");
-            }
-        }
-        if (StringUtils.isNotBlank(menu.getPermission())) {
-            if(!oldMenu.getPermission().equals(menu.getPermission())) {
-                if (menuService.getCountByPermission(menu.getPermission()) > 0) {
-                    return ResponseEntity.failure("权限标识已经存在");
-                }
-            }
-        }
-        if(menu.getSort() == null){
-            return ResponseEntity.failure("排序值不能为空");
-        }
-        menuService.saveOrUpdateMenu(menu);
-        return ResponseEntity.success("操作成功");
-    }
-
-//    @RequiresPermissions("sys:menu:delete")
-    @PostMapping("delete")
-    @ResponseBody
-    @SysLog("删除菜单")
-    public ResponseEntity delete(@RequestParam(value = "id",required = false)String id){
-        if(StringUtils.isBlank(id)){
-            return ResponseEntity.failure("菜单ID不能为空");
-        }
-        Menu menu = menuService.selectById(id);
-        menu.setDelFlag(true);
-        menuService.saveOrUpdateMenu(menu);
-        return ResponseEntity.success("操作成功");
-    }
-*/
 
 }

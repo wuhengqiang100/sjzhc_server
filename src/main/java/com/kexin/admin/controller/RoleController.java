@@ -5,10 +5,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.Role;
 import com.kexin.admin.entity.tables.Role;
+import com.kexin.admin.entity.tables.SysRoleMenus;
 import com.kexin.admin.entity.vo.AllFunction;
+import com.kexin.admin.service.*;
 import com.kexin.admin.service.RoleService;
-import com.kexin.admin.service.RoleService;
-import com.kexin.admin.service.UserService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageData;
@@ -37,6 +37,17 @@ public class RoleController {
 
     @Autowired
     RoleService roleService;
+
+    @Autowired
+    RoleMenuService roleMenuService;//角色菜单关系service
+
+
+    @Autowired
+    SysMenusService sysMenusService;//系统菜单service
+
+
+    @Autowired
+    SysMenusMetaService sysMenusMetaService;//系统菜单详细信息service
 
 
     //@CrossOrigin(origins = "http://192.168.0.100:4200", maxAge = 3600)
@@ -107,6 +118,19 @@ public class RoleController {
         if(role.getRoleId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        Integer roleId=role.getRoleId();
+        if (role.getMenuIds()!=null){
+            Integer [] menuIds=role.getMenuIds();
+            SysRoleMenus sysRoleMenu=null;
+            for (Integer menuId:menuIds) {
+                sysRoleMenu=new SysRoleMenus();
+                sysRoleMenu.setRoleId(roleId);
+                sysRoleMenu.setMenuId(menuId);
+                roleMenuService.saveSysRoleMenus(sysRoleMenu);
+            }
+            return ResponseEty.success("保存成功");
+        }
+
         return ResponseEty.success("保存成功");
     }
 
@@ -134,6 +158,23 @@ public class RoleController {
         if(role.getRoleId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        Integer roleId=role.getRoleId();
+        if (role.getMenuIds()!=null){
+            //先删除原来的关系数据
+            QueryWrapper<SysRoleMenus> roleMenusQueryWrapper = new QueryWrapper<>();
+            roleMenusQueryWrapper.eq("ROLE_ID",roleId);
+            roleMenuService.remove(roleMenusQueryWrapper);
+            //再添加新的数据
+            Integer [] menuIds=role.getMenuIds();
+            SysRoleMenus sysRoleMenu=null;
+            for (Integer menuId:menuIds) {
+                sysRoleMenu=new SysRoleMenus();
+                sysRoleMenu.setRoleId(roleId);
+                sysRoleMenu.setMenuId(menuId);
+                roleMenuService.saveSysRoleMenus(sysRoleMenu);
+            }
+            return ResponseEty.success("保存成功");
+        }
         return ResponseEty.success("操作成功");
     }
 
@@ -149,6 +190,10 @@ public class RoleController {
             return ResponseEty.failure("角色不存在");
         }
         roleService.deleteRole(role);
+        //删除关系表中的数据
+        QueryWrapper<SysRoleMenus> roleMenusQueryWrapper = new QueryWrapper<>();
+        roleMenusQueryWrapper.eq("ROLE_ID",id);
+        roleMenuService.remove(roleMenusQueryWrapper);
         return ResponseEty.success("删除成功");
     }
     //
