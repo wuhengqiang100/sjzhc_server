@@ -98,7 +98,8 @@ public class RoleController {
     public ResponseEty listopetion(){
         ResponseEty responseEty=new ResponseEty();
         QueryWrapper<Role> roleWrapper = new QueryWrapper<>();
-        responseEty.setData(roleService.list(roleWrapper));
+        responseEty.setAny("roleList",roleService.list(roleWrapper));
+//        responseEty.setData(roleService.list(roleWrapper));
         responseEty.setSuccess(20000);
         return responseEty;
     }

@@ -67,6 +67,17 @@ public class User{
     @TableField(value = "NOTE")
     protected String note;
 
+    @TableField(exist = false)
+    private Integer [] roleIds;//角色ids
+
+    public Integer[] getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(Integer[] roleIds) {
+        this.roleIds = roleIds;
+    }
+
     public Boolean getUseFlag() {
         return useFlag;
     }

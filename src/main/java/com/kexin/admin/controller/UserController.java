@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.LoginUser;
+import com.kexin.admin.entity.tables.SysRoleMenus;
+import com.kexin.admin.entity.tables.SysUserRoles;
 import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
@@ -27,6 +29,9 @@ import java.util.Map;
 public class UserController {
     @Autowired
     LoginUserService loginUserService;
+    
+    @Autowired
+    UserRoleService userRoleService;
 
 
     //@CrossOrigin(origins = "http://192.168.0.100:4200", maxAge = 3600)
@@ -82,6 +87,38 @@ public class UserController {
          return loginUsers;
     }*/
 
+    /**
+     * @Title: 获取用户已拥有的角色
+     * @param @param
+     * @return @return
+     * @author 巫恒强
+     * @throws
+     * @date 2020/3/16 13:56
+     */
+    @PostMapping("listOwn")
+    @ResponseBody
+    @SysLog("用户已分配的角色")
+    public ResponseEty listOwn(@RequestParam(value = "userId",required = false)Integer userId){
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        if(userId==null){
+            return ResponseEty.failure("参数错误");
+        }
+        QueryWrapper<SysUserRoles> userRoleQueryWrapper = new QueryWrapper<>();
+        userRoleQueryWrapper.eq("USER_ID",userId);
+        List<SysUserRoles> sysRoleMenusList=userRoleService.list(userRoleQueryWrapper);
+        if (sysRoleMenusList.size()!=0){
+            Integer[] roleIds=new Integer[sysRoleMenusList.size()];
+            for (int i = 0; i <sysRoleMenusList.size() ; i++) {
+                roleIds[i]=sysRoleMenusList.get(i).getRoleId();
+            }
+            responseEty.setAny("roleIds",roleIds);
+            return responseEty;
+        }
+        responseEty.setAny("roleIds",null);
+        return responseEty;
+    }
+
 
     @PostMapping("create")
     @ResponseBody
@@ -102,6 +139,18 @@ public class UserController {
         loginUserService.saveLoginUser(loginUser);
         if(loginUser.getLoginId()==null){
             return ResponseEty.failure("保存信息出错");
+        }
+        Integer operatorId=loginUser.getOperatorId();
+        if (loginUser.getRoleIds()!=null){
+            Integer [] roleIds=loginUser.getRoleIds();
+            SysUserRoles sysUserRoles=null;
+            for (Integer roleId:roleIds) {
+                sysUserRoles=new SysUserRoles();
+                sysUserRoles.setUserId(operatorId);
+                sysUserRoles.setRoleId(roleId);
+                userRoleService.saveSysUserRoles(sysUserRoles);
+            }
+            return ResponseEty.success("保存成功");
         }
         return ResponseEty.success("保存成功");
     }
@@ -132,6 +181,23 @@ public class UserController {
         if(loginUser.getLoginId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        Integer operatorId=loginUser.getOperatorId();
+        if (loginUser.getRoleIds()!=null){
+            //先删除原来的关系数据
+            QueryWrapper<SysUserRoles> userRolesQueryWrapper = new QueryWrapper<>();
+            userRolesQueryWrapper.eq("USER_ID",operatorId);
+            userRoleService.remove(userRolesQueryWrapper);
+            //再添加新的数据
+            Integer [] roleIds=loginUser.getRoleIds();
+            SysUserRoles sysUserRoles=null;
+            for (Integer roleId:roleIds) {
+                sysUserRoles=new SysUserRoles();
+                sysUserRoles.setUserId(operatorId);
+                sysUserRoles.setRoleId(roleId);
+                userRoleService.saveSysUserRoles(sysUserRoles);
+            }
+            return ResponseEty.success("保存成功");
+        }
         return ResponseEty.success("操作成功");
     }
 
@@ -146,7 +212,13 @@ public class UserController {
         if(loginUser == null){
             return ResponseEty.failure("用户不存在");
         }
+        //先删除关系数据
+        QueryWrapper<SysUserRoles> roleMenusQueryWrapper = new QueryWrapper<>();
+        roleMenusQueryWrapper.eq("USER_ID",id);
+        userRoleService.remove(roleMenusQueryWrapper);
+        //再删除用户的数据
         loginUserService.deleteLoginUser(loginUser);
+
         return ResponseEty.success("删除成功");
     }
     //

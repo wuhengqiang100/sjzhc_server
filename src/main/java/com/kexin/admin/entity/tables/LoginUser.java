@@ -32,7 +32,16 @@ public class LoginUser{
      */
     @TableField(value = "USE_FLAG")
     protected Boolean useFlag;
+    @TableField(exist = false)
+    private Integer [] roleIds;//角色ids
 
+    public Integer[] getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(Integer[] roleIds) {
+        this.roleIds = roleIds;
+    }
 
     public Integer getLoginId() {
         return loginId;
