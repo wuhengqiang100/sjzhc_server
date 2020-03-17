@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kexin.admin.mapper.QaInspectMasterMapper">
+
+  <resultMap id="BaseMapper" type="com.kexin.admin.entity.tables.QaInspectMaster">
+    <id property="inspectmId" column="INSPECTM_ID" jdbcType="INTEGER"/>
+    <result property="allowJudge" column="ALLOW_JUDGE" jdbcType="INTEGER"/>
+    <collection property="wipProdLogs"  ofType="com.kexin.admin.entity.tables.WipProdLogs">
+      <result property="logId" column="LOG_ID" jdbcType="INTEGER"/>
+    </collection>
+    <collection property="wipJobs"  ofType="com.kexin.admin.entity.tables.WipJobs">
+      <result property="jobId" column="JOB_ID" jdbcType="INTEGER"/>
+      <result property="cartNumber" column="CART_NUMBER" jdbcType="VARCHAR"/>
+    </collection>
+    <collection property="product"  ofType="com.kexin.admin.entity.tables.Products">
+      <result property="productId" column="PRODUCT_ID"/>
+      <result property="productCode" column="PRODUCT_CODE" jdbcType="VARCHAR"/>
+      <result property="productName" column="PRODUCT_NAME" jdbcType="VARCHAR"/>
+    </collection>
+    <collection property="operation"  ofType="com.kexin.admin.entity.tables.Operation">
+      <result property="operationId" column="OPERATION_ID" jdbcType="INTEGER"/>
+      <result property="operationCode" column="OPERATION_CODE" jdbcType="VARCHAR"/>
+      <result property="operationName" column="OPERATION_NAME" jdbcType="VARCHAR"/>
+    </collection>
+    <collection property="operator"  ofType="com.kexin.admin.entity.tables.User">
+      <result property="operatorId" column="OPERATOR_ID" jdbcType="INTEGER"/>
+      <result property="operatorCode" column="OPERATOR_CODE" jdbcType="VARCHAR"/>
+      <result property="operatorName" column="OPERATOR_NAME" jdbcType="VARCHAR"/>
+    </collection>
+    <collection property="machine"  ofType="com.kexin.admin.entity.tables.Machine">
+      <result property="machineId" column="MACHINE_ID" jdbcType="INTEGER"/>
+      <result property="machineCode" column="MACHINE_CODE" jdbcType="VARCHAR"/>
+      <result property="machineName" column="MACHINE_NAME" jdbcType="VARCHAR"/>
+    </collection>
+    <collection property="dicWorkUnits"  ofType="com.kexin.admin.entity.tables.DicWorkUnits">
+      <result property="workUnitId" column="WORK_UNIT_ID" jdbcType="INTEGER"/>
+      <result property="workUnitCode" column="WORK_UNIT_CODE" jdbcType="VARCHAR"/>
+      <result property="workUnitName" column="WORK_UNIT_NAME" jdbcType="VARCHAR"/>
+    </collection>
+  </resultMap>
+  <select id="selectQaInspectMaster" resultMap="BaseMapper">
+       select
+    wj.job_id,wj.CART_NUMBER,
+    dp.product_id,dp.product_code,dp.product_name,
+    wpl.log_id,
+    dop.operation_id,dop.operation_code,dop.operation_name,
+    doa.operator_id,doa.operator_code,doa.operator_name,
+    dm.machine_id,dm.machine_code,dm.machine_name,
+    dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
+    atm.inspectm_id,atm.allow_judge
+
+    from QA_INSPECT_MASTER  atm
+
+    left join wip_prod_logs wpl on wpl.log_id=atm.log_id
+    left join wip_jobs  wj on wj.job_id=wpl.job_id
+    left join dic_products dp on dp.product_id=wj.product_id
+    left join dic_operations dop on dop.operation_id=wpl.operation_id
+    left join dic_operators doa on doa.operator_id=wpl.operator_id
+    left join dic_machines dm on dm.machine_id=wpl.machine_id
+    left join dic_work_units dwu on dwu.work_unit_id=wpl.work_unit_id
+    where atm.allow_judge=#{allowJudge}
+
+    order by atm.inspectm_id desc
+  </select>
+  <select id="getAllQaInspectMaster" resultMap="BaseMapper">
+    select
+    wj.job_id,wj.CART_NUMBER,
+    dp.product_id,dp.product_code,dp.product_name,
+    wpl.log_id,
+    dop.operation_id,dop.operation_code,dop.operation_name,
+    doa.operator_id,doa.operator_code,doa.operator_name,
+    dm.machine_id,dm.machine_code,dm.machine_name,
+    dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
+    atm.inspectm_id,atm.allow_judge
+
+    from QA_INSPECT_MASTER  atm
+
+    left join wip_prod_logs wpl on wpl.log_id=atm.log_id
+    left join wip_jobs  wj on wj.job_id=wpl.job_id
+    left join dic_products dp on dp.product_id=wj.product_id
+    left join dic_operations dop on dop.operation_id=wpl.operation_id
+    left join dic_operators doa on doa.operator_id=wpl.operator_id
+    left join dic_machines dm on dm.machine_id=wpl.machine_id
+    left join dic_work_units dwu on dwu.work_unit_id=wpl.work_unit_id
+    where atm.allow_judge in (0,1,2)
+    order by atm.inspectm_id desc
+  </select>
+    <select id="selectOneInspeceMasterByLogId" resultMap="BaseMapper">
+    select
+    wj.job_id,wj.CART_NUMBER,
+    dp.product_id,dp.product_code,dp.product_name,
+    wpl.log_id,
+    dop.operation_id,dop.operation_code,dop.operation_name,
+    doa.operator_id,doa.operator_code,doa.operator_name,
+    dm.machine_id,dm.machine_code,dm.machine_name,
+    dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
+    atm.inspectm_id,atm.allow_judge
+
+    from QA_INSPECT_MASTER  atm
+
+    left join wip_prod_logs wpl on wpl.log_id=atm.log_id
+    left join wip_jobs  wj on wj.job_id=wpl.job_id
+    left join dic_products dp on dp.product_id=wj.product_id
+    left join dic_operations dop on dop.operation_id=wpl.operation_id
+    left join dic_operators doa on doa.operator_id=wpl.operator_id
+    left join dic_machines dm on dm.machine_id=wpl.machine_id
+    left join dic_work_units dwu on dwu.work_unit_id=wpl.work_unit_id
+    where wpl.log_id=#{logId}
+
+    </select>
+
+
+</mapper>

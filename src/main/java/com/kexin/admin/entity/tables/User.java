@@ -10,13 +10,12 @@ import java.util.List;
  * 用户实体类
  */
 @TableName("dic_operators")
+@KeySequence(value = "SQ_DIC_OPERATORS", clazz = Integer.class)
 public class User{
-    @TableId(type = IdType.AUTO)
+    @TableId(type = IdType.INPUT)
     @TableField(value = "OPERATOR_ID")
     private int operatorId;//人员序号
 
-    @TableField(value = "OPERATOR_TYPE_ID")
-    private int operatorTypeId; //人员类型 (外键)
 
     @TableField(value = "OPERATOR_CODE")
     private String operatorCode; //人员编号
@@ -24,32 +23,15 @@ public class User{
     @TableField(value = "OPERATOR_NAME")
     private String operatorName; //人员名称
 
-    @TableField(value = "OPERATOR_LOGIN_NAME")
-    private String operatorLoginName; //人员登录名
-
-    @TableField(value = "OPERATOR_LOGIN_PASS")
-    private String operatorLoginPass; //人员登录密码
-
-    @TableField(value = "ROLE_STRING")
-    private String roleString; //用户角色临时保存字段
 
 
-    @TableField(exist = false)
-    private List<Role> roleList;//用户的角色集合
-
-
-    @TableField(exist = false)
-    private int[] checkUserRole;//用户角色数组
-
-    @TableField(exist = false)
-    private int[] checkUserIdentity;//用户身份数组
 
 
     /**
      * 启用状态:0 禁止,1 启用
      */
-    @TableField(value = "USE_FLAG", fill = FieldFill.INSERT_UPDATE)
-    protected Boolean useFlag;
+    /*@TableField(value = "USE_FLAG", fill = FieldFill.INSERT_UPDATE)
+    protected Boolean useFlag;*/
     /**
      * 启用时间,写入时间
      */
@@ -67,23 +49,28 @@ public class User{
     @TableField(value = "NOTE")
     protected String note;
 
-    @TableField(exist = false)
-    private Integer [] roleIds;//角色ids
-
-    public Integer[] getRoleIds() {
-        return roleIds;
+    public int getOperatorId() {
+        return operatorId;
     }
 
-    public void setRoleIds(Integer[] roleIds) {
-        this.roleIds = roleIds;
+    public void setOperatorId(int operatorId) {
+        this.operatorId = operatorId;
     }
 
-    public Boolean getUseFlag() {
-        return useFlag;
+    public String getOperatorCode() {
+        return operatorCode;
     }
 
-    public void setUseFlag(Boolean useFlag) {
-        this.useFlag = useFlag;
+    public void setOperatorCode(String operatorCode) {
+        this.operatorCode = operatorCode;
+    }
+
+    public String getOperatorName() {
+        return operatorName;
+    }
+
+    public void setOperatorName(String operatorName) {
+        this.operatorName = operatorName;
     }
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -112,90 +99,6 @@ public class User{
         this.note = note;
     }
 
-
-    public int[] getCheckUserRole() {
-        return checkUserRole;
-    }
-
-    public void setCheckUserRole(int[] checkUserRole) {
-        this.checkUserRole = checkUserRole;
-    }
-
-    public int[] getCheckUserIdentity() {
-        return checkUserIdentity;
-    }
-
-    public void setCheckUserIdentity(int[] checkUserIdentity) {
-        this.checkUserIdentity = checkUserIdentity;
-    }
-
-
-
-    public String getRoleString() {
-        return roleString;
-    }
-
-    public void setRoleString(String roleString) {
-        this.roleString = roleString;
-    }
-
-
-
-    public List<Role> getRoleList() {
-        return roleList;
-    }
-
-    public void setRoleList(List<Role> roleList) {
-        this.roleList = roleList;
-    }
-
-    public int getOperatorId() {
-        return operatorId;
-    }
-
-    public void setOperatorId(int operatorId) {
-        this.operatorId = operatorId;
-    }
-
-    public int getOperatorTypeId() {
-        return operatorTypeId;
-    }
-
-    public void setOperatorTypeId(int operatorTypeId) {
-        this.operatorTypeId = operatorTypeId;
-    }
-
-    public String getOperatorCode() {
-        return operatorCode;
-    }
-
-    public void setOperatorCode(String operatorCode) {
-        this.operatorCode = operatorCode;
-    }
-
-    public String getOperatorName() {
-        return operatorName;
-    }
-
-    public void setOperatorName(String operatorName) {
-        this.operatorName = operatorName;
-    }
-
-    public String getOperatorLoginName() {
-        return operatorLoginName;
-    }
-
-    public void setOperatorLoginName(String operatorLoginName) {
-        this.operatorLoginName = operatorLoginName;
-    }
-
-    public String getOperatorLoginPass() {
-        return operatorLoginPass;
-    }
-
-    public void setOperatorLoginPass(String operatorLoginPass) {
-        this.operatorLoginPass = operatorLoginPass;
-    }
 
 
 }
