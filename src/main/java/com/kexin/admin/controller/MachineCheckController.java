@@ -1,9 +1,11 @@
 package com.kexin.admin.controller;
 
 import com.kexin.admin.entity.vo.QaInspectData;
+import com.kexin.admin.entity.vo.QaInspectDatas;
 import com.kexin.admin.entity.vo.QaInspectTransfer;
 import com.kexin.admin.service.QaInspectMasterService;
 import com.kexin.common.util.ResponseEntity;
+import com.kexin.common.util.ResponseEty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,26 +20,40 @@ import java.util.List;
  * @Return: 
  */
 @Controller
-@RequestMapping("/machine/info/check")
+@RequestMapping("/machine/check")
 public class MachineCheckController {
 
     @Autowired
     QaInspectMasterService qaInspectMasterService;
+
+    /**
+     * @Title: 初始化机检审核的的数据
+     * @param @param
+     * @return @return
+     * @author 巫恒强
+     * @throws
+     * @date 2020/3/18 11:12
+     */
     @GetMapping("")
-    public String list(ModelMap modelMap){
+    @ResponseBody
+    public ResponseEty list(){
         //获取已经分活的审核信息 allowJudge==2
-        modelMap.put("historyInspectList",qaInspectMasterService.getQaInspectMasterHistory());
-        return "/machine/check/list";
+//        modelMap.put("historyInspectList",qaInspectMasterService.getQaInspectMasterHistory());
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        responseEty.setAny("titles",qaInspectMasterService.getTransferTitles());
+        responseEty.setAny("qaInspectMasterList",qaInspectMasterService.getAllQaInspectMaster());
+        return responseEty;
     }
 
 
     @PostMapping("list")
     @ResponseBody
-    public ResponseEntity list(){
+    public ResponseEntity listAll(){
         ResponseEntity responseEntity=new ResponseEntity();
-        QaInspectData qaInspectData =qaInspectMasterService.getAllQaInspectMaster();//获取可分活的数据
+//        QaInspectDatas qaInspectData =qaInspectMasterService.getAllQaInspectMaster();//获取可分活的数据
 
-        responseEntity.setAny("qaInspectData",qaInspectData);
+//        responseEntity.setAny("qaInspectData",qaInspectData);
         responseEntity.setAny("historyInspectList",qaInspectMasterService.getQaInspectMasterHistory());
         return responseEntity;
     }
@@ -54,9 +70,9 @@ public class MachineCheckController {
     public ResponseEntity save(@RequestBody List<QaInspectTransfer> transferListransfer){
         ResponseEntity responseEntity=new ResponseEntity();
         try{
-                QaInspectData qaInspectData=qaInspectMasterService.saveQaInspectAllow(transferListransfer);
+//                QaInspectDatas qaInspectData=qaInspectMasterService.saveQaInspectAllow(transferListransfer);
                 responseEntity.setSuccess(true);
-                responseEntity.setAny("qaInspectData",qaInspectData);
+//                responseEntity.setAny("qaInspectData",qaInspectData);
         }catch (Exception e){
             responseEntity.setSuccess(false);
             responseEntity.setMessage("保存失败");

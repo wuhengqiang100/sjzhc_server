@@ -3,6 +3,7 @@ package com.kexin.admin.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kexin.admin.entity.tables.QaInspectMaster;
 import com.kexin.admin.entity.vo.QaInspectData;
+import com.kexin.admin.entity.vo.QaInspectDatas;
 import com.kexin.admin.entity.vo.QaInspectTransfer;
 import com.kexin.common.util.ResponseEntity;
 
@@ -13,11 +14,14 @@ public interface QaInspectMasterService extends IService<QaInspectMaster> {
     //ALLOW_JUDGE
     //是否允许判废 0:不能分活  1:可以分活  2:已分活
 
+
+    String[] getTransferTitles();
+
     /**
      * 获取所有的分活信息
      * @return
      */
-    QaInspectData getAllQaInspectMaster();
+    List<QaInspectMaster> getAllQaInspectMaster();
 
     /**
      * 根据 ALLOW_JUDGE 获取分活的QaInspectMaster
@@ -30,7 +34,7 @@ public interface QaInspectMasterService extends IService<QaInspectMaster> {
      * @param transferListransfer
      * @return
      */
-    QaInspectData saveQaInspectAllow(List<QaInspectTransfer> transferListransfer);
+//    QaInspectDatas saveQaInspectAllow(List<QaInspectTransfer> transferListransfer);
 
     /**
      * 回退已审核的信息

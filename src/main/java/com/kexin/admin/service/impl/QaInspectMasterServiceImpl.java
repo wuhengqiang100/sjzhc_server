@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kexin.admin.entity.tables.QaInspectMaster;
 
 import com.kexin.admin.entity.vo.QaInspectData;
+import com.kexin.admin.entity.vo.QaInspectDatas;
 import com.kexin.admin.entity.vo.QaInspectTransfer;
+import com.kexin.admin.entity.vo.QaInspectTransfers;
 import com.kexin.admin.mapper.QaInspectMasterMapper;
 import com.kexin.admin.service.QaInspectMasterService;
 import com.kexin.common.util.ResponseEntity;
@@ -22,8 +24,16 @@ import java.util.Map;
 @Transactional(rollbackFor = Exception.class)
 public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMapper,QaInspectMaster> implements QaInspectMasterService {
     @Override
-    public QaInspectData getAllQaInspectMaster() {
-        return getInspectMasterData();
+    public String[] getTransferTitles() {
+        String [] titles=new String[2];
+        titles [0]="车号"+"  "+"品种"   +"   "+   "工艺" +"   "+   "检测总数" +"   "+  "缺陷数量" +"   "+  "未检数量";
+        titles [1]="车号"+"   "+ "品种"   + "   "+   "工艺" + "   "+  "检测总数" + "   "+ "缺陷数量" + "   "+ "未检数量" + "   "+  "分活状态";
+        return titles;
+    }
+
+    @Override
+    public List<QaInspectMaster> getAllQaInspectMaster() {
+        return baseMapper.getAllQaInspectMaster();
     }
 
 
@@ -31,45 +41,45 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
      * 获取当前未核查,或者已核查的机检数据
      * @return
      */
-    private QaInspectData getInspectMasterData(){
-        QaInspectData qaInspectData=new QaInspectData();
+    private List<QaInspectMaster> getInspectMasterData(){
+//        QaInspectDatas qaInspectData=new QaInspectDatas();
         List<QaInspectMaster> qaInspectMasterList=baseMapper.getAllQaInspectMaster();
-        List<QaInspectTransfer> qaInspectTransferList=new ArrayList<>();
-        String[] value=new String[qaInspectMasterList.size()];
+       /* List<QaInspectTransfers> qaInspectTransferList=new ArrayList<>();
+        Integer[] value=new Integer[qaInspectMasterList.size()];
         int i=0;
-        QaInspectTransfer qa=null;
+        QaInspectTransfers qa=null;
         for(QaInspectMaster q:qaInspectMasterList){
-            qa=new QaInspectTransfer();
-            qa.setValue(String.valueOf(q.getWipProdLogs().getLogId()));
+            qa=new QaInspectTransfers();
+            qa.setKey(q.getWipProdLogs().getLogId());
             //AllowJudge 0 可以审核
-            qa.setChecked(false);
+//            qa.setChecked(false);
             //AllowJudge 1 循序分活
             if(q.getAllowJudge()==0){
-                qa.setTitle(q.getWipJobs().getCartNumber()+"<span>&nbsp;&nbsp;</span> "+q.getProduct().getProductName()+"<span>&nbsp;&nbsp;</span>"+q.getOperation().getOperationName()+"<span>&nbsp;&nbsp;</span>10000"+"<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>50"+"<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>20");
+                qa.setLabel(q.getWipJobs().getCartNumber()+"  "+q.getProduct().getProductName()+" "+q.getOperation().getOperationName()+"10000"+" "+"50"+ "  "+"20");
 
             }
             if (q.getAllowJudge()==1){
 //                qa.setChecked(true);
-                value[i]= qa.getValue();
+                value[i]= qa.getKey();
                 i++;
-                qa.setTitle(q.getWipJobs().getCartNumber()+"<span>&nbsp;&nbsp;</span> "+q.getProduct().getProductName()+"<span>&nbsp;&nbsp;</span>"+q.getOperation().getOperationName()+"<span>&nbsp;&nbsp;</span>10000"+"<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>50"+"<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>20"+"<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>未分活");
+                qa.setLabel(q.getWipJobs().getCartNumber()+" "+q.getProduct().getProductName()+"  "+q.getOperation().getOperationName()+"10000"+"  "+"50"+"  "+"20"+" "+"未分活");
 
             }
             //AllowJudge 2 已经分完活,不能回退
             qa.setDisabled(false);
             if (q.getAllowJudge()==2){
                 qa.setDisabled(true);
-                value[i]= qa.getValue();
+                value[i]= qa.getKey();
                 i++;
-                qa.setTitle(q.getWipJobs().getCartNumber()+"<span>&nbsp;&nbsp;</span> "+q.getProduct().getProductName()+"<span>&nbsp;&nbsp;</span>"+q.getOperation().getOperationName()+"<span>&nbsp;&nbsp;</span>10000"+"<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>50"+"<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>20"+"<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>已分活");
+                qa.setLabel(q.getWipJobs().getCartNumber()+"  "+q.getProduct().getProductName()+"  "+q.getOperation().getOperationName()+"10000"+" "+"50"+" "+"20"+" "+"已分活");
 
             }
             qaInspectTransferList.add(qa);
 
         }
-        qaInspectData.setQaInspectTransfer(qaInspectTransferList);
-        qaInspectData.setValue(value);
-        return qaInspectData;
+        qaInspectData.setQaInspectTransfers(qaInspectTransferList);
+        qaInspectData.setValue(value);*/
+        return qaInspectMasterList;
     }
 
     @Override
@@ -93,9 +103,9 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
      * @param transferListransfer
      * @return
      */
-    @Transactional(rollbackFor = Exception.class)
+/*    @Transactional(rollbackFor = Exception.class)
     @Override
-    public QaInspectData saveQaInspectAllow(List<QaInspectTransfer> transferListransfer) {
+    public List<QaInspectMaster> saveQaInspectAllow(List<QaInspectTransfer> transferListransfer) {
 
         for(QaInspectTransfer q:transferListransfer){
             QueryWrapper<QaInspectMaster> wrapper = new QueryWrapper<>();
@@ -105,7 +115,7 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
             baseMapper.updateById(qa);
         }
         return getInspectMasterData();
-    }
+    }*/
 
     /**
      * 回退  审核的数据

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
@@ -75,7 +76,7 @@ public class OperationLog {
     public void setOperatorName(String operatorName) {
         this.operatorName = operatorName;
     }
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getStartDate() {
         return startDate;
     }
@@ -83,7 +84,7 @@ public class OperationLog {
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getEndDate() {
         return endDate;
     }

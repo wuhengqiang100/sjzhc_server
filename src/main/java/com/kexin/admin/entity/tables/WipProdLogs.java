@@ -33,6 +33,51 @@ public class WipProdLogs {
     @TableField(value = "OPERATOR_ID")
     private Integer operatorId;//操作人
 
+    @TableField(value = "ITEM_FLAG")
+    private Integer itemFlag;//操作标志
+
+    @TableField(value = "QAINFONUM")
+    private Integer qainfonum;//信息数量
+
+    @TableField(value = "QAWASTERNUM")
+    private Integer qawasternum;//报错数量
+
+
+    @TableField(value = "SMINFONUM")
+    private Integer sminfonum;//识码数量
+
+
+    public Integer getItemFlag() {
+        return itemFlag;
+    }
+
+    public void setItemFlag(Integer itemFlag) {
+        this.itemFlag = itemFlag;
+    }
+
+    public Integer getQainfonum() {
+        return qainfonum;
+    }
+
+    public void setQainfonum(Integer qainfonum) {
+        this.qainfonum = qainfonum;
+    }
+
+    public Integer getQawasternum() {
+        return qawasternum;
+    }
+
+    public void setQawasternum(Integer qawasternum) {
+        this.qawasternum = qawasternum;
+    }
+
+    public Integer getSminfonum() {
+        return sminfonum;
+    }
+
+    public void setSminfonum(Integer sminfonum) {
+        this.sminfonum = sminfonum;
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
