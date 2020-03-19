@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="021d88d3-fb85-4ccf-b86b-80724cbf2d83" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/QaInspectChange.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineCheckController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineCheckController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/QaInspectData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/QaInspectTransfer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/QaInspectMasterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/QaInspectMasterService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/QaInspectMasterMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/admin/QaInspectMasterMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/MachineCheckController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/MachineCheckController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/vo/QaInspectData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/vo/QaInspectTransfer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/QaInspectMasterService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/QaInspectMasterService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/QaInspectMasterMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/admin/QaInspectMasterMapper.xml" afterDir="false" />
-    </list>
+    <list default="true" id="021d88d3-fb85-4ccf-b86b-80724cbf2d83" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineCheckController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="46" column="72" selection-start-line="46" selection-start-column="72" selection-end-line="46" selection-end-column="72" />
+            <state relative-caret-position="96">
+              <caret line="48" selection-start-line="48" selection-end-line="48" />
             </state>
           </provider>
         </entry>
@@ -58,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="41" column="42" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
+            <state relative-caret-position="135">
+              <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1408#1409#0" expanded="true" />
@@ -542,16 +527,15 @@
       <workItem from="1584334368533" duration="13746000" />
       <workItem from="1584407118971" duration="6717000" />
       <workItem from="1584496512112" duration="16708000" />
-      <workItem from="1584579879925" duration="9204000" />
+      <workItem from="1584579879925" duration="10285000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124285000" />
+    <option name="totallyTimeSpent" value="125366000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="848" extended-state="7" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22453083" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -564,12 +548,12 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.5209497" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49932975" visible="true" weight="0.400838" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49932975" visible="true" weight="0.6089386" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.26396647" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.4329609" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067025" side_tool="true" weight="0.40782124" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3044693" />
@@ -814,24 +798,6 @@
           <line>71</line>
           <properties />
           <option name="timeStamp" value="73" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineCheckController.java</url>
-          <line>48</line>
-          <properties />
-          <option name="timeStamp" value="78" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java</url>
-          <line>41</line>
-          <properties />
-          <option name="timeStamp" value="80" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java</url>
-          <line>34</line>
-          <properties />
-          <option name="timeStamp" value="81" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1321,22 +1287,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineCheckController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="41" column="42" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
+        <state relative-caret-position="135">
+          <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1408#1409#0" expanded="true" />
             <element signature="e#1465#1466#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineCheckController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="46" column="72" selection-start-line="46" selection-start-column="72" selection-end-line="46" selection-end-column="72" />
         </state>
       </provider>
     </entry>
