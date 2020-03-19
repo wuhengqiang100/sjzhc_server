@@ -4,13 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kexin.admin.entity.tables.QaInspectMaster;
 
-import com.kexin.admin.entity.vo.QaInspectData;
-import com.kexin.admin.entity.vo.QaInspectDatas;
-import com.kexin.admin.entity.vo.QaInspectTransfer;
-import com.kexin.admin.entity.vo.QaInspectTransfers;
+import com.kexin.admin.entity.vo.QaInspectChange;
 import com.kexin.admin.mapper.QaInspectMasterMapper;
 import com.kexin.admin.service.QaInspectMasterService;
 import com.kexin.common.util.ResponseEntity;
+import com.kexin.common.util.ResponseEty;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,12 +21,27 @@ import java.util.Map;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMapper,QaInspectMaster> implements QaInspectMasterService {
+
+
     @Override
-    public String[] getTransferTitles() {
-        String [] titles=new String[2];
-        titles [0]="车号"+"  "+"品种"   +"   "+   "工艺" +"   "+   "检测总数" +"   "+  "缺陷数量" +"   "+  "未检数量";
-        titles [1]="车号"+"   "+ "品种"   + "   "+   "工艺" + "   "+  "检测总数" + "   "+ "缺陷数量" + "   "+ "未检数量" + "   "+  "分活状态";
-        return titles;
+    public ResponseEty saveQaInspectMaster(QaInspectChange inspectChange) {
+        QaInspectMaster qaInspectMaster;
+        QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
+        if (inspectChange.getDirection().equals("right")){//审核操作
+            qaInspectMaster=new QaInspectMaster();
+            qaInspectMaster.setAllowJudge(1);
+            qaInspectMasterQueryWrapper.in("INSPECTM_ID",inspectChange.getMovedKeys());
+            baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
+            return ResponseEty.success("审核成功");
+
+        }else{//回退操作
+            qaInspectMaster=new QaInspectMaster();
+            qaInspectMaster.setAllowJudge(0);
+            qaInspectMasterQueryWrapper.in("INSPECTM_ID",inspectChange.getMovedKeys());
+            baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
+            return ResponseEty.success("回退成功");
+
+        }
     }
 
     @Override
@@ -37,52 +50,8 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
     }
 
 
-    /**
-     * 获取当前未核查,或者已核查的机检数据
-     * @return
-     */
-    private List<QaInspectMaster> getInspectMasterData(){
-//        QaInspectDatas qaInspectData=new QaInspectDatas();
-        List<QaInspectMaster> qaInspectMasterList=baseMapper.getAllQaInspectMaster();
-       /* List<QaInspectTransfers> qaInspectTransferList=new ArrayList<>();
-        Integer[] value=new Integer[qaInspectMasterList.size()];
-        int i=0;
-        QaInspectTransfers qa=null;
-        for(QaInspectMaster q:qaInspectMasterList){
-            qa=new QaInspectTransfers();
-            qa.setKey(q.getWipProdLogs().getLogId());
-            //AllowJudge 0 可以审核
-//            qa.setChecked(false);
-            //AllowJudge 1 循序分活
-            if(q.getAllowJudge()==0){
-                qa.setLabel(q.getWipJobs().getCartNumber()+"  "+q.getProduct().getProductName()+" "+q.getOperation().getOperationName()+"10000"+" "+"50"+ "  "+"20");
 
-            }
-            if (q.getAllowJudge()==1){
-//                qa.setChecked(true);
-                value[i]= qa.getKey();
-                i++;
-                qa.setLabel(q.getWipJobs().getCartNumber()+" "+q.getProduct().getProductName()+"  "+q.getOperation().getOperationName()+"10000"+"  "+"50"+"  "+"20"+" "+"未分活");
-
-            }
-            //AllowJudge 2 已经分完活,不能回退
-            qa.setDisabled(false);
-            if (q.getAllowJudge()==2){
-                qa.setDisabled(true);
-                value[i]= qa.getKey();
-                i++;
-                qa.setLabel(q.getWipJobs().getCartNumber()+"  "+q.getProduct().getProductName()+"  "+q.getOperation().getOperationName()+"10000"+" "+"50"+" "+"20"+" "+"已分活");
-
-            }
-            qaInspectTransferList.add(qa);
-
-        }
-        qaInspectData.setQaInspectTransfers(qaInspectTransferList);
-        qaInspectData.setValue(value);*/
-        return qaInspectMasterList;
-    }
-
-    @Override
+  /*  @Override
     public List<Map<String,Object>> getQaInspectMasterHistory() {
         //获取已分活的审核信息 allowJudge==2
         List<QaInspectMaster> qaInspectMasterList=baseMapper.selectQaInspectMaster(2);
@@ -94,7 +63,7 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
             historyInspectList.add(map);
         }
         return historyInspectList;
-    }
+    }*/
 
     /**
      * 只处理审核
@@ -122,7 +91,7 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
      * @param transferListransfer
      * @return
      */
-    @Transactional(rollbackFor = Exception.class)
+ /*   @Transactional(rollbackFor = Exception.class)
     @Override
     public ResponseEntity returnQaInspect(List<QaInspectTransfer> transferListransfer) {
         ResponseEntity responseEntity=new ResponseEntity();
@@ -148,12 +117,13 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         }
         responseEntity.setAny("qaInspectData", getInspectMasterData());
         return responseEntity;
-    }
+    }*/
 
     /**
      * 快速审核信息
      * @return
      */
+/*
     @Transactional(rollbackFor = Exception.class)
     @Override
     public ResponseEntity quickSaveInspect() {
@@ -174,6 +144,7 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         responseEntity.setAny("qaInspectData", getInspectMasterData());
          return responseEntity;
     }
+*/
 
 
     //新增和编辑加上,事务回滚时用到
