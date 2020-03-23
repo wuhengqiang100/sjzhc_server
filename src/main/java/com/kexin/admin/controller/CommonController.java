@@ -7,10 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.Machine;
 import com.kexin.admin.entity.tables.SysMenus;
 import com.kexin.admin.entity.tables.SysMenusMeta;
-import com.kexin.admin.service.LoginUserService;
-import com.kexin.admin.service.MachineService;
-import com.kexin.admin.service.SysMenusMetaService;
-import com.kexin.admin.service.SysMenusService;
+import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
@@ -30,6 +27,9 @@ import java.util.Map;
 @Controller
 @RequestMapping("common")
 public class CommonController {
+
+    @Autowired
+    SysFunctionService sysFunctionService;
 
     @Autowired
     SysMenusService sysMenusService;
@@ -81,6 +81,22 @@ public class CommonController {
         responseEty.setSuccess(20000);
         responseEty.setAny("asyncRoutes",sysMenusList);
         return responseEty;
+    }
+
+    /**
+     * @Title:
+     * @Description: TODO(数据库动态获取router)
+     * @param @param
+     * @return @return
+     * @author 13015
+     * @throws
+     * @date 2020/3/12 14:25
+     */
+    @PostMapping("menu1")
+    @ResponseBody
+    @SysLog("获取动态路由菜单")
+    public ResponseEty menu(){
+       return  sysFunctionService.getSysFunctions();
     }
 
 

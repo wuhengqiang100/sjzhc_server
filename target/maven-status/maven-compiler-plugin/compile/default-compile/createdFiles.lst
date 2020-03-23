@@ -5,6 +5,7 @@ com\kexin\admin\controller\MenuController.class
 com\kexin\admin\controller\CommonController.class
 com\kexin\admin\service\UploadService.class
 com\kexin\admin\service\impl\SysMenusMetaServiceImpl.class
+com\kexin\admin\entity\vo\QaInspectDatas.class
 com\kexin\admin\service\impl\ProduceLogServiceImpl.class
 com\kexin\admin\service\impl\UserRoleServiceImpl.class
 com\kexin\common\config\CorsConfig.class
@@ -87,7 +88,6 @@ com\kexin\admin\service\UserRoleService.class
 com\kexin\admin\service\RoleService.class
 com\kexin\common\config\MySysUser.class
 com\kexin\admin\mapper\RoleMenuMapper.class
-com\kexin\admin\entity\vo\QaInspectData.class
 com\kexin\admin\mapper\SysMenusMetaMapper.class
 com\kexin\AdminApplication.class
 com\kexin\admin\mapper\SysMenusMapper.class
@@ -110,11 +110,11 @@ com\kexin\admin\entity\monitor\MonitorView.class
 com\kexin\common\realm\AuthRealm.class
 com\kexin\admin\service\impl\OperatorServiceImpl.class
 com\kexin\admin\mapper\MachineMapper.class
+com\kexin\admin\entity\vo\QaInspectTransfers.class
 com\kexin\admin\entity\tables\SysUserRoles.class
 com\kexin\admin\service\impl\OperationServiceImpl.class
 com\kexin\admin\mapper\LoginUserMapper.class
 com\kexin\admin\service\ProductsService.class
-com\kexin\admin\entity\vo\QaInspectTransfer.class
 com\kexin\admin\controller\OperatorController.class
 com\kexin\admin\service\MenuService.class
 com\kexin\admin\service\DataupLogService.class
@@ -122,6 +122,7 @@ com\kexin\admin\webService\impl\TestWebServiceImpl.class
 com\kexin\admin\entity\tables\Products.class
 com\kexin\common\config\MyHandlerInterceptor.class
 com\kexin\common\util\Constants.class
+com\kexin\admin\entity\vo\QaInspectChange.class
 com\kexin\admin\service\UserService.class
 com\kexin\admin\service\impl\MenuServiceImpl.class
 com\kexin\admin\entity\vo\AllFunction.class
