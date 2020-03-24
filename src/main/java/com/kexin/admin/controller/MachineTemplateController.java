@@ -10,6 +10,7 @@ import com.kexin.admin.service.MachineService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
+import com.kexin.common.util.ResponseEntity;
 import com.kexin.common.util.ResponseEty;
 import com.kexin.common.util.ftpUtil.FTPUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -21,9 +22,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.kexin.common.util.ftpUtil.FTPUtil.uploadFiles;
 
@@ -95,6 +99,15 @@ public class MachineTemplateController {
          return machines;
     }*/
 
+
+    @SysLog("上传头像")
+    @PostMapping("upload")
+    @ResponseBody
+    public ResponseEty uploadFile(@RequestParam("filename") MultipartFile file, HttpServletRequest httpServletRequest) {
+
+        return ResponseEty.success("操作成功");
+    }
+/*
     @PostMapping("upload")
     @ResponseBody
     @SysLog("上传机检模板数据")
@@ -109,6 +122,7 @@ public class MachineTemplateController {
         return ResponseEty.success("上传成功");
     }
 
+*/
 
     @PostMapping("download")
     @ResponseBody

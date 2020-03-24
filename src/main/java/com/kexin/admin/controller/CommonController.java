@@ -49,7 +49,7 @@ public class CommonController {
      * @throws
      * @date 2020/3/12 14:25
      */
-    @PostMapping("menu")
+    @PostMapping("menu1")
     @ResponseBody
     @SysLog("获取动态路由菜单")
     public ResponseEty create(){
@@ -66,7 +66,7 @@ public class CommonController {
             if (StringUtils.isNotEmpty(menu.getChildrenIds())){
                 String[] childrenIds=StringUtils.split(menu.getChildrenIds(),',');
                 QueryWrapper<SysMenus> sysMenusChildQueryWrapper = new QueryWrapper<>();
-                sysMenusChildQueryWrapper.in("ID",childrenIds);
+                sysMenusChildQueryWrapper.in("FUNCTION_ID",childrenIds);
                 List<SysMenus> sysMenusChildList=sysMenusService.list(sysMenusChildQueryWrapper);
                 for (SysMenus menuChild:sysMenusChildList){
                     //把二级主菜单的描述信息放进去
@@ -92,7 +92,7 @@ public class CommonController {
      * @throws
      * @date 2020/3/12 14:25
      */
-    @PostMapping("menu1")
+    @PostMapping("menu")
     @ResponseBody
     @SysLog("获取动态路由菜单")
     public ResponseEty menu(){

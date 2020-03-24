@@ -51,7 +51,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
         if (StringUtils.isNotEmpty(function.getChildrenIds())){
             String[] childrenIds=StringUtils.split(function.getChildrenIds(),',');
             QueryWrapper<SysFunctions> sysMenusChildQueryWrapper = new QueryWrapper<>();
-            sysMenusChildQueryWrapper.in("FUNCTION_ID",childrenIds);
+            sysMenusChildQueryWrapper.in("FUNCTON_ID",childrenIds);
             List<SysFunctions> sysMenusChildList=baseMapper.selectList(sysMenusChildQueryWrapper);
             List<Menu> menuList=new ArrayList<>();
             for (SysFunctions menuChild:sysMenusChildList){
@@ -84,7 +84,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Override
     public Integer SysFunctionsCountByCode(String SysFunctionsCode) {
         QueryWrapper<SysFunctions> wrapper = new QueryWrapper<>();
-        wrapper.eq("FUNCTION_CODE",SysFunctionsCode);
+        wrapper.eq("FUNCTON_CODE",SysFunctionsCode);
         Integer count = baseMapper.selectCount(wrapper);
         return count;
     }
@@ -92,7 +92,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Override
     public Integer SysFunctionsCountByName(String SysFunctionsName) {
         QueryWrapper<SysFunctions> wrapper = new QueryWrapper<>();
-        wrapper.eq("FUNCTION_NAME",SysFunctionsName);
+        wrapper.eq("FUNCTON_NAME",SysFunctionsName);
         Integer count = baseMapper.selectCount(wrapper);
         return count;
     }
@@ -116,7 +116,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteSysFunctions(SysFunctions SysFunctions) {
-        baseMapper.deleteById(SysFunctions.getFunctionId());
+        baseMapper.deleteById(SysFunctions.getFunctonId());
     }
 
     @Override

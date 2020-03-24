@@ -15,18 +15,18 @@ import java.util.List;
 
 //@KeySequence(value = "SQ_DIC_MACHINES", clazz = Integer.class)
 //@JsonInclude(JsonInclude.Include.NON_NULL)
-@TableName("SYS_FUNCTIONS")
+@TableName("SYS_FUNCTONS")
 public class SysFunctions {
     
     @TableId(type = IdType.INPUT)
     @TableField(value = "FUNCTON_ID")
-    private Integer functionId;//菜单主键id
+    private Integer functonId;//菜单主键id
 
     @TableField(value = "FUNCTON_TYPE_ID")
-    private Integer functionTypeId;//模块类型：1  B端权限 2 C端权限
+    private Integer functonTypeId;//模块类型：1  B端权限 2 C端权限
 
     @TableField(value = "FUNCTON_CODE")
-    private String functionCode;//模块编码
+    private String functonCode;//模块编码
 
     @TableField(value = "FUNCTON_NAME")
     private String name;//模块名称
@@ -35,7 +35,7 @@ public class SysFunctions {
     private Integer parentId;//父类id
 
     @TableField(value = "FUNCTON_LEVEL_ID")
-    private Integer functionLevelId;//模块层级（用于菜单）
+    private Integer functonLevelId;//模块层级（用于菜单）
 
     @TableField(value = "FUNCTON_PARENT_IDS")
     private String childrenIds;//子模块联集（用于菜单）
@@ -87,28 +87,28 @@ public class SysFunctions {
     @TableField(value = "REDIRECT")
     private String redirect;//重定向
 
-    public Integer getFunctionId() {
-        return functionId;
+    public Integer getFunctonId() {
+        return functonId;
     }
 
-    public void setFunctionId(Integer functionId) {
-        this.functionId = functionId;
+    public void setFunctonId(Integer functonId) {
+        this.functonId = functonId;
     }
 
-    public Integer getFunctionTypeId() {
-        return functionTypeId;
+    public Integer getFunctonTypeId() {
+        return functonTypeId;
     }
 
-    public void setFunctionTypeId(Integer functionTypeId) {
-        this.functionTypeId = functionTypeId;
+    public void setFunctonTypeId(Integer functonTypeId) {
+        this.functonTypeId = functonTypeId;
     }
 
-    public String getFunctionCode() {
-        return functionCode;
+    public String getFunctonCode() {
+        return functonCode;
     }
 
-    public void setFunctionCode(String functionCode) {
-        this.functionCode = functionCode;
+    public void setFunctonCode(String functonCode) {
+        this.functonCode = functonCode;
     }
 
     public String getName() {
@@ -127,12 +127,12 @@ public class SysFunctions {
         this.parentId = parentId;
     }
 
-    public Integer getFunctionLevelId() {
-        return functionLevelId;
+    public Integer getFunctonLevelId() {
+        return functonLevelId;
     }
 
-    public void setFunctionLevelId(Integer functionLevelId) {
-        this.functionLevelId = functionLevelId;
+    public void setFunctonLevelId(Integer functonLevelId) {
+        this.functonLevelId = functonLevelId;
     }
 
     public String getChildrenIds() {
