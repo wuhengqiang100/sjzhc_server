@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="021d88d3-fb85-4ccf-b86b-80724cbf2d83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/CommonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/CommonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineTemplateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysFunctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/CommonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/CommonController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/SysFunctions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/SysFunctions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/SysFunctionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/SysFunctionServiceImpl.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -25,11 +17,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineTemplateController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="111" column="17" lean-forward="true" selection-start-line="111" selection-start-column="17" selection-end-line="111" selection-end-column="17" />
+            <state relative-caret-position="225">
+              <caret line="118" column="43" lean-forward="true" selection-start-line="118" selection-start-column="43" selection-end-line="118" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineCheckController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="40" column="81" lean-forward="true" selection-start-line="40" selection-start-column="81" selection-end-line="40" selection-end-column="81" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="48" column="34" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1894#1895#0" expanded="true" />
+                <element signature="e#1951#1952#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/QaInspectMasterMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="16" column="50" lean-forward="true" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -176,6 +203,11 @@
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="sjzhc_server" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="sjzhc_server" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+        </path>
       </expand>
       <select />
     </treeState>
@@ -282,6 +314,9 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -355,17 +390,18 @@
       <workItem from="1584962222404" duration="1390000" />
       <workItem from="1585011935722" duration="4242000" />
       <workItem from="1585023592138" duration="1779000" />
-      <workItem from="1585027681678" duration="4707000" />
+      <workItem from="1585027681678" duration="5984000" />
+      <workItem from="1585099475855" duration="3534000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155582000" />
+    <option name="totallyTimeSpent" value="160393000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20576407" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18230563" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -376,12 +412,12 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32681563" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49932975" visible="true" weight="0.5293296" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932975" visible="true" weight="0.38687152" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.28591353" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.23184358" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067025" side_tool="true" weight="0.40782124" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.2849162" />
@@ -391,7 +427,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" weight="0.08378016" />
+      <window_info active="true" anchor="right" id="Maven" order="3" visible="true" weight="0.08378016" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Word Book" order="6" side_tool="true" />
@@ -738,16 +774,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/QaInspectMasterMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/QaInspectChange.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -761,16 +787,6 @@
             <element signature="e#561#562#0" expanded="true" />
             <element signature="e#614#615#0" expanded="true" />
             <element signature="e#656#657#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="43" column="9" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1018,13 +1034,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineCheckController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysMenus.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -1203,17 +1212,114 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineTemplateController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="111" column="17" lean-forward="true" selection-start-line="111" selection-start-column="17" selection-end-line="111" selection-end-column="17" />
+        <state relative-caret-position="225">
+          <caret line="118" column="43" lean-forward="true" selection-start-line="118" selection-start-column="43" selection-end-line="118" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineCheckController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="40" column="81" lean-forward="true" selection-start-line="40" selection-start-column="81" selection-end-line="40" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="48" column="34" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1894#1895#0" expanded="true" />
+            <element signature="e#1951#1952#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/QaInspectMasterMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="16" column="50" lean-forward="true" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.87904966" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>
