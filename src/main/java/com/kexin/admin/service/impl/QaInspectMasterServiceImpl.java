@@ -7,15 +7,13 @@ import com.kexin.admin.entity.tables.QaInspectMaster;
 import com.kexin.admin.entity.vo.QaInspectChange;
 import com.kexin.admin.mapper.QaInspectMasterMapper;
 import com.kexin.admin.service.QaInspectMasterService;
+import com.kexin.common.util.DateUtil.TodayUtil;
 import com.kexin.common.util.ResponseEntity;
 import com.kexin.common.util.ResponseEty;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service
@@ -46,7 +44,9 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
 
     @Override
     public List<QaInspectMaster> getAllQaInspectMaster() {
-        return baseMapper.getAllQaInspectMaster();
+//        Calendar
+
+        return baseMapper.getAllQaInspectMaster(TodayUtil.getStartTime(),TodayUtil.getEndTime());
     }
 
 

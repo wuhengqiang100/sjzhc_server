@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.kexin.admin.entity.tables.QaInspectMaster;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -14,7 +15,7 @@ public interface QaInspectMasterMapper extends BaseMapper<QaInspectMaster> {
      * 获取所有的分活信息
      * @return
      */
-    List<QaInspectMaster> getAllQaInspectMaster();
+    List<QaInspectMaster> getAllQaInspectMaster(@Param("startTime") Date startTime,@Param("endTime") Date endTime);
     /**
      * 根据 ALLOW_JUDGE 获取分活的QaInspectMaster
      * @param allowJudge
