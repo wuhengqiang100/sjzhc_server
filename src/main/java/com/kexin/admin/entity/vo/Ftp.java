@@ -23,6 +23,27 @@ public class Ftp {
 
     private String encoding;//编码
 
+    private String localpath;//本地ftp目录
+
+    private String remotepath;//远程ftp目录
+
+
+    public String getLocalpath() {
+        return localpath;
+    }
+
+    public void setLocalpath(String localpath) {
+        this.localpath = localpath;
+    }
+
+    public String getRemotepath() {
+        return remotepath;
+    }
+
+    public void setRemotepath(String remotepath) {
+        this.remotepath = remotepath;
+    }
+
     public String getEncoding() {
         return encoding;
     }

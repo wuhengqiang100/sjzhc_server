@@ -13,6 +13,8 @@ ftpserver:
   pwd: ftpuser
   path: /
   encoding: GBK
+  localpath: D:\ftplocal\
+  remotepath: \Model\Images
 
 spring:
     #激活哪一个环境的配置文件

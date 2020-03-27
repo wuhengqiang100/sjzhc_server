@@ -3,7 +3,12 @@ package com.kexin.admin.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kexin.admin.entity.tables.Machine;
 import com.kexin.admin.entity.tables.Machine;
+import com.kexin.admin.entity.vo.Ftp;
+import com.kexin.common.util.ResponseEty;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -51,4 +56,6 @@ public interface MachineService extends IService<Machine> {
      * @param machine
      */
     void lockMachine(@Param("machine") Machine machine);
+
+    ResponseEty uploadTemplate(MultipartFile[] file, String rfilename,Integer addId, HttpServletRequest request, Ftp ftp);
 }

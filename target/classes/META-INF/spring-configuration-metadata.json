@@ -20,6 +20,11 @@
     },
     {
       "sourceType": "com.kexin.admin.entity.vo.Ftp",
+      "name": "ftpserver.localpath",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kexin.admin.entity.vo.Ftp",
       "name": "ftpserver.path",
       "type": "java.lang.String"
     },
@@ -31,6 +36,11 @@
     {
       "sourceType": "com.kexin.admin.entity.vo.Ftp",
       "name": "ftpserver.pwd",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kexin.admin.entity.vo.Ftp",
+      "name": "ftpserver.remotepath",
       "type": "java.lang.String"
     },
     {

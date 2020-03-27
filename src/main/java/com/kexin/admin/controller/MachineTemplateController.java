@@ -10,7 +10,7 @@ import com.kexin.admin.service.MachineService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
-import com.kexin.common.util.ResponseEntity;
+import com.kexin.common.util.FileUtil.FileUtil;
 import com.kexin.common.util.ResponseEty;
 import com.kexin.common.util.ftpUtil.FTPUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -19,17 +19,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import static com.kexin.common.util.ftpUtil.FTPUtil.uploadFiles;
 
 /**
  * 机器模板上传下载controller
@@ -98,14 +94,14 @@ public class MachineTemplateController {
         });
          return machines;
     }*/
-
-
-    @SysLog("上传头像")
     @PostMapping("upload")
     @ResponseBody
-    public ResponseEty uploadFile(@RequestParam("filename") MultipartFile file, HttpServletRequest httpServletRequest) {
+    public ResponseEty multipleSave(@RequestParam("fileUpload") MultipartFile[] file,
+                                    @RequestParam("rfilename") String rfilename,
+                                    @RequestParam("addId") String addId,
+                                    HttpServletRequest request){
 
-        return ResponseEty.success("操作成功");
+        return machineService.uploadTemplate(file,  rfilename,Integer.parseInt(addId),request,ftp);
     }
 /*
     @PostMapping("upload")
