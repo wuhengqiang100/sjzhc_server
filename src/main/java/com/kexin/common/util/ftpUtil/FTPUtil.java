@@ -1,14 +1,15 @@
 package com.kexin.common.util.ftpUtil;
 
+import com.kexin.admin.entity.tables.Machine;
+import com.kexin.admin.entity.vo.Ftp;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -208,15 +209,19 @@ public class FTPUtil {
      * @param uploadFile 待上传的文件 或 文件夹(此时会遍历逐个上传)
      * @throws Exception
      */
-    public static void uploadFiles(FTPClient ftpClient, File uploadFile) {
+    public static Map uploadFiles(FTPClient ftpClient, File uploadFile, Ftp ftp, Machine machine) {
         /**如果 FTP 连接已经关闭，或者连接无效，则直接返回*/
+        Map map=new HashMap();
+        map.put("success",false);
         if (!ftpClient.isConnected() || !ftpClient.isAvailable()) {
             System.out.println(">>>>>FTP服务器连接已经关闭或者连接无效*****放弃文件上传****");
-            return;
+            map.put("message","FTP服务器连接已经关闭或者连接无效*****放弃文件上传****");
+            return map;
         }
         if (uploadFile == null && !uploadFile.exists()) {
             System.out.println(">>>>>待上传文件为空或者文件不存在*****放弃文件上传****");
-            return;
+            map.put("message","待上传文件为空或者文件不存在*****放弃文件上传****");
+            return map;
         }
         try {
             if (uploadFile.isDirectory()) {
@@ -238,7 +243,7 @@ public class FTPUtil {
                     File loopFile = listFiles[i];
                     if (loopFile.isDirectory()) {
                         /**如果有子目录，则迭代调用方法进行上传*/
-                        uploadFiles(ftpClient, loopFile);
+                        uploadFiles(ftpClient, loopFile,ftp,machine);
                         /**changeToParentDirectory：将 FTPClient 工作目录移到上一层
                          * 这一步细节很关键，子目录上传完成后，必须将工作目录返回上一层，否则容易导致文件上传后，目录不一致
                          * */
@@ -249,6 +254,8 @@ public class FTPUtil {
                         ftpClient.storeFile(loopFile.getName(), input);
                         input.close();
                         System.out.println(">>>>>文件上传成功****" + loopFile.getPath());
+                        map.put("success",true);
+                        return map;
                     }
                 }
             } else {
@@ -258,13 +265,17 @@ public class FTPUtil {
                  * 1）如果服务器已经存在此文件，则不会重新覆盖,即不会再重新上传
                  * 2）如果当前连接FTP服务器的用户没有写入的权限，则不会上传成功，但是也不会报错抛异常
                  * */
-                ftpClient.storeFile(uploadFile.getName(), input);
+                String remotePath=ftp.getRemotepath()+machine.getMachineName()+'\\'+uploadFile.getName();
+                ftpClient.storeFile(remotePath, input);
                 input.close();
                 System.out.println(">>>>>文件上传成功****" + uploadFile.getPath());
+                map.put("success",true);
+                return map;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return map;
     }
 
 
@@ -413,8 +424,8 @@ public class FTPUtil {
         closeFTPConnect(ftpClient);
         System.out.println("-----------------------应用关闭------------------------");
     }*/
-
-/*
+    @Autowired
+    Ftp ftp;
     //测试单个文件下载,与单个文件下载,支持中文
     public static void main(String[] args) throws Exception {
         System.out.println("-----------------------应用启动------------------------");
@@ -423,7 +434,7 @@ public class FTPUtil {
         downloadSingleFile(ftpClient, "D:\\FTPceshi", "\\wenjianjia\\中文.txt");
         closeFTPConnect(ftpClient);
         System.out.println("-----------------------应用关闭------------------------");
-    }*/
+    }
 /*
     //测试下载一个目录及其文件
     public static void main(String[] args) throws Exception {
@@ -444,26 +455,24 @@ public class FTPUtil {
         System.out.println("-----------------------应用关闭------------------------");
     }*/
 
-/*
     //测试上传文件夹或者文件
     //ftp服务器一定要给与连接用户的写入权限
     //上传多个文件夹,或者文件,记得一次一次的上传,连接一次上传一次,关闭后再重复上述操作
-    public static void main(String[] args) throws Exception {
-
-        System.out.println("-----------------------应用启动------------------------");
-        FTPClient ftpClient01 = FTPUtil.connectFtpServer("192.168.137.200", 21, "ftpuser", "ftpuser", "GBK");
-
-//        uploadFiles(ftpClient, new File("D:\\FTPceshi\\uploadFiles"));
-        uploadFiles(ftpClient01, new File("D:\\FTPceshi\\uploadFiles"));
-        closeFTPConnect(ftpClient01);
-
-        FTPClient ftpClient02 = FTPUtil.connectFtpServer("192.168.137.200", 21, "ftpuser", "ftpuser", "GBK");
-        uploadFiles(ftpClient02, new File("D:\\FTPceshi\\中文.txt"));
-        closeFTPConnect(ftpClient02);
-
-        System.out.println("-----------------------应用关闭------------------------");
-    }
-*/
+//    public static void main(String[] args) throws Exception {
+//
+//       /* System.out.println("-----------------------应用启动------------------------");
+//        FTPClient ftpClient01 = FTPUtil.connectFtpServer("192.168.137.200", 21, "ftpuser", "ftpuser", "GBK");
+//
+////        uploadFiles(ftpClient, new File("D:\\FTPceshi\\uploadFiles"));
+//        uploadFiles(ftpClient01, new File("D:\\FTPceshi\\uploadFiles"));
+//        closeFTPConnect(ftpClient01);
+//*//*
+//        FTPClient ftpClient02 = FTPUtil.connectFtpServer("192.168.137.200", 21, "ftpuser", "ftpuser", "GBK");
+//        uploadFiles(ftpClient02, new File("D:\\FTPceshi\\中文.txt"));
+//        closeFTPConnect(ftpClient02);*//*
+//
+//        System.out.println("-----------------------应用关闭------------------------");*/
+//    }
 
 /*
     //测试:同步ftp服务器目录到本地的某个目录下,相当于备份整个ftp目录

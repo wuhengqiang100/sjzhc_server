@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 机器模板上传下载controller
@@ -96,6 +97,7 @@ public class MachineTemplateController {
     }*/
     @PostMapping("upload")
     @ResponseBody
+    @SysLog("上传机检模板数据")
     public ResponseEty multipleSave(@RequestParam("fileUpload") MultipartFile[] file,
                                     @RequestParam("rfilename") String rfilename,
                                     @RequestParam("addId") String addId,
@@ -103,33 +105,13 @@ public class MachineTemplateController {
 
         return machineService.uploadTemplate(file,  rfilename,Integer.parseInt(addId),request,ftp);
     }
-/*
-    @PostMapping("upload")
-    @ResponseBody
-    @SysLog("上传机检模板数据")
-    public ResponseEty upload(@RequestParam("file") CommonsMultipartFile file,@RequestBody  Machine machine)throws IOException {
-        file.getOriginalFilename();//
-        FTPClient ftpClient = FTPUtil.connectFtpServer(ftp.getIpAddr(), ftp.getPort(), ftp.getUserName(), ftp.getPwd(), ftp.getEncoding());
-        FTPUtil ftpUtil=new FTPUtil();
-        ftpUtil.uploadFiles(ftpClient, new File(file.getOriginalFilename()));
-        ftpUtil.closeFTPConnect(ftpClient);
-        machine.setImageModelPath(file.getOriginalFilename());//这里的路径是否要拼接???
-        machineService.updateMachine(machine);
-        return ResponseEty.success("上传成功");
-    }
-
-*/
 
     @PostMapping("download")
     @ResponseBody
-    @SysLog("上传机检模板数据")
-    public ResponseEty download(@RequestBody  Machine machine,@RequestParam("path") String path)throws IOException {
-
-        FTPClient ftpClient = FTPUtil.connectFtpServer(ftp.getIpAddr(), ftp.getPort(), ftp.getUserName(), ftp.getPwd(), ftp.getEncoding());
-        FTPUtil ftpUtil=new FTPUtil();
-        ftpUtil.downloadSingleFile(ftpClient, path, machine.getImageModelPath());
-        ftpUtil.closeFTPConnect(ftpClient);
-        return ResponseEty.success("下载完成");
+    @SysLog("下载机检模板数据")
+    public ResponseEty download(@RequestParam(name = "id") Integer machineId){
+        return machineService.getDownloadUrl(machineId);
+//        return machineService.downloadTemplate(machineId);
     }
 /*    @PostMapping("create")
     @ResponseBody

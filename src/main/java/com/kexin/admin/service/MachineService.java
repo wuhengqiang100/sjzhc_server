@@ -57,5 +57,23 @@ public interface MachineService extends IService<Machine> {
      */
     void lockMachine(@Param("machine") Machine machine);
 
+    /**
+     * 上传文件到ftp服务器
+     * @param file
+     * @param rfilename
+     * @param addId
+     * @param request
+     * @param ftp
+     * @return
+     */
     ResponseEty uploadTemplate(MultipartFile[] file, String rfilename,Integer addId, HttpServletRequest request, Ftp ftp);
+
+    /**
+     * 从ftp服务器上下载文件到本地
+     * @param machineId
+     * @return
+     */
+    ResponseEty downloadTemplate(Integer machineId);
+
+    ResponseEty getDownloadUrl(Integer machineId);
 }
