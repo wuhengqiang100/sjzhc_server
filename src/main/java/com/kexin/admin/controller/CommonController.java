@@ -24,6 +24,7 @@ import java.util.Map;
 /**
  * 公用controller
  */
+
 @Controller
 @RequestMapping("common")
 public class CommonController {

@@ -9,155 +9,127 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 
 /**
- * @Description:生产日志表对应实体
+ * @Description:生产日志视图综合查询
  * @Author: 巫恒强
  * @Date: 2020/1/3 9:41
  */
-@TableName(value = "LOG_PROD_ACTIONS")
+@TableName(value = "view_produce_log")
 public class ProduceLog {
 
     @TableId(type = IdType.INPUT)
-    @TableField(value = "LOG_PROD_ID")
-    private Integer logProdId;
-
-    @TableField(value = "LOG_DATE")
-    private Date logDate;
-
-    @TableField(value = "PRODUCT_ID")
-    private Integer productId;
-
-    @TableField(exist = false)
-    private String productName="产品名称";
-
-    @TableField(value = "CART_NUMBER")
-    private String cartNumber;
-
-    @TableField(exist = false)
-    private Integer totalNum=10000;
-    @TableField(exist = false)
-    private Integer errorNum=50;
-
-    @TableField(exist = false)
-    private Integer notCheckNum=20;
-
-    @TableField(exist = false)
-    private String flag01="设备01";
-
-    @TableField(exist = false)
-    private String flag02="工序1";
-
-
-
-    @TableField(value = "OPERATION_ID")
-    private Integer operationId;
-
-    @TableField(exist = false)
-    private String operationName="操作名称";
-
-    @TableField(value = "OPERATOR_ID")
-    private Integer operatorId;
-
-
-    @TableField(value = "OPERATOR_NAME")
-    private String operatorName;
-
-    @TableField(value = "LOG_TYPE")
-    private String logType;
-
-    @TableField(value = "START_DATE")
-    private Date startDate;
-
-    @TableField(value = "END_DATE")
-    private Date endDate;
-
-    @TableField(value = "ACTION_COUNT")
-    private Integer actionCount;
-
-    @TableField(value = "NOTE")
-    private String note;
+    @TableField(value = "LOG_ID")
+    private Integer logId; //生产日志id
 
     @TableField(value = "ITEM_FLAG")
-    private Integer itemFlag;
+    private Integer itemFlag;//操作标志
+
+    @TableField(value = "QAINFONUM")
+    private Integer qainfonum;//信息数量
+
+    @TableField(value = "QAWASTERNUM")
+    private Integer qawasternum;//报错数量
+
+    @TableField(value = "SMINFONUM")
+    private Integer sminfonum;//识码数量
+
+    @TableField(value = "JOB_ID")
+    private Integer jobId; //基础生产信息主键id
+
+    @TableField(value = "CART_NUMBER")
+    private String cartNumber;//生产车号（大万编号）
+
+    @TableField(value = "START_DATE")
+    private Date startDate;//日志开始时间
+
+    @TableField(value = "END_DATE")
+    private Date endDate;//日志结束时间
+
+    @TableField(value = "PRODUCT_ID")
+    private Integer productId;//产品id
+
+    @TableField(value = "PRODUCT_NAME")
+    private String productName;//产品名称
+
+    @TableField(value = "OPERATION_ID")
+    private Integer operationId;//工序id
+
+    @TableField(value = "OPERATION_NAME")
+    private String operationName; //工序名称
+
+    @TableField(value = "OPERATOR_ID")
+    private Integer operatorId;//人员序号
+
+    @TableField(value = "OPERATOR_NAME")
+    private String operatorName; //人员名称
+
+    @TableField(value = "MACHINE_ID")
+    private Integer machineId;//设备主键id
+
+    @TableField(value = "MACHINE_NAME")
+    private String machineName;//设备名称
+
+    @TableField(value = "WORK_UNIT_ID")
+    private Integer workUnitId;//主键
+
+    @TableField(value = "WORK_UNIT_NAME")
+    private String workUnitName;//机台名称
+
+    @TableField(value = "INSPECTM_ID")
+    private Integer inspectmId;//主键
+
+    @TableField(value = "MACHINE_WASTER_NUMBER")
+    private Integer machineWasterNumber;//整万错误数量
 
 
-    public Integer getTotalNum() {
-        return totalNum;
+    @TableField(value = "INFO_NUMBER")
+    private Integer infoNumber;//整万信息数量
+
+    public Integer getLogId() {
+        return logId;
     }
 
-    public void setTotalNum(Integer totalNum) {
-        this.totalNum = totalNum;
+    public void setLogId(Integer logId) {
+        this.logId = logId;
     }
 
-    public Integer getErrorNum() {
-        return errorNum;
+    public Integer getItemFlag() {
+        return itemFlag;
     }
 
-    public void setErrorNum(Integer errorNum) {
-        this.errorNum = errorNum;
+    public void setItemFlag(Integer itemFlag) {
+        this.itemFlag = itemFlag;
     }
 
-    public Integer getNotCheckNum() {
-        return notCheckNum;
+    public Integer getQainfonum() {
+        return qainfonum;
     }
 
-    public void setNotCheckNum(Integer notCheckNum) {
-        this.notCheckNum = notCheckNum;
+    public void setQainfonum(Integer qainfonum) {
+        this.qainfonum = qainfonum;
     }
 
-    public String getFlag01() {
-        return flag01;
+    public Integer getQawasternum() {
+        return qawasternum;
     }
 
-    public void setFlag01(String flag01) {
-        this.flag01 = flag01;
+    public void setQawasternum(Integer qawasternum) {
+        this.qawasternum = qawasternum;
     }
 
-    public String getFlag02() {
-        return flag02;
+    public Integer getSminfonum() {
+        return sminfonum;
     }
 
-    public void setFlag02(String flag02) {
-        this.flag02 = flag02;
+    public void setSminfonum(Integer sminfonum) {
+        this.sminfonum = sminfonum;
     }
 
-    public String getProductName() {
-        return productName;
+    public Integer getJobId() {
+        return jobId;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getOperationName() {
-        return operationName;
-    }
-
-    public void setOperationName(String operationName) {
-        this.operationName = operationName;
-    }
-
-    public Integer getLogProdId() {
-        return logProdId;
-    }
-
-    public void setLogProdId(Integer logProdId) {
-        this.logProdId = logProdId;
-    }
-
-    public Date getLogDate() {
-        return logDate;
-    }
-
-    public void setLogDate(Date logDate) {
-        this.logDate = logDate;
-    }
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setJobId(Integer jobId) {
+        this.jobId = jobId;
     }
 
     public String getCartNumber() {
@@ -168,12 +140,36 @@ public class ProduceLog {
         this.cartNumber = cartNumber;
     }
 
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
     public Integer getOperationId() {
         return operationId;
     }
 
     public void setOperationId(Integer operationId) {
         this.operationId = operationId;
+    }
+
+    public String getOperationName() {
+        return operationName;
+    }
+
+    public void setOperationName(String operationName) {
+        this.operationName = operationName;
     }
 
     public Integer getOperatorId() {
@@ -192,13 +188,62 @@ public class ProduceLog {
         this.operatorName = operatorName;
     }
 
-    public String getLogType() {
-        return logType;
+    public Integer getMachineId() {
+        return machineId;
     }
 
-    public void setLogType(String logType) {
-        this.logType = logType;
+    public void setMachineId(Integer machineId) {
+        this.machineId = machineId;
     }
+
+    public String getMachineName() {
+        return machineName;
+    }
+
+    public void setMachineName(String machineName) {
+        this.machineName = machineName;
+    }
+
+    public Integer getWorkUnitId() {
+        return workUnitId;
+    }
+
+    public void setWorkUnitId(Integer workUnitId) {
+        this.workUnitId = workUnitId;
+    }
+
+    public String getWorkUnitName() {
+        return workUnitName;
+    }
+
+    public void setWorkUnitName(String workUnitName) {
+        this.workUnitName = workUnitName;
+    }
+
+    public Integer getInspectmId() {
+        return inspectmId;
+    }
+
+    public void setInspectmId(Integer inspectmId) {
+        this.inspectmId = inspectmId;
+    }
+
+    public Integer getMachineWasterNumber() {
+        return machineWasterNumber;
+    }
+
+    public void setMachineWasterNumber(Integer machineWasterNumber) {
+        this.machineWasterNumber = machineWasterNumber;
+    }
+
+    public Integer getInfoNumber() {
+        return infoNumber;
+    }
+
+    public void setInfoNumber(Integer infoNumber) {
+        this.infoNumber = infoNumber;
+    }
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getStartDate() {
         return startDate;
@@ -216,27 +261,5 @@ public class ProduceLog {
         this.endDate = endDate;
     }
 
-    public Integer getActionCount() {
-        return actionCount;
-    }
 
-    public void setActionCount(Integer actionCount) {
-        this.actionCount = actionCount;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public Integer getItemFlag() {
-        return itemFlag;
-    }
-
-    public void setItemFlag(Integer itemFlag) {
-        this.itemFlag = itemFlag;
-    }
 }

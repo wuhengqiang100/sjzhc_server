@@ -199,6 +199,102 @@ public class FTPUtil {
         return relativePathList;
     }
 
+    //改变目录路径
+    public static boolean changeWorkingDirectory(FTPClient ftpClient,String directory) {
+        boolean flag = true;
+        try {
+            flag = ftpClient.changeWorkingDirectory(directory);
+            if (flag) {
+                System.out.println("进入文件夹" + directory + " 成功！");
+
+            } else {
+                System.out.println("进入文件夹" + directory + " 失败！");
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        return flag;
+    }
+
+
+    //创建目录
+    public static boolean makeDirectory(FTPClient ftpClient,String dir) {
+        boolean flag = true;
+        try {
+            flag = ftpClient.makeDirectory(dir);
+            if (flag) {
+                System.out.println("创建文件夹" + dir + " 成功！");
+//                logger.debug("创建文件夹" + dir + " 成功！");
+
+            } else {
+                System.out.println("创建文件夹" + dir + " 失败！");
+//
+//                logger.debug("创建文件夹" + dir + " 失败！");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+
+    //判断ftp服务器文件是否存在
+    public static boolean existFile(FTPClient ftpClient,String path) throws IOException {
+        boolean flag = false;
+        FTPFile[] ftpFileArr = ftpClient.listFiles(path);
+        if (ftpFileArr.length > 0) {
+            flag = true;
+        }
+        return flag;
+    }
+
+    //创建多层目录文件，如果有ftp服务器已存在该文件，则不创建，如果无，则创建
+    public static boolean CreateDirecroty(FTPClient ftpClient,String remote) throws IOException {
+        boolean success = true;
+        String directory = remote + "/";
+//        String directory = remote.substring(0, remote.lastIndexOf("/") + 1);
+        // 如果远程目录不存在，则递归创建远程服务器目录
+        if (!directory.equalsIgnoreCase("/") && !changeWorkingDirectory(ftpClient,new String(directory))) {
+            int start = 0;
+            int end = 0;
+            if (directory.startsWith("/")) {
+                start = 1;
+            } else {
+                start = 0;
+            }
+            end = directory.indexOf("/", start);
+            String path = "";
+            String paths = "";
+            while (true) {
+
+//                String subDirectory = new String(remote.substring(start, end).getBytes("GBK"), "iso-8859-1");
+                String subDirectory = new String(remote.substring(start, end));
+                path = path + "/" + subDirectory;
+                if (!existFile(ftpClient,path)) {
+                    if (makeDirectory(ftpClient,subDirectory)) {
+                        changeWorkingDirectory(ftpClient,subDirectory);
+                    } else {
+                        System.out.println("创建目录[" + subDirectory + "]失败");
+//                        logger.debug("创建目录[" + subDirectory + "]失败");
+                        changeWorkingDirectory(ftpClient,subDirectory);
+                    }
+                } else {
+                    changeWorkingDirectory(ftpClient,subDirectory);
+                }
+
+                paths = paths + "/" + subDirectory;
+                start = end + 1;
+                end = directory.indexOf("/", start);
+                // 检查所有目录是否创建完毕
+                if (end <= start) {
+                    break;
+                }
+            }
+        }
+        return success;
+    }
+
+
     /**
      * 上传本地文件 或 目录
      * 至 FTP 服务器----保持 FTP 服务器与本地 文件目录结构一致
@@ -259,6 +355,8 @@ public class FTPUtil {
                     }
                 }
             } else {
+//                String remote=ftp.getRemotepath()+'\\'+machine.getMachineName();
+//                FTPUtil.CreateDirecroty(ftpClient,remote);
                 /**如果被上传的是文件时*/
                 FileInputStream input = new FileInputStream(uploadFile);
                 /** storeFile:将本地文件上传到服务器
@@ -277,6 +375,7 @@ public class FTPUtil {
         }
         return map;
     }
+
 
 
     /**

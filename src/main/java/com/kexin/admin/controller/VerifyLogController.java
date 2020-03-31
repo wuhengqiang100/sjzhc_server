@@ -11,9 +11,13 @@ import com.kexin.admin.service.ProduceLogService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.Map;
 
 /**
  * @Description:核查日志查询controller
@@ -161,23 +165,42 @@ public class VerifyLogController {
     public PageDataBase<ProduceLog> listProduceLog(@RequestParam(value = "page",defaultValue = "1")Integer page,
                                                    @RequestParam(value = "limit",defaultValue = "10")Integer limit,
                                                    @RequestParam(value = "sort")String sort,
-                                                   @RequestParam(value = "title",defaultValue = "") String title){
+                                                   @RequestParam(value = "cartNumber",defaultValue = "") String cartNumber,
+                                                   @RequestParam(value = "productName",defaultValue = "") String productName,
+                                                   @RequestParam(value = "operationName",defaultValue = "") String operationName,
+                                                   @RequestParam(value = "machineName",defaultValue = "") String machineName,
+                                                   @RequestParam(value = "workUnitName",defaultValue = "") String workUnitName,
+                                                   @RequestParam(value = "startDate",defaultValue = "") String startDate,
+                                                   @RequestParam(value = "endDate",defaultValue = "") String endDate
+                                                   ){
         PageDataBase<ProduceLog> produceLogPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<ProduceLog> produceLogWrapper = new QueryWrapper<>();
         if (sort.equals("+id")){
-            produceLogWrapper.orderByAsc("LOG_PROD_ID");
+            produceLogWrapper.orderByAsc("LOG_ID");
         }else{
-            produceLogWrapper.orderByDesc("LOG_PROD_ID");
+            produceLogWrapper.orderByDesc("LOG_ID");
         }
         //增加根据用户查询的操作
         //增加根据时间查询的操作
-/*        if (StringUtils.isNotEmpty(useFlag)){
-            produceLogWrapper.eq("USE_FLAG",useFlag);
+//        if (StringUtils.isNotEmpty(useFlag)){
+//            produceLogWrapper.eq("USE_FLAG",useFlag);
+//        }
+        if (StringUtils.isNotEmpty(cartNumber)){//根据车号查询
+            produceLogWrapper.like("CART_NUMBER",cartNumber);
+        } if (StringUtils.isNotEmpty(productName)){//根据产品名称查询
+            produceLogWrapper.like("PRODUCT_NAME",productName);
+        }if (StringUtils.isNotEmpty(operationName)){//根据工序名称查询
+            produceLogWrapper.like("OPERATION_NAME",operationName);
+        }if (StringUtils.isNotEmpty(machineName)){//根据设备名称查询
+            produceLogWrapper.like("MACHINE_NAME",machineName);
+        }if (StringUtils.isNotEmpty(workUnitName)){//根据车台名称查询
+            produceLogWrapper.like("WORK_UNIT_NAME",workUnitName);
         }
-        if (StringUtils.isNotEmpty(title)){
-            produceLogWrapper.like("OPERATION_NAME",title);
-        }*/
+        if (endDate!=null && startDate!=null){
+            produceLogWrapper.le("START_DATE",startDate).ge("END_DATE",endDate);
+        }
+
         IPage<ProduceLog> produceLogPage = produceLogService.page(new Page<>(page,limit),produceLogWrapper);
         data.setTotal(produceLogPage.getTotal());
         data.setItems(produceLogPage.getRecords());

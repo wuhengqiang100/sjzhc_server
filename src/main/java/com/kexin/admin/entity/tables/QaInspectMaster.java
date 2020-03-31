@@ -45,7 +45,7 @@ public class QaInspectMaster {
     private Operation operation;//产品工序
 
      @TableField(exist = false)
-    private Operators operator;//操作员信息
+    private Operator operator;//操作员信息
 
     @TableField(exist = false)
     private Machine machine;//机器信息
@@ -121,11 +121,12 @@ public class QaInspectMaster {
         this.operation = operation;
     }
 
-    public Operators getOperator() {
+
+    public Operator getOperator() {
         return operator;
     }
 
-    public void setOperator(Operators operator) {
+    public void setOperator(Operator operator) {
         this.operator = operator;
     }
 
