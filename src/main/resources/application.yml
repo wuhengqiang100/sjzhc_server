@@ -15,7 +15,6 @@ ftpserver:
   encoding: GBK
   localpath: D:\ftplocal\
   remotepath: Model\Images\
-
 spring:
     #激活哪一个环境的配置文件
     profiles:
@@ -93,6 +92,7 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     cache-enabled: false
     jdbc-type-for-null: varchar
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #    return-instance-for-empty-row: true
 
 #日志

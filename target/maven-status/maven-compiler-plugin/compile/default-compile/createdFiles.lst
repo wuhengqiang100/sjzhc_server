@@ -1,10 +1,12 @@
 com\kexin\admin\entity\tables\DataupLog.class
+com\kexin\admin\entity\vo\Menu.class
 com\kexin\admin\entity\tables\SysMenus.class
 com\kexin\admin\controller\MachineController.class
 com\kexin\admin\controller\MenuController.class
 com\kexin\admin\controller\CommonController.class
 com\kexin\admin\service\UploadService.class
 com\kexin\admin\service\impl\SysMenusMetaServiceImpl.class
+com\kexin\admin\entity\tables\SysFunctions.class
 com\kexin\admin\entity\vo\QaInspectDatas.class
 com\kexin\admin\service\impl\ProduceLogServiceImpl.class
 com\kexin\admin\service\impl\UserRoleServiceImpl.class
@@ -12,6 +14,7 @@ com\kexin\common\config\CorsConfig.class
 com\kexin\common\config\MyMetaObjectHandler.class
 com\kexin\common\base\TreeEntity.class
 com\kexin\admin\entity\tables\DicWorkUnits.class
+com\kexin\admin\controller\MachineTemplateController.class
 com\kexin\common\util\Encodes.class
 com\kexin\admin\service\OperationLogService.class
 com\kexin\admin\service\impl\DataupLogServiceImpl.class
@@ -36,6 +39,8 @@ com\kexin\admin\entity\Menu.class
 com\kexin\admin\mapper\MachineLogMapper.class
 com\kexin\admin\entity\tables\SysRoleMenus.class
 com\kexin\common\base\DataEntityId.class
+com\kexin\common\util\DateUtil\TodayUtil.class
+com\kexin\common\util\ftpUtil\FileWmxUtil.class
 com\kexin\admin\mapper\DataupLogMapper.class
 com\kexin\admin\entity\tables\LoginUser.class
 com\kexin\admin\mapper\UserRoleMapper.class
@@ -46,6 +51,7 @@ com\kexin\admin\entity\tables\Machine.class
 com\kexin\admin\entity\tables\QaInspectMaster.class
 com\kexin\admin\entity\tables\OperationLog.class
 com\kexin\admin\entity\tables\WipProdLogs.class
+com\kexin\admin\mapper\SysFunctionMapper.class
 com\kexin\admin\service\impl\LoginUserServiceImpl.class
 com\kexin\common\util\StringUtilSubstring.class
 com\kexin\admin\service\OperationService.class
@@ -57,9 +63,9 @@ com\kexin\admin\entity\login\TokenUser.class
 com\kexin\admin\service\impl\OperationLogServiceImpl.class
 com\kexin\common\util\ResponseEty.class
 com\kexin\admin\webService\TestWebService.class
+com\kexin\common\util\ftpUtil\FTPUtil.class
 com\kexin\admin\entity\tables\SysMenusMeta.class
 com\kexin\common\exception\UserTypeAccountException.class
-com\kexin\common\util\FileUtil.class
 com\kexin\admin\entity\pojo\Token.class
 com\kexin\admin\entity\vo\ShowMenuVo.class
 com\kexin\admin\service\ProduceLogService.class
@@ -69,6 +75,7 @@ com\kexin\admin\service\SysMenusService.class
 com\kexin\admin\mapper\RoleMapper.class
 com\kexin\common\config\CaptchaConfig.class
 com\kexin\admin\controller\UserController.class
+com\kexin\admin\service\impl\SysFunctionServiceImpl.class
 com\kexin\common\base\PageData.class
 com\kexin\admin\service\impl\QaInspectMasterServiceImpl.class
 com\kexin\common\annotation\SysLog.class
@@ -78,7 +85,9 @@ com\kexin\admin\mapper\OperationLogMapper.class
 com\kexin\common\config\CaptchaConfig$CustomObscurificator.class
 com\kexin\admin\service\OperatorService.class
 com\kexin\admin\controller\VerifyLogController.class
+com\kexin\admin\entity\vo\QaInspectSelect.class
 com\kexin\admin\service\RoleMenuService.class
+com\kexin\admin\service\SysFunctionService.class
 com\kexin\admin\entity\tables\User.class
 com\kexin\admin\entity\tables\Operator.class
 com\kexin\admin\entity\vo\MenuTree.class
@@ -111,6 +120,7 @@ com\kexin\common\realm\AuthRealm.class
 com\kexin\admin\service\impl\OperatorServiceImpl.class
 com\kexin\admin\mapper\MachineMapper.class
 com\kexin\admin\entity\vo\QaInspectTransfers.class
+com\kexin\common\util\FileUtil\FileUtil.class
 com\kexin\admin\entity\tables\SysUserRoles.class
 com\kexin\admin\service\impl\OperationServiceImpl.class
 com\kexin\admin\mapper\LoginUserMapper.class
@@ -120,11 +130,14 @@ com\kexin\admin\service\MenuService.class
 com\kexin\admin\service\DataupLogService.class
 com\kexin\admin\webService\impl\TestWebServiceImpl.class
 com\kexin\admin\entity\tables\Products.class
+com\kexin\admin\entity\vo\MenuMetas.class
 com\kexin\common\config\MyHandlerInterceptor.class
+com\kexin\common\util\DateUtil\DateUtil.class
 com\kexin\common\util\Constants.class
 com\kexin\admin\entity\vo\QaInspectChange.class
 com\kexin\admin\service\UserService.class
 com\kexin\admin\service\impl\MenuServiceImpl.class
+com\kexin\admin\entity\vo\Ftp.class
 com\kexin\admin\entity\vo\AllFunction.class
 com\kexin\common\config\ShiroConfig.class
 com\kexin\admin\controller\ProductController.class

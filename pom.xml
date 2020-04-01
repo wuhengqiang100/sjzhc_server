@@ -37,7 +37,7 @@
 
         <shiro.version>1.4.0</shiro.version>
 <!--        <mybatis-plus-boot-starter.version>3.0-RC1</mybatis-plus-boot-starter.version>-->
-        <mybatis-plus-boot-starter.version>3.0-RC1</mybatis-plus-boot-starter.version>
+        <mybatis-plus-boot-starter.version>3.3.1</mybatis-plus-boot-starter.version>
         <HikariCP.version>3.2.0</HikariCP.version>
         <commons-lang3.version>3.4</commons-lang3.version>
         <commons-codec.version>1.11</commons-codec.version>
@@ -71,6 +71,19 @@
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc6</artifactId>
             <version>11.2.0.3</version>
+        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/com.diboot/diboot-core-spring-boot-starter -->
+<!--        <dependency>
+            <groupId>com.diboot</groupId>
+            <artifactId>diboot-core-spring-boot-starter</artifactId>
+            <version>2.0.5</version>
+        </dependency>
+        &lt;!&ndash; https://mvnrepository.com/artifact/com.diboot/diboot-devtools-spring-boot-starter &ndash;&gt;
+        <dependency>
+            <groupId>com.diboot</groupId>
+            <artifactId>diboot-devtools-spring-boot-starter</artifactId>
+            <version>2.0.5</version>
         </dependency>-->
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>

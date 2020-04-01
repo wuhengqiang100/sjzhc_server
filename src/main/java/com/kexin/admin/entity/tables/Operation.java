@@ -36,12 +36,15 @@ public class Operation {
     /**
      * 启用时间,写入时间
      */
-    @TableField(value = "START_DATE",strategy= FieldStrategy.IGNORED)
+//    @TableField(value = "START_DATE",strategy= FieldStrategy.IGNORED)
+
+    @TableField(value = "START_DATE")
     protected Date startDate;
     /**
      * 禁用时间,结束时间
      */
-    @TableField(value = "END_DATE",  strategy = FieldStrategy.IGNORED)
+//    @TableField(value = "END_DATE",  strategy = FieldStrategy.IGNORED)
+    @TableField(value = "END_DATE")
     protected Date endDate;
 
     /**

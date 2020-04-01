@@ -46,7 +46,7 @@ public abstract class DataEntityAutoId< T extends Model<?>> extends BaseEntity<T
     /**
      * 备注
      */
-    @TableField(strategy= FieldStrategy.IGNORED)
+//    @TableField(strategy= FieldStrategy.IGNORED)
     protected String remarks;
 
     /**

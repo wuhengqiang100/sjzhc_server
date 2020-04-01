@@ -25,7 +25,8 @@ public class Products{
     @TableField(value = "PRODUCT_NAME")
     private String productName;//产品名称
 
-    @TableField(value = "CARTNUM_FIRST_ID", strategy = FieldStrategy.IGNORED)
+//    @TableField(value = "CARTNUM_FIRST_ID", strategy = FieldStrategy.IGNORED)
+    @TableField(value = "CARTNUM_FIRST_ID")
     private Integer cartnumFirstId;//外键（首字母）
 
     @TableField(value = "CARTNUM_FIRST_DATE")
@@ -46,10 +47,12 @@ public class Products{
     @TableField(value = "USE_FLAG")
         private Boolean useFlag;//启用状态
 
-    @TableField(value = "START_DATE", strategy = FieldStrategy.IGNORED)
+//    @TableField(value = "START_DATE", strategy = FieldStrategy.IGNORED)
+    @TableField(value = "START_DATE")
     private Date startDate;//开始日期
 
-    @TableField(value = "END_DATE", strategy = FieldStrategy.IGNORED)
+//    @TableField(value = "END_DATE", strategy = FieldStrategy.IGNORED)
+    @TableField(value = "END_DATE")
     private Date endDate;//结束日期
 
     @TableField(value = "NOTE")

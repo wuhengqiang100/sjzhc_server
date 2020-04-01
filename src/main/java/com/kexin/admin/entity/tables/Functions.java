@@ -2,9 +2,10 @@ package com.kexin.admin.entity.tables;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.kexin.common.base.TableEntity;
 
 import java.util.Date;
+
+import static com.baomidou.mybatisplus.annotation.FieldStrategy.IGNORED;
 
 /**
  * 权限实体类
@@ -29,12 +30,14 @@ public class Functions {
     /**
      * 启用时间,写入时间
      */
-    @TableField(value = "START_DATE",strategy= FieldStrategy.IGNORED)
+//    @TableField(value = "START_DATE",strategy=FieldStrategy.IGNORED )
+    @TableField(value = "START_DATE")
     protected Date startDate;
     /**
      * 禁用时间,结束时间
      */
-    @TableField(value = "END_DATE",  strategy = FieldStrategy.IGNORED)
+//    @TableField(value = "END_DATE",  strategy = IGNORED)
+    @TableField(value = "END_DATE")
     protected Date endDate;
 
     /**
