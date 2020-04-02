@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.util.Date;
 
@@ -12,6 +13,7 @@ import java.util.Date;
  * @Author: 巫恒强
  * @Date: 2020/1/3 9:41
  */
+@Data
 @TableName(value = "LOG_MACHINE_SETS")
 public class MachineLog {
 
@@ -23,7 +25,8 @@ public class MachineLog {
     private Integer operatorId;
 
     @TableField(exist = false)
-    private String operatorName="员工名称";
+    private Operator operator;
+
 
     @TableField(value = "MACHINE_IP")
     private String machineIp;
@@ -34,51 +37,5 @@ public class MachineLog {
     @TableField(value = "LOG_INFO")
     private String logInfo;
 
-    public String getOperatorName() {
-        return operatorName;
-    }
 
-    public void setOperatorName(String operatorName) {
-        this.operatorName = operatorName;
-    }
-
-    public Integer getLogMachineId() {
-        return logMachineId;
-    }
-
-    public void setLogMachineId(Integer logMachineId) {
-        this.logMachineId = logMachineId;
-    }
-
-    public Integer getOperatorId() {
-        return operatorId;
-    }
-
-    public void setOperatorId(Integer operatorId) {
-        this.operatorId = operatorId;
-    }
-
-    public String getMachineIp() {
-        return machineIp;
-    }
-
-    public void setMachineIp(String machineIp) {
-        this.machineIp = machineIp;
-    }
-
-    public Date getLogDate() {
-        return logDate;
-    }
-
-    public void setLogDate(Date logDate) {
-        this.logDate = logDate;
-    }
-
-    public String getLogInfo() {
-        return logInfo;
-    }
-
-    public void setLogInfo(String logInfo) {
-        this.logInfo = logInfo;
-    }
 }

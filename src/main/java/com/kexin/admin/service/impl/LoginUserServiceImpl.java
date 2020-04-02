@@ -8,13 +8,11 @@ import com.kexin.admin.entity.login.Tokens;
 import com.kexin.admin.entity.tables.LoginUser;
 import com.kexin.admin.entity.tables.Role;
 import com.kexin.admin.entity.tables.SysUserRoles;
-import com.kexin.admin.entity.tables.User;
 import com.kexin.admin.mapper.LoginUserMapper;
 import com.kexin.admin.mapper.RoleMapper;
 import com.kexin.admin.mapper.UserRoleMapper;
 import com.kexin.admin.service.LoginUserService;
 import com.kexin.common.util.ResponseEty;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

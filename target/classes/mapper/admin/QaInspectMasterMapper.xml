@@ -33,7 +33,7 @@
       <result property="operationCode" column="OPERATION_CODE" jdbcType="VARCHAR"/>
       <result property="operationName" column="OPERATION_NAME" jdbcType="VARCHAR"/>
     </collection>
-    <collection property="operator"  ofType="com.kexin.admin.entity.tables.User">
+    <collection property="operator"  ofType="com.kexin.admin.entity.tables.Operator">
       <result property="operatorId" column="OPERATOR_ID" jdbcType="INTEGER"/>
       <result property="operatorCode" column="OPERATOR_CODE" jdbcType="VARCHAR"/>
       <result property="operatorName" column="OPERATOR_NAME" jdbcType="VARCHAR"/>

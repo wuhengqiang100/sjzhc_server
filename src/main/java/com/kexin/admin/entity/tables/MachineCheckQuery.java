@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import java.util.Date;
 
@@ -14,6 +15,7 @@ import java.util.Date;
  * @Date: 2020/1/3 9:41
  */
 @TableName(value = "view_produce_log")
+@Data
 public class MachineCheckQuery {
 
     @TableId(type = IdType.INPUT)

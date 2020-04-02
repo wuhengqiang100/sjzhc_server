@@ -19,6 +19,7 @@ import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -44,9 +45,14 @@ public class VerifyLogController {
     ProduceLogService produceLogService;
 
     @Autowired
-    MachineCheckQueryService machineCheckQueryService;
+    MachineCheckQueryService machineCheckQueryService;//核查综合查询service
 
 
+    @Autowired
+    ViewProduceLogService viewProduceLogService;//生产日志查询视图service
+
+    @Autowired
+    OperatorService operatorService;
     /**
      * @Title:
      * @Description: TODO(上传日志查询)
@@ -120,6 +126,7 @@ public class VerifyLogController {
         }*/
         IPage<MachineLog> machineLogPage = machineLogService.page(new Page<>(page,limit),machineLogWrapper);
         data.setTotal(machineLogPage.getTotal());
+        machineLogPage.getRecords().forEach(r->r.setOperator(operatorService.getById(r.getOperatorId())));
         data.setItems(machineLogPage.getRecords());
         machineLogPageData.setData(data);
         return machineLogPageData;
@@ -166,13 +173,13 @@ public class VerifyLogController {
     @GetMapping("produce")
     @ResponseBody
     @SysLog("生产日志查询")
-    public PageDataBase<ProduceLog> listProduceLog(@RequestParam(value = "page",defaultValue = "1")Integer page,
+    public PageDataBase<ViewProduceLog> listProduceLog(@RequestParam(value = "page",defaultValue = "1")Integer page,
                                                    @RequestParam(value = "limit",defaultValue = "10")Integer limit,
                                                    @RequestParam(value = "sort")String sort,
                                                    @RequestParam(value = "title",defaultValue = "") String title){
-        PageDataBase<ProduceLog> produceLogPageData = new PageDataBase<>();
+        PageDataBase<ViewProduceLog> produceLogPageData = new PageDataBase<>();
         Data data=new Data();
-        QueryWrapper<ProduceLog> produceLogWrapper = new QueryWrapper<>();
+        QueryWrapper<ViewProduceLog> produceLogWrapper = new QueryWrapper<>();
         if (sort.equals("+id")){
             produceLogWrapper.orderByAsc("LOG_PROD_ID");
         }else{
@@ -186,7 +193,7 @@ public class VerifyLogController {
         if (StringUtils.isNotEmpty(title)){
             produceLogWrapper.like("OPERATION_NAME",title);
         }*/
-        IPage<ProduceLog> produceLogPage = produceLogService.page(new Page<>(page,limit),produceLogWrapper);
+        IPage<ViewProduceLog> produceLogPage = viewProduceLogService.page(new Page<>(page,limit),produceLogWrapper);
         data.setTotal(produceLogPage.getTotal());
         data.setItems(produceLogPage.getRecords());
         produceLogPageData.setData(data);

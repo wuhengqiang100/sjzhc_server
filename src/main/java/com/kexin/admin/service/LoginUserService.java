@@ -2,7 +2,6 @@ package com.kexin.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kexin.admin.entity.tables.LoginUser;
-import com.kexin.admin.entity.tables.User;
 import com.kexin.common.util.ResponseEty;
 import org.apache.ibatis.annotations.Param;
 
