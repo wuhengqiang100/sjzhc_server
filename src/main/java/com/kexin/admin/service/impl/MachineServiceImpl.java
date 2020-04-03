@@ -117,14 +117,14 @@ public class MachineServiceImpl extends ServiceImpl<MachineMapper, Machine> impl
         String suffix;//文件的后缀
         for (int j=0;j<list.size();j++){
             FTPClient ftpClient = FTPUtil.connectFtpServer(ftp.getIpAddr(), ftp.getPort(), ftp.getUserName(), ftp.getPwd(), ftp.getEncoding());
-            FTPUtil ftpUtil=new FTPUtil();
+//            FTPUtil ftpUtil=new FTPUtil();
             s=list.get(j);
             suffix=suffixs[j];
-            Map map=ftpUtil.uploadFiles(ftpClient, new File(s),ftp,machine);
+            Map map=FTPUtil.uploadFiles(ftpClient, new File(s),ftp,machine);
             Boolean isSuccess= (Boolean) map.get("success");
             String message= (String) map.get("message");
             if (isSuccess){//上传成功
-                ftpUtil.closeFTPConnect(ftpClient);
+                FTPUtil.closeFTPConnect(ftpClient);
                 rfilename=ftp.getRemotepath()+rfilename+'\\'+rfilename+suffix;
                 machine.setImageModelPath(rfilename);
                 machine.setImageModelNum(1);

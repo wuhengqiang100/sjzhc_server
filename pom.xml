@@ -26,14 +26,16 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.3.RELEASE</version>
+        <version>2.2.6.RELEASE</version>
+<!--        <version>2.2.4.RELEASE</version>-->
+<!--        <version>2.0.3.RELEASE</version>-->
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
 
         <shiro.version>1.4.0</shiro.version>
 <!--        <mybatis-plus-boot-starter.version>3.0-RC1</mybatis-plus-boot-starter.version>-->
@@ -41,7 +43,7 @@
         <HikariCP.version>3.2.0</HikariCP.version>
         <commons-lang3.version>3.4</commons-lang3.version>
         <commons-codec.version>1.11</commons-codec.version>
-        <fastjson.version>1.2.41</fastjson.version>
+        <fastjson.version>1.2.67</fastjson.version>
         <jackson.version>2.10.2</jackson.version>
 <!--        &lt;!&ndash; Frontend插件版本,用于集成angular服务 &ndash;&gt;-->
 <!--        <plugin.frontend.version>1.6</plugin.frontend.version>-->
@@ -55,48 +57,6 @@
 
 
     <dependencies>
-       <!-- <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.1.2</version>
-        </dependency>-->
-
-        <!-- Spring Boot JDBC -->
-        <!--<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>-->
-        <!-- oracle -->
-<!--        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>11.2.0.3</version>
-        </dependency>-->
-
-        <!-- https://mvnrepository.com/artifact/com.diboot/diboot-core-spring-boot-starter -->
-<!--        <dependency>
-            <groupId>com.diboot</groupId>
-            <artifactId>diboot-core-spring-boot-starter</artifactId>
-            <version>2.0.5</version>
-        </dependency>
-        &lt;!&ndash; https://mvnrepository.com/artifact/com.diboot/diboot-devtools-spring-boot-starter &ndash;&gt;
-        <dependency>
-            <groupId>com.diboot</groupId>
-            <artifactId>diboot-devtools-spring-boot-starter</artifactId>
-            <version>2.0.5</version>
-        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.10</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>11.2.0.3</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -125,11 +85,77 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-activemq</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-batch</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+<!--        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.2</version>
+        </dependency>
 
-        <!-- 自定义引入 -->
+  <!--      <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <scope>runtime</scope>
+        </dependency>-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <!-- 自定义引入 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.3</version>
+        </dependency>
+        <!-- Spring Boot JDBC -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
 
         <dependency>
@@ -176,14 +202,6 @@
             <artifactId>mybatis-plus-generator</artifactId>
             <version>${mybatis-plus-boot-starter.version}</version>
         </dependency>
-
-        <!-- mybatis-plus end -->
-
-        <!-- <dependency>
-           <groupId>com.baomidou</groupId>
-           <artifactId>mybatis-plus-boot-starter</artifactId>
-           <version>3.1.2</version>
-       </dependency>-->
 
 
         <!--shiro begin-->
@@ -250,11 +268,6 @@
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
         </dependency>
-     <!--   <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -279,58 +292,16 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <excludeDevtools>false</excludeDevtools>
                     <fork>true</fork>
                 </configuration>
+
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>com.github.eirslett</groupId>-->
-<!--                <artifactId>frontend-maven-plugin</artifactId>-->
-<!--                <version>${plugin.frontend.version}</version>-->
-<!--                <configuration>-->
-<!--                    &lt;!&ndash; angular 源码根目录 &ndash;&gt;-->
-<!--                    <workingDirectory>src/main/angular</workingDirectory>-->
-<!--                    &lt;!&ndash; node 国内镜像下载地址 &ndash;&gt;-->
-<!--                    <nodeDownloadRoot>https://npm.taobao.org/mirrors/node/</nodeDownloadRoot>-->
-<!--                    &lt;!&ndash; node 版本 &ndash;&gt;-->
-<!--                    <nodeVersion>${system.node.version}</nodeVersion>-->
-<!--                    &lt;!&ndash; npm 版本 &ndash;&gt;-->
-<!--                    <npmVersion>${system.npm.version}</npmVersion>-->
-<!--                    &lt;!&ndash; 代码安装目录 &ndash;&gt;-->
-<!--                    <installDirectory>target</installDirectory>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    &lt;!&ndash; 安装 node 和 npm &ndash;&gt;-->
-<!--                    <execution>-->
-<!--                        <id>install node and npm</id>-->
-<!--                        <goals>-->
-<!--                            <goal>install-node-and-npm</goal>-->
-<!--                        </goals>-->
-<!--                        <phase>generate-resources</phase>-->
-<!--                    </execution>-->
-<!--                    &lt;!&ndash; 安装angular项目依赖  &ndash;&gt;-->
-<!--                    <execution>-->
-<!--                        <id>npm install</id>-->
-<!--                        <goals>-->
-<!--                            <goal>npm</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <arguments>install</arguments>-->
-<!--                            <installDirectory>target</installDirectory>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                    &lt;!&ndash; 编译angular源码 &ndash;&gt;-->
-<!--                    <execution>-->
-<!--                        <id>angular cli build</id>-->
-<!--                        <goals>-->
-<!--                            <goal>npm</goal>-->
-<!--                        </goals>-->
-<!--                        <phase>generate-resources</phase>-->
-<!--                        <configuration>-->
-<!--                            <arguments>run build</arguments>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.8.2</version>
+            </plugin>
         </plugins>
     </build>
 

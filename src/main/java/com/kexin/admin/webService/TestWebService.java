@@ -1,8 +1,8 @@
 package com.kexin.admin.webService;
 
-import javax.jws.WebService;
+//import javax.jws.WebService;
 
-@WebService
+//@WebService
 public interface TestWebService {
 
     public String getTestDemo(String str);

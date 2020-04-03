@@ -306,6 +306,7 @@ public class FTPUtil {
      * @throws Exception
      */
     public static Map uploadFiles(FTPClient ftpClient, File uploadFile, Ftp ftp, Machine machine) {
+        ftpClient.enterLocalPassiveMode();
         /**如果 FTP 连接已经关闭，或者连接无效，则直接返回*/
         Map map=new HashMap();
         map.put("success",false);
@@ -355,20 +356,34 @@ public class FTPUtil {
                     }
                 }
             } else {
-//                String remote=ftp.getRemotepath()+'\\'+machine.getMachineName();
-//                FTPUtil.CreateDirecroty(ftpClient,remote);
-                /**如果被上传的是文件时*/
-                FileInputStream input = new FileInputStream(uploadFile);
-                /** storeFile:将本地文件上传到服务器
-                 * 1）如果服务器已经存在此文件，则不会重新覆盖,即不会再重新上传
-                 * 2）如果当前连接FTP服务器的用户没有写入的权限，则不会上传成功，但是也不会报错抛异常
-                 * */
-                String remotePath=ftp.getRemotepath()+machine.getMachineName()+'\\'+uploadFile.getName();
-                ftpClient.storeFile(remotePath, input);
-                input.close();
-                System.out.println(">>>>>文件上传成功****" + uploadFile.getPath());
-                map.put("success",true);
-                return map;
+                /**变更 FTPClient 工作目录到新目录
+                 * 1)不以"/"开头表示相对路径，新目录以当前工作目录为基准，即当前工作目录下不存在此新目录时，变更失败
+                 * 2)参数必须是目录，当是文件时改变路径无效*/
+                String remote=ftp.getRemotepath()+'\\'+machine.getMachineName();
+
+                if (FTPUtil.changeWorkingDirectory(ftpClient,remote)){//目录存在时
+                    /**如果被上传的是文件时*/
+                    FileInputStream input = new FileInputStream(uploadFile);
+                    /** storeFile:将本地文件上传到服务器
+                     * 1）如果服务器已经存在此文件，则不会重新覆盖,即不会再重新上传
+                     * 2）如果当前连接FTP服务器的用户没有写入的权限，则不会上传成功，但是也不会报错抛异常
+                     * */
+//                    String remotePath=ftp.getRemotepath()+machine.getMachineName()+'\\'+uploadFile.getName();
+                    String remotePath=uploadFile.getName();
+                    ftpClient.storeFile(remotePath, input);
+                    input.close();
+                    System.out.println(">>>>>文件上传成功****" + uploadFile.getPath());
+                    map.put("success",true);
+                    return map;
+                }else{
+                    FTPUtil.makeDirectory(ftpClient,remote);
+                    uploadFiles(ftpClient, uploadFile,ftp,machine);
+                    map.put("success",true);
+                    return map;
+                }
+
+
+
             }
         } catch (IOException e) {
             e.printStackTrace();

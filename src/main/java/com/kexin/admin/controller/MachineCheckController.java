@@ -49,48 +49,5 @@ public class MachineCheckController {
         return qaInspectMasterService.saveQaInspectMaster(inspectChange);
     }
 
-/*
-    @PostMapping("list")
-    @ResponseBody
-    public ResponseEntity listAll(){
-        ResponseEntity responseEntity=new ResponseEntity();
-//        QaInspectDatas qaInspectData =qaInspectMasterService.getAllQaInspectMaster();//获取可分活的数据
 
-//        responseEntity.setAny("qaInspectData",qaInspectData);
-        responseEntity.setAny("historyInspectList",qaInspectMasterService.getQaInspectMasterHistory());
-        return responseEntity;
-    }
-
-
-    *//**
-     * 保存可以分活的数据 index
-     *                    如果数据来自左边，index 为 0，否则为 1
-     * @param transferListransfer
-     * @return
-     *//*
-    @PostMapping("save")
-    @ResponseBody
-    public ResponseEntity save(@RequestBody List<QaInspectTransfer> transferListransfer){
-        ResponseEntity responseEntity=new ResponseEntity();
-        try{
-//                QaInspectDatas qaInspectData=qaInspectMasterService.saveQaInspectAllow(transferListransfer);
-                responseEntity.setSuccess(true);
-//                responseEntity.setAny("qaInspectData",qaInspectData);
-        }catch (Exception e){
-            responseEntity.setSuccess(false);
-            responseEntity.setMessage("保存失败");
-        }finally {
-            return responseEntity;
-        }
-    }
-    @PostMapping("quickSave")
-    @ResponseBody
-    public ResponseEntity quickSave(){
-        return qaInspectMasterService.quickSaveInspect();
-    }
-    @PostMapping("return")
-    @ResponseBody
-    public ResponseEntity returnData(@RequestBody List<QaInspectTransfer> transferListransfer){
-        return qaInspectMasterService.returnQaInspect(transferListransfer);
-    }*/
 }

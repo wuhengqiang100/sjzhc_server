@@ -4,23 +4,16 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.*;
-import com.kexin.admin.entity.vo.QaInspectSelect;
+import com.kexin.admin.entity.vo.query.QaInspectSelect;
+import com.kexin.admin.entity.vo.query.QueryDateParent;
 import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
-import com.kexin.common.util.DateUtil.DateUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.text.ParseException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @Description:核查日志查询controller
@@ -62,30 +55,24 @@ public class VerifyLogController {
      * @throws
      * @date 2020/3/10 10:04
      */
-    @GetMapping("dataup")
+    @PostMapping("dataup")
     @ResponseBody
     @SysLog("上传日志查询list")
-    public PageDataBase<DataupLog> listDataUpLog(@RequestParam(value = "page",defaultValue = "1")Integer page,
-                                        @RequestParam(value = "limit",defaultValue = "10")Integer limit,
-                                        @RequestParam(value = "sort")String sort,
-                                        @RequestParam(value = "title",defaultValue = "") String title){
+    public PageDataBase<DataupLog> listDataUpLog(@RequestBody QueryDateParent query){
         PageDataBase<DataupLog> dataupLogPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<DataupLog> dataupLogWrapper = new QueryWrapper<>();
-        if (sort.equals("+id")){
+        if (query.getSort().equals("+id")){
             dataupLogWrapper.orderByAsc("DATAUP_SET_ID");
         }else{
             dataupLogWrapper.orderByDesc("DATAUP_SET_ID");
         }
         //增加根据用户查询的操作
         //增加根据时间查询的操作
-/*        if (StringUtils.isNotEmpty(useFlag)){
-            dataupLogWrapper.eq("USE_FLAG",useFlag);
+        if (query.getStartDate()!=null && query.getEndDate()!=null ){//根据车台名称查询
+            dataupLogWrapper.between("DATAUP_SET_DATE",  query.getStartDate(), query.getEndDate());
         }
-        if (StringUtils.isNotEmpty(title)){
-            dataupLogWrapper.like("OPERATION_NAME",title);
-        }*/
-        IPage<DataupLog> dataupLogPage = dataupLogService.page(new Page<>(page,limit),dataupLogWrapper);
+        IPage<DataupLog> dataupLogPage = dataupLogService.page(new Page<>(query.getPage(),query.getLimit()),dataupLogWrapper);
         data.setTotal(dataupLogPage.getTotal());
         data.setItems(dataupLogPage.getRecords());
         dataupLogPageData.setData(data);
@@ -101,30 +88,24 @@ public class VerifyLogController {
      * @throws
      * @date 2020/3/10 14:38
      */
-    @GetMapping("machine")
+    @PostMapping("machine")
     @ResponseBody
     @SysLog("设备日志查询")
-    public PageDataBase<MachineLog> listMachineLog(@RequestParam(value = "page",defaultValue = "1")Integer page,
-                                        @RequestParam(value = "limit",defaultValue = "10")Integer limit,
-                                        @RequestParam(value = "sort")String sort,
-                                        @RequestParam(value = "title",defaultValue = "") String title){
+    public PageDataBase<MachineLog> listMachineLog(@RequestBody QueryDateParent query){
         PageDataBase<MachineLog> machineLogPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<MachineLog> machineLogWrapper = new QueryWrapper<>();
-        if (sort.equals("+id")){
+        if (query.getSort().equals("+id")){
             machineLogWrapper.orderByAsc("LOG_MACHINE_ID");
         }else{
             machineLogWrapper.orderByDesc("LOG_MACHINE_ID");
         }
         //增加根据用户查询的操作
         //增加根据时间查询的操作
-/*        if (StringUtils.isNotEmpty(useFlag)){
-            machineLogWrapper.eq("USE_FLAG",useFlag);
+        if (query.getStartDate()!=null && query.getEndDate()!=null ){//根据车台名称查询
+            machineLogWrapper.between("LOG_DATE",  query.getStartDate(), query.getEndDate());
         }
-        if (StringUtils.isNotEmpty(title)){
-            machineLogWrapper.like("OPERATION_NAME",title);
-        }*/
-        IPage<MachineLog> machineLogPage = machineLogService.page(new Page<>(page,limit),machineLogWrapper);
+        IPage<MachineLog> machineLogPage = machineLogService.page(new Page<>(query.getPage(),query.getLimit()),machineLogWrapper);
         data.setTotal(machineLogPage.getTotal());
         machineLogPage.getRecords().forEach(r->r.setOperator(operatorService.getById(r.getOperatorId())));
         data.setItems(machineLogPage.getRecords());
@@ -141,59 +122,48 @@ public class VerifyLogController {
      * @throws
      * @date 2020/3/10 14:39
      */
-    @GetMapping("operation")
+    @PostMapping("operation")
     @ResponseBody
     @SysLog("操作日志查询")
-    public PageDataBase<OperationLog> listOperationLog(@RequestParam(value = "page",defaultValue = "1")Integer page,
-                                                   @RequestParam(value = "limit",defaultValue = "10")Integer limit,
-                                                   @RequestParam(value = "sort")String sort,
-                                                   @RequestParam(value = "title",defaultValue = "") String title){
+    public PageDataBase<OperationLog> listOperationLog(@RequestBody QueryDateParent query){
         PageDataBase<OperationLog> operationLogPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<OperationLog> operationLogWrapper = new QueryWrapper<>();
-        if (sort.equals("+id")){
+        if (query.getSort().equals("+id")){
             operationLogWrapper.orderByAsc("LOG_OPERATION_NOTE_ID");
         }else{
             operationLogWrapper.orderByDesc("LOG_OPERATION_NOTE_ID");
         }
+        if (StringUtils.isNotEmpty(query.getTitle())){
+            operationLogWrapper.like("CART_NUMBER",query.getTitle());
+        }
         //增加根据用户查询的操作
         //增加根据时间查询的操作
-/*        if (StringUtils.isNotEmpty(useFlag)){
-            operationLogWrapper.eq("USE_FLAG",useFlag);
+        if (query.getStartDate()!=null && query.getEndDate()!=null ){//根据车台名称查询
+            operationLogWrapper.between("START_DATE",  query.getStartDate(), query.getEndDate());
         }
-        if (StringUtils.isNotEmpty(title)){
-            operationLogWrapper.like("OPERATION_NAME",title);
-        }*/
-        IPage<OperationLog> operationLogPage = operationLogService.page(new Page<>(page,limit),operationLogWrapper);
+        IPage<OperationLog> operationLogPage = operationLogService.page(new Page<>(query.getPage(),query.getLimit()),operationLogWrapper);
         data.setTotal(operationLogPage.getTotal());
         data.setItems(operationLogPage.getRecords());
         operationLogPageData.setData(data);
         return operationLogPageData;
     }
-    @GetMapping("produce")
+    @PostMapping("produce")
     @ResponseBody
     @SysLog("生产日志查询")
-    public PageDataBase<ViewProduceLog> listProduceLog(@RequestParam(value = "page",defaultValue = "1")Integer page,
-                                                   @RequestParam(value = "limit",defaultValue = "10")Integer limit,
-                                                   @RequestParam(value = "sort")String sort,
-                                                   @RequestParam(value = "title",defaultValue = "") String title){
+    public PageDataBase<ViewProduceLog> listProduceLog(@RequestBody QueryDateParent query){
         PageDataBase<ViewProduceLog> produceLogPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<ViewProduceLog> produceLogWrapper = new QueryWrapper<>();
-        if (sort.equals("+id")){
+        if (query.getSort().equals("+id")){
             produceLogWrapper.orderByAsc("LOG_PROD_ID");
         }else{
             produceLogWrapper.orderByDesc("LOG_PROD_ID");
         }
-        //增加根据用户查询的操作
-        //增加根据时间查询的操作
-/*        if (StringUtils.isNotEmpty(useFlag)){
-            produceLogWrapper.eq("USE_FLAG",useFlag);
+        if (query.getStartDate()!=null && query.getEndDate()!=null ){//根据车台名称查询
+            produceLogWrapper.between("LOG_DATE",  query.getStartDate(), query.getEndDate());
         }
-        if (StringUtils.isNotEmpty(title)){
-            produceLogWrapper.like("OPERATION_NAME",title);
-        }*/
-        IPage<ViewProduceLog> produceLogPage = viewProduceLogService.page(new Page<>(page,limit),produceLogWrapper);
+        IPage<ViewProduceLog> produceLogPage = viewProduceLogService.page(new Page<>(query.getPage(),query.getLimit()),produceLogWrapper);
         data.setTotal(produceLogPage.getTotal());
         data.setItems(produceLogPage.getRecords());
         produceLogPageData.setData(data);
@@ -214,12 +184,6 @@ public class VerifyLogController {
                 machineCheckQueryWrapper.orderByDesc("LOG_ID");
             }
         }
-
-/*        增加根据用户查询的操作
-        增加根据时间查询的操作
-        if (StringUtils.isNotEmpty(useFlag)){
-            machineCheckQueryWrapper.eq("USE_FLAG",useFlag);
-        }*/
         if (qaSelect.getCartNumber()!=null){//根据车号查询
             machineCheckQueryWrapper.like("CART_NUMBER",qaSelect.getCartNumber());
         } if (StringUtils.isNotEmpty(qaSelect.getProductName())){//根据产品名称查询
