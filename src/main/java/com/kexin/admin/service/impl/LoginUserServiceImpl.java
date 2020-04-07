@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @Service
@@ -25,11 +26,12 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
 
 
     @Override
-    public ResponseEty login(Map map) {
+    public ResponseEty login(Map map, HttpSession session) {
         ResponseEty responseEty=new ResponseEty();
         if (map.size()!=2){
             return ResponseEty.failure("请输入用户名或者密码!");
         }
+
         String userName= (String) map.get("username");
         String password= (String) map.get("password");
 
@@ -46,6 +48,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
             tokens.setToken(String.valueOf(loginUser.getLoginId()));
             responseEty.setSuccess(20000);
             responseEty.setData(tokens);
+            session.setAttribute("tokenName",userName);
             return responseEty;
         }
         return ResponseEty.failure("服务器请求失败!");

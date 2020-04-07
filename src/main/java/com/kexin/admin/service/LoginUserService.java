@@ -5,12 +5,13 @@ import com.kexin.admin.entity.tables.LoginUser;
 import com.kexin.common.util.ResponseEty;
 import org.apache.ibatis.annotations.Param;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 
 public interface LoginUserService extends IService<LoginUser> {
 
-    ResponseEty login(Map map);
+    ResponseEty login(Map map, HttpSession session);
 
     ResponseEty userInfo(String token);
 

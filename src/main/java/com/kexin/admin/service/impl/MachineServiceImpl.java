@@ -2,19 +2,25 @@ package com.kexin.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.kexin.admin.entity.tables.DataupLog;
+import com.kexin.admin.entity.tables.LoginUser;
 import com.kexin.admin.entity.tables.Machine;
+import com.kexin.admin.entity.tables.Operator;
 import com.kexin.admin.entity.vo.Ftp;
+import com.kexin.admin.mapper.DataupLogMapper;
+import com.kexin.admin.mapper.LoginUserMapper;
 import com.kexin.admin.mapper.MachineMapper;
+import com.kexin.admin.mapper.OperatorMapper;
 import com.kexin.admin.service.MachineService;
 import com.kexin.common.util.FileUtil.FileUtil;
 import com.kexin.common.util.ResponseEty;
 import com.kexin.common.util.ftpUtil.FTPUtil;
 import org.apache.commons.net.ftp.FTPClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.ArrayList;
@@ -31,8 +37,17 @@ public class MachineServiceImpl extends ServiceImpl<MachineMapper, Machine> impl
     //新增和编辑加上,事务回滚时用到
     //@Transactional(rollbackFor = Exception.class)
 
-    @Autowired
+    @Resource
     Ftp ftp;
+
+    @Resource
+    DataupLogMapper dataupLogMapper;//上传日志mapper
+
+    @Resource
+    LoginUserMapper loginUserMapper;//登录用户mapper
+
+    @Resource
+    OperatorMapper operatorMapper;//人员mapper
 
     @Override
     public Integer machineCountByCode(String machineCode) {
@@ -97,7 +112,7 @@ public class MachineServiceImpl extends ServiceImpl<MachineMapper, Machine> impl
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ResponseEty uploadTemplate(MultipartFile[] file, String rfilename,Integer addId, HttpServletRequest request, Ftp ftp) {
+    public ResponseEty uploadTemplate(MultipartFile[] file, String rfilename,Integer addId, HttpServletRequest request, Ftp ftp,Integer tokenId) {
         List<String> list = new ArrayList<String>();
         String[] suffixs=new String[file.length];
         if (file.length>1){
@@ -128,7 +143,15 @@ public class MachineServiceImpl extends ServiceImpl<MachineMapper, Machine> impl
                 rfilename=ftp.getRemotepath()+rfilename+'\\'+rfilename+suffix;
                 machine.setImageModelPath(rfilename);
                 machine.setImageModelNum(1);
-                baseMapper.updateById(machine);
+                baseMapper.updateById(machine);//更新machine后的上传路径
+                LoginUser loginUser=loginUserMapper.selectById(tokenId);
+                Operator operator=operatorMapper.selectById(loginUser.getOperatorId());
+                DataupLog dataupLog=new DataupLog();
+                dataupLog.setDateupSetDate(new Date());
+                dataupLog.setOperatorId(operator.getOperatorId());
+                dataupLog.setOperatorName(operator.getOperatorName());
+                dataupLog.setNote(operator.getOperatorName()+"上传了"+machine.getMachineName()+"的机检模板");
+                dataupLogMapper.insert(dataupLog);//上传日志新增上传记录
             }else{//上传失败
                 return ResponseEty.failure(message);
             }
@@ -152,10 +175,18 @@ public class MachineServiceImpl extends ServiceImpl<MachineMapper, Machine> impl
     }
 
     @Override
-    public ResponseEty getDownloadUrl(Integer machineId) {
+    public ResponseEty getDownloadUrl(Integer machineId,Integer tokenId) {
         ResponseEty responseEty=new ResponseEty();
 
         Machine machine=baseMapper.selectById(machineId);
+        LoginUser loginUser=loginUserMapper.selectById(tokenId);
+        Operator operator=operatorMapper.selectById(loginUser.getOperatorId());
+        DataupLog dataupLog=new DataupLog();
+        dataupLog.setDateupSetDate(new Date());
+        dataupLog.setOperatorId(operator.getOperatorId());
+        dataupLog.setOperatorName(operator.getOperatorName());
+        dataupLog.setNote(operator.getOperatorName()+"下载了"+machine.getMachineName()+"的机检模板");
+        dataupLogMapper.insert(dataupLog);//上传日志新增下载记录
         String url="ftp://"+ftp.getUserName()+":"+ftp.getPwd()+"@"+ftp.getIpAddr()+'\\'+machine.getImageModelPath();
         responseEty.setSuccess(20000);
         responseEty.setAny("ftpUrl",url);

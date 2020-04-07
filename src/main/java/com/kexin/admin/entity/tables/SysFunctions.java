@@ -1,16 +1,13 @@
 package com.kexin.admin.entity.tables;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
 
 /**
  * 功能权限菜单表实体
  */
 
-//@KeySequence(value = "SQ_DIC_MACHINES", clazz = Integer.class)
+@KeySequence(value = "SQ_SYS_FUNCTIONS", clazz = Integer.class)
 //@JsonInclude(JsonInclude.Include.NON_NULL)
 @TableName("SYS_FUNCTONS")
 public class SysFunctions {

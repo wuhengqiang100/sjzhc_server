@@ -2,7 +2,6 @@ package com.kexin.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kexin.admin.entity.tables.Machine;
-import com.kexin.admin.entity.tables.Machine;
 import com.kexin.admin.entity.vo.Ftp;
 import com.kexin.common.util.ResponseEty;
 import org.apache.ibatis.annotations.Param;
@@ -66,7 +65,7 @@ public interface MachineService extends IService<Machine> {
      * @param ftp
      * @return
      */
-    ResponseEty uploadTemplate(MultipartFile[] file, String rfilename,Integer addId, HttpServletRequest request, Ftp ftp);
+    ResponseEty uploadTemplate(MultipartFile[] file, String rfilename,Integer addId, HttpServletRequest request, Ftp ftp,Integer tokenId);
 
     /**
      * 从ftp服务器上下载文件到本地
@@ -75,5 +74,5 @@ public interface MachineService extends IService<Machine> {
      */
     ResponseEty downloadTemplate(Integer machineId);
 
-    ResponseEty getDownloadUrl(Integer machineId);
+    ResponseEty getDownloadUrl(Integer machineId,Integer tokenId);
 }

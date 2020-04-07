@@ -2,14 +2,13 @@ package com.kexin.admin.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.kexin.admin.entity.tables.Role;
-import com.kexin.admin.entity.tables.SysMenus;
+import com.kexin.admin.entity.tables.SysFunctions;
 import com.kexin.admin.entity.tables.SysMenusMeta;
 import com.kexin.admin.entity.tables.SysRoleMenus;
 import com.kexin.admin.entity.vo.MenuTree;
 import com.kexin.admin.service.RoleMenuService;
+import com.kexin.admin.service.SysFunctionService;
 import com.kexin.admin.service.SysMenusMetaService;
-import com.kexin.admin.service.SysMenusService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.util.ResponseEty;
 import org.apache.commons.lang3.StringUtils;
@@ -17,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,9 +23,11 @@ import java.util.List;
 @RequestMapping("/menu")
 public class MenuController {
 
-    @Autowired
-    SysMenusService sysMenusService;
+//    @Autowired
+//    SysMenusService sysMenusService;
 
+    @Autowired
+    SysFunctionService sysFunctionService;
 
     @Autowired
     SysMenusMetaService sysMenusMetaService;
@@ -49,43 +49,41 @@ public class MenuController {
     @ResponseBody
     @SysLog("角色权限分配,获取所有菜单")
     public ResponseEty listOption(){
+        sysFunctionService.getSysFunctions();
         ResponseEty responseEty=new ResponseEty();
 
-        QueryWrapper<SysMenus> sysMenusQueryWrapper = new QueryWrapper<>();
-        sysMenusQueryWrapper.isNull("PARENT_ID");
+        QueryWrapper<SysFunctions> sysMenusQueryWrapper = new QueryWrapper<>();
+        sysMenusQueryWrapper.isNull("FUNCTON_PARENT_ID");
 
-        List<SysMenus> sysMenusList=sysMenusService.list(sysMenusQueryWrapper);
+//        List<SysFunctions> sysMenusList=sysMenusService.list(sysMenusQueryWrapper);
+        List<SysFunctions> sysMenusList=sysFunctionService.list(sysMenusQueryWrapper);
         MenuTree[] menuTree=new MenuTree[sysMenusList.size()];//总返回的菜单树
         MenuTree menuTree1;
-        for (int i=0;i<sysMenusList.size();i++) {//SysMenus menu:sysMenusList
+        for (int i=0;i<sysMenusList.size();i++) {//SysFunctions menu:sysMenusList
             menuTree1=new MenuTree();
-            menuTree1.setId(sysMenusList.get(i).getId());
+            menuTree1.setId(sysMenusList.get(i).getFunctonId());
             //把一级主菜单的描述信息放进去
-            SysMenusMeta sysMenusMeta=sysMenusMetaService.getById(sysMenusList.get(i).getId());
+            SysMenusMeta sysMenusMeta=sysMenusMetaService.getById(sysMenusList.get(i).getFunctonId());
             if (sysMenusMeta!=null){
-                sysMenusList.get(i).setMeta(sysMenusMeta);
-                menuTree1.setLabel(sysMenusList.get(i).getMeta().getTitle());
+                menuTree1.setLabel(sysMenusList.get(i).getTitle());
             }
             menuTree[i]=menuTree1;
             if (StringUtils.isNotEmpty(sysMenusList.get(i).getChildrenIds())){
                 String[] childrenIds=StringUtils.split(sysMenusList.get(i).getChildrenIds(),',');
-                QueryWrapper<SysMenus> sysMenusChildQueryWrapper = new QueryWrapper<>();
-                sysMenusChildQueryWrapper.in("ID",childrenIds);
-                List<SysMenus> sysMenusChildList=sysMenusService.list(sysMenusChildQueryWrapper);
+                QueryWrapper<SysFunctions> sysMenusChildQueryWrapper = new QueryWrapper<>();
+                sysMenusChildQueryWrapper.in("FUNCTON_ID",childrenIds);
+                List<SysFunctions> sysMenusChildList=sysFunctionService.list(sysMenusChildQueryWrapper);
                 MenuTree[] menuTreeChild=new MenuTree[sysMenusChildList.size()];//子菜单树
                 MenuTree menuTree2;
                 for (int j=0;j<sysMenusChildList.size();j++){// menuChild:sysMenusChildList
                     //把二级主菜单的描述信息放进去
                     menuTree2=new MenuTree();
-                    menuTree2.setId(sysMenusChildList.get(j).getId());
-                    SysMenusMeta sysMenusChildMeta=sysMenusMetaService.getById(sysMenusChildList.get(j).getMetaId());
+                    menuTree2.setId(sysMenusChildList.get(j).getFunctonId());
                     if (sysMenusMeta!=null){
-                        sysMenusChildList.get(j).setMeta(sysMenusChildMeta);
-                        menuTree2.setLabel(sysMenusChildList.get(j).getMeta().getTitle());
+                        menuTree2.setLabel(sysMenusChildList.get(j).getTitle());
                     }
                     menuTreeChild[j]=menuTree2;
                 }
-                sysMenusList.get(i).setChildren(sysMenusChildList);
                 menuTree1.setChildren(menuTreeChild);
 
             }
@@ -94,7 +92,7 @@ public class MenuController {
 
         responseEty.setSuccess(20000);
         responseEty.setAny("menuTree",menuTree);
-        return responseEty;
+        return  responseEty;
     }
 
 
@@ -121,7 +119,7 @@ public class MenuController {
         if (sysRoleMenusList.size()!=0){
             Integer[] menuIds=new Integer[sysRoleMenusList.size()];
             for (int i = 0; i <sysRoleMenusList.size() ; i++) {
-                menuIds[i]=sysRoleMenusList.get(i).getMenuId();
+                menuIds[i]=sysRoleMenusList.get(i).getFunctionId();
             }
             responseEty.setAny("menuIds",menuIds);
             return responseEty;

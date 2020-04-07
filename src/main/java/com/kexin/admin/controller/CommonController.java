@@ -1,20 +1,17 @@
 package com.kexin.admin.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-
-import com.kexin.admin.entity.tables.SysMenus;
-import com.kexin.admin.entity.tables.SysMenusMeta;
-import com.kexin.admin.service.*;
+import com.kexin.admin.service.LoginUserService;
+import com.kexin.admin.service.SysFunctionService;
+import com.kexin.admin.service.SysMenusMetaService;
+import com.kexin.admin.service.SysMenusService;
 import com.kexin.common.annotation.SysLog;
-
 import com.kexin.common.util.ResponseEty;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -46,6 +43,7 @@ public class CommonController {
      * @throws
      * @date 2020/3/12 14:25
      */
+/*
     @PostMapping("menu1")
     @ResponseBody
     @SysLog("获取动态路由菜单")
@@ -79,6 +77,7 @@ public class CommonController {
         responseEty.setAny("asyncRoutes",sysMenusList);
         return responseEty;
     }
+*/
 
     /**
      * @Title:
@@ -107,9 +106,9 @@ public class CommonController {
      */
     @PostMapping("login")
     @ResponseBody
-    public ResponseEty login(@RequestBody Map map){
+    public ResponseEty login(@RequestBody Map map,HttpSession session){
 
-        return loginUserService.login(map);
+        return loginUserService.login(map,session);
     }
 
     /**
@@ -125,6 +124,21 @@ public class CommonController {
     public ResponseEty info(@RequestParam String token){
         System.out.println(token);
         return loginUserService.userInfo(token);
+    }
+
+    /**
+     * 系统用户退出登录
+     * @param session
+     * @return
+     */
+    @GetMapping("logout")
+    @ResponseBody
+    public ResponseEty logout(HttpSession session){
+        session.removeAttribute("tokenName");
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        responseEty.setData("success");
+        return responseEty;
     }
 
 }

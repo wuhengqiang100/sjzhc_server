@@ -10,11 +10,8 @@ import com.kexin.admin.service.MachineService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
-import com.kexin.common.util.FileUtil.FileUtil;
 import com.kexin.common.util.ResponseEty;
-import com.kexin.common.util.ftpUtil.FTPUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,11 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 机器模板上传下载controller
@@ -84,16 +76,18 @@ public class MachineTemplateController {
     public ResponseEty multipleSave(@RequestParam("fileUpload") MultipartFile[] file,
                                     @RequestParam("rfilename") String rfilename,
                                     @RequestParam("addId") String addId,
+                                    @RequestParam("tokenId") Integer tokenId,
                                     HttpServletRequest request){
 
-        return machineService.uploadTemplate(file,  rfilename,Integer.parseInt(addId),request,ftp);
+        return machineService.uploadTemplate(file,  rfilename,Integer.parseInt(addId),request,ftp,tokenId);
     }
 
     @PostMapping("download")
     @ResponseBody
     @SysLog("下载机检模板数据")
-    public ResponseEty download(@RequestParam(name = "id") Integer machineId){
-        return machineService.getDownloadUrl(machineId);
+    public ResponseEty download(@RequestParam(name = "id") Integer machineId,
+                                @RequestParam("tokenId") Integer tokenId){
+        return machineService.getDownloadUrl(machineId,tokenId);
 //        return machineService.downloadTemplate(machineId);
     }
 /*    @PostMapping("create")

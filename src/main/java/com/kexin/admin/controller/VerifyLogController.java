@@ -10,6 +10,7 @@ import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
+import com.kexin.common.util.ResponseEty;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -202,5 +203,12 @@ public class VerifyLogController {
         data.setItems(machineCheckQueryPage.getRecords());
         machineCheckQueryPageData.setData(data);
         return machineCheckQueryPageData;
+    }
+
+    @PostMapping("listOption")
+    @ResponseBody
+    @SysLog("获取查询页面的select条件")
+    public ResponseEty listOption(){
+        return machineCheckQueryService.getQuerySelectOption();
     }
 }

@@ -1,9 +1,6 @@
 package com.kexin.admin.entity.tables;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
@@ -13,6 +10,8 @@ import java.util.Date;
  * @Author: 巫恒强
  * @Date: 2020/1/3 9:41
  */
+//SQ_LOG_DATAUP_SETS
+@KeySequence(value = "SQ_LOG_DATAUP_SETS")
 @TableName(value = "LOG_DATAUP_SETS")
 public class DataupLog {
 

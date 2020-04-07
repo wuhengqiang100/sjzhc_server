@@ -8,8 +8,6 @@ import com.kexin.admin.service.RoleMenuService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-
 /**
  * 角色菜单管理配置service层
  */
@@ -56,7 +54,7 @@ public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, SysRoleMenu
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteSysRoleMenus(SysRoleMenus sysRoleMenus) {
-        baseMapper.deleteById(sysRoleMenus.getMenuId());
+        baseMapper.deleteById(sysRoleMenus.getFunctionId());
     }
 
     @Override
