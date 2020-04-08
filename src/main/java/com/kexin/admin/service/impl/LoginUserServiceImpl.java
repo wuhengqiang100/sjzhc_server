@@ -13,12 +13,18 @@ import com.kexin.admin.mapper.RoleMapper;
 import com.kexin.admin.mapper.UserRoleMapper;
 import com.kexin.admin.service.LoginUserService;
 import com.kexin.common.util.ResponseEty;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -42,7 +48,39 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
             responseEty.setMessage("没有这个用户");
             return responseEty;
         }
-        if (password.equals(loginUser.getLoginPass())){
+        String errorMsg = null;
+        Subject user = SecurityUtils.getSubject();
+//            byte[] salt = Encodes.decodeHex("08c5900125b80cd2");
+//            ByteSource.Util.bytes(salt);
+//            Encodes.encodeHex(password);
+//            new Md5Hash(password).toString();
+//            UsernamePasswordToken token = new UsernamePasswordToken(username, CryptographyUtil.md5(password,password) ,Boolean.valueOf(rememberMe));
+//            UsernamePasswordToken token = new UsernamePasswordToken(username,  CryptographyUtil.md5(password,password) ,Boolean.valueOf(rememberMe));
+
+        UsernamePasswordToken token = new UsernamePasswordToken(userName, password ,false);
+//            System.out.println("token密码:"+CryptographyUtil.md5NotSalt(password));
+        try {
+            user.login(token);
+            Tokens tokens=new Tokens();
+            // 讲用户的operatorId作为用户登陆的token
+            tokens.setToken(String.valueOf(loginUser.getLoginId()));
+            responseEty.setSuccess(20000);
+            responseEty.setData(tokens);
+//            session.setAttribute("tokenName",userName);
+//            return responseEty;
+        }catch (IncorrectCredentialsException e) {
+            System.out.println("异常:"+e);
+            errorMsg = "用户名密码错误!";
+            responseEty.setSuccess(60204);
+            responseEty.setMessage(errorMsg);
+        }catch (UnknownAccountException e) {
+            errorMsg = "账户不存在!";
+            responseEty.setSuccess(60204);
+            responseEty.setMessage(errorMsg);
+        }finally {
+            return  responseEty;
+        }
+/*        if (password.equals(loginUser.getLoginPass())){
             Tokens tokens=new Tokens();
             // 讲用户的operatorId作为用户登陆的token
             tokens.setToken(String.valueOf(loginUser.getLoginId()));
@@ -50,8 +88,8 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
             responseEty.setData(tokens);
             session.setAttribute("tokenName",userName);
             return responseEty;
-        }
-        return ResponseEty.failure("服务器请求失败!");
+        }*/
+//        return ResponseEty.failure("服务器请求失败!");
     }
 
     // 用户和角色关系mapper
@@ -87,6 +125,11 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
         responseEty.setSuccess(20000);
         responseEty.setData(tokenUser);
         return responseEty;
+    }
+
+    @Override
+    public LoginUser selectLoginUserByName(String userName) {
+        return baseMapper.selectLoginUserByName(userName);
     }
 
     //新增和编辑加上,事务回滚时用到

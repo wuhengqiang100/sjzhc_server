@@ -15,7 +15,7 @@ public interface LoginUserService extends IService<LoginUser> {
 
     ResponseEty userInfo(String token);
 
-
+    LoginUser selectLoginUserByName(@Param("userName") String userName);
 
 
 

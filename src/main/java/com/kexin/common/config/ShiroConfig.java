@@ -1,26 +1,50 @@
 package com.kexin.common.config;
 
-
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import com.kexin.common.realm.AuthRealm;
+import org.apache.shiro.cache.ehcache.EhCacheManager;
+import org.apache.shiro.codec.Base64;
+import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.mgt.SessionManager;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
+import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.context.annotation.Bean;
+
+import javax.servlet.Filter;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @SpringBootConfiguration
 public class ShiroConfig {
-/*
+
     private Logger logger = LoggerFactory.getLogger(ShiroConfig.class);
 
     @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("authRealm")AuthRealm authRealm){
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         bean.setSecurityManager(securityManager(authRealm));
-        bean.setSuccessUrl("/index");
-        bean.setLoginUrl("/toLogin");
+//        bean.setSuccessUrl("/index");
+//        bean.setLoginUrl("/common/login");
         Map<String,Filter> map = new HashMap();
         map.put("authc",new FormAuthenticationFilter());
         bean.setFilters(map);
         //配置访问权限
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap();
-        filterChainDefinitionMap.put("/","anon");
-        filterChainDefinitionMap.put("/static/**","anon");
+//        filterChainDefinitionMap.put("/","anon");
+        filterChainDefinitionMap.put("/common/**","anon");
+/*        filterChainDefinitionMap.put("/static/**","anon");
         filterChainDefinitionMap.put("/admin","anon");
         filterChainDefinitionMap.put("/admin/index","anon");
         filterChainDefinitionMap.put("/admin/login","anon");
@@ -29,7 +53,9 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/anonCtrl/","anon");
         filterChainDefinitionMap.put("/sysRole/test","anon");
         filterChainDefinitionMap.put("/systemLogout","authc");
-        filterChainDefinitionMap.put("/**","authc");
+        filterChainDefinitionMap.put("/base/device/info/**","authc");*/
+//        filterChainDefinitionMap.put("/**","anon");
+//        filterChainDefinitionMap.put("/**","authc");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
     }
@@ -46,10 +72,10 @@ public class ShiroConfig {
     }
 
 
-    *//**
+    /**
      * shiro缓存管理器;
      * 需要注入安全管理器：securityManager
-     *//*
+     */
     @Bean
     public EhCacheManager cacheManager(){
         EhCacheManager cacheManager = new EhCacheManager();
@@ -86,10 +112,10 @@ public class ShiroConfig {
         return manager;
     }
 
-    *//**
+    /**
      * AOP式方法级权限检查
      * @return
-     *//*
+     */
     @Bean
     public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){
         DefaultAdvisorAutoProxyCreator creator = new DefaultAdvisorAutoProxyCreator();
@@ -97,10 +123,10 @@ public class ShiroConfig {
         return creator;
     }
 
-    *//**
+    /**
      *  保证实现了Shiro内部lifecycle函数的bean执行
      * @return
-     *//*
+     */
     @Bean
     public static LifecycleBeanPostProcessor lifecycleBeanPostProcessor(){
         return new LifecycleBeanPostProcessor();
@@ -117,7 +143,7 @@ public class ShiroConfig {
     @Bean
     public ShiroDialect shiroDialect() {
         return new ShiroDialect();
-    }*/
+    }
 
 
 }

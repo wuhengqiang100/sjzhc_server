@@ -29,7 +29,7 @@ spring:
       username: sjzhc
       password: sjzhc
       driver-class-name: oracle.jdbc.driver.OracleDriver
-      maximum-pool-size: 30
+#      maximum-pool-size: 30
     jackson:
       default-property-inclusion: USE_DEFAULTS # 全局jackson配置
 #    datasource:

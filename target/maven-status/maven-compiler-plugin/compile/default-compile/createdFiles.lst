@@ -36,6 +36,7 @@ com\kexin\common\base\PageDataBase.class
 com\kexin\admin\entity\tables\GrantRoleFunctions.class
 com\kexin\common\config\MyWebMvcConfigurer.class
 com\kexin\admin\entity\Menu.class
+com\kexin\admin\entity\vo\query\QueryDateParent.class
 com\kexin\admin\mapper\MachineLogMapper.class
 com\kexin\admin\entity\tables\SysRoleMenus.class
 com\kexin\common\base\DataEntityId.class
@@ -44,7 +45,9 @@ com\kexin\common\util\ftpUtil\FileWmxUtil.class
 com\kexin\admin\mapper\DataupLogMapper.class
 com\kexin\admin\entity\tables\LoginUser.class
 com\kexin\admin\mapper\UserRoleMapper.class
+com\kexin\admin\entity\vo\query\QaInspectSelect.class
 com\kexin\admin\service\impl\RoleMenuServiceImpl.class
+com\kexin\common\realm\AuthRealm$ShiroUser.class
 com\kexin\admin\mapper\OperatorMapper.class
 com\kexin\admin\entity\login\Tokens.class
 com\kexin\admin\entity\tables\Machine.class
@@ -64,6 +67,7 @@ com\kexin\admin\service\impl\OperationLogServiceImpl.class
 com\kexin\common\util\ResponseEty.class
 com\kexin\admin\webService\TestWebService.class
 com\kexin\common\util\ftpUtil\FTPUtil.class
+com\kexin\admin\mapper\DicWorkUnitsMapper.class
 com\kexin\admin\service\impl\MachineCheckQueryServiceImpl.class
 com\kexin\admin\entity\tables\SysMenusMeta.class
 com\kexin\common\exception\UserTypeAccountException.class
@@ -87,7 +91,6 @@ com\kexin\admin\mapper\OperationLogMapper.class
 com\kexin\common\config\CaptchaConfig$CustomObscurificator.class
 com\kexin\admin\service\OperatorService.class
 com\kexin\admin\controller\VerifyLogController.class
-com\kexin\admin\entity\vo\QaInspectSelect.class
 com\kexin\admin\service\RoleMenuService.class
 com\kexin\admin\service\SysFunctionService.class
 com\kexin\admin\entity\tables\Operator.class
@@ -97,6 +100,8 @@ com\kexin\admin\entity\tables\Operation.class
 com\kexin\admin\service\MachineCheckQueryService.class
 com\kexin\admin\service\UserRoleService.class
 com\kexin\admin\service\RoleService.class
+com\kexin\common\util\CryptographyUtil.class
+com\kexin\admin\entity\vo\webQuery\SelectOption.class
 com\kexin\admin\entity\tables\ViewProduceLog.class
 com\kexin\admin\service\ViewProduceLogService.class
 com\kexin\common\config\MySysUser.class

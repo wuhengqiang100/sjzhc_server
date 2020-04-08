@@ -1,23 +1,52 @@
 package com.kexin.common.realm;
 
-
+import com.kexin.admin.entity.tables.LoginUser;
+import com.kexin.admin.service.LoginUserService;
+import com.kexin.common.util.Constants;
+import com.kexin.common.util.CryptographyUtil;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.SimplePrincipalCollection;
+import org.apache.shiro.util.ByteSource;
+import org.apache.shiro.web.subject.WebSubject;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-@Component(value = "authRealm")
-public class AuthRealm/* extends AuthorizingRealm */{
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.Serializable;
+import java.util.Objects;
 
-   /* @Autowired
+@Component(value = "authRealm")
+//@Scope(proxyMode = ScopedProxyMode.INTERFACES)
+public class AuthRealm extends AuthorizingRealm {
+
+
+    @Resource
     @Lazy
-    private UserService userService;
+    private LoginUserService loginUserService;
+
+    /*@Resource
+    @Lazy
+    private LoginUserMapper loginUserMapper;*/
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        ShiroUser shiroUser = (ShiroUser)principals.getPrimaryPrincipal();
-        User user = userService.findUserByLoginName(shiroUser.getloginName());
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        Set<Role01> roles = user.getRoleLists();
+/*        ShiroUser shiroUser = (ShiroUser)principals.getPrimaryPrincipal();
+        User user = userService01.findUserByLoginName(shiroUser.getloginName());
+
+        Set<Role> roles = user.getRoleLists();
         Set<String> roleNames = new HashSet();
-        for (Role01 role : roles) {
+        for (Role role : roles) {
             if(StringUtils.isNotBlank(role.getName())){
                 roleNames.add(role.getName());
             }
@@ -30,7 +59,7 @@ public class AuthRealm/* extends AuthorizingRealm */{
             }
         }
         info.setRoles(roleNames);
-        info.setStringPermissions(permissions);
+        info.setStringPermissions(permissions);*/
         return info;
     }
 
@@ -38,27 +67,38 @@ public class AuthRealm/* extends AuthorizingRealm */{
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         String username = (String)token.getPrincipal();
-        User user = userService.findUserByLoginName(username);
+//        Object password = token.getCredentials();
+
+        LoginUser user = loginUserService.selectLoginUserByName(username);
         if(user == null) {
             throw new UnknownAccountException();//没找到帐号
         }
-        if(Boolean.TRUE.equals(user.getLocked())) {
-            throw new LockedAccountException(); //帐号锁定
-        }
+//        if(Boolean.TRUE.equals(user.getLocked())) {
+//            throw new LockedAccountException(); //帐号锁定
+//        }
         ServletRequest request = ((WebSubject)SecurityUtils.getSubject()).getServletRequest();
         HttpSession httpSession = ((HttpServletRequest)request).getSession();
-        Object attribute = httpSession.getAttribute(LonginController.LOGIN_TYPE);
-        LonginController.LoginTypeEnum loginType = attribute == null ? null : (LonginController.LoginTypeEnum)attribute;
-        if(LonginController.LoginTypeEnum.ADMIN.equals(loginType)) {
-            if(Boolean.FALSE.equals(user.getAdminUser())) {
-                throw new UserTypeAccountException(); //帐号不是后台账户
-            }
-        }
-        byte[] salt = Encodes.decodeHex(user.getSalt());
-        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                new ShiroUser(user.getId(),user.getLoginName(),user.getNickName(), user.getIcon()),
-                user.getPassword(), //密码
+//        Object attribute = httpSession.getAttribute(LonginController.LOGIN_TYPE);
+//        LonginController.LoginTypeEnum loginType = attribute == null ? null : (LonginController.LoginTypeEnum)attribute;
+//        if(LonginController.LoginTypeEnum.ADMIN.equals(loginType)) {
+//            if(Boolean.FALSE.equals(user.getAdminUser())) {
+//                throw new UserTypeAccountException(); //帐号不是后台账户
+//            }
+//        }
+//        byte[] salt=new byte[1024];
+//        byte[] salt = Encodes.decodeHex(user.getSalt());
+      /*  SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
+                new ShiroUser(user.getLoginId(),user.getLoginName(),user.getLoginName()),
+                user.getLoginPass(), //密码
                 ByteSource.Util.bytes(salt),
+                getName()  //realm name
+        );*/
+        ByteSource salt = ByteSource.Util.bytes(user.getLoginName());
+        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
+                new ShiroUser(user.getOperatorId(),user.getLoginName()),
+                CryptographyUtil.md5(user.getLoginPass(),user.getLoginName()),//先加密再解密
+//                user.getLoginPass(), //密码
+                salt,
                 getName()  //realm name
         );
         return authenticationInfo;
@@ -70,9 +110,9 @@ public class AuthRealm/* extends AuthorizingRealm */{
         super.clearCachedAuthorizationInfo(pc);
     }
 
-    *//**
+    /**
      * 设定Password校验的Hash算法与迭代次数.
-     *//*
+     */
     @PostConstruct
     public void initCredentialsMatcher() {
         HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(Constants.HASH_ALGORITHM);
@@ -80,59 +120,54 @@ public class AuthRealm/* extends AuthorizingRealm */{
         setCredentialsMatcher(matcher);
     }
 
-    *//**
+    /**
      * 自定义Authentication对象，使得Subject除了携带用户的登录名外还可以携带更多信息.
-     *//*
+     */
     public static class ShiroUser implements Serializable {
 
         private static final long serialVersionUID = -1373760761780840081L;
 
-        public String id;
+        public Integer id;
         public String loginName;
-        public String nickName;
-        public String icon;
+//        public String icon;
 
-        public ShiroUser(String id, String loginName, String nickName,String icon) {
+        public ShiroUser(Integer id, String loginName) {
             this.id = id;
             this.loginName = loginName;
-            this.nickName = nickName;
-            this.icon=icon;
+//            this.icon=icon;
         }
 
         public String getloginName() {
             return loginName;
         }
-        public String getNickName() {
-            return nickName;
-        }
-        public String getIcon() {
-            return icon;
-        }
-        public String getId() {
+        //        public String getIcon() {
+//            return icon;
+//        }
+        public Integer getId() {
             return id;
         }
 
 
 
-        *//**
+        /**
          * 本函数输出将作为默认的<shiro:principal/>输出.
-         *//*
-        @Override
-        public String toString() {
-            return nickName;
-        }
+         */
+//        @Override
+//        public String toString() {
+//            return nickName;
+//        }
 
-        *//**
+        /**
          * 重载hashCode,只计算loginName;
-         *//*
+         */
         @Override
         public int hashCode() {
             return Objects.hashCode(loginName);
         }
 
-        *//**
+        /**
          * 重载equals,只计算loginName;
-         *//*
+         */
         @Override
         public boolean equals(Object obj) {
             if (this == obj) {
@@ -149,5 +184,5 @@ public class AuthRealm/* extends AuthorizingRealm */{
                 return other.loginName == null;
             } else return loginName.equals(other.loginName);
         }
-    }*/
+    }
 }

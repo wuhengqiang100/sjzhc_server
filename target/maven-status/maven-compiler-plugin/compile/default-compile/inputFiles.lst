@@ -1,5 +1,6 @@
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\DataupLog.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\Rescource.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\query\QaInspectSelect.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\MenuService.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\base\Data.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\Machine.java
@@ -25,6 +26,7 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\MenuMetas.
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\SystemController.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\MachineLogMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\ViewProduceLogServiceImpl.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\query\QueryDateParent.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\util\Encodes.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\UploadServiceImpl.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\QaInspectTransfers.java
@@ -52,7 +54,7 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\pojo\Token.ja
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\Operator.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\SysMenusServiceImpl.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\monitor\MonitorView.java
-E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\QaInspectSelect.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\webQuery\SelectOption.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\SysMenusMetaMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\config\CaptchaConfig.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\SysFunctionMapper.java
@@ -64,6 +66,7 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\DicWor
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\MachineCheckController.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\ProduceLog.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\VerifyLogController.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\util\CryptographyUtil.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\MachineCheckQueryService.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\util\ftpUtil\FileWmxUtil.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\SysMenusService.java
@@ -74,6 +77,7 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\monitor\Monit
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\OperationLog.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\RoleMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\Ftp.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\DicWorkUnitsMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\OperationLogMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\AdminApplication.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\QaInspectMasterMapper.java
