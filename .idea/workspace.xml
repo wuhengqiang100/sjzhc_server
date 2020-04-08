@@ -3,18 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="021d88d3-fb85-4ccf-b86b-80724cbf2d83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/OperationLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/OperationLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/QaInspectMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/QaInspectMaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/QaInspectChange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/QaInspectChange.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/QaInspectMasterMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/QaInspectMasterMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/QaInspectMasterMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/admin/QaInspectMasterMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/OperationLog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/OperationLog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/QaInspectMaster.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/QaInspectMaster.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/vo/QaInspectChange.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/vo/QaInspectChange.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/QaInspectMasterMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/mapper/QaInspectMasterMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/QaInspectMasterMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/admin/QaInspectMasterMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/VerifyLogController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/VerifyLogController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,7 +243,7 @@
       <workItem from="1585881590825" duration="887000" />
       <workItem from="1585882559546" duration="17759000" />
       <workItem from="1586221915909" duration="20419000" />
-      <workItem from="1586309264099" duration="6349000" />
+      <workItem from="1586309264099" duration="10251000" />
     </task>
     <servers />
   </component>
@@ -309,62 +299,62 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1586242756170" />
-    <state width="510" height="463" key="DebuggerActiveHint" timestamp="1586315464758">
+    <state width="510" height="463" key="DebuggerActiveHint" timestamp="1586332917421">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="510" height="463" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1586315464758" />
+    <state width="510" height="463" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1586332917421" />
     <state x="466" y="158" key="FileChooserDialogImpl" timestamp="1586225996539">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="466" y="158" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1586225996539" />
-    <state width="1493" height="355" key="GridCell.Tab.0.bottom" timestamp="1586316132524">
+    <state width="1493" height="183" key="GridCell.Tab.0.bottom" timestamp="1586332727612">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="355" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586316132524" />
-    <state width="1493" height="355" key="GridCell.Tab.0.center" timestamp="1586316132524">
+    <state width="1493" height="183" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586332727612" />
+    <state width="1493" height="183" key="GridCell.Tab.0.center" timestamp="1586332727612">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="355" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1586316132524" />
-    <state width="1493" height="355" key="GridCell.Tab.0.left" timestamp="1586316132524">
+    <state width="1493" height="183" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1586332727612" />
+    <state width="1493" height="183" key="GridCell.Tab.0.left" timestamp="1586332727612">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="355" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1586316132524" />
-    <state width="1493" height="355" key="GridCell.Tab.0.right" timestamp="1586316132524">
+    <state width="1493" height="183" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1586332727612" />
+    <state width="1493" height="183" key="GridCell.Tab.0.right" timestamp="1586332727612">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="355" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1586316132524" />
-    <state width="1493" height="80" key="GridCell.Tab.1.bottom" timestamp="1586316044912">
+    <state width="1493" height="183" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1586332727612" />
+    <state width="1493" height="291" key="GridCell.Tab.1.bottom" timestamp="1586332819698">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="80" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586316044912" />
-    <state width="1493" height="80" key="GridCell.Tab.1.center" timestamp="1586316044912">
+    <state width="1493" height="291" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586332819698" />
+    <state width="1493" height="291" key="GridCell.Tab.1.center" timestamp="1586332819697">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="80" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1586316044912" />
-    <state width="1493" height="80" key="GridCell.Tab.1.left" timestamp="1586316044911">
+    <state width="1493" height="291" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1586332819697" />
+    <state width="1493" height="291" key="GridCell.Tab.1.left" timestamp="1586332819697">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="80" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1586316044911" />
-    <state width="1493" height="80" key="GridCell.Tab.1.right" timestamp="1586316044912">
+    <state width="1493" height="291" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1586332819697" />
+    <state width="1493" height="291" key="GridCell.Tab.1.right" timestamp="1586332819698">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="80" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1586316044912" />
-    <state width="1493" height="80" key="GridCell.Tab.2.bottom" timestamp="1586316027189">
+    <state width="1493" height="291" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1586332819698" />
+    <state width="1493" height="183" key="GridCell.Tab.2.bottom" timestamp="1586332727491">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="80" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586316027189" />
-    <state width="1493" height="80" key="GridCell.Tab.2.center" timestamp="1586316027189">
+    <state width="1493" height="183" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586332727491" />
+    <state width="1493" height="183" key="GridCell.Tab.2.center" timestamp="1586332727491">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="80" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1586316027189" />
-    <state width="1493" height="80" key="GridCell.Tab.2.left" timestamp="1586316027189">
+    <state width="1493" height="183" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1586332727491" />
+    <state width="1493" height="183" key="GridCell.Tab.2.left" timestamp="1586332727491">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="80" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1586316027189" />
-    <state width="1493" height="80" key="GridCell.Tab.2.right" timestamp="1586316027189">
+    <state width="1493" height="183" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1586332727491" />
+    <state width="1493" height="183" key="GridCell.Tab.2.right" timestamp="1586332727491">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="80" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1586316027189" />
+    <state width="1493" height="183" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1586332727491" />
     <state x="47" y="71" width="914" height="707" key="SettingsEditor" timestamp="1586224329482">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -726,6 +716,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java</url>
           <line>81</line>
           <option name="timeStamp" value="250" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/VerifyLogController.java</url>
+          <line>155</line>
+          <option name="timeStamp" value="251" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

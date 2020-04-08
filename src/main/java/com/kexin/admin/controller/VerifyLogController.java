@@ -152,19 +152,26 @@ public class VerifyLogController {
     @PostMapping("produce")
     @ResponseBody
     @SysLog("生产日志查询")
-    public PageDataBase<ViewProduceLog> listProduceLog(@RequestBody QueryDateParent query){
+    public PageDataBase<ViewProduceLog> listProduceLog(@RequestBody QaInspectSelect qaSelect){
         PageDataBase<ViewProduceLog> produceLogPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<ViewProduceLog> produceLogWrapper = new QueryWrapper<>();
-        if (query.getSort().equals("+id")){
+        if (qaSelect.getSort().equals("+id")){
             produceLogWrapper.orderByAsc("LOG_PROD_ID");
         }else{
             produceLogWrapper.orderByDesc("LOG_PROD_ID");
         }
-        if (query.getStartDate()!=null && query.getEndDate()!=null ){//根据车台名称查询
-            produceLogWrapper.between("LOG_DATE",  query.getStartDate(), query.getEndDate());
+        if (qaSelect.getTitle()!=null){
+            produceLogWrapper.like("CART_NUMBER",qaSelect.getTitle());
+        }if (StringUtils.isNotEmpty(qaSelect.getProductName())){//根据产品名称查询
+            produceLogWrapper.like("PRODUCT_NAME",qaSelect.getProductName());
+        }if (StringUtils.isNotEmpty(qaSelect.getOperationName())){//根据工序名称查询
+            produceLogWrapper.like("OPERATION_NAME",qaSelect.getOperationName());
         }
-        IPage<ViewProduceLog> produceLogPage = viewProduceLogService.page(new Page<>(query.getPage(),query.getLimit()),produceLogWrapper);
+        if (qaSelect.getStartDate()!=null && qaSelect.getEndDate()!=null ){//根据车台名称查询
+            produceLogWrapper.between("LOG_DATE",  qaSelect.getStartDate(), qaSelect.getEndDate());
+        }
+        IPage<ViewProduceLog> produceLogPage = viewProduceLogService.page(new Page<>(qaSelect.getPage(),qaSelect.getLimit()),produceLogWrapper);
         data.setTotal(produceLogPage.getTotal());
         data.setItems(produceLogPage.getRecords());
         produceLogPageData.setData(data);
