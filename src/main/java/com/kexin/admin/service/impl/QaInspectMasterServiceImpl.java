@@ -2,18 +2,24 @@ package com.kexin.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.kexin.admin.entity.tables.LoginUser;
+import com.kexin.admin.entity.tables.OperationLog;
+import com.kexin.admin.entity.tables.Operator;
 import com.kexin.admin.entity.tables.QaInspectMaster;
-
 import com.kexin.admin.entity.vo.QaInspectChange;
+import com.kexin.admin.mapper.LoginUserMapper;
+import com.kexin.admin.mapper.OperationLogMapper;
+import com.kexin.admin.mapper.OperatorMapper;
 import com.kexin.admin.mapper.QaInspectMasterMapper;
 import com.kexin.admin.service.QaInspectMasterService;
 import com.kexin.common.util.DateUtil.TodayUtil;
-import com.kexin.common.util.ResponseEntity;
 import com.kexin.common.util.ResponseEty;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import javax.annotation.Resource;
+import java.util.Date;
+import java.util.List;
 
 
 @Service
@@ -21,7 +27,17 @@ import java.util.*;
 public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMapper,QaInspectMaster> implements QaInspectMasterService {
 
 
+    @Resource
+    OperationLogMapper operationLogMapper;//操作日志mapper
+
+    @Resource
+    LoginUserMapper loginUserMapper;//登录用户mapper
+
+    @Resource
+    OperatorMapper operatorMapper;//人员mapper
+
     @Override
+    @Transactional(rollbackFor = Exception.class)//有修改操作一定要加上事务
     public ResponseEty saveQaInspectMaster(QaInspectChange inspectChange) {
         QaInspectMaster qaInspectMaster;
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
@@ -30,6 +46,7 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
             qaInspectMaster.setAllowJudge(1);
             qaInspectMasterQueryWrapper.in("INSPECTM_ID",inspectChange.getMovedKeys());
             baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
+            saveOperationLog(inspectChange,1);//保存核查审核日志
             return ResponseEty.success("审核成功");
 
         }else{//回退操作
@@ -37,16 +54,63 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
             qaInspectMaster.setAllowJudge(0);
             qaInspectMasterQueryWrapper.in("INSPECTM_ID",inspectChange.getMovedKeys());
             baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
+            saveOperationLog(inspectChange,2);//保存核查回退日志
             return ResponseEty.success("回退成功");
 
         }
     }
 
+    /**
+     * 获取没有审核的车次,以及仅限于今天已经审核的和已分活的车次
+     * @return
+     */
     @Override
     public List<QaInspectMaster> getAllQaInspectMaster() {
 //        Calendar
-
         return baseMapper.getAllQaInspectMaster(TodayUtil.getStartTime(),TodayUtil.getEndTime());
+    }
+
+    /**
+     * 保存日志操作
+     * @param inspectChange
+     * @param flag== 1 审核操作,flag==2回退操作
+     */
+    private void saveOperationLog(QaInspectChange inspectChange,Integer flag){
+        List<QaInspectMaster> qaInspectMasterList=baseMapper.selectQaInspectMasterByInspectmIds(inspectChange.getMovedKeys());
+        LoginUser loginUser=loginUserMapper.selectById(inspectChange.getTokenId());
+        Operator operator=operatorMapper.selectById(loginUser.getOperatorId());
+        if (flag==1){//审核操作
+            OperationLog operationLog;
+            for (QaInspectMaster qa:qaInspectMasterList) {
+                operationLog=new OperationLog();
+                operationLog.setJobId(qa.getWipJobs().getJobId());
+                    operationLog.setOperatorId(operator.getOperatorId());
+                    operationLog.setOperatorName(operator.getOperatorName());
+                    operationLog.setNote(operator.getOperatorName()+"核查审核了"+qa.getWipJobs().getCartNumber()+"车");
+
+
+                operationLog.setStartDate(new Date());
+                operationLog.setItemFlag(qa.getItemFlag());
+                operationLog.setOperationNoteType("核查审核");
+                operationLogMapper.insert(operationLog);
+            }
+        }
+        else{
+            OperationLog operationLog;
+            for (QaInspectMaster qa:qaInspectMasterList) {
+                operationLog=new OperationLog();
+                operationLog.setJobId(qa.getWipJobs().getJobId());
+                    operationLog.setOperatorId(operator.getOperatorId());
+                    operationLog.setOperatorName(operator.getOperatorName());
+                    operationLog.setNote(operator.getOperatorName()+"核查回退"+qa.getWipJobs().getCartNumber()+"车");
+
+                operationLog.setStartDate(new Date());
+                operationLog.setItemFlag(qa.getItemFlag());
+
+                operationLog.setOperationNoteType("核查回退");
+                operationLogMapper.insert(operationLog);
+            }
+        }
     }
 
 

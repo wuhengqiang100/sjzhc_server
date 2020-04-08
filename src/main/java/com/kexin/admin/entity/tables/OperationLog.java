@@ -1,10 +1,8 @@
 package com.kexin.admin.entity.tables;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import java.util.Date;
 
@@ -13,7 +11,10 @@ import java.util.Date;
  * @Author: 巫恒强
  * @Date: 2020/1/3 9:41
  */
+//QA_LOG_OPERATION_NOTES
+@KeySequence(value = "QA_LOG_OPERATION_NOTES")
 @TableName(value = "LOG_OPERATION_NOTES")
+@Data
 public class OperationLog {
 
     @TableId(type = IdType.INPUT)
@@ -23,16 +24,17 @@ public class OperationLog {
     @TableField(value = "JOB_ID")
     private Integer jobId;
 
-
     @TableField(value = "OPERATOR_ID")
     private Integer operatorId;
 
     @TableField(value = "OPERATOR_NAME")
     private String operatorName;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @TableField(value = "START_DATE")
     private Date startDate;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @TableField(value = "END_DATE")
     private Date endDate;
 
@@ -45,75 +47,4 @@ public class OperationLog {
     @TableField(value = "OPERATION_NOTE_TYPE")
     private String operationNoteType;
 
-    public Integer getLogOperationNoteId() {
-        return logOperationNoteId;
-    }
-
-    public void setLogOperationNoteId(Integer logOperationNoteId) {
-        this.logOperationNoteId = logOperationNoteId;
-    }
-
-    public Integer getJobId() {
-        return jobId;
-    }
-
-    public void setJobId(Integer jobId) {
-        this.jobId = jobId;
-    }
-
-    public Integer getOperatorId() {
-        return operatorId;
-    }
-
-    public void setOperatorId(Integer operatorId) {
-        this.operatorId = operatorId;
-    }
-
-    public String getOperatorName() {
-        return operatorName;
-    }
-
-    public void setOperatorName(String operatorName) {
-        this.operatorName = operatorName;
-    }
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public Integer getItemFlag() {
-        return itemFlag;
-    }
-
-    public void setItemFlag(Integer itemFlag) {
-        this.itemFlag = itemFlag;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public String getOperationNoteType() {
-        return operationNoteType;
-    }
-
-    public void setOperationNoteType(String operationNoteType) {
-        this.operationNoteType = operationNoteType;
-    }
 }

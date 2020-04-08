@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 
 /**
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  */
 //@KeySequence(value = "SQ_DIC_MACHINES", clazz = Integer.class)
 @TableName(value = "QA_INSPECT_MASTER")
+@Data
 public class QaInspectMaster {
 
     private static final long serialVersionUID = 1L;
@@ -25,11 +27,15 @@ public class QaInspectMaster {
 
     @TableField(value = "INFO_NUMBER")
     private Integer infoNumber;//整万信息数量
-
-
+    @TableField(value = "NO_CHECK_NUM")
+    private Integer noCheckNum;//未检信息数量
 
     @TableField(value = "ALLOW_JUDGE")
     private Integer allowJudge;//状态编号
+
+       @TableField(value = "ITEM_FLAG")
+    private Integer itemFlag;//进度标志
+
 
     @TableField(exist = false)
     private WipProdLogs wipProdLogs;//生产日志信息
@@ -52,96 +58,4 @@ public class QaInspectMaster {
     @TableField(exist = false)
     private DicWorkUnits dicWorkUnits;//操作台信息
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    public Integer getMachineWasterNumber() {
-        return machineWasterNumber;
-    }
-
-    public void setMachineWasterNumber(Integer machineWasterNumber) {
-        this.machineWasterNumber = machineWasterNumber;
-    }
-
-    public Integer getInfoNumber() {
-        return infoNumber;
-    }
-
-    public void setInfoNumber(Integer infoNumber) {
-        this.infoNumber = infoNumber;
-    }
-
-    public Integer getInspectmId() {
-        return inspectmId;
-    }
-
-    public void setInspectmId(Integer inspectmId) {
-        this.inspectmId = inspectmId;
-    }
-
-    public Integer getAllowJudge() {
-        return allowJudge;
-    }
-
-    public void setAllowJudge(Integer allowJudge) {
-        this.allowJudge = allowJudge;
-    }
-
-    public WipProdLogs getWipProdLogs() {
-        return wipProdLogs;
-    }
-
-    public void setWipProdLogs(WipProdLogs wipProdLogs) {
-        this.wipProdLogs = wipProdLogs;
-    }
-
-    public WipJobs getWipJobs() {
-        return wipJobs;
-    }
-
-    public void setWipJobs(WipJobs wipJobs) {
-        this.wipJobs = wipJobs;
-    }
-
-    public Products getProduct() {
-        return product;
-    }
-
-    public void setProduct(Products product) {
-        this.product = product;
-    }
-
-    public Operation getOperation() {
-        return operation;
-    }
-
-    public void setOperation(Operation operation) {
-        this.operation = operation;
-    }
-
-
-    public Operator getOperator() {
-        return operator;
-    }
-
-    public void setOperator(Operator operator) {
-        this.operator = operator;
-    }
-
-    public Machine getMachine() {
-        return machine;
-    }
-
-    public void setMachine(Machine machine) {
-        this.machine = machine;
-    }
-
-    public DicWorkUnits getDicWorkUnits() {
-        return dicWorkUnits;
-    }
-
-    public void setDicWorkUnits(DicWorkUnits dicWorkUnits) {
-        this.dicWorkUnits = dicWorkUnits;
-    }
 }

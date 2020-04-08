@@ -26,8 +26,10 @@ public interface QaInspectMasterMapper extends BaseMapper<QaInspectMaster> {
 
     /**
      * 根据logId生产日志id获取InspectMaster信息
-     * @param logId
+     * @param inspectmIds
      * @return
      */
-    QaInspectMaster selectOneInspeceMasterByLogId(@Param("logId") Integer logId);
+    List<QaInspectMaster> selectQaInspectMasterByInspectmIds(@Param("inspectmIds") Integer[] inspectmIds);
+
+
 }
