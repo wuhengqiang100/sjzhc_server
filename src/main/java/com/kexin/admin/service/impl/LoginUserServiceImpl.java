@@ -63,7 +63,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
             user.login(token);
             Tokens tokens=new Tokens();
             // 讲用户的operatorId作为用户登陆的token
-            tokens.setToken(String.valueOf(loginUser.getLoginId()));
+            tokens.setToken(String.valueOf(loginUser.getLoginId()));//返回前台的是用户的loginId,后台存的shiroUser是operatorId
             responseEty.setSuccess(20000);
             responseEty.setData(tokens);
 //            session.setAttribute("tokenName",userName);
@@ -134,9 +134,6 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
 
     //新增和编辑加上,事务回滚时用到
     //@Transactional(rollbackFor = Exception.class)
-
-
-
 
 
     @Override

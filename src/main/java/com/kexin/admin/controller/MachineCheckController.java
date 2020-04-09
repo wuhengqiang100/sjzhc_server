@@ -1,14 +1,11 @@
 package com.kexin.admin.controller;
 
 import com.kexin.admin.entity.vo.QaInspectChange;
-import com.kexin.admin.entity.vo.QaInspectDatas;
 import com.kexin.admin.service.QaInspectMasterService;
 import com.kexin.common.util.ResponseEty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 /**
  * @Description:设备管理Controller

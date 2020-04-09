@@ -1,7 +1,14 @@
 package com.kexin.common.realm;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.kexin.admin.entity.tables.LoginUser;
+import com.kexin.admin.entity.tables.Operator;
+import com.kexin.admin.entity.tables.Role;
+import com.kexin.admin.entity.tables.SysUserRoles;
 import com.kexin.admin.service.LoginUserService;
+import com.kexin.admin.service.OperatorService;
+import com.kexin.admin.service.RoleService;
+import com.kexin.admin.service.UserRoleService;
 import com.kexin.common.util.Constants;
 import com.kexin.common.util.CryptographyUtil;
 import org.apache.shiro.SecurityUtils;
@@ -23,10 +30,12 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Component(value = "authRealm")
-//@Scope(proxyMode = ScopedProxyMode.INTERFACES)
 public class AuthRealm extends AuthorizingRealm {
 
 
@@ -34,32 +43,52 @@ public class AuthRealm extends AuthorizingRealm {
     @Lazy
     private LoginUserService loginUserService;
 
-    /*@Resource
+    @Resource
     @Lazy
-    private LoginUserMapper loginUserMapper;*/
+    private OperatorService operatorService;
+
+    @Resource
+    @Lazy
+    private UserRoleService userRoleService;
+    @Resource
+    @Lazy
+    private RoleService roleService;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-/*        ShiroUser shiroUser = (ShiroUser)principals.getPrimaryPrincipal();
-        User user = userService01.findUserByLoginName(shiroUser.getloginName());
+        ShiroUser shiroUser = (ShiroUser)principals.getPrimaryPrincipal();
+        Operator operator=operatorService.getById(shiroUser.id);
+        QueryWrapper<LoginUser> loginUserQueryWrapper=new QueryWrapper<>();
+        loginUserQueryWrapper.eq("OPERATOR_ID",operator.getOperatorId());
+        LoginUser loginUser=loginUserService.getOne(loginUserQueryWrapper);
 
-        Set<Role> roles = user.getRoleLists();
+        QueryWrapper<SysUserRoles> sysUserRolesQueryWrapper=new QueryWrapper<>();
+        sysUserRolesQueryWrapper.eq("USER_ID",loginUser.getOperatorId());
+        List<SysUserRoles> sysUserRolesList=userRoleService.list(sysUserRolesQueryWrapper);
+
+
+//        Set<Role> roles = user.getRoleLists();
         Set<String> roleNames = new HashSet();
-        for (Role role : roles) {
-            if(StringUtils.isNotBlank(role.getName())){
+        Role role;
+        for (SysUserRoles userRole : sysUserRolesList) {
+    /*        if(StringUtils.isNotBlank(userRole.getName())){
                 roleNames.add(role.getName());
-            }
+            }*/
+            role=roleService.getById(userRole.getRoleId());
+            roleNames.add(role.getRoleName());
+
         }
-        Set<Menu> menus = user.getMenus();
-        Set<String> permissions =  new HashSet();
-        for (Menu menu : menus) {
-            if(StringUtils.isNotBlank(menu.getPermission())){
-                permissions.add(menu.getPermission());
-            }
-        }
+//        Set<Menu> menus = user.getMenus();
+//        Set<String> permissions =  new HashSet();
+//        for (Menu menu : menus) {
+//            if(StringUtils.isNotBlank(menu.getPermission())){
+//                permissions.add(menu.getPermission());
+//            }
+//        }
         info.setRoles(roleNames);
-        info.setStringPermissions(permissions);*/
+//        info.setStringPermissions(permissions);
+
         return info;
     }
 
@@ -73,26 +102,10 @@ public class AuthRealm extends AuthorizingRealm {
         if(user == null) {
             throw new UnknownAccountException();//没找到帐号
         }
-//        if(Boolean.TRUE.equals(user.getLocked())) {
-//            throw new LockedAccountException(); //帐号锁定
-//        }
+
         ServletRequest request = ((WebSubject)SecurityUtils.getSubject()).getServletRequest();
         HttpSession httpSession = ((HttpServletRequest)request).getSession();
-//        Object attribute = httpSession.getAttribute(LonginController.LOGIN_TYPE);
-//        LonginController.LoginTypeEnum loginType = attribute == null ? null : (LonginController.LoginTypeEnum)attribute;
-//        if(LonginController.LoginTypeEnum.ADMIN.equals(loginType)) {
-//            if(Boolean.FALSE.equals(user.getAdminUser())) {
-//                throw new UserTypeAccountException(); //帐号不是后台账户
-//            }
-//        }
-//        byte[] salt=new byte[1024];
-//        byte[] salt = Encodes.decodeHex(user.getSalt());
-      /*  SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                new ShiroUser(user.getLoginId(),user.getLoginName(),user.getLoginName()),
-                user.getLoginPass(), //密码
-                ByteSource.Util.bytes(salt),
-                getName()  //realm name
-        );*/
+
         ByteSource salt = ByteSource.Util.bytes(user.getLoginName());
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 new ShiroUser(user.getOperatorId(),user.getLoginName()),

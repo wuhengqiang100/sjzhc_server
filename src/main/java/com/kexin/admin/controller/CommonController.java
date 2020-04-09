@@ -7,10 +7,13 @@ import com.kexin.admin.service.SysMenusMetaService;
 import com.kexin.admin.service.SysMenusService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.util.ResponseEty;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
@@ -43,41 +46,7 @@ public class CommonController {
      * @throws
      * @date 2020/3/12 14:25
      */
-/*
-    @PostMapping("menu1")
-    @ResponseBody
-    @SysLog("获取动态路由菜单")
-    public ResponseEty create(){
-        ResponseEty responseEty=new ResponseEty();
-        QueryWrapper<SysMenus> sysMenusQueryWrapper = new QueryWrapper<>();
-        sysMenusQueryWrapper.isNull("PARENT_ID");
-        List<SysMenus> sysMenusList=sysMenusService.list(sysMenusQueryWrapper);
-        for (SysMenus menu:sysMenusList) {
-            //把一级主菜单的描述信息放进去
-            SysMenusMeta sysMenusMeta=sysMenusMetaService.getById(menu.getMetaId());
-            if (sysMenusMeta!=null){
-                menu.setMeta(sysMenusMeta);
-            }
-            if (StringUtils.isNotEmpty(menu.getChildrenIds())){
-                String[] childrenIds=StringUtils.split(menu.getChildrenIds(),',');
-                QueryWrapper<SysMenus> sysMenusChildQueryWrapper = new QueryWrapper<>();
-                sysMenusChildQueryWrapper.in("FUNCTION_ID",childrenIds);
-                List<SysMenus> sysMenusChildList=sysMenusService.list(sysMenusChildQueryWrapper);
-                for (SysMenus menuChild:sysMenusChildList){
-                    //把二级主菜单的描述信息放进去
-                    SysMenusMeta sysMenusChildMeta=sysMenusMetaService.getById(menuChild.getMetaId());
-                    if (sysMenusMeta!=null){
-                        menuChild.setMeta(sysMenusChildMeta);
-                    }
-                }
-                menu.setChildren(sysMenusChildList);
-            }
-        }
-        responseEty.setSuccess(20000);
-        responseEty.setAny("asyncRoutes",sysMenusList);
-        return responseEty;
-    }
-*/
+
 
     /**
      * @Title:
@@ -112,6 +81,47 @@ public class CommonController {
     }
 
     /**
+     * 后台登录失败重定向到前台
+     * @param request
+     * @return
+     */
+/*    @GetMapping("login")
+    @ResponseBody
+    public ResponseEty resetLogin(@RequestBody Map map,HttpSession session){
+        return loginUserService.login(map,session);
+    }*/
+    @GetMapping("login")
+    @ResponseBody
+    public ResponseEty resetLogin(HttpServletRequest request){
+        ResponseEty responseEty=new ResponseEty();
+
+        Subject s = SecurityUtils.getSubject();
+//        modelMap.put("server",server);
+        if(s.isAuthenticated()) {
+            responseEty.setMessage("已认证,有权限");
+            responseEty.setSuccess(20000);
+        }else{
+            responseEty.setMessage("您没有权限,不能请求数据");
+            responseEty.setSuccess(50008);
+        }
+        return responseEty;
+    }
+
+    /**
+     * 登录成功页面
+     * @param request
+     * @return
+     */
+    @GetMapping("index")
+    @ResponseBody
+    public ResponseEty index(HttpServletRequest request){
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        return responseEty;
+    }
+
+
+    /**
      * @Title:获取用户的基本信息
      * @param @param
      * @return @return
@@ -134,10 +144,10 @@ public class CommonController {
     @GetMapping("logout")
     @ResponseBody
     public ResponseEty logout(HttpSession session){
-        session.removeAttribute("tokenName");
         ResponseEty responseEty=new ResponseEty();
         responseEty.setSuccess(20000);
         responseEty.setData("success");
+        SecurityUtils.getSubject().logout();
         return responseEty;
     }
 

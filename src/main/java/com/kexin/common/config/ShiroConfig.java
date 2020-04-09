@@ -1,5 +1,6 @@
 package com.kexin.common.config;
 
+
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.kexin.common.realm.AuthRealm;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -9,7 +10,6 @@ import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
@@ -22,7 +22,6 @@ import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 
 import javax.servlet.Filter;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -35,27 +34,33 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("authRealm")AuthRealm authRealm){
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         bean.setSecurityManager(securityManager(authRealm));
-//        bean.setSuccessUrl("/index");
-//        bean.setLoginUrl("/common/login");
-        Map<String,Filter> map = new HashMap();
-        map.put("authc",new FormAuthenticationFilter());
-        bean.setFilters(map);
+        bean.setSuccessUrl("/common/index");//认证成功跳转的页面
+        bean.setLoginUrl("/common/login");//没有认证,认证失败,回到登录界面
+//        Map<String,Filter> map = new HashMap();
+//        map.put("authc",new FormAuthenticationFilter());
+//        bean.setFilters(map);
+        Map<String, Filter> filterMap = new LinkedHashMap<>();
+        filterMap.put("authc", new AjaxPermissionsAuthorizationFilter());
+        bean.setFilters(filterMap);
         //配置访问权限
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap();
-//        filterChainDefinitionMap.put("/","anon");
+        filterChainDefinitionMap.put("/","anon");
         filterChainDefinitionMap.put("/common/**","anon");
-/*        filterChainDefinitionMap.put("/static/**","anon");
-        filterChainDefinitionMap.put("/admin","anon");
-        filterChainDefinitionMap.put("/admin/index","anon");
-        filterChainDefinitionMap.put("/admin/login","anon");
-        filterChainDefinitionMap.put("/toLogin","anon");
-        filterChainDefinitionMap.put("/getCaptcha","anon");
-        filterChainDefinitionMap.put("/anonCtrl/","anon");
-        filterChainDefinitionMap.put("/sysRole/test","anon");
-        filterChainDefinitionMap.put("/systemLogout","authc");
-        filterChainDefinitionMap.put("/base/device/info/**","authc");*/
-//        filterChainDefinitionMap.put("/**","anon");
-//        filterChainDefinitionMap.put("/**","authc");
+        filterChainDefinitionMap.put("/static/**","anon");
+        filterChainDefinitionMap.put("/machine/check/**","anon");
+/*
+        filterChainDefinitionMap.put("/machine/**","authc");
+        filterChainDefinitionMap.put("/machine/template/**","authc");
+        filterChainDefinitionMap.put("/menu/**","authc");
+        filterChainDefinitionMap.put("/operation/**","authc");
+        filterChainDefinitionMap.put("/operator/**","authc");
+        filterChainDefinitionMap.put("/product/**","authc");
+        filterChainDefinitionMap.put("/role/**","authc");
+        filterChainDefinitionMap.put("/loginUser/list","authc");
+        filterChainDefinitionMap.put("/log/**","authc");
+*/
+
+        filterChainDefinitionMap.put("/**","anon");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
     }
@@ -64,10 +69,11 @@ public class ShiroConfig {
     public SecurityManager securityManager(@Qualifier("authRealm")AuthRealm authRealm){
         logger.info("- - - - - - -shiro开始加载- - - - - - ");
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
-        defaultWebSecurityManager.setRealm(authRealm);
+
         defaultWebSecurityManager.setRememberMeManager(rememberMeManager());
         defaultWebSecurityManager.setSessionManager(webSessionManager());
         defaultWebSecurityManager.setCacheManager(cacheManager());
+        defaultWebSecurityManager.setRealm(authRealm);
         return defaultWebSecurityManager;
     }
 
