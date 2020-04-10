@@ -5,9 +5,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.LoginUser;
-import com.kexin.admin.entity.tables.SysRoleMenus;
+import com.kexin.admin.entity.tables.Role;
 import com.kexin.admin.entity.tables.SysUserRoles;
-import com.kexin.admin.service.*;
+import com.kexin.admin.service.LoginUserService;
+import com.kexin.admin.service.OperatorService;
+import com.kexin.admin.service.RoleService;
+import com.kexin.admin.service.UserRoleService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
@@ -19,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletRequest;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 用户管理controller层
@@ -32,6 +34,13 @@ public class UserController {
     
     @Autowired
     UserRoleService userRoleService;
+
+    @Autowired
+    RoleService roleService;
+
+
+    @Autowired
+    OperatorService operatorService;
 
 
     //@CrossOrigin(origins = "http://192.168.0.100:4200", maxAge = 3600)
@@ -60,32 +69,15 @@ public class UserController {
         if (StringUtils.isNotEmpty(title)){
             loginUserWrapper.like("LOGIN_NAME",title);
         }
-//        if(!map.isEmpty()){
-//            String useFlag = (String) map.get("useFlag");
-//            if(StringUtils.isNotBlank(useFlag)) {
-//                loginUserWrapper.eq("USE_FLAG", useFlag);
-//            }
-//            String keys = (String) map.get("key");
-//            if(StringUtils.isNotBlank(keys)) {
-//                loginUserWrapper.and(wrapper -> wrapper.like("MACHINE_NAME", keys));//模糊查询拼接
-//            }
-//        }
+
         IPage<LoginUser> loginUserPage = loginUserService.page(new Page<>(page,limit),loginUserWrapper);
         data.setTotal(loginUserPage.getTotal());
+        loginUserPage.getRecords().forEach(r->r.setOperator(operatorService.getById(r.getOperatorId())));
         data.setItems(loginUserPage.getRecords());
         loginUserPageData.setData(data);
         return loginUserPageData;
     }
 
-/*    private List<LoginUser> setLoginUserTypeToLoginUser(List<LoginUser> loginUsers){
-        loginUsers.forEach(r -> {
-            if(r.getLoginUserTypeId()!=null){
-                LoginUserType loginUserType=loginUserTypeService.getById(r.getLoginUserTypeId());
-                r.setLoginUserType(loginUserType);
-            }
-        });
-         return loginUsers;
-    }*/
 
     /**
      * @Title: 获取用户已拥有的角色
@@ -100,22 +92,12 @@ public class UserController {
     @SysLog("用户已分配的角色")
     public ResponseEty listOwn(@RequestParam(value = "userId",required = false)Integer userId){
         ResponseEty responseEty=new ResponseEty();
-        responseEty.setSuccess(20000);
         if(userId==null){
             return ResponseEty.failure("参数错误");
         }
-        QueryWrapper<SysUserRoles> userRoleQueryWrapper = new QueryWrapper<>();
-        userRoleQueryWrapper.eq("USER_ID",userId);
-        List<SysUserRoles> sysRoleMenusList=userRoleService.list(userRoleQueryWrapper);
-        if (sysRoleMenusList.size()!=0){
-            Integer[] roleIds=new Integer[sysRoleMenusList.size()];
-            for (int i = 0; i <sysRoleMenusList.size() ; i++) {
-                roleIds[i]=sysRoleMenusList.get(i).getRoleId();
-            }
-            responseEty.setAny("roleIds",roleIds);
-            return responseEty;
-        }
-        responseEty.setAny("roleIds",null);
+        responseEty.setSuccess(20000);
+        responseEty.setAny("checkedRoles",roleService.getRoleOptionOwn(userId));
+
         return responseEty;
     }
 
@@ -136,18 +118,26 @@ public class UserController {
         if (loginUserService.loginUserCountByName(loginUser.getLoginName())>0){
             return ResponseEty.failure("用户名称已使用,请重新输入");
         }
-        loginUserService.saveLoginUser(loginUser);
+        try {
+            loginUserService.saveLoginUser(loginUser);
+        } catch (Exception e) {
+//            e.printStackTrace();
+            return ResponseEty.failure("用户表没有该用户,不能创建账户");
+        }
         if(loginUser.getLoginId()==null){
             return ResponseEty.failure("保存信息出错");
         }
         Integer operatorId=loginUser.getOperatorId();
-        if (loginUser.getRoleIds()!=null){
-            Integer [] roleIds=loginUser.getRoleIds();
+        if (loginUser.getCheckedRole()!=null){
+            String [] checkRoleName=loginUser.getCheckedRole();
             SysUserRoles sysUserRoles=null;
-            for (Integer roleId:roleIds) {
+            for (String roleName:checkRoleName) {
+                QueryWrapper<Role> roleQueryWrapper=new QueryWrapper<>();
+                roleQueryWrapper.eq("ROLE_NAME",roleName);
+
                 sysUserRoles=new SysUserRoles();
                 sysUserRoles.setUserId(operatorId);
-                sysUserRoles.setRoleId(roleId);
+                sysUserRoles.setRoleId(roleService.getOne(roleQueryWrapper).getRoleId());
                 userRoleService.saveSysUserRoles(sysUserRoles);
             }
             return ResponseEty.success("保存成功");
@@ -182,18 +172,21 @@ public class UserController {
             return ResponseEty.failure("保存信息出错");
         }
         Integer operatorId=loginUser.getOperatorId();
-        if (loginUser.getRoleIds()!=null){
+        if (loginUser.getCheckedRole()!=null){
             //先删除原来的关系数据
             QueryWrapper<SysUserRoles> userRolesQueryWrapper = new QueryWrapper<>();
             userRolesQueryWrapper.eq("USER_ID",operatorId);
             userRoleService.remove(userRolesQueryWrapper);
             //再添加新的数据
-            Integer [] roleIds=loginUser.getRoleIds();
+            String [] checkRoleName=loginUser.getCheckedRole();
             SysUserRoles sysUserRoles=null;
-            for (Integer roleId:roleIds) {
+            for (String roleName:checkRoleName) {
+                QueryWrapper<Role> roleQueryWrapper=new QueryWrapper<>();
+                roleQueryWrapper.eq("ROLE_NAME",roleName);
+
                 sysUserRoles=new SysUserRoles();
                 sysUserRoles.setUserId(operatorId);
-                sysUserRoles.setRoleId(roleId);
+                sysUserRoles.setRoleId(roleService.getOne(roleQueryWrapper).getRoleId());
                 userRoleService.saveSysUserRoles(sysUserRoles);
             }
             return ResponseEty.success("保存成功");

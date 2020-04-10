@@ -33,6 +33,9 @@ public class MachineCheckQueryServiceImpl extends ServiceImpl<MachineCheckQueryM
     @Resource
     DicWorkUnitsMapper dicWorkUnitsMapper;//机台mapper
 
+    @Resource
+    OperatorMapper operatorMapper;//人员mapper
+
     //新增和编辑加上,事务回滚时用到
     //@Transactional(rollbackFor = Exception.class)
 
@@ -119,7 +122,7 @@ public class MachineCheckQueryServiceImpl extends ServiceImpl<MachineCheckQueryM
     }
 
     /**
-     * 获取机台的slectOption
+     * 获取机台的selectoption
      * @return
      */
     private List<SelectOption> getWorkUnitSelectOption(){
@@ -135,4 +138,24 @@ public class MachineCheckQueryServiceImpl extends ServiceImpl<MachineCheckQueryM
         }
         return selectOptionList;
     }
+
+    /**
+     * 获取机台的selectoption
+     * @return
+     */
+    @Override
+    public List<SelectOption> getOperatorSelectOption(){
+        QueryWrapper<Operator> operatorQueryWrapper = new QueryWrapper<>();
+        List<Operator> operatorList= operatorMapper.selectList(operatorQueryWrapper);
+        List<SelectOption> selectOptionList=new ArrayList<>(operatorList.size());
+        SelectOption selectOption;
+        for (Operator r : operatorList) {
+            selectOption=new SelectOption();
+            selectOption.setValue(r.getOperatorId());
+            selectOption.setLabel(r.getOperatorName());
+            selectOptionList.add(selectOption);
+        }
+        return selectOptionList;
+    }
+
 }

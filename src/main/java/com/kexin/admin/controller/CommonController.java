@@ -3,7 +3,6 @@ package com.kexin.admin.controller;
 
 import com.kexin.admin.service.LoginUserService;
 import com.kexin.admin.service.SysFunctionService;
-import com.kexin.admin.service.SysMenusMetaService;
 import com.kexin.admin.service.SysMenusService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.util.ResponseEty;
@@ -31,8 +30,6 @@ public class CommonController {
     @Autowired
     SysMenusService sysMenusService;
 
-    @Autowired
-    SysMenusMetaService sysMenusMetaService;
 
     @Autowired
     LoginUserService loginUserService;

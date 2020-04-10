@@ -1,12 +1,14 @@
 package com.kexin.admin.entity.tables;
 
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
 
 /**
  * 登录用户实体类
  */
 @TableName("SYS_LOGIN_USERS")
 @KeySequence(value = "SQ_SYS_LOGIN_USERS", clazz = Integer.class)
+@Data
 public class LoginUser{
     @TableId(type = IdType.INPUT)
     @TableField(value = "LOGIN_ID")
@@ -33,61 +35,9 @@ public class LoginUser{
     @TableField(value = "USE_FLAG")
     protected Boolean useFlag;
     @TableField(exist = false)
-    private Integer [] roleIds;//角色ids
+    private String [] checkedRole;//角色ids
 
-    public Integer[] getRoleIds() {
-        return roleIds;
-    }
+    @TableField(exist = false)
+    private Operator operator;
 
-    public void setRoleIds(Integer[] roleIds) {
-        this.roleIds = roleIds;
-    }
-
-    public Integer getLoginId() {
-        return loginId;
-    }
-
-    public void setLoginId(Integer loginId) {
-        this.loginId = loginId;
-    }
-
-    public Integer getOperatorId() {
-        return operatorId;
-    }
-
-    public void setOperatorId(Integer operatorId) {
-        this.operatorId = operatorId;
-    }
-
-    public String getLoginName() {
-        return loginName;
-    }
-
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
-    }
-
-    public String getLoginPass() {
-        return loginPass;
-    }
-
-    public void setLoginPass(String loginPass) {
-        this.loginPass = loginPass;
-    }
-
-    public Boolean getUserInWork() {
-        return userInWork;
-    }
-
-    public void setUserInWork(Boolean userInWork) {
-        this.userInWork = userInWork;
-    }
-
-    public Boolean getUseFlag() {
-        return useFlag;
-    }
-
-    public void setUseFlag(Boolean useFlag) {
-        this.useFlag = useFlag;
-    }
 }

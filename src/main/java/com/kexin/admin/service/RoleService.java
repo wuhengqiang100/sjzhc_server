@@ -1,20 +1,24 @@
 package com.kexin.admin.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.kexin.admin.entity.tables.GrantRoleFunctions;
 import com.kexin.admin.entity.tables.Role;
-import com.kexin.admin.entity.tables.Role;
-import com.kexin.common.util.ResponseEntity;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 public interface RoleService extends IService<Role> {
 
 
+    /**
+     * 获取所有的角色checkbox用,option
+     * @return
+     */
+    String[] listRoleOption();
 
+    /**
+     * 获取已拥有的角色
+     * @param userId
+     * @return
+     */
+    String[] getRoleOptionOwn(@Param("userId") Integer userId);
 
 
     /**

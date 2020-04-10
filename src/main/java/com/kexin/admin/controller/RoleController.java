@@ -4,11 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.Role;
+import com.kexin.admin.entity.tables.SysFunctions;
 import com.kexin.admin.entity.tables.SysRoleMenus;
-import com.kexin.admin.service.RoleMenuService;
-import com.kexin.admin.service.RoleService;
-import com.kexin.admin.service.SysMenusMetaService;
-import com.kexin.admin.service.SysMenusService;
+import com.kexin.admin.entity.tables.SysUserRoles;
+import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
@@ -39,12 +38,13 @@ public class RoleController {
 
 
     @Autowired
-    SysMenusService sysMenusService;//系统菜单service
-
+    SysFunctionService sysFunctionService;//权限service
 
     @Autowired
-    SysMenusMetaService sysMenusMetaService;//系统菜单详细信息service
+    UserRoleService userRoleService;//用户和角色关系表
 
+    @Autowired
+    MachineCheckQueryService machineCheckQueryService;//获取查询条件
 
     //@CrossOrigin(origins = "http://192.168.0.100:4200", maxAge = 3600)
     @GetMapping("list")
@@ -93,10 +93,9 @@ public class RoleController {
     @SysLog("角色类别options列表获取")
     public ResponseEty listopetion(){
         ResponseEty responseEty=new ResponseEty();
-        QueryWrapper<Role> roleWrapper = new QueryWrapper<>();
-        responseEty.setAny("roleList",roleService.list(roleWrapper));
-//        responseEty.setData(roleService.list(roleWrapper));
         responseEty.setSuccess(20000);
+        responseEty.setAny("roleOptions",roleService.listRoleOption());
+        responseEty.setAny("operatorOption",machineCheckQueryService.getOperatorSelectOption());
         return responseEty;
     }
 
@@ -116,6 +115,7 @@ public class RoleController {
             return ResponseEty.failure("保存信息出错");
         }
         Integer roleId=role.getRoleId();
+        //保存b端权限
         if (role.getMenuIds()!=null){
             Integer [] menuIds=role.getMenuIds();
             SysRoleMenus sysRoleMenu=null;
@@ -125,7 +125,21 @@ public class RoleController {
                 sysRoleMenu.setFunctionId(menuId);
                 roleMenuService.saveSysRoleMenus(sysRoleMenu);
             }
-            return ResponseEty.success("保存成功");
+        }
+        //保存c端权限
+        if (role.getCheckedPermiss()!=null){
+            String [] checkedPermiss=role.getCheckedPermiss();//根据function 表里面的title字段查找
+            SysRoleMenus sysRoleMenu=null;
+            for (String permiss:checkedPermiss){
+                QueryWrapper<SysFunctions> sysFunctionsQueryWrapper=new QueryWrapper<>();
+                sysFunctionsQueryWrapper.eq("TITLE",permiss);
+                SysFunctions sysFunction=sysFunctionService.getOne(sysFunctionsQueryWrapper);
+                sysRoleMenu=new SysRoleMenus();
+                sysRoleMenu.setRoleId(roleId);
+                sysRoleMenu.setFunctionId(sysFunction.getFunctonId());
+                roleMenuService.saveSysRoleMenus(sysRoleMenu);
+
+            }
         }
 
         return ResponseEty.success("保存成功");
@@ -156,12 +170,14 @@ public class RoleController {
             return ResponseEty.failure("保存信息出错");
         }
         Integer roleId=role.getRoleId();
+        //先删除原来的关系数据
+        QueryWrapper<SysRoleMenus> roleMenusQueryWrapper = new QueryWrapper<>();
+        roleMenusQueryWrapper.eq("ROLE_ID",roleId);
+        roleMenuService.remove(roleMenusQueryWrapper);
+        //再添加新的数据
+        //b端权限
         if (role.getMenuIds()!=null){
-            //先删除原来的关系数据
-            QueryWrapper<SysRoleMenus> roleMenusQueryWrapper = new QueryWrapper<>();
-            roleMenusQueryWrapper.eq("ROLE_ID",roleId);
-            roleMenuService.remove(roleMenusQueryWrapper);
-            //再添加新的数据
+
             Integer [] menuIds=role.getMenuIds();
             SysRoleMenus sysRoleMenu=null;
             for (Integer menuId:menuIds) {
@@ -170,7 +186,22 @@ public class RoleController {
                 sysRoleMenu.setFunctionId(menuId);
                 roleMenuService.saveSysRoleMenus(sysRoleMenu);
             }
-            return ResponseEty.success("保存成功");
+
+        }
+        //保存c端权限
+        if (role.getCheckedPermiss()!=null){
+            String [] checkedPermiss=role.getCheckedPermiss();//根据function 表里面的title字段查找
+            SysRoleMenus sysRoleMenu=null;
+            for (String permiss:checkedPermiss){
+                QueryWrapper<SysFunctions> sysFunctionsQueryWrapper=new QueryWrapper<>();
+                sysFunctionsQueryWrapper.eq("TITLE",permiss);
+                SysFunctions sysFunction=sysFunctionService.getOne(sysFunctionsQueryWrapper);
+                sysRoleMenu=new SysRoleMenus();
+                sysRoleMenu.setRoleId(roleId);
+                sysRoleMenu.setFunctionId(sysFunction.getFunctonId());
+                roleMenuService.saveSysRoleMenus(sysRoleMenu);
+
+            }
         }
         return ResponseEty.success("操作成功");
     }
@@ -186,11 +217,21 @@ public class RoleController {
         if(role == null){
             return ResponseEty.failure("角色不存在");
         }
+
+
+        QueryWrapper<SysUserRoles> sysUserRolesQueryWrapper=new QueryWrapper<>();
+        sysUserRolesQueryWrapper.eq("ROLE_ID",id);
+        List<SysUserRoles> sysUserRolesList=userRoleService.list(sysUserRolesQueryWrapper);
+        if (sysUserRolesList!=null){
+            return ResponseEty.failure("角色下有账户,不能删除!");
+        }
+
         roleService.deleteRole(role);
         //删除关系表中的数据
         QueryWrapper<SysRoleMenus> roleMenusQueryWrapper = new QueryWrapper<>();
         roleMenusQueryWrapper.eq("ROLE_ID",id);
         roleMenuService.remove(roleMenusQueryWrapper);
+
         return ResponseEty.success("删除成功");
     }
     //
