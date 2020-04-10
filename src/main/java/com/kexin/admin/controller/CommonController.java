@@ -54,10 +54,10 @@ public class CommonController {
      * @throws
      * @date 2020/3/12 14:25
      */
-    @PostMapping("menu")
+    @GetMapping("menu")
     @ResponseBody
     @SysLog("获取动态路由菜单")
-    public ResponseEty menu(){
+    public ResponseEty menu(@RequestParam(name = "token", required = false) Integer token){
        return  sysFunctionService.getSysFunctions();
     }
 

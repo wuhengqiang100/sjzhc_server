@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/menu")
 public class MenuController {
 
-//    @Autowired
-//    SysMenusService sysMenusService;
 
     @Autowired
     SysFunctionService sysFunctionService;
@@ -23,6 +21,10 @@ public class MenuController {
 
     @Autowired
     RoleMenuService roleMenuService;//角色菜单关系service
+
+
+
+
 
 
     /**
@@ -68,6 +70,10 @@ public class MenuController {
 
         return responseEty;
     }
+
+
+
+
 
 
 }

@@ -9,6 +9,7 @@ import com.kexin.admin.entity.vo.MenuMetas;
 import com.kexin.admin.entity.vo.MenuTree;
 import com.kexin.admin.mapper.RoleMenuMapper;
 import com.kexin.admin.mapper.SysFunctionMapper;
+import com.kexin.admin.mapper.UserRoleMapper;
 import com.kexin.admin.service.SysFunctionService;
 import com.kexin.common.util.ResponseEty;
 import org.apache.commons.lang3.StringUtils;
@@ -31,6 +32,9 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
 
     @Resource
     RoleMenuMapper roleMenuMapper;//角色菜单关系service
+
+    @Resource
+    UserRoleMapper userRoleMapper;//账户和角色关系表
 
     /**
      * 角色分配权限时,获取所有的b端权限option MenuTree[]
@@ -145,9 +149,28 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Override
     public ResponseEty getSysFunctions() {
         ResponseEty responseEty=new ResponseEty();
+
+  /*      //根据tokenId获取账户角色关系
+        QueryWrapper<SysUserRoles> sysUserRolesQueryWrapper=new QueryWrapper<>();
+        sysUserRolesQueryWrapper.eq("USER_ID",token);
+        List<SysUserRoles> sysUserRolesList=userRoleMapper.selectList(sysUserRolesQueryWrapper);
+        Integer[] roles=new Integer[sysUserRolesList.size()];
+        for (int i = 0; i <sysUserRolesList.size() ; i++) {
+            roles[i]=sysUserRolesList.get(i).getRoleId();
+        }
+        //根据角色id数据获能展示的菜单
+        QueryWrapper<SysRoleMenus> sysRoleMenusQueryWrapper=new QueryWrapper<>();
+        sysRoleMenusQueryWrapper.in("ROLE_ID",roles);
+        List<SysRoleMenus> sysRoleMenusList=roleMenuMapper.selectList(sysRoleMenusQueryWrapper);
+
+        Integer[] functonIds=new Integer[sysRoleMenusList.size()];
+        for (int j = 0; j <sysRoleMenusList.size() ; j++) {
+            functonIds[j]=sysRoleMenusList.get(j).getFunctionId();
+        }*/
         QueryWrapper<SysFunctions> sysFunctionsQueryWrapper = new QueryWrapper<>();
-        sysFunctionsQueryWrapper.eq("FUNCTON_TYPE_ID",1);//1是b端菜单类型
-        sysFunctionsQueryWrapper.isNull("FUNCTON_PARENT_ID");//第一级菜单
+        sysFunctionsQueryWrapper.eq("FUNCTON_TYPE_ID",1)//1是b端菜单类型
+        .isNull("FUNCTON_PARENT_ID");//第一级菜单
+//        .in("FUNCTON_ID",functonIds);
         List<SysFunctions> sysFunctionsList=baseMapper.selectList(sysFunctionsQueryWrapper);
         List<Menu> sysMenusList=new ArrayList<>();
         for (SysFunctions function:sysFunctionsList) {
