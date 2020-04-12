@@ -23,7 +23,7 @@ public interface SysFunctionService extends IService<SysFunctions> {
      * @throws
      * @date 2020/3/11 13:10
      */
-    ResponseEty getSysFunctions();
+    ResponseEty getSysFunctions(Integer token);
 
     /**
      * 角色分配权限时,获取所有的菜单

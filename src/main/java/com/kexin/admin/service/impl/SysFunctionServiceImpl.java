@@ -2,11 +2,11 @@ package com.kexin.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.kexin.admin.entity.tables.SysFunctions;
-import com.kexin.admin.entity.tables.SysRoleMenus;
+import com.kexin.admin.entity.tables.*;
 import com.kexin.admin.entity.vo.Menu;
 import com.kexin.admin.entity.vo.MenuMetas;
 import com.kexin.admin.entity.vo.MenuTree;
+import com.kexin.admin.mapper.LoginUserMapper;
 import com.kexin.admin.mapper.RoleMenuMapper;
 import com.kexin.admin.mapper.SysFunctionMapper;
 import com.kexin.admin.mapper.UserRoleMapper;
@@ -35,6 +35,9 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
 
     @Resource
     UserRoleMapper userRoleMapper;//账户和角色关系表
+
+    @Resource
+    LoginUserMapper loginUserMapper;//账户mapper
 
     /**
      * 角色分配权限时,获取所有的b端权限option MenuTree[]
@@ -147,12 +150,15 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
      * @return
      */
     @Override
-    public ResponseEty getSysFunctions() {
+    public ResponseEty getSysFunctions(Integer token) {
         ResponseEty responseEty=new ResponseEty();
+        QueryWrapper<LoginUser> loginUserQueryWrapper=new QueryWrapper();
+        loginUserQueryWrapper.eq("LOGIN_ID",token);
+        LoginUser loginUser=loginUserMapper.selectOne(loginUserQueryWrapper);
 
-  /*      //根据tokenId获取账户角色关系
+        //根据operatorId获取账户角色关系
         QueryWrapper<SysUserRoles> sysUserRolesQueryWrapper=new QueryWrapper<>();
-        sysUserRolesQueryWrapper.eq("USER_ID",token);
+        sysUserRolesQueryWrapper.eq("USER_ID",loginUser.getOperatorId());
         List<SysUserRoles> sysUserRolesList=userRoleMapper.selectList(sysUserRolesQueryWrapper);
         Integer[] roles=new Integer[sysUserRolesList.size()];
         for (int i = 0; i <sysUserRolesList.size() ; i++) {
@@ -166,11 +172,11 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
         Integer[] functonIds=new Integer[sysRoleMenusList.size()];
         for (int j = 0; j <sysRoleMenusList.size() ; j++) {
             functonIds[j]=sysRoleMenusList.get(j).getFunctionId();
-        }*/
+        }
         QueryWrapper<SysFunctions> sysFunctionsQueryWrapper = new QueryWrapper<>();
         sysFunctionsQueryWrapper.eq("FUNCTON_TYPE_ID",1)//1是b端菜单类型
-        .isNull("FUNCTON_PARENT_ID");//第一级菜单
-//        .in("FUNCTON_ID",functonIds);
+        .isNull("FUNCTON_PARENT_ID")//第一级菜单
+        .in("FUNCTON_ID",functonIds);
         List<SysFunctions> sysFunctionsList=baseMapper.selectList(sysFunctionsQueryWrapper);
         List<Menu> sysMenusList=new ArrayList<>();
         for (SysFunctions function:sysFunctionsList) {

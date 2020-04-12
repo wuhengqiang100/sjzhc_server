@@ -58,7 +58,7 @@ public class CommonController {
     @ResponseBody
     @SysLog("获取动态路由菜单")
     public ResponseEty menu(@RequestParam(name = "token", required = false) Integer token){
-       return  sysFunctionService.getSysFunctions();
+       return  sysFunctionService.getSysFunctions(token);
     }
 
 

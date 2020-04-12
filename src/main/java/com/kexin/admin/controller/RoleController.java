@@ -3,10 +3,7 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.kexin.admin.entity.tables.Role;
-import com.kexin.admin.entity.tables.SysFunctions;
-import com.kexin.admin.entity.tables.SysRoleMenus;
-import com.kexin.admin.entity.tables.SysUserRoles;
+import com.kexin.admin.entity.tables.*;
 import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
@@ -45,6 +42,7 @@ public class RoleController {
 
     @Autowired
     MachineCheckQueryService machineCheckQueryService;//获取查询条件
+
 
     //@CrossOrigin(origins = "http://192.168.0.100:4200", maxAge = 3600)
     @GetMapping("list")
@@ -118,12 +116,27 @@ public class RoleController {
         //保存b端权限
         if (role.getMenuIds()!=null){
             Integer [] menuIds=role.getMenuIds();
+
             SysRoleMenus sysRoleMenu=null;
             for (Integer menuId:menuIds) {
+                //保存b端权限和角色之间的关系表
                 sysRoleMenu=new SysRoleMenus();
                 sysRoleMenu.setRoleId(roleId);
                 sysRoleMenu.setFunctionId(menuId);
                 roleMenuService.saveSysRoleMenus(sysRoleMenu);
+
+                //保存菜单权限里面的PERMISSION(roles)字段
+                QueryWrapper<SysFunctions> sysMenusQueryWrapper=new QueryWrapper<>();
+                sysMenusQueryWrapper.eq("FUNCTON_ID",menuId);
+                SysFunctions sysFunction=sysFunctionService.getOne(sysMenusQueryWrapper);
+                //如果原role 数组里面没有包含了该角色字段
+                if (StringUtils.isNotEmpty(sysFunction.getRoles())){
+                    sysFunction.setRoles(sysFunction.getRoles()+","+role.getRoleName());
+                }else{
+                    sysFunction.setRoles(role.getRoleName());
+                }
+                //拼接新的role   String数组 roles: ['admin', 'editor'] //设置该路由进入的权限，支持多个权限叠加
+                sysFunctionService.updateById(sysFunction);
             }
         }
         //保存c端权限
@@ -185,6 +198,22 @@ public class RoleController {
                 sysRoleMenu.setRoleId(roleId);
                 sysRoleMenu.setFunctionId(menuId);
                 roleMenuService.saveSysRoleMenus(sysRoleMenu);
+
+                //保存菜单权限里面的PERMISSION(roles)字段
+                QueryWrapper<SysFunctions> sysMenusQueryWrapper=new QueryWrapper<>();
+                sysMenusQueryWrapper.eq("FUNCTON_ID",menuId);
+                SysFunctions sysFunction=sysFunctionService.getOne(sysMenusQueryWrapper);
+                if (!StringUtils.contains(sysFunction.getRoles(),role.getRoleName())){
+                    //如果原role 数组里面没有包含了该角色字段
+                    if (StringUtils.isNotEmpty(sysFunction.getRoles())){
+                        sysFunction.setRoles(sysFunction.getRoles()+","+role.getRoleName());
+                    }else{
+                        sysFunction.setRoles(role.getRoleName());
+                    }
+                    //拼接新的role   String数组 roles: ['admin', 'editor'] //设置该路由进入的权限，支持多个权限叠加
+                    sysFunctionService.updateById(sysFunction);
+                }
+
             }
 
         }
