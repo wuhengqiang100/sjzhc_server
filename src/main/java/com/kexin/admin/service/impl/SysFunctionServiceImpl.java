@@ -46,9 +46,10 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Override
     public MenuTree[] getSysFunctionOptionB() {
 
-        QueryWrapper<SysFunctions> sysMenusQueryWrapper = new QueryWrapper<>();
-        sysMenusQueryWrapper.isNull("FUNCTON_PARENT_ID");
-        sysMenusQueryWrapper.eq("FUNCTON_TYPE_ID",1);//b端的菜单权限
+        QueryWrapper<SysFunctions> sysMenusQueryWrapper = new QueryWrapper<>();//b端的菜单权限
+        sysMenusQueryWrapper.isNull("FUNCTON_PARENT_ID")
+        .eq("FUNCTON_TYPE_ID",1)
+                .isNull("IS_SHOW");//不显示最高权限的相关功能
 
 //        List<SysFunctions> sysMenusList=sysMenusService.list(sysMenusQueryWrapper);
         List<SysFunctions> sysMenusList=baseMapper.selectList(sysMenusQueryWrapper);
@@ -152,13 +153,13 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Override
     public ResponseEty getSysFunctions(Integer token) {
         ResponseEty responseEty=new ResponseEty();
-        QueryWrapper<LoginUser> loginUserQueryWrapper=new QueryWrapper();
-        loginUserQueryWrapper.eq("LOGIN_ID",token);
-        LoginUser loginUser=loginUserMapper.selectOne(loginUserQueryWrapper);
+//        QueryWrapper<LoginUser> loginUserQueryWrapper=new QueryWrapper();
+//        loginUserQueryWrapper.eq("LOGIN_ID",token);
+//        LoginUser loginUser=loginUserMapper.selectOne(loginUserQueryWrapper);
 
         //根据operatorId获取账户角色关系
         QueryWrapper<SysUserRoles> sysUserRolesQueryWrapper=new QueryWrapper<>();
-        sysUserRolesQueryWrapper.eq("USER_ID",loginUser.getOperatorId());
+        sysUserRolesQueryWrapper.eq("USER_ID",token);
         List<SysUserRoles> sysUserRolesList=userRoleMapper.selectList(sysUserRolesQueryWrapper);
         Integer[] roles=new Integer[sysUserRolesList.size()];
         for (int i = 0; i <sysUserRolesList.size() ; i++) {

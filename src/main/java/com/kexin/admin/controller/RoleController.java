@@ -58,6 +58,7 @@ public class RoleController {
         PageDataBase<Role> rolePageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<Role> roleWrapper = new QueryWrapper<>();
+        roleWrapper.eq("USE_FLAG",1);
         if (sort.equals("+id")){
             roleWrapper.orderByAsc("ROLE_ID");
         }else{
@@ -126,7 +127,7 @@ public class RoleController {
                 roleMenuService.saveSysRoleMenus(sysRoleMenu);
 
                 //保存菜单权限里面的PERMISSION(roles)字段
-                QueryWrapper<SysFunctions> sysMenusQueryWrapper=new QueryWrapper<>();
+              /*  QueryWrapper<SysFunctions> sysMenusQueryWrapper=new QueryWrapper<>();
                 sysMenusQueryWrapper.eq("FUNCTON_ID",menuId);
                 SysFunctions sysFunction=sysFunctionService.getOne(sysMenusQueryWrapper);
                 //如果原role 数组里面没有包含了该角色字段
@@ -136,7 +137,7 @@ public class RoleController {
                     sysFunction.setRoles(role.getRoleName());
                 }
                 //拼接新的role   String数组 roles: ['admin', 'editor'] //设置该路由进入的权限，支持多个权限叠加
-                sysFunctionService.updateById(sysFunction);
+                sysFunctionService.updateById(sysFunction);*/
             }
         }
         //保存c端权限
@@ -203,7 +204,7 @@ public class RoleController {
                 QueryWrapper<SysFunctions> sysMenusQueryWrapper=new QueryWrapper<>();
                 sysMenusQueryWrapper.eq("FUNCTON_ID",menuId);
                 SysFunctions sysFunction=sysFunctionService.getOne(sysMenusQueryWrapper);
-                if (!StringUtils.contains(sysFunction.getRoles(),role.getRoleName())){
+       /*         if (!StringUtils.contains(sysFunction.getRoles(),role.getRoleName())){
                     //如果原role 数组里面没有包含了该角色字段
                     if (StringUtils.isNotEmpty(sysFunction.getRoles())){
                         sysFunction.setRoles(sysFunction.getRoles()+","+role.getRoleName());
@@ -213,7 +214,7 @@ public class RoleController {
                     //拼接新的role   String数组 roles: ['admin', 'editor'] //设置该路由进入的权限，支持多个权限叠加
                     sysFunctionService.updateById(sysFunction);
                 }
-
+*/
             }
 
         }

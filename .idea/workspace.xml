@@ -2,15 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="021d88d3-fb85-4ccf-b86b-80724cbf2d83" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/component/CommonIntercepter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/config/CORSAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/config/CustomSessionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/CommonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/CommonController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/SysFunctionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/SysFunctionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/CommonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/CommonController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/common/config/ShiroConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/config/ShiroConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/RoleController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/SysFunctionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/SysFunctionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/LoginUserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/LoginUserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/MachineServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/MachineServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/SysFunctionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/SysFunctionServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/common/config/ShiroConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/config/ShiroConfig.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +39,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -272,7 +279,8 @@
       <workItem from="1586503576482" duration="986000" />
       <workItem from="1586504590367" duration="4076000" />
       <workItem from="1586668078213" duration="2915000" />
-      <workItem from="1586701523948" duration="1395000" />
+      <workItem from="1586701523948" duration="1764000" />
+      <workItem from="1586741351830" duration="11774000" />
     </task>
     <servers />
   </component>
@@ -328,74 +336,78 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1586498618881" />
+    <state x="396" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1586743634404">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="396" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.834@0.0.1536.834" timestamp="1586743634404" />
     <state x="548" y="276" width="439" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1586334268030">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="548" y="276" width="439" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.834@0.0.1536.834" timestamp="1586334268030" />
-    <state x="524" y="119" width="898" height="595" key="#xdebugger.evaluate" timestamp="1586415988625">
+    <state x="524" y="119" width="898" height="595" key="#xdebugger.evaluate" timestamp="1586747148192">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="524" y="119" width="898" height="595" key="#xdebugger.evaluate/0.0.1536.834@0.0.1536.834" timestamp="1586415988625" />
+    <state x="524" y="119" width="898" height="595" key="#xdebugger.evaluate/0.0.1536.834@0.0.1536.834" timestamp="1586747148192" />
     <state x="372" y="11" key="CommitChangelistDialog2" timestamp="1586502298435">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="372" y="11" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1586502298435" />
-    <state width="510" height="468" key="DebuggerActiveHint" timestamp="1586703088362">
+    <state width="510" height="468" key="DebuggerActiveHint" timestamp="1586745786861">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="510" height="468" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1586703088362" />
+    <state width="510" height="468" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1586745786861" />
     <state x="466" y="158" key="FileChooserDialogImpl" timestamp="1586225996539">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="466" y="158" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1586225996539" />
-    <state width="1493" height="319" key="GridCell.Tab.0.bottom" timestamp="1586702932445">
+    <state width="1493" height="222" key="GridCell.Tab.0.bottom" timestamp="1586757807967">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="319" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586702932445" />
-    <state width="1493" height="319" key="GridCell.Tab.0.center" timestamp="1586702932445">
+    <state width="1493" height="222" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586757807967" />
+    <state width="1493" height="222" key="GridCell.Tab.0.center" timestamp="1586757807967">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="319" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1586702932445" />
-    <state width="1493" height="319" key="GridCell.Tab.0.left" timestamp="1586702932445">
+    <state width="1493" height="222" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1586757807967" />
+    <state width="1493" height="222" key="GridCell.Tab.0.left" timestamp="1586757807967">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="319" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1586702932445" />
-    <state width="1493" height="319" key="GridCell.Tab.0.right" timestamp="1586702932445">
+    <state width="1493" height="222" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1586757807967" />
+    <state width="1493" height="222" key="GridCell.Tab.0.right" timestamp="1586757807967">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="319" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1586702932445" />
-    <state width="1493" height="300" key="GridCell.Tab.1.bottom" timestamp="1586702948416">
+    <state width="1493" height="222" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1586757807967" />
+    <state width="1493" height="222" key="GridCell.Tab.1.bottom" timestamp="1586757807804">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="300" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586702948416" />
-    <state width="1493" height="300" key="GridCell.Tab.1.center" timestamp="1586702948415">
+    <state width="1493" height="222" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586757807804" />
+    <state width="1493" height="222" key="GridCell.Tab.1.center" timestamp="1586757807804">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="300" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1586702948415" />
-    <state width="1493" height="300" key="GridCell.Tab.1.left" timestamp="1586702948415">
+    <state width="1493" height="222" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1586757807804" />
+    <state width="1493" height="222" key="GridCell.Tab.1.left" timestamp="1586757807804">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="300" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1586702948415" />
-    <state width="1493" height="300" key="GridCell.Tab.1.right" timestamp="1586702948416">
+    <state width="1493" height="222" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1586757807804" />
+    <state width="1493" height="222" key="GridCell.Tab.1.right" timestamp="1586757807804">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="300" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1586702948416" />
-    <state width="1493" height="319" key="GridCell.Tab.2.bottom" timestamp="1586702932212">
+    <state width="1493" height="222" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1586757807804" />
+    <state width="1493" height="222" key="GridCell.Tab.2.bottom" timestamp="1586757807804">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="319" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586702932212" />
-    <state width="1493" height="319" key="GridCell.Tab.2.center" timestamp="1586702932211">
+    <state width="1493" height="222" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586757807804" />
+    <state width="1493" height="222" key="GridCell.Tab.2.center" timestamp="1586757807804">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="319" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1586702932211" />
-    <state width="1493" height="319" key="GridCell.Tab.2.left" timestamp="1586702932211">
+    <state width="1493" height="222" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1586757807804" />
+    <state width="1493" height="222" key="GridCell.Tab.2.left" timestamp="1586757807804">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="319" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1586702932211" />
-    <state width="1493" height="319" key="GridCell.Tab.2.right" timestamp="1586702932212">
+    <state width="1493" height="222" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1586757807804" />
+    <state width="1493" height="222" key="GridCell.Tab.2.right" timestamp="1586757807804">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="319" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1586702932212" />
+    <state width="1493" height="222" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1586757807804" />
     <state x="299" y="72" key="Maven.ArtifactSearchDialog" timestamp="1586334169204">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -420,10 +432,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1585824927651" />
-    <state x="425" y="71" width="672" height="676" key="search.everywhere.popup" timestamp="1586508708598">
+    <state x="425" y="71" width="672" height="676" key="search.everywhere.popup" timestamp="1586744730866">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="425" y="71" width="672" height="676" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1586508708598" />
+    <state x="425" y="71" width="672" height="676" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1586744730866" />
     <state x="439" y="100" key="spring file set editor" timestamp="1585810445181">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -529,12 +541,12 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java</url>
-          <line>110</line>
+          <line>116</line>
           <option name="timeStamp" value="73" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java</url>
-          <line>162</line>
+          <line>161</line>
           <option name="timeStamp" value="108" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -554,17 +566,17 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java</url>
-          <line>142</line>
+          <line>141</line>
           <option name="timeStamp" value="124" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java</url>
-          <line>143</line>
+          <line>142</line>
           <option name="timeStamp" value="125" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java</url>
-          <line>145</line>
+          <line>144</line>
           <option name="timeStamp" value="126" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -574,37 +586,37 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java</url>
-          <line>159</line>
+          <line>158</line>
           <option name="timeStamp" value="130" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java</url>
-          <line>172</line>
+          <line>171</line>
           <option name="timeStamp" value="132" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java</url>
-          <line>173</line>
+          <line>172</line>
           <option name="timeStamp" value="133" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java</url>
-          <line>171</line>
+          <line>170</line>
           <option name="timeStamp" value="134" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java</url>
-          <line>170</line>
+          <line>169</line>
           <option name="timeStamp" value="135" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java</url>
-          <line>169</line>
+          <line>168</line>
           <option name="timeStamp" value="136" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java</url>
-          <line>167</line>
+          <line>166</line>
           <option name="timeStamp" value="137" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -634,7 +646,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java</url>
-          <line>192</line>
+          <line>191</line>
           <option name="timeStamp" value="152" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -709,32 +721,32 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java</url>
-          <line>57</line>
+          <line>56</line>
           <option name="timeStamp" value="244" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java</url>
-          <line>49</line>
+          <line>48</line>
           <option name="timeStamp" value="245" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java</url>
-          <line>94</line>
+          <line>93</line>
           <option name="timeStamp" value="247" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java</url>
-          <line>110</line>
+          <line>109</line>
           <option name="timeStamp" value="248" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java</url>
-          <line>78</line>
+          <line>77</line>
           <option name="timeStamp" value="249" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/QaInspectMasterServiceImpl.java</url>
-          <line>81</line>
+          <line>80</line>
           <option name="timeStamp" value="250" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -753,18 +765,13 @@
           <option name="timeStamp" value="253" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/common/realm/AuthRealm.java</url>
-          <line>108</line>
-          <option name="timeStamp" value="255" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/CommonController.java</url>
           <line>76</line>
           <option name="timeStamp" value="256" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java</url>
-          <line>91</line>
+          <line>93</line>
           <option name="timeStamp" value="264" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -809,17 +816,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java</url>
-          <line>263</line>
+          <line>264</line>
           <option name="timeStamp" value="301" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java</url>
-          <line>234</line>
+          <line>235</line>
           <option name="timeStamp" value="302" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java</url>
-          <line>157</line>
+          <line>158</line>
           <option name="timeStamp" value="303" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -854,37 +861,37 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java</url>
-          <line>254</line>
+          <line>255</line>
           <option name="timeStamp" value="310" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java</url>
-          <line>138</line>
+          <line>139</line>
           <option name="timeStamp" value="322" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java</url>
-          <line>213</line>
+          <line>214</line>
           <option name="timeStamp" value="323" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java</url>
-          <line>205</line>
+          <line>206</line>
           <option name="timeStamp" value="324" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java</url>
-          <line>204</line>
+          <line>205</line>
           <option name="timeStamp" value="325" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java</url>
-          <line>208</line>
+          <line>209</line>
           <option name="timeStamp" value="326" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java</url>
-          <line>210</line>
+          <line>211</line>
           <option name="timeStamp" value="327" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -894,37 +901,52 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java</url>
-          <line>186</line>
+          <line>187</line>
           <option name="timeStamp" value="329" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java</url>
-          <line>163</line>
-          <option name="timeStamp" value="330" />
+          <line>157</line>
+          <option name="timeStamp" value="335" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java</url>
-          <line>162</line>
-          <option name="timeStamp" value="331" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/common/config/CORSAuthenticationFilter.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="336" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java</url>
-          <line>168</line>
-          <option name="timeStamp" value="332" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/common/config/CORSAuthenticationFilter.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="337" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java</url>
-          <line>167</line>
-          <option name="timeStamp" value="333" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/common/config/CustomSessionManager.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="338" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java</url>
-          <line>178</line>
-          <option name="timeStamp" value="334" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/common/config/CORSAuthenticationFilter.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="342" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/common/config/CORSAuthenticationFilter.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="343" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/common/realm/AuthRealm.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="344" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MenuController.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="345" />
         </line-breakpoint>
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java</url>
-          <line>34</line>
+          <line>36</line>
           <properties class="com.kexin.admin.service.impl.LoginUserServiceImpl" method="login" />
           <option name="timeStamp" value="257" />
         </line-breakpoint>

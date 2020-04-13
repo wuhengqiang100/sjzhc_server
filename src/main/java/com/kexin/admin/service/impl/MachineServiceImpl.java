@@ -3,7 +3,6 @@ package com.kexin.admin.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kexin.admin.entity.tables.DataupLog;
-import com.kexin.admin.entity.tables.LoginUser;
 import com.kexin.admin.entity.tables.Machine;
 import com.kexin.admin.entity.tables.Operator;
 import com.kexin.admin.entity.vo.Ftp;
@@ -144,8 +143,8 @@ public class MachineServiceImpl extends ServiceImpl<MachineMapper, Machine> impl
                 machine.setImageModelPath(rfilename);
                 machine.setImageModelNum(1);
                 baseMapper.updateById(machine);//更新machine后的上传路径
-                LoginUser loginUser=loginUserMapper.selectById(tokenId);
-                Operator operator=operatorMapper.selectById(loginUser.getOperatorId());
+//                LoginUser loginUser=loginUserMapper.selectById(tokenId);
+                Operator operator=operatorMapper.selectById(tokenId);
                 DataupLog dataupLog=new DataupLog();
                 dataupLog.setDateupSetDate(new Date());
                 dataupLog.setOperatorId(operator.getOperatorId());
@@ -179,8 +178,8 @@ public class MachineServiceImpl extends ServiceImpl<MachineMapper, Machine> impl
         ResponseEty responseEty=new ResponseEty();
 
         Machine machine=baseMapper.selectById(machineId);
-        LoginUser loginUser=loginUserMapper.selectById(tokenId);
-        Operator operator=operatorMapper.selectById(loginUser.getOperatorId());
+//        LoginUser loginUser=loginUserMapper.selectById(tokenId);
+        Operator operator=operatorMapper.selectById(tokenId);
         DataupLog dataupLog=new DataupLog();
         dataupLog.setDateupSetDate(new Date());
         dataupLog.setOperatorId(operator.getOperatorId());

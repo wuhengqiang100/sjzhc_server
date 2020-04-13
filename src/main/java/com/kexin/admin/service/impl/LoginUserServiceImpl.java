@@ -6,9 +6,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kexin.admin.entity.login.TokenUser;
 import com.kexin.admin.entity.login.Tokens;
 import com.kexin.admin.entity.tables.LoginUser;
+import com.kexin.admin.entity.tables.Operator;
 import com.kexin.admin.entity.tables.Role;
 import com.kexin.admin.entity.tables.SysUserRoles;
 import com.kexin.admin.mapper.LoginUserMapper;
+import com.kexin.admin.mapper.OperatorMapper;
 import com.kexin.admin.mapper.RoleMapper;
 import com.kexin.admin.mapper.UserRoleMapper;
 import com.kexin.admin.service.LoginUserService;
@@ -63,7 +65,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
             user.login(token);
             Tokens tokens=new Tokens();
             // 讲用户的operatorId作为用户登陆的token
-            tokens.setToken(String.valueOf(loginUser.getLoginId()));//返回前台的是用户的loginId,后台存的shiroUser是operatorId
+            tokens.setToken(String.valueOf(loginUser.getOperatorId()));//后台shiro和前台权限token都是operatorId
             responseEty.setSuccess(20000);
             responseEty.setData(tokens);
 //            session.setAttribute("tokenName",userName);
@@ -99,13 +101,17 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
     // 角色mapper
     @Resource
     RoleMapper roleMapper;
+
+    @Resource
+    OperatorMapper operatorMapper;
+
     @Override
     public ResponseEty userInfo(String token) {
         ResponseEty responseEty=new ResponseEty();
         TokenUser tokenUser=new TokenUser();
-        LoginUser loginUser=baseMapper.selectById(Integer.parseInt(token));
+        Operator operator=operatorMapper.selectById(Integer.parseInt(token));
         QueryWrapper<SysUserRoles> sysUserRolesQueryWrapper=new QueryWrapper<>();
-        sysUserRolesQueryWrapper.eq("USER_ID",loginUser.getOperatorId());
+        sysUserRolesQueryWrapper.eq("USER_ID",token);
         List<SysUserRoles> sysUserRolesList=userRoleMapper.selectList(sysUserRolesQueryWrapper);
         if(sysUserRolesList.size()==0){
             return  responseEty.setMessage("该用户没有角色权限,请联系管理员授权");
@@ -121,7 +127,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
         tokenUser.setRoles(roles);
         tokenUser.setAvatar("https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
         tokenUser.setIntroduction("I am a super administrator");
-        tokenUser.setName(loginUser.getLoginName());
+        tokenUser.setName(operator.getOperatorName());
         responseEty.setSuccess(20000);
         responseEty.setData(tokenUser);
         return responseEty;

@@ -2,7 +2,6 @@ package com.kexin.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.kexin.admin.entity.tables.LoginUser;
 import com.kexin.admin.entity.tables.OperationLog;
 import com.kexin.admin.entity.tables.Operator;
 import com.kexin.admin.entity.tables.QaInspectMaster;
@@ -77,8 +76,8 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
      */
     private void saveOperationLog(QaInspectChange inspectChange,Integer flag){
         List<QaInspectMaster> qaInspectMasterList=baseMapper.selectQaInspectMasterByInspectmIds(inspectChange.getMovedKeys());
-        LoginUser loginUser=loginUserMapper.selectById(inspectChange.getTokenId());
-        Operator operator=operatorMapper.selectById(loginUser.getOperatorId());
+//        LoginUser loginUser=loginUserMapper.selectById(inspectChange.getTokenId());
+        Operator operator=operatorMapper.selectById(inspectChange.getTokenId());
         if (flag==1){//审核操作
             OperationLog operationLog;
             for (QaInspectMaster qa:qaInspectMasterList) {
