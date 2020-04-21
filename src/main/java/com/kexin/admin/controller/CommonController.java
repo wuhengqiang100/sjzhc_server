@@ -5,6 +5,7 @@ import com.kexin.admin.service.LoginUserService;
 import com.kexin.admin.service.SysFunctionService;
 import com.kexin.admin.service.SysMenusService;
 import com.kexin.common.annotation.SysLog;
+import com.kexin.common.component.TestComponent;
 import com.kexin.common.util.ResponseEty;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -33,6 +34,9 @@ public class CommonController {
 
     @Autowired
     LoginUserService loginUserService;
+
+    @Autowired
+    TestComponent testComponent;
 
     /**
      * @Title:
@@ -101,6 +105,8 @@ public class CommonController {
             responseEty.setMessage("您没有权限,不能请求数据");
             responseEty.setSuccess(50008);
         }
+
+
         return responseEty;
     }
 
@@ -145,6 +151,7 @@ public class CommonController {
         responseEty.setSuccess(20000);
         responseEty.setData("success");
         SecurityUtils.getSubject().logout();
+//        testComponent.list();//测试组件
         return responseEty;
     }
 

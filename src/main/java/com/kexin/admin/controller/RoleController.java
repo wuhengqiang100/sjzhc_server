@@ -201,9 +201,10 @@ public class RoleController {
                 roleMenuService.saveSysRoleMenus(sysRoleMenu);
 
                 //保存菜单权限里面的PERMISSION(roles)字段
-                QueryWrapper<SysFunctions> sysMenusQueryWrapper=new QueryWrapper<>();
-                sysMenusQueryWrapper.eq("FUNCTON_ID",menuId);
-                SysFunctions sysFunction=sysFunctionService.getOne(sysMenusQueryWrapper);
+//                QueryWrapper<SysFunctions> sysMenusQueryWrapper=new QueryWrapper<>();
+//                sysMenusQueryWrapper.eq("FUNCTON_ID",menuId);
+//                SysFunctions sysFunction=sysFunctionService.getOne(sysMenusQueryWrapper);
+//                sysFunctionService.updateById(sysFunction);
        /*         if (!StringUtils.contains(sysFunction.getRoles(),role.getRoleName())){
                     //如果原role 数组里面没有包含了该角色字段
                     if (StringUtils.isNotEmpty(sysFunction.getRoles())){

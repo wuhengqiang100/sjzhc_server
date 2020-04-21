@@ -177,7 +177,8 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
         QueryWrapper<SysFunctions> sysFunctionsQueryWrapper = new QueryWrapper<>();
         sysFunctionsQueryWrapper.eq("FUNCTON_TYPE_ID",1)//1是b端菜单类型
         .isNull("FUNCTON_PARENT_ID")//第一级菜单
-        .in("FUNCTON_ID",functonIds);
+        .in("FUNCTON_ID",functonIds)
+                .orderByAsc("FUNCTON_SORT");
         List<SysFunctions> sysFunctionsList=baseMapper.selectList(sysFunctionsQueryWrapper);
         List<Menu> sysMenusList=new ArrayList<>();
         for (SysFunctions function:sysFunctionsList) {
