@@ -1,21 +1,16 @@
 package com.kexin.common.config;
 
-import com.google.code.kaptcha.Constants;
+/*import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.GimpyEngine;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
-import com.google.code.kaptcha.util.Configurable;
+import com.google.code.kaptcha.util.Configurable;*/
 import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.context.annotation.Bean;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.Properties;
 
 @SpringBootConfiguration
 public class CaptchaConfig {
 
-    @Bean(name = "captchaProducer")
+   /* @Bean(name = "captchaProducer")
     public DefaultKaptcha getKaptchaBean(){
         DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
         Properties properties = new Properties();
@@ -50,6 +45,6 @@ public class CaptchaConfig {
             graph.dispose();
             return distortedImage;
         }
-    }
+    }*/
 
 }

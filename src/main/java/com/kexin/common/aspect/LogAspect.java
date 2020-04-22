@@ -2,8 +2,8 @@ package com.kexin.common.aspect;
 
 
 import com.alibaba.fastjson.JSONObject;
-
 import com.kexin.common.annotation.SysLog;
+import com.kexin.common.config.MySysUser;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -22,10 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Method;
 
-//@Aspect
-//@Component
+@Aspect
+@Component
 public class LogAspect {
-/*
 
     private Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
@@ -67,17 +66,17 @@ public class LogAspect {
             logger.info("mylog:======>" + mylog.value());
         }
 
-        */
-/*if(MySysUser.ShiroUser() != null) {
-            String username = StringUtils.isNotBlank(MySysUser.nickName()) ? MySysUser.nickName() : MySysUser.loginName();
+        if(MySysUser.ShiroUser() != null) {
+//            String username = StringUtils.isNotBlank(MySysUser.nickName()) ? MySysUser.nickName() : MySysUser.loginName();
+            String username = MySysUser.loginName();
             logger.info("user:======>" + username);
-        }*//*
+        }
 
-        */
-/*if(MySysUser.ShiroUser() != null) {
-            String username = StringUtils.isNotBlank(MySysUser.nickName()) ? MySysUser.nickName() : MySysUser.loginName();
+        if(MySysUser.ShiroUser() != null) {
+//            String username = StringUtils.isNotBlank(MySysUser.nickName()) ? MySysUser.nickName() : MySysUser.loginName();
+            String username = MySysUser.loginName();
             logger.info("user:======>" + username);
-        }*//*
+        }
 
     }
 
@@ -94,21 +93,19 @@ public class LogAspect {
 
     @AfterReturning(returning = "ret", pointcut = "webLog()")
     public void doAfterReturning(Object ret) {
-       */
-/* if(MySysUser.ShiroUser() != null) {
-            String username = StringUtils.isNotBlank(MySysUser.nickName()) ? MySysUser.nickName() : MySysUser.loginName();
+        if(MySysUser.ShiroUser() != null) {
+//            String username = StringUtils.isNotBlank(MySysUser.nickName()) ? MySysUser.nickName() : MySysUser.loginName();
+            String username = MySysUser.loginName();
             logger.info("user:======>" + username);
         }
         String retString = JSONObject.toJSONString(ret);
         retString = retString.length() > 2000 ? retString.substring(2000) : retString;
         logger.info("ret:======>" + retString);
-        logger.info("useTime:======>" + (System.currentTimeMillis() - startTime.get()) + "");*//*
+        logger.info("useTime:======>" + (System.currentTimeMillis() - startTime.get()) + "");
 
     }
-*/
-/*
 
-    private Logger logger = LoggerFactory.getLogger(LogAspect.class);
+ /*   private Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
     private ThreadLocal<Long> startTime = new ThreadLocal<>();
 
@@ -148,17 +145,15 @@ public class LogAspect {
             logger.info("mylog:======>" + mylog.value());
         }
 
-        */
-/*if(MySysUser.ShiroUser() != null) {
+if(MySysUser.ShiroUser() != null) {
             String username = StringUtils.isNotBlank(MySysUser.nickName()) ? MySysUser.nickName() : MySysUser.loginName();
             logger.info("user:======>" + username);
-        }*//*
+        }
 
-        */
-/*if(MySysUser.ShiroUser() != null) {
+if(MySysUser.ShiroUser() != null) {
             String username = StringUtils.isNotBlank(MySysUser.nickName()) ? MySysUser.nickName() : MySysUser.loginName();
             logger.info("user:======>" + username);
-        }*//*
+        }
 
     }
 
@@ -175,18 +170,16 @@ public class LogAspect {
 
     @AfterReturning(returning = "ret", pointcut = "webLog()")
     public void doAfterReturning(Object ret) {
-       */
-/* if(MySysUser.ShiroUser() != null) {
-            String username = StringUtils.isNotBlank(MySysUser.nickName()) ? MySysUser.nickName() : MySysUser.loginName();
-            logger.info("user:======>" + username);
-        }
-        String retString = JSONObject.toJSONString(ret);
-        retString = retString.length() > 2000 ? retString.substring(2000) : retString;
-        logger.info("ret:======>" + retString);
-        logger.info("useTime:======>" + (System.currentTimeMillis() - startTime.get()) + "");*//*
+     if(MySysUser.ShiroUser() != null) {
+                String username = StringUtils.isNotBlank(MySysUser.nickName()) ? MySysUser.nickName() : MySysUser.loginName();
+                logger.info("user:======>" + username);
+            }
+            String retString = JSONObject.toJSONString(ret);
+            retString = retString.length() > 2000 ? retString.substring(2000) : retString;
+            logger.info("ret:======>" + retString);
+            logger.info("useTime:======>" + (System.currentTimeMillis() - startTime.get()) + "");
 
-    }
-*/
+    }*/
 
 
 }

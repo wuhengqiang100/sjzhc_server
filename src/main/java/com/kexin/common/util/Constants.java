@@ -7,6 +7,7 @@ public class Constants {
      */
 //    public static final String HASH_ALGORITHM = "SHA-1";
     public static final String HASH_ALGORITHM = "MD5";
+//    public static final String HASH_ALGORITHM = "base64";
 
     /**
      * 生成Hash值的迭代次数

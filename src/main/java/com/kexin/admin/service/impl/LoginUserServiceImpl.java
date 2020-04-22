@@ -9,17 +9,21 @@ import com.kexin.admin.entity.tables.LoginUser;
 import com.kexin.admin.entity.tables.Operator;
 import com.kexin.admin.entity.tables.Role;
 import com.kexin.admin.entity.tables.SysUserRoles;
+import com.kexin.admin.entity.vo.Ftp;
+import com.kexin.admin.entity.vo.SystemWebApi;
 import com.kexin.admin.mapper.LoginUserMapper;
 import com.kexin.admin.mapper.OperatorMapper;
 import com.kexin.admin.mapper.RoleMapper;
 import com.kexin.admin.mapper.UserRoleMapper;
 import com.kexin.admin.service.LoginUserService;
 import com.kexin.common.util.ResponseEty;
+import com.kexin.common.util.encry.CryptographyUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +36,9 @@ import java.util.Map;
 @Transactional(rollbackFor = Exception.class)
 public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser> implements LoginUserService {
 
+
+    @Autowired
+    SystemWebApi systemWebApi;
 
     @Override
     public ResponseEty login(Map map, HttpSession session) {
@@ -59,7 +66,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
 //            UsernamePasswordToken token = new UsernamePasswordToken(username, CryptographyUtil.md5(password,password) ,Boolean.valueOf(rememberMe));
 //            UsernamePasswordToken token = new UsernamePasswordToken(username,  CryptographyUtil.md5(password,password) ,Boolean.valueOf(rememberMe));
 
-        UsernamePasswordToken token = new UsernamePasswordToken(userName, password ,false);
+        UsernamePasswordToken token = new UsernamePasswordToken(userName, CryptographyUtil.encodeBase64(password) ,false);
 //            System.out.println("token密码:"+CryptographyUtil.md5NotSalt(password));
         try {
             user.login(token);
@@ -125,7 +132,10 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
         }
 //        roles[0]="admin";
         tokenUser.setRoles(roles);
-        tokenUser.setAvatar("https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+
+//        tokenUser.setAvatar("https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+        tokenUser.setAvatar("http://"+systemWebApi.getAddress()+":"+systemWebApi.getPort()+"/static/admin/img/touxiangDa.gif");
+
         tokenUser.setIntroduction("I am a super administrator");
         tokenUser.setName(operator.getOperatorName());
         responseEty.setSuccess(20000);

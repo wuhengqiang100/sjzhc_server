@@ -1,7 +1,8 @@
-package com.kexin.common.util;
+package com.kexin.common.util.encry;
 
 
 import com.kexin.admin.entity.pojo.User;
+import com.kexin.common.util.Constants;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;

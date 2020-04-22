@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
+/**
+ * 用于测试redis
+ */
 @Component
 @AllArgsConstructor
 @NoArgsConstructor

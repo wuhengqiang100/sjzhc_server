@@ -10,7 +10,7 @@ import com.kexin.admin.service.OperatorService;
 import com.kexin.admin.service.RoleService;
 import com.kexin.admin.service.UserRoleService;
 import com.kexin.common.util.Constants;
-import com.kexin.common.util.CryptographyUtil;
+import com.kexin.common.util.encry.CryptographyUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -114,6 +114,13 @@ public class AuthRealm extends AuthorizingRealm {
                 salt,
                 getName()  //realm name
         );
+/*        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
+                new ShiroUser(user.getOperatorId(),user.getLoginName()),
+                CryptographyUtil.encodeBase64(user.getLoginPass())
+                ,//先加密再解密
+                getName()  //realm name
+        );*/
+
         return authenticationInfo;
     }
 
@@ -130,6 +137,8 @@ public class AuthRealm extends AuthorizingRealm {
     public void initCredentialsMatcher() {
         HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(Constants.HASH_ALGORITHM);
         matcher.setHashIterations(Constants.HASH_INTERATIONS);
+        // storedCredentialsHexEncoded默认是true，此时用的是密码加密用的是Hex编码；false时用Base64编码
+//        matcher.setStoredCredentialsHexEncoded(false);
         setCredentialsMatcher(matcher);
     }
 

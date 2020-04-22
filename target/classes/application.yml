@@ -3,8 +3,10 @@ server:
     port: 8088
     tomcat:
       uri-encoding: UTF-8
+    address: 127.0.0.1
 
-
+#cxf:
+#  path=/service
 #ftp配置
 ftpserver:
   ipAddr: 192.168.137.200
