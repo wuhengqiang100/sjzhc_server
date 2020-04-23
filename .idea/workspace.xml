@@ -2,102 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="021d88d3-fb85-4ccf-b86b-80724cbf2d83" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_woodstox_woodstox_core_5_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_xml_messaging_saaj_saaj_impl_1_5_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_jws_jakarta_jws_api_2_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_xml_soap_jakarta_xml_soap_api_1_4_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_xml_ws_jakarta_xml_ws_api_2_3_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_validation_validation_api_2_0_1_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_cxf_cxf_core_3_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_cxf_cxf_rt_bindings_soap_3_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_cxf_cxf_rt_bindings_xml_3_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_cxf_cxf_rt_databinding_jaxb_3_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_cxf_cxf_rt_frontend_jaxws_3_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_cxf_cxf_rt_frontend_simple_3_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_cxf_cxf_rt_transports_http_3_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_cxf_cxf_rt_ws_addr_3_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_cxf_cxf_rt_ws_policy_3_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_cxf_cxf_rt_wsdl_3_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_cxf_cxf_spring_boot_autoconfigure_3_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_cxf_cxf_spring_boot_starter_jaxws_3_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_neethi_neethi_3_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_ws_xmlschema_xmlschema_core_2_2_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_woodstox_stax2_api_4_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_main_javaee_api_javax_jws_3_1_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jvnet_mimepull_mimepull_1_9_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jvnet_staxex_stax_ex_1_8_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_services_2_2_6_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_ws_spring_ws_core_3_0_8_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_ws_spring_xml_3_0_8_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__wsdl4j_wsdl4j_1_6_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xml_resolver_xml_resolver_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/UserWeb.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/SystemWebApi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/webService/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/webService/config/CxfConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/webService/impl/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/util/annotation/testAnnotation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/util/annotation/testDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/util/annotation/testDemo2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/util/encry/CryptographyUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/admin/img/logo1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/admin/img/logo2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/admin/img/touxiangDa.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/admin/img/yuanlogo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/admin/img/zhuyegif.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/kexin/admin/CxfClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/pojo/UserWeb.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/vo/SystemWebApi.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/webService/UserService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/webService/config/CxfConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/webService/impl/UserServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/util/annotation/MyAnnotation.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/util/annotation/MyAnnotation2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/util/annotation/MyAnnotation3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/util/annotation/testAnnotation.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/util/annotation/testDemo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/util/annotation/testDemo2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/util/encry/CryptographyUtil.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/util/encry/Encodes.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/admin/img/logo1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/admin/img/logo2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/admin/img/touxiangDa.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/admin/img/yuanlogo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/admin/img/zhuyegif.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/com/kexin/admin/CxfClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_5_0_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_6_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/pojo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/Ftp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/vo/Ftp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/webService/TestWebService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/webService/TestWebService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/common/aspect/LogAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/aspect/LogAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/common/config/CaptchaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/config/CaptchaConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/common/realm/AuthRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/realm/AuthRealm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/common/util/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/util/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/common/util/CryptographyUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/common/util/Encodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/util/encry/Encodes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/admin/img/bg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/admin/img/face.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/pojo/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/vo/Ftp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/vo/Ftp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/LoginUserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/LoginUserServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/common/aspect/LogAspect.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/aspect/LogAspect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/common/config/CaptchaConfig$CustomObscurificator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/common/config/CaptchaConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/config/CaptchaConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/common/realm/AuthRealm$ShiroUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/realm/AuthRealm$ShiroUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/common/realm/AuthRealm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/realm/AuthRealm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/common/util/CryptographyUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/common/util/Encodes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/admin/img/bg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/admin/img/face.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,10 +200,10 @@
     <list>
       <item itemvalue="Application.testDemo" />
       <item itemvalue="Application.CryptographyUtil" />
+      <item itemvalue="Application.CxfClient" />
       <item itemvalue="JUnit.RedisSpringBootTests.contextLoads" />
       <item itemvalue="JUnit.RedisSpringBootTests.testRedisUtil" />
       <item itemvalue="Spring Boot.AdminApplication" />
-      <item itemvalue="Application.CxfClient" />
     </list>
     <recent_temporary>
       <list>
@@ -386,8 +293,17 @@
       <workItem from="1587346525789" duration="7488000" />
       <workItem from="1587432356432" duration="15745000" />
       <workItem from="1587519354164" duration="1065000" />
-      <workItem from="1587521640509" duration="19093000" />
+      <workItem from="1587521640509" duration="20429000" />
+      <workItem from="1587604530694" duration="1495000" />
     </task>
+    <task id="LOCAL-00001" summary="更改图片加载从服务器加载">
+      <created>1587543760670</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1587543760670</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -431,6 +347,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="更改图片加载从服务器加载" />
+    <option name="LAST_COMMIT_MESSAGE" value="更改图片加载从服务器加载" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="92" key="#HTTP_Proxy" timestamp="1587536515258">
@@ -469,66 +387,66 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="524" y="119" width="898" height="595" key="#xdebugger.evaluate/0.0.1536.834@0.0.1536.834" timestamp="1586920946565" />
-    <state x="372" y="11" key="CommitChangelistDialog2" timestamp="1587433185017">
+    <state x="372" y="11" key="CommitChangelistDialog2" timestamp="1587543759574">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="372" y="11" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1587433185017" />
-    <state width="728" height="468" key="DebuggerActiveHint" timestamp="1587438969385">
+    <state x="372" y="11" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1587543759574" />
+    <state width="728" height="468" key="DebuggerActiveHint" timestamp="1587605426858">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="728" height="468" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1587438969385" />
+    <state width="728" height="468" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1587605426858" />
     <state x="673" y="146" key="FileChooserDialogImpl" timestamp="1587536501024">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="673" y="146" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1587536501024" />
-    <state width="1493" height="253" key="GridCell.Tab.0.bottom" timestamp="1587543640906">
+    <state width="1493" height="144" key="GridCell.Tab.0.bottom" timestamp="1587605429710">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="253" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587543640906" />
-    <state width="1493" height="253" key="GridCell.Tab.0.center" timestamp="1587543640906">
+    <state width="1493" height="144" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587605429710" />
+    <state width="1493" height="144" key="GridCell.Tab.0.center" timestamp="1587605429710">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="253" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1587543640906" />
-    <state width="1493" height="253" key="GridCell.Tab.0.left" timestamp="1587543640906">
+    <state width="1493" height="144" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1587605429710" />
+    <state width="1493" height="144" key="GridCell.Tab.0.left" timestamp="1587605429710">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="253" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1587543640906" />
-    <state width="1493" height="253" key="GridCell.Tab.0.right" timestamp="1587543640906">
+    <state width="1493" height="144" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1587605429710" />
+    <state width="1493" height="144" key="GridCell.Tab.0.right" timestamp="1587605429710">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="253" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1587543640906" />
-    <state width="1493" height="253" key="GridCell.Tab.1.bottom" timestamp="1587543640821">
+    <state width="1493" height="144" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1587605429710" />
+    <state width="1493" height="144" key="GridCell.Tab.1.bottom" timestamp="1587605399537">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="253" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587543640821" />
-    <state width="1493" height="253" key="GridCell.Tab.1.center" timestamp="1587543640821">
+    <state width="1493" height="144" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587605399537" />
+    <state width="1493" height="144" key="GridCell.Tab.1.center" timestamp="1587605399537">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="253" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1587543640821" />
-    <state width="1493" height="253" key="GridCell.Tab.1.left" timestamp="1587543640821">
+    <state width="1493" height="144" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1587605399537" />
+    <state width="1493" height="144" key="GridCell.Tab.1.left" timestamp="1587605399536">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="253" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1587543640821" />
-    <state width="1493" height="253" key="GridCell.Tab.1.right" timestamp="1587543640821">
+    <state width="1493" height="144" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1587605399536" />
+    <state width="1493" height="144" key="GridCell.Tab.1.right" timestamp="1587605399537">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="253" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1587543640821" />
-    <state width="1493" height="253" key="GridCell.Tab.2.bottom" timestamp="1587543640821">
+    <state width="1493" height="144" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1587605399537" />
+    <state width="1493" height="253" key="GridCell.Tab.2.bottom" timestamp="1587546413340">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="253" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587543640821" />
-    <state width="1493" height="253" key="GridCell.Tab.2.center" timestamp="1587543640821">
+    <state width="1493" height="253" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1587546413340" />
+    <state width="1493" height="253" key="GridCell.Tab.2.center" timestamp="1587546413340">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="253" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1587543640821" />
-    <state width="1493" height="253" key="GridCell.Tab.2.left" timestamp="1587543640821">
+    <state width="1493" height="253" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1587546413340" />
+    <state width="1493" height="253" key="GridCell.Tab.2.left" timestamp="1587546413340">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="253" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1587543640821" />
-    <state width="1493" height="253" key="GridCell.Tab.2.right" timestamp="1587543640821">
+    <state width="1493" height="253" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1587546413340" />
+    <state width="1493" height="253" key="GridCell.Tab.2.right" timestamp="1587546413340">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="253" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1587543640821" />
+    <state width="1493" height="253" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1587546413340" />
     <state x="299" y="72" key="Maven.ArtifactSearchDialog" timestamp="1587536931738">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -537,10 +455,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="226" y="72" width="1153" height="707" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1587541655907" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1587433267381">
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1587543785113">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1587433267381" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1587543785113" />
     <state x="449" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1585821903775">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -1073,6 +991,21 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/common/util/encry/CryptographyUtil.java</url>
           <line>51</line>
           <option name="timeStamp" value="359" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/common/aspect/LogAspect.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="360" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/common/aspect/LogAspect.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="361" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/common/aspect/LogAspect.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="362" />
         </line-breakpoint>
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java</url>

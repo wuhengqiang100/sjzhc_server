@@ -2,6 +2,8 @@ package com.kexin.common.aspect;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.config.MySysUser;
 import org.aspectj.lang.JoinPoint;
@@ -34,7 +36,7 @@ public class LogAspect {
     public void webLog(){}
 
     @Before("webLog()")
-    public void doBefore(JoinPoint joinPoint) {
+    public void doBefore(JoinPoint joinPoint) throws JsonProcessingException {
         startTime.set(System.currentTimeMillis());
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
@@ -49,10 +51,11 @@ public class LogAspect {
                 args[i] = o.toString();
             }
         }
-
-        String str = JSONObject.toJSONString(args);
-        str = str.length() > 2000 ? str.substring(2000) : str;
-        logger.info("params:======>" + str);
+//        ObjectMapper objectMapper=new ObjectMapper();
+//        String str = objectMapper.writeValueAsString(args);
+////        String str = JSONObject.toJSONString(args);
+//        str = str.length() > 2000 ? str.substring(2000) : str;
+        logger.info("params:======>" + args);
 
         if(session != null){
             logger.info("session id :======>" + session.getId());
