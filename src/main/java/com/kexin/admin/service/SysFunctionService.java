@@ -66,6 +66,13 @@ public interface SysFunctionService extends IService<SysFunctions> {
     Integer SysFunctionsCountByName(@Param("SysFunctionsName") String SysFunctionsName);
 
     /**
+     * 根据菜单名称计算数量
+     * @param SysFunctionsTitle
+     * @return
+     */
+    Integer SysFunctionsCountByTitle(@Param("SysFunctionsTitle") String SysFunctionsTitle);
+
+    /**
      * 保存菜单
      * @param SysFunctions
      */

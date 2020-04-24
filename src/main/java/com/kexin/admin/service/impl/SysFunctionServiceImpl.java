@@ -49,7 +49,8 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
         QueryWrapper<SysFunctions> sysMenusQueryWrapper = new QueryWrapper<>();//b端的菜单权限
         sysMenusQueryWrapper.isNull("FUNCTON_PARENT_ID")
         .eq("FUNCTON_TYPE_ID",1)
-                .isNull("IS_SHOW");//不显示最高权限的相关功能
+        .eq("IS_SHOW",1)
+        .orderByAsc("FUNCTON_SORT");//不显示最高权限的相关功能
 
 //        List<SysFunctions> sysMenusList=sysMenusService.list(sysMenusQueryWrapper);
         List<SysFunctions> sysMenusList=baseMapper.selectList(sysMenusQueryWrapper);
@@ -132,7 +133,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Override
     public String[] getSysFunctionOwnC(Integer roleId) {
         QueryWrapper<SysRoleMenus> roleMenusQueryWrapper = new QueryWrapper<>();
-        roleMenusQueryWrapper.eq("ROLE_ID",roleId);
+        roleMenusQueryWrapper.eq("ROLE_ID",roleId);//
         List<SysRoleMenus> sysRoleMenusList=roleMenuMapper.selectList(roleMenusQueryWrapper);
         String[] cPermissOwn=new String[sysRoleMenusList.size()];
         if (sysRoleMenusList.size()!=0){
@@ -243,6 +244,14 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
         return count;
     }
 
+    @Override
+    public Integer SysFunctionsCountByTitle(String SysFunctionsTitle) {
+        QueryWrapper<SysFunctions> wrapper = new QueryWrapper<>();
+        wrapper.eq("TITLE",SysFunctionsTitle);
+        Integer count = baseMapper.selectCount(wrapper);
+        return count;
+    }
+
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -268,13 +277,11 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void lockSysFunctions(SysFunctions SysFunctions) {
-/*        if (SysFunctions.getUseFlag()){
-            SysFunctions.setUseFlag(false);
-            SysFunctions.setEndDate(new Date());
+        if (SysFunctions.getHidden()){
+            SysFunctions.setHidden(false);
         }else{
-            SysFunctions.setUseFlag(true);
-            SysFunctions.setEndDate(null);
-        }*/
+            SysFunctions.setHidden(true);
+        }
         baseMapper.updateById(SysFunctions);
     }
 }

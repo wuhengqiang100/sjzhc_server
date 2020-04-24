@@ -1,15 +1,20 @@
 package com.kexin.admin.entity.tables;
 
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
+
+import java.util.List;
 
 
 /**
  * 功能权限菜单表实体
  */
 
-@KeySequence(value = "SQ_SYS_FUNCTIONS", clazz = Integer.class)
+
 //@JsonInclude(JsonInclude.Include.NON_NULL)
 @TableName("SYS_FUNCTONS")
+@KeySequence(value = "SQ_SYS_FUNCTIONS")
+@Data
 public class SysFunctions {
     
     @TableId(type = IdType.INPUT)
@@ -24,6 +29,9 @@ public class SysFunctions {
 
     @TableField(value = "FUNCTON_NAME")
     private String name;//模块名称
+
+    @TableField(value = "TITLE")
+    private String title;//设置该路由在侧边栏和面包屑中展示的名字
 
     @TableField(value = "FUNCTON_PARENT_ID")
     private Integer parentId;//父类id
@@ -64,8 +72,6 @@ public class SysFunctions {
     @TableField(value = "ALWAYS_SHOW")
     protected Boolean alwaysShow;
 
-    @TableField(value = "TITLE")
-    private String title;//设置该路由在侧边栏和面包屑中展示的名字
 
 
     @TableField(value = "ICON")
@@ -81,155 +87,7 @@ public class SysFunctions {
     @TableField(value = "REDIRECT")
     private String redirect;//重定向
 
-    public Integer getFunctonId() {
-        return functonId;
-    }
+    @TableField(exist = false)
+    private List<SysFunctions> children;
 
-    public void setFunctonId(Integer functonId) {
-        this.functonId = functonId;
-    }
-
-    public Integer getFunctonTypeId() {
-        return functonTypeId;
-    }
-
-    public void setFunctonTypeId(Integer functonTypeId) {
-        this.functonTypeId = functonTypeId;
-    }
-
-    public String getFunctonCode() {
-        return functonCode;
-    }
-
-    public void setFunctonCode(String functonCode) {
-        this.functonCode = functonCode;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
-
-    public Integer getFunctonLevelId() {
-        return functonLevelId;
-    }
-
-    public void setFunctonLevelId(Integer functonLevelId) {
-        this.functonLevelId = functonLevelId;
-    }
-
-    public String getChildrenIds() {
-        return childrenIds;
-    }
-
-    public void setChildrenIds(String childrenIds) {
-        this.childrenIds = childrenIds;
-    }
-
-    public Integer getSort() {
-        return sort;
-    }
-
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public Boolean getHidden() {
-        return hidden;
-    }
-
-    public void setHidden(Boolean hidden) {
-        this.hidden = hidden;
-    }
-
-    public String getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String roles) {
-        this.roles = roles;
-    }
-
-    public Boolean getDelFlag() {
-        return delFlag;
-    }
-
-    public void setDelFlag(Boolean delFlag) {
-        this.delFlag = delFlag;
-    }
-
-    public String getComponent() {
-        return component;
-    }
-
-    public void setComponent(String component) {
-        this.component = component;
-    }
-
-    public Boolean getAlwaysShow() {
-        return alwaysShow;
-    }
-
-    public void setAlwaysShow(Boolean alwaysShow) {
-        this.alwaysShow = alwaysShow;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public Boolean getNoCache() {
-        return noCache;
-    }
-
-    public void setNoCache(Boolean noCache) {
-        this.noCache = noCache;
-    }
-
-    public Boolean getBreadcrumb() {
-        return breadcrumb;
-    }
-
-    public void setBreadcrumb(Boolean breadcrumb) {
-        this.breadcrumb = breadcrumb;
-    }
-
-    public String getRedirect() {
-        return redirect;
-    }
-
-    public void setRedirect(String redirect) {
-        this.redirect = redirect;
-    }
-}
+ }
