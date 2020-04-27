@@ -50,4 +50,10 @@ public interface UserRoleService extends IService<SysUserRoles> {
      * @param sysUserRoles
      */
     void lockSysUserRoles(@Param("sysUserRoles") SysUserRoles sysUserRoles);
+
+    /**
+     * 根据用户id,删除用户和角色关系表数据
+     * @param userId
+     */
+    void deleleByUserId(@Param("userId") Integer userId);
 }

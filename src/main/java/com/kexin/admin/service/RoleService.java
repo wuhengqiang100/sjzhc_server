@@ -2,6 +2,7 @@ package com.kexin.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kexin.admin.entity.tables.Role;
+import com.kexin.common.util.ResponseEty;
 import org.apache.ibatis.annotations.Param;
 
 public interface RoleService extends IService<Role> {
@@ -39,7 +40,7 @@ public interface RoleService extends IService<Role> {
      * 修改更新角色
      * @param role
      */
-    void updateRole(@Param("role") Role role);
+    ResponseEty updateRole(@Param("role") Role role);
 
     /**
      * 删除角色(单个)

@@ -174,9 +174,7 @@ public class UserController {
         Integer operatorId=loginUser.getOperatorId();
         if (loginUser.getCheckedRole()!=null){
             //先删除原来的关系数据
-            QueryWrapper<SysUserRoles> userRolesQueryWrapper = new QueryWrapper<>();
-            userRolesQueryWrapper.eq("USER_ID",operatorId);
-            userRoleService.remove(userRolesQueryWrapper);
+            userRoleService.deleleByUserId(operatorId);
             //再添加新的数据
             String [] checkRoleName=loginUser.getCheckedRole();
             SysUserRoles sysUserRoles=null;
@@ -206,9 +204,8 @@ public class UserController {
             return ResponseEty.failure("用户不存在");
         }
         //先删除关系数据
-        QueryWrapper<SysUserRoles> roleMenusQueryWrapper = new QueryWrapper<>();
-        roleMenusQueryWrapper.eq("USER_ID",id);
-        userRoleService.remove(roleMenusQueryWrapper);
+        userRoleService.deleleByUserId(id);
+
         //再删除用户的数据
         loginUserService.deleteLoginUser(loginUser);
 
@@ -216,6 +213,7 @@ public class UserController {
     }
     //
 //    @RequiresPermissions("sys:user:delete")
+/*
     @PostMapping("deleteSome")
     @ResponseBody
     @SysLog("删除用户数据(多个)")
@@ -226,6 +224,7 @@ public class UserController {
         LoginUsers.forEach(m -> loginUserService.deleteLoginUser(m));
         return ResponseEty.success("批量删除成功");
     }
+*/
 
 
     @PostMapping("updateUseFlag")

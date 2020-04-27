@@ -3,10 +3,15 @@ package com.kexin.admin.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kexin.admin.entity.tables.Role;
+import com.kexin.admin.entity.tables.SysFunctions;
+import com.kexin.admin.entity.tables.SysRoleMenus;
 import com.kexin.admin.entity.tables.SysUserRoles;
 import com.kexin.admin.mapper.RoleMapper;
+import com.kexin.admin.mapper.RoleMenuMapper;
+import com.kexin.admin.mapper.SysFunctionMapper;
 import com.kexin.admin.mapper.UserRoleMapper;
 import com.kexin.admin.service.RoleService;
+import com.kexin.common.util.ResponseEty;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +28,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 
     @Resource
     UserRoleMapper userRoleMapper;
+
+    @Resource
+    RoleMenuMapper roleMenuMapper;
+
+    @Resource
+    SysFunctionMapper sysFunctionMapper;
     /**
      * 获取所有的角色option,checkbox用
      * @return
@@ -69,10 +80,46 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void updateRole(Role role) {
-//        dropUserRolesByUserId(user.getLoginId());
-        baseMapper.updateById(role);
+//    @Transactional(rollbackFor = Exception.class)
+    public ResponseEty updateRole(Role role) {
+//        baseMapper.updateById(role);
+        if(role.getRoleId()==null){
+            return ResponseEty.failure("保存信息出错");
+        }
+        Integer roleId=role.getRoleId();
+        //先删除原来的关系数据
+        roleMenuMapper.deleleByRoleId(roleId);
+        //再添加新的数据
+        //b端权限
+        if (role.getMenuIds()!=null){
+
+            Integer [] menuIds=role.getMenuIds();
+            SysRoleMenus sysRoleMenu=null;
+            for (Integer menuId:menuIds) {
+                sysRoleMenu=new SysRoleMenus();
+                sysRoleMenu.setRoleId(roleId);
+                sysRoleMenu.setFunctionId(menuId);
+                roleMenuMapper.insert(sysRoleMenu);
+
+            }
+
+        }
+        //保存c端权限
+        if (role.getCheckedPermiss()!=null){
+            String [] checkedPermiss=role.getCheckedPermiss();//根据function 表里面的title字段查找
+            SysRoleMenus sysRoleMenu=null;
+            for (String permiss:checkedPermiss){
+                QueryWrapper<SysFunctions> sysFunctionsQueryWrapper=new QueryWrapper<>();
+                sysFunctionsQueryWrapper.eq("TITLE",permiss);
+                SysFunctions sysFunction=sysFunctionMapper.selectOne(sysFunctionsQueryWrapper);
+                sysRoleMenu=new SysRoleMenus();
+                sysRoleMenu.setRoleId(roleId);
+                sysRoleMenu.setFunctionId(sysFunction.getFunctonId());
+                roleMenuMapper.insert(sysRoleMenu);
+
+            }
+        }
+        return ResponseEty.success("操作成功");
     }
 
     @Override

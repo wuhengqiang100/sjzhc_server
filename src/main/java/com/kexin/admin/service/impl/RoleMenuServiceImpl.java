@@ -52,7 +52,7 @@ public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, SysRoleMenu
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
+//    @Transactional(rollbackFor = Exception.class)
     public void deleteSysRoleMenus(SysRoleMenus sysRoleMenus) {
         baseMapper.deleteById(sysRoleMenus.getFunctionId());
     }
@@ -68,5 +68,11 @@ public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, SysRoleMenu
             sysRoleMenus.setEndDate(null);
         }*/
         baseMapper.updateById(sysRoleMenus);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleleByRoleId(Integer roleId) {
+        baseMapper.deleleByRoleId(roleId);
     }
 }

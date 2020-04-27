@@ -69,4 +69,10 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, SysUserRole
         }*/
         baseMapper.updateById(sysUserRoles);
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleleByUserId(Integer userId) {
+        baseMapper.deleleByUserId(userId);
+    }
 }

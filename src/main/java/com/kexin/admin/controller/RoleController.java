@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -126,18 +127,6 @@ public class RoleController {
                 sysRoleMenu.setFunctionId(menuId);
                 roleMenuService.saveSysRoleMenus(sysRoleMenu);
 
-                //保存菜单权限里面的PERMISSION(roles)字段
-              /*  QueryWrapper<SysFunctions> sysMenusQueryWrapper=new QueryWrapper<>();
-                sysMenusQueryWrapper.eq("FUNCTON_ID",menuId);
-                SysFunctions sysFunction=sysFunctionService.getOne(sysMenusQueryWrapper);
-                //如果原role 数组里面没有包含了该角色字段
-                if (StringUtils.isNotEmpty(sysFunction.getRoles())){
-                    sysFunction.setRoles(sysFunction.getRoles()+","+role.getRoleName());
-                }else{
-                    sysFunction.setRoles(role.getRoleName());
-                }
-                //拼接新的role   String数组 roles: ['admin', 'editor'] //设置该路由进入的权限，支持多个权限叠加
-                sysFunctionService.updateById(sysFunction);*/
             }
         }
         //保存c端权限
@@ -178,63 +167,9 @@ public class RoleController {
                 }
             }
         }
-        roleService.updateRole(role);
 
-        if(role.getRoleId()==null){
-            return ResponseEty.failure("保存信息出错");
-        }
-        Integer roleId=role.getRoleId();
-        //先删除原来的关系数据
-        QueryWrapper<SysRoleMenus> roleMenusQueryWrapper = new QueryWrapper<>();
-        roleMenusQueryWrapper.eq("ROLE_ID",roleId);
-        roleMenuService.remove(roleMenusQueryWrapper);
-        //再添加新的数据
-        //b端权限
-        if (role.getMenuIds()!=null){
 
-            Integer [] menuIds=role.getMenuIds();
-            SysRoleMenus sysRoleMenu=null;
-            for (Integer menuId:menuIds) {
-                sysRoleMenu=new SysRoleMenus();
-                sysRoleMenu.setRoleId(roleId);
-                sysRoleMenu.setFunctionId(menuId);
-                roleMenuService.saveSysRoleMenus(sysRoleMenu);
-
-                //保存菜单权限里面的PERMISSION(roles)字段
-//                QueryWrapper<SysFunctions> sysMenusQueryWrapper=new QueryWrapper<>();
-//                sysMenusQueryWrapper.eq("FUNCTON_ID",menuId);
-//                SysFunctions sysFunction=sysFunctionService.getOne(sysMenusQueryWrapper);
-//                sysFunctionService.updateById(sysFunction);
-       /*         if (!StringUtils.contains(sysFunction.getRoles(),role.getRoleName())){
-                    //如果原role 数组里面没有包含了该角色字段
-                    if (StringUtils.isNotEmpty(sysFunction.getRoles())){
-                        sysFunction.setRoles(sysFunction.getRoles()+","+role.getRoleName());
-                    }else{
-                        sysFunction.setRoles(role.getRoleName());
-                    }
-                    //拼接新的role   String数组 roles: ['admin', 'editor'] //设置该路由进入的权限，支持多个权限叠加
-                    sysFunctionService.updateById(sysFunction);
-                }
-*/
-            }
-
-        }
-        //保存c端权限
-        if (role.getCheckedPermiss()!=null){
-            String [] checkedPermiss=role.getCheckedPermiss();//根据function 表里面的title字段查找
-            SysRoleMenus sysRoleMenu=null;
-            for (String permiss:checkedPermiss){
-                QueryWrapper<SysFunctions> sysFunctionsQueryWrapper=new QueryWrapper<>();
-                sysFunctionsQueryWrapper.eq("TITLE",permiss);
-                SysFunctions sysFunction=sysFunctionService.getOne(sysFunctionsQueryWrapper);
-                sysRoleMenu=new SysRoleMenus();
-                sysRoleMenu.setRoleId(roleId);
-                sysRoleMenu.setFunctionId(sysFunction.getFunctonId());
-                roleMenuService.saveSysRoleMenus(sysRoleMenu);
-
-            }
-        }
-        return ResponseEty.success("操作成功");
+        return  roleService.updateRole(role);
     }
 
     @PostMapping("delete")
@@ -253,20 +188,20 @@ public class RoleController {
         QueryWrapper<SysUserRoles> sysUserRolesQueryWrapper=new QueryWrapper<>();
         sysUserRolesQueryWrapper.eq("ROLE_ID",id);
         List<SysUserRoles> sysUserRolesList=userRoleService.list(sysUserRolesQueryWrapper);
-        if (sysUserRolesList!=null){
+        if (sysUserRolesList.size()!=0){
             return ResponseEty.failure("角色下有账户,不能删除!");
         }
-
-        roleService.deleteRole(role);
         //删除关系表中的数据
-        QueryWrapper<SysRoleMenus> roleMenusQueryWrapper = new QueryWrapper<>();
-        roleMenusQueryWrapper.eq("ROLE_ID",id);
-        roleMenuService.remove(roleMenusQueryWrapper);
+        roleMenuService.deleleByRoleId(id);
+        //删除角色数据
+        roleService.deleteRole(role);
+
 
         return ResponseEty.success("删除成功");
     }
     //
 //    @RequiresPermissions("sys:user:delete")
+/*
     @PostMapping("deleteSome")
     @ResponseBody
     @SysLog("删除角色数据(多个)")
@@ -277,6 +212,7 @@ public class RoleController {
         Roles.forEach(m -> roleService.deleteRole(m));
         return ResponseEty.success("批量删除成功");
     }
+*/
 
 
     @PostMapping("updateUseFlag")

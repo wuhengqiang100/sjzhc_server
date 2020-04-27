@@ -135,16 +135,29 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
         QueryWrapper<SysRoleMenus> roleMenusQueryWrapper = new QueryWrapper<>();
         roleMenusQueryWrapper.eq("ROLE_ID",roleId);//
         List<SysRoleMenus> sysRoleMenusList=roleMenuMapper.selectList(roleMenusQueryWrapper);
-        String[] cPermissOwn=new String[sysRoleMenusList.size()];
-        if (sysRoleMenusList.size()!=0){
+        Integer[] functonId = new Integer[sysRoleMenusList.size()];
+        for (int i = 0; i < sysRoleMenusList.size(); i++) {
+            functonId[i]=sysRoleMenusList.get(i).getFunctionId();
+        }
 
-            for (int i = 0; i <sysRoleMenusList.size() ; i++) {
-                cPermissOwn[i]=baseMapper.selectById(sysRoleMenusList.get(i).getFunctionId()).getTitle();
+
+        QueryWrapper<SysFunctions> sysFunctionsQueryWrapper=new QueryWrapper<>();
+        if (functonId.length!=0){
+            sysFunctionsQueryWrapper.eq("FUNCTON_TYPE_ID",2);
+            sysFunctionsQueryWrapper.in("FUNCTON_ID",functonId);
+        }
+        List<SysFunctions> sysFunctionsList=baseMapper.selectList(sysFunctionsQueryWrapper);
+        if (sysFunctionsList.size()!=0){
+            String[] cPermissOwn = new String[sysFunctionsList.size()];
+            for (int j = 0; j <sysFunctionsList.size() ; j++) {
+                cPermissOwn[j]=sysFunctionsList.get(j).getTitle();
             }
             return cPermissOwn;
+
+        }else{
+            String[] cPermissOwn=null;
+            return cPermissOwn;
         }
-        cPermissOwn=null;
-        return cPermissOwn;
     }
 
     /**

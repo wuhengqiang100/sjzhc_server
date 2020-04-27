@@ -50,4 +50,11 @@ public interface RoleMenuService extends IService<SysRoleMenus> {
      * @param sysRoleMenus
      */
     void lockSysRoleMenus(@Param("sysRoleMenus") SysRoleMenus sysRoleMenus);
+
+
+    /**
+     * 根据角色id,删除角色菜单关系表数据
+     * @param roleId
+     */
+    void deleleByRoleId(@Param("roleId") Integer roleId);
 }
