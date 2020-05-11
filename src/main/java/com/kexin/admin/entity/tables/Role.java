@@ -6,7 +6,7 @@ import lombok.Data;
 /**
  * 角色实体类
  */
-@TableName("SYS_ROLE")
+@TableName("SYS_ROLES")
 @KeySequence(value = "SQ_SYS_ROLE", clazz = Integer.class)
 @Data
 public class Role{

@@ -6,7 +6,7 @@
 
 
     <delete id="deleleByUserId">
-        delete  from SYS_USER_ROLES where USER_ID=#{userId}
+        delete  from SYS_USER_ROLES where LOGIN_ID=#{userId}
     </delete>
 
 

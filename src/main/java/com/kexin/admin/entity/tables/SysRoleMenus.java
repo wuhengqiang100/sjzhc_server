@@ -9,19 +9,18 @@ import lombok.Data;
  */
 
 @KeySequence(value = "SQ_SYS_ROLE_MENUS", clazz = Integer.class)
-@TableName("SYS_ROLE_MENUS")
+@TableName("SYS_ROLE_FUNCTIONS")
 @Data
 public class SysRoleMenus {
 
-
     @TableId(type = IdType.INPUT)
-    @TableField(value = "ID")
-    private Integer id;//菜单主键id
+    @TableField(value = "ROLE_FUNCTION_ID")
+    private Integer RoleFunctionId;//菜单主键id
     
 //    @TableId(type = IdType.INPUT)
     @TableField(value = "ROLE_ID")
     private Integer roleId;//角色id
 
-    @TableField(value = "MENU_ID")
+    @TableField(value = "FUNCTOIN_ID")
     private Integer functionId;//菜单id
 }

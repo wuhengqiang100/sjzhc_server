@@ -29,8 +29,8 @@ spring:
       proxy-target-class: true
     datasource:
       url: jdbc:oracle:thin:@192.168.137.200:1521:orcl
-      username: sjzhc
-      password: sjzhc
+      username: BJFWHC
+      password: BJFWHC
       driver-class-name: oracle.jdbc.driver.OracleDriver
 #      maximum-pool-size: 30
     jackson:
@@ -98,8 +98,8 @@ spring:
 #    maximum-pool-size: 30
     datasource:
       url: jdbc:oracle:thin:@192.168.137.200:1521:orcl
-      username: sjzhc
-      password: sjzhc
+      username: BJFWHC
+      password: BJFWHC
       driver-class-name: oracle.jdbc.driver.OracleDriver
       maximum-pool-size: 30
 #    maximum-pool-size: 30

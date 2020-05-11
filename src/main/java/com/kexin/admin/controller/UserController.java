@@ -128,6 +128,7 @@ public class UserController {
             return ResponseEty.failure("保存信息出错");
         }
         Integer operatorId=loginUser.getOperatorId();
+        Integer loginId=loginUser.getLoginId();
         if (loginUser.getCheckedRole()!=null){
             String [] checkRoleName=loginUser.getCheckedRole();
             SysUserRoles sysUserRoles=null;
@@ -136,7 +137,7 @@ public class UserController {
                 roleQueryWrapper.eq("ROLE_NAME",roleName);
 
                 sysUserRoles=new SysUserRoles();
-                sysUserRoles.setUserId(operatorId);
+                sysUserRoles.setLoginId(loginId);
                 sysUserRoles.setRoleId(roleService.getOne(roleQueryWrapper).getRoleId());
                 userRoleService.saveSysUserRoles(sysUserRoles);
             }
@@ -172,6 +173,7 @@ public class UserController {
             return ResponseEty.failure("保存信息出错");
         }
         Integer operatorId=loginUser.getOperatorId();
+        Integer loginId=loginUser.getLoginId();
         if (loginUser.getCheckedRole()!=null){
             //先删除原来的关系数据
             userRoleService.deleleByUserId(operatorId);
@@ -183,7 +185,7 @@ public class UserController {
                 roleQueryWrapper.eq("ROLE_NAME",roleName);
 
                 sysUserRoles=new SysUserRoles();
-                sysUserRoles.setUserId(operatorId);
+                sysUserRoles.setLoginId(loginId);
                 sysUserRoles.setRoleId(roleService.getOne(roleQueryWrapper).getRoleId());
                 userRoleService.saveSysUserRoles(sysUserRoles);
             }

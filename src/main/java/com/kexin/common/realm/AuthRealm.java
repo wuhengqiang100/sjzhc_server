@@ -64,7 +64,7 @@ public class AuthRealm extends AuthorizingRealm {
         LoginUser loginUser=loginUserService.getOne(loginUserQueryWrapper);
 
         QueryWrapper<SysUserRoles> sysUserRolesQueryWrapper=new QueryWrapper<>();
-        sysUserRolesQueryWrapper.eq("USER_ID",loginUser.getOperatorId());
+        sysUserRolesQueryWrapper.eq("LOGIN_ID",loginUser.getOperatorId());
         List<SysUserRoles> sysUserRolesList=userRoleService.list(sysUserRolesQueryWrapper);
 
 
@@ -106,10 +106,10 @@ public class AuthRealm extends AuthorizingRealm {
         ServletRequest request = ((WebSubject)SecurityUtils.getSubject()).getServletRequest();
         HttpSession httpSession = ((HttpServletRequest)request).getSession();
 
-        ByteSource salt = ByteSource.Util.bytes(user.getLoginName());
+        ByteSource salt = ByteSource.Util.bytes(user.getLoginUserName());
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                new ShiroUser(user.getOperatorId(),user.getLoginName()),
-                CryptographyUtil.md5(user.getLoginPass(),user.getLoginName()),//先加密再解密
+                new ShiroUser(user.getLoginId(),user.getLoginName()),
+                CryptographyUtil.md5(user.getLoginUserPass(),user.getLoginUserName()),//先加密再解密
 //                user.getLoginPass(), //密码
                 salt,
                 getName()  //realm name

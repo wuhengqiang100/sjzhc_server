@@ -139,7 +139,7 @@ public class RoleController {
                 SysFunctions sysFunction=sysFunctionService.getOne(sysFunctionsQueryWrapper);
                 sysRoleMenu=new SysRoleMenus();
                 sysRoleMenu.setRoleId(roleId);
-                sysRoleMenu.setFunctionId(sysFunction.getFunctonId());
+                sysRoleMenu.setFunctionId(sysFunction.getFunctionId());
                 roleMenuService.saveSysRoleMenus(sysRoleMenu);
 
             }

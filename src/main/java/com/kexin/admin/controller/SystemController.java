@@ -49,17 +49,17 @@ public class SystemController {
         Data data=new Data();
         QueryWrapper<SysFunctions> sysFunctionsQueryWrapper = new QueryWrapper<>();
         if (query.getSort().equals("+id")){
-            sysFunctionsQueryWrapper.orderByAsc("FUNCTON_ID");
+            sysFunctionsQueryWrapper.orderByAsc("FUNCTION_ID");
         }else{
-            sysFunctionsQueryWrapper.orderByDesc("FUNCTON_ID");
+            sysFunctionsQueryWrapper.orderByDesc("FUNCTION_ID");
         }
         if (StringUtils.isNotEmpty(query.getTitle())){
-            sysFunctionsQueryWrapper.like("TITLE",query.getTitle());
+            sysFunctionsQueryWrapper.like("FUNCTION_TITLE",query.getTitle());
         }
         sysFunctionsQueryWrapper
-                .isNull("FUNCTON_PARENT_ID")
-                .eq("FUNCTON_TYPE_ID",1)
-                .orderByAsc("FUNCTON_SORT");
+                .isNull("FUNCTION_PARENT_ID")
+                .eq("FUNCTION_TYPE_ID",1)
+                .orderByAsc("FUNCTION_SORT");
 
         IPage<SysFunctions> sysFunctionsPage = sysFunctionService.page(new Page<>(query.getPage(),query.getLimit()),sysFunctionsQueryWrapper);
         data.setTotal(sysFunctionsPage.getTotal());
@@ -70,8 +70,8 @@ public class SystemController {
             QueryWrapper<SysFunctions> sysFunctionsQueryWrapper2 = new QueryWrapper<>();
 
             sysFunctionsQueryWrapper2
-                    .eq("FUNCTON_TYPE_ID",1)
-                    .in("FUNCTON_ID",childrenIds);
+                    .eq("FUNCTION_TYPE_ID",1)
+                    .in("FUNCTION_ID",childrenIds);
             List<SysFunctions> sysFunctionsList1=sysFunctionService.list(sysFunctionsQueryWrapper2);
 
             sysFunction.setChildren(sysFunctionsList1);
@@ -95,15 +95,15 @@ public class SystemController {
         Data data=new Data();
         QueryWrapper<SysFunctions> sysFunctionsQueryWrapper = new QueryWrapper<>();
         if (query.getSort().equals("+id")){
-            sysFunctionsQueryWrapper.orderByAsc("FUNCTON_ID");
+            sysFunctionsQueryWrapper.orderByAsc("FUNCTION_ID");
         }else{
-            sysFunctionsQueryWrapper.orderByDesc("FUNCTON_ID");
+            sysFunctionsQueryWrapper.orderByDesc("FUNCTION_ID");
         }
         if (StringUtils.isNotEmpty(query.getUseFlag())){
             sysFunctionsQueryWrapper.eq("IS_SHOW",query.getUseFlag());
         }
         if (StringUtils.isNotEmpty(query.getTitle())){
-            sysFunctionsQueryWrapper.like("TITLE",query.getTitle());
+            sysFunctionsQueryWrapper.like("FUNCTION_TITLE",query.getTitle());
         }
 
         //增加根据用户查询的操作
@@ -112,8 +112,8 @@ public class SystemController {
             sysFunctionsQueryWrapper.between("DATAUP_SET_DATE",  query.getStartDate(), query.getEndDate());
         }*/
         sysFunctionsQueryWrapper
-                .eq("FUNCTON_TYPE_ID",2) //2 c端的权限
-                .orderByAsc("FUNCTON_ID");
+                .eq("FUNCTION_TYPE_ID",2) //2 c端的权限
+                .orderByAsc("FUNCTION_ID");
 
         IPage<SysFunctions> sysFunctionsPage = sysFunctionService.page(new Page<>(query.getPage(),query.getLimit()),sysFunctionsQueryWrapper);
         data.setTotal(sysFunctionsPage.getTotal());
@@ -147,7 +147,7 @@ public class SystemController {
         }
         sysFunctions.setFunctonTypeId(2);//c端操作权限枚举
         sysFunctionService.saveSysFunctions(sysFunctions);
-        if(sysFunctions.getFunctonId()==null){
+        if(sysFunctions.getFunctionId()==null){
             return ResponseEty.failure("保存信息出错");
         }
         return ResponseEty.success("保存成功");
@@ -162,7 +162,7 @@ public class SystemController {
     @ResponseBody
     @SysLog("保存c端权限修改数据")
     public ResponseEty update(@RequestBody  SysFunctions sysFunctions){
-        if(sysFunctions.getFunctonId()==null){
+        if(sysFunctions.getFunctionId()==null){
             return ResponseEty.failure("权限ID不能为空");
         }
         if(StringUtils.isBlank(sysFunctions.getFunctonCode())){
@@ -171,7 +171,7 @@ public class SystemController {
         if(StringUtils.isBlank(sysFunctions.getTitle())){
             return ResponseEty.failure("权限名称不能为空");
         }
-        SysFunctions oldFuncton = sysFunctionService.getById(sysFunctions.getFunctonId());
+        SysFunctions oldFuncton = sysFunctionService.getById(sysFunctions.getFunctionId());
         if(StringUtils.isNotBlank(sysFunctions.getFunctonCode())){
             if(!sysFunctions.getFunctonCode().equals(oldFuncton.getFunctonCode())){
                 if(sysFunctionService.SysFunctionsCountByCode(sysFunctions.getFunctonCode())>0){
@@ -189,7 +189,7 @@ public class SystemController {
         sysFunctions.setFunctonTypeId(2);//c端操作权限枚举
         sysFunctionService.updateSysFunctions(sysFunctions);
 
-        if(sysFunctions.getFunctonId()==null){
+        if(sysFunctions.getFunctionId()==null){
             return ResponseEty.failure("保存信息出错");
         }
         return ResponseEty.success("操作成功");

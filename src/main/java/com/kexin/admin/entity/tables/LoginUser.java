@@ -18,22 +18,28 @@ public class LoginUser{
     private Integer operatorId; //用户Id,外键
 
     @TableField(value = "LOGIN_NAME")
-    private String loginName; //登录名称
+    private String loginName; //登录名称 (老系统)
 
     @TableField(value = "LOGIN_PASS")
-    private String loginPass; //登录密码
+    private String loginPass; //登录密码 (老系统)
+
+    @TableField(value = "LOGIN_USER_NAME")
+    private String loginUserName; //登录名称 (新系统)
+
+    @TableField(value = "LOGIN_USER_PASS")
+    private String loginUserPass; //登录密码 (老系统)
 
 
-    /**
+/*    *//**
      * 工作状态:0 未工作,1 在工作
-     */
+     *//*
     @TableField(value = "USER_INWORK")
-    protected Boolean userInWork;
+    protected Boolean userInWork;*/
     /**
      * 启用状态:0 禁止,1 启用
      */
-    @TableField(value = "USE_FLAG")
-    protected Boolean useFlag;
+//    @TableField(value = "USE_FLAG")
+//    protected Boolean useFlag;
     @TableField(exist = false)
     private String [] checkedRole;//角色ids
 

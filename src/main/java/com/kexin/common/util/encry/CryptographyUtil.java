@@ -47,14 +47,24 @@ public class CryptographyUtil {
 	}
 
 	public static void main(String[] args) {
-		String password="123456";
-		
-		System.out.println("Md5加密带盐:"+ CryptographyUtil.md5(password, "Admin"));
-		System.out.println("Md5加密不带盐:"+ CryptographyUtil.md5NotSalt("Admin"));
+		String password0="123456";
+		String password1="12345";
+		String password2="1234";
 
-		String encodeBase64String=CryptographyUtil.encodeBase64(password);
-		System.out.println("base64加密:"+ encodeBase64String);
-		System.out.println("base64解密:"+ CryptographyUtil.decodeBase64String(encodeBase64String));
+//		System.out.println("Md5加密带盐:"+ CryptographyUtil.md5(password, "Admin"));
+//		System.out.println("Md5加密不带盐:"+ CryptographyUtil.md5NotSalt("Admin"));
+//
+//		String encodeBase64String=CryptographyUtil.encodeBase64(password0);
+//		System.out.println("base64加密0:"+ encodeBase64String);
+//		String encodeBase64String1=CryptographyUtil.encodeBase64(password1);
+//		System.out.println("base64加密1:"+ encodeBase64String1);
+//		String encodeBase64String2=CryptographyUtil.encodeBase64(password2);
+//		System.out.println("base64加密2:"+ encodeBase64String2);
+//		System.out.println("base64解密:"+ CryptographyUtil.decodeBase64String(encodeBase64String));
+
+		System.out.println("base64加密0:"+ CryptographyUtil.encodeBase64(password0));
+		System.out.println("base64加密1:"+ CryptographyUtil.encodeBase64(password1));
+		System.out.println("base64加密2:"+ CryptographyUtil.encodeBase64(password2));
 
 	}
 }

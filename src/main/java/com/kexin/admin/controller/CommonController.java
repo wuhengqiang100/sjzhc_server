@@ -135,7 +135,7 @@ public class CommonController {
     @GetMapping("info")
     @ResponseBody
     public ResponseEty info(@RequestParam String token){
-        System.out.println(token);
+
         return loginUserService.userInfo(token);
     }
 

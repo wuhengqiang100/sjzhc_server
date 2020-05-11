@@ -47,10 +47,10 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     public MenuTree[] getSysFunctionOptionB() {
 
         QueryWrapper<SysFunctions> sysMenusQueryWrapper = new QueryWrapper<>();//b端的菜单权限
-        sysMenusQueryWrapper.isNull("FUNCTON_PARENT_ID")
-        .eq("FUNCTON_TYPE_ID",1)
+        sysMenusQueryWrapper.isNull("FUNCTION_PARENT_ID")
+        .eq("FUNCTION_TYPE_ID",1)
         .eq("IS_SHOW",1)
-        .orderByAsc("FUNCTON_SORT");//不显示最高权限的相关功能
+        .orderByAsc("FUNCTION_SORT");//不显示最高权限的相关功能
 
 //        List<SysFunctions> sysMenusList=sysMenusService.list(sysMenusQueryWrapper);
         List<SysFunctions> sysMenusList=baseMapper.selectList(sysMenusQueryWrapper);
@@ -58,7 +58,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
         MenuTree menuTree1;
         for (int i=0;i<sysMenusList.size();i++) {//SysFunctions menu:sysMenusList
             menuTree1=new MenuTree();
-            menuTree1.setId(sysMenusList.get(i).getFunctonId());
+            menuTree1.setId(sysMenusList.get(i).getFunctionId());
             //把一级主菜单的描述信息放进去
             menuTree1.setLabel(sysMenusList.get(i).getTitle());
 
@@ -66,14 +66,14 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
             if (StringUtils.isNotEmpty(sysMenusList.get(i).getChildrenIds())){
                 String[] childrenIds=StringUtils.split(sysMenusList.get(i).getChildrenIds(),',');
                 QueryWrapper<SysFunctions> sysMenusChildQueryWrapper = new QueryWrapper<>();
-                sysMenusChildQueryWrapper.in("FUNCTON_ID",childrenIds);
+                sysMenusChildQueryWrapper.in("FUNCTION_ID",childrenIds);
                 List<SysFunctions> sysMenusChildList=baseMapper.selectList(sysMenusChildQueryWrapper);
                 MenuTree[] menuTreeChild=new MenuTree[sysMenusChildList.size()];//子菜单树
                 MenuTree menuTree2;
                 for (int j=0;j<sysMenusChildList.size();j++){// menuChild:sysMenusChildList
                     //把二级主菜单的描述信息放进去
                     menuTree2=new MenuTree();
-                    menuTree2.setId(sysMenusChildList.get(j).getFunctonId());
+                    menuTree2.setId(sysMenusChildList.get(j).getFunctionId());
                     menuTree2.setLabel(sysMenusChildList.get(j).getTitle());
                     menuTreeChild[j]=menuTree2;
                 }
@@ -115,7 +115,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Override
     public String[] getSysFunctionOptionC() {
         QueryWrapper<SysFunctions> sysMenusQueryWrapper = new QueryWrapper<>();
-        sysMenusQueryWrapper.eq("FUNCTON_TYPE_ID",2);//c端的菜单权限
+        sysMenusQueryWrapper.eq("FUNCTION_TYPE_ID",2);//c端的菜单权限
 
         List<SysFunctions> sysMenusList=baseMapper.selectList(sysMenusQueryWrapper);
         String[] cPermiss=new String[sysMenusList.size()];
@@ -143,8 +143,8 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
 
         QueryWrapper<SysFunctions> sysFunctionsQueryWrapper=new QueryWrapper<>();
         if (functonId.length!=0){
-            sysFunctionsQueryWrapper.eq("FUNCTON_TYPE_ID",2);
-            sysFunctionsQueryWrapper.in("FUNCTON_ID",functonId);
+            sysFunctionsQueryWrapper.eq("FUNCTION_TYPE_ID",2);
+            sysFunctionsQueryWrapper.in("FUNCTION_ID",functonId);
         }
         List<SysFunctions> sysFunctionsList=baseMapper.selectList(sysFunctionsQueryWrapper);
         if (sysFunctionsList.size()!=0){
@@ -173,7 +173,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
 
         //根据operatorId获取账户角色关系
         QueryWrapper<SysUserRoles> sysUserRolesQueryWrapper=new QueryWrapper<>();
-        sysUserRolesQueryWrapper.eq("USER_ID",token);
+        sysUserRolesQueryWrapper.eq("LOGIN_ID",token);
         List<SysUserRoles> sysUserRolesList=userRoleMapper.selectList(sysUserRolesQueryWrapper);
         Integer[] roles=new Integer[sysUserRolesList.size()];
         for (int i = 0; i <sysUserRolesList.size() ; i++) {
@@ -189,10 +189,10 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
             functonIds[j]=sysRoleMenusList.get(j).getFunctionId();
         }
         QueryWrapper<SysFunctions> sysFunctionsQueryWrapper = new QueryWrapper<>();
-        sysFunctionsQueryWrapper.eq("FUNCTON_TYPE_ID",1)//1是b端菜单类型
-        .isNull("FUNCTON_PARENT_ID")//第一级菜单
-        .in("FUNCTON_ID",functonIds)
-                .orderByAsc("FUNCTON_SORT");
+        sysFunctionsQueryWrapper.eq("FUNCTION_TYPE_ID",1)//1是b端菜单类型
+        .isNull("FUNCTION_PARENT_ID")//第一级菜单
+        .in("FUNCTION_ID",functonIds)
+                .orderByAsc("FUNCTION_SORT");
         List<SysFunctions> sysFunctionsList=baseMapper.selectList(sysFunctionsQueryWrapper);
         List<Menu> sysMenusList=new ArrayList<>();
         for (SysFunctions function:sysFunctionsList) {
@@ -211,7 +211,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
         if (StringUtils.isNotEmpty(function.getChildrenIds())){
             String[] childrenIds=StringUtils.split(function.getChildrenIds(),',');
             QueryWrapper<SysFunctions> sysMenusChildQueryWrapper = new QueryWrapper<>();
-            sysMenusChildQueryWrapper.in("FUNCTON_ID",childrenIds);
+            sysMenusChildQueryWrapper.in("FUNCTION_ID",childrenIds);
             List<SysFunctions> sysMenusChildList=baseMapper.selectList(sysMenusChildQueryWrapper);
             List<Menu> menuList=new ArrayList<>();
             for (SysFunctions menuChild:sysMenusChildList){
@@ -244,7 +244,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Override
     public Integer SysFunctionsCountByCode(String SysFunctionsCode) {
         QueryWrapper<SysFunctions> wrapper = new QueryWrapper<>();
-        wrapper.eq("FUNCTON_CODE",SysFunctionsCode);
+        wrapper.eq("FUNCTION_CODE",SysFunctionsCode);
         Integer count = baseMapper.selectCount(wrapper);
         return count;
     }
@@ -252,7 +252,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Override
     public Integer SysFunctionsCountByName(String SysFunctionsName) {
         QueryWrapper<SysFunctions> wrapper = new QueryWrapper<>();
-        wrapper.eq("FUNCTON_NAME",SysFunctionsName);
+        wrapper.eq("FUNCTION_NAME",SysFunctionsName);
         Integer count = baseMapper.selectCount(wrapper);
         return count;
     }
@@ -260,7 +260,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Override
     public Integer SysFunctionsCountByTitle(String SysFunctionsTitle) {
         QueryWrapper<SysFunctions> wrapper = new QueryWrapper<>();
-        wrapper.eq("TITLE",SysFunctionsTitle);
+        wrapper.eq("FUNCTION_TITLE",SysFunctionsTitle);
         Integer count = baseMapper.selectCount(wrapper);
         return count;
     }
@@ -284,7 +284,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteSysFunctions(SysFunctions SysFunctions) {
-        baseMapper.deleteById(SysFunctions.getFunctonId());
+        baseMapper.deleteById(SysFunctions.getFunctionId());
     }
 
     @Override

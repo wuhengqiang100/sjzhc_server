@@ -72,7 +72,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
             user.login(token);
             Tokens tokens=new Tokens();
             // 讲用户的operatorId作为用户登陆的token
-            tokens.setToken(String.valueOf(loginUser.getOperatorId()));//后台shiro和前台权限token都是operatorId
+            tokens.setToken(String.valueOf(loginUser.getLoginId()));//后台shiro和前台权限token都是operatorId
             responseEty.setSuccess(20000);
             responseEty.setData(tokens);
 //            session.setAttribute("tokenName",userName);
@@ -112,13 +112,17 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
     @Resource
     OperatorMapper operatorMapper;
 
+    @Resource
+    LoginUserMapper loginUserMapper;
+
     @Override
     public ResponseEty userInfo(String token) {
         ResponseEty responseEty=new ResponseEty();
         TokenUser tokenUser=new TokenUser();
-        Operator operator=operatorMapper.selectById(Integer.parseInt(token));
+        LoginUser loginUser=loginUserMapper.selectById(Integer.parseInt(token));
+        Operator operator=operatorMapper.selectById(loginUser.getOperatorId());
         QueryWrapper<SysUserRoles> sysUserRolesQueryWrapper=new QueryWrapper<>();
-        sysUserRolesQueryWrapper.eq("USER_ID",token);
+        sysUserRolesQueryWrapper.eq("LOGIN_ID",token);
         List<SysUserRoles> sysUserRolesList=userRoleMapper.selectList(sysUserRolesQueryWrapper);
         if(sysUserRolesList.size()==0){
             return  responseEty.setMessage("该用户没有角色权限,请联系管理员授权");
@@ -185,7 +189,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void lockLoginUser(LoginUser loginUser) {
-        loginUser.setUseFlag(loginUser.getUseFlag()?false:true);
+//        loginUser.setUseFlag(loginUser.getUseFlag()?false:true);
         baseMapper.updateById(loginUser);
     }
 }

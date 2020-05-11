@@ -26,7 +26,7 @@
         </collection>-->
     </resultMap>
     <select id="selectLoginUserByName" resultType="com.kexin.admin.entity.tables.LoginUser">
-        SELECT * from  SYS_LOGIN_USERS WHERE LOGIN_NAME=#{userName}
+        SELECT * from  SYS_LOGIN_USERS WHERE LOGIN_USER_NAME=#{userName}
 
     </select>
 

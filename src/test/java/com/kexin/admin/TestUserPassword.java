@@ -20,6 +20,17 @@ public class TestUserPassword {
     @Resource
     LoginUserService loginUserService;
 
+    //复制所有的账户名信息
+    @Test
+    public void testCopyLoginName() {
+
+        List<LoginUser> loginUserList = loginUserService.list();
+        loginUserList.forEach(loginUser -> {
+            loginUser.setLoginUserName(loginUser.getLoginName());
+        });
+        boolean b = loginUserService.saveOrUpdateBatch(loginUserList);
+        System.out.println(b);
+    }
 
     //加密所有的账户的密码
     @Test
@@ -27,7 +38,7 @@ public class TestUserPassword {
 
         List<LoginUser> loginUserList = loginUserService.list();
         loginUserList.forEach(loginUser -> {
-            loginUser.setLoginPass(CryptographyUtil.encodeBase64(loginUser.getLoginPass()));
+            loginUser.setLoginUserPass(CryptographyUtil.encodeBase64(loginUser.getLoginPass()));
         });
         boolean b = loginUserService.saveOrUpdateBatch(loginUserList);
         System.out.println(b);

@@ -54,7 +54,7 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, SysUserRole
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteSysUserRoles(SysUserRoles sysUserRoles) {
-        baseMapper.deleteById(sysUserRoles.getId());
+        baseMapper.deleteById(sysUserRoles.getUserRoleId());
     }
 
     @Override
