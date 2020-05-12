@@ -135,7 +135,7 @@ public class RoleController {
             SysRoleMenus sysRoleMenu=null;
             for (String permiss:checkedPermiss){
                 QueryWrapper<SysFunctions> sysFunctionsQueryWrapper=new QueryWrapper<>();
-                sysFunctionsQueryWrapper.eq("TITLE",permiss);
+                sysFunctionsQueryWrapper.eq("FUNCTION_TITLE",permiss);
                 SysFunctions sysFunction=sysFunctionService.getOne(sysFunctionsQueryWrapper);
                 sysRoleMenu=new SysRoleMenus();
                 sysRoleMenu.setRoleId(roleId);

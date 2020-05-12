@@ -51,9 +51,9 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     }
 
     @Override
-    public String[] getRoleOptionOwn(Integer userId) {
+    public String[] getRoleOptionOwn(Integer loginId) {
         QueryWrapper<SysUserRoles> userRolesQueryWrapper=new QueryWrapper<>();
-        userRolesQueryWrapper.eq("LOGIN_ID",userId);
+        userRolesQueryWrapper.eq("LOGIN_ID",loginId);
         List<SysUserRoles> sysUserRolesList=userRoleMapper.selectList(userRolesQueryWrapper);
         String[] checkedRole=new String[sysUserRolesList.size()];
         for (int i = 0; i < sysUserRolesList.size(); i++) {
@@ -110,7 +110,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
             SysRoleMenus sysRoleMenu=null;
             for (String permiss:checkedPermiss){
                 QueryWrapper<SysFunctions> sysFunctionsQueryWrapper=new QueryWrapper<>();
-                sysFunctionsQueryWrapper.eq("TITLE",permiss);
+                sysFunctionsQueryWrapper.eq("FUNCTION_TITLE",permiss);
                 SysFunctions sysFunction=sysFunctionMapper.selectOne(sysFunctionsQueryWrapper);
                 sysRoleMenu=new SysRoleMenus();
                 sysRoleMenu.setRoleId(roleId);

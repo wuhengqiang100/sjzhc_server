@@ -146,6 +146,7 @@ public class SystemController {
             return ResponseEty.failure("权限名称已使用,请重新输入");
         }
         sysFunctions.setFunctonTypeId(2);//c端操作权限枚举
+
         sysFunctionService.saveSysFunctions(sysFunctions);
         if(sysFunctions.getFunctionId()==null){
             return ResponseEty.failure("保存信息出错");

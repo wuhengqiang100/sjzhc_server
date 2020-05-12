@@ -14,6 +14,8 @@ public class Role{
     @TableId(type = IdType.INPUT)
     @TableField(value = "ROLE_ID")
     private Integer roleId;//角色id
+    @TableField(value = "ROLE_CODE")
+    private String roleCode;//角色code
 
      @TableField(value = "ROLE_NAME")
     private String roleName; //角色名称

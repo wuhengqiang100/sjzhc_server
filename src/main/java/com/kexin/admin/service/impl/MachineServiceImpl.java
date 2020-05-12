@@ -140,8 +140,8 @@ public class MachineServiceImpl extends ServiceImpl<MachineMapper, Machine> impl
             if (isSuccess){//上传成功
                 FTPUtil.closeFTPConnect(ftpClient);
                 rfilename=ftp.getRemotepath()+rfilename+'\\'+rfilename+suffix;
-                machine.setImageModelPath(rfilename);
-                machine.setImageModelNum(1);
+//                machine.setImageModelPath(rfilename);
+//                machine.setImageModelNum(1);
                 baseMapper.updateById(machine);//更新machine后的上传路径
 //                LoginUser loginUser=loginUserMapper.selectById(tokenId);
                 Operator operator=operatorMapper.selectById(tokenId);
@@ -167,7 +167,7 @@ public class MachineServiceImpl extends ServiceImpl<MachineMapper, Machine> impl
         Machine machine=baseMapper.selectById(machineId);
         System.out.println("-----------------------应用启动------------------------");
         FTPClient ftpClient = FTPUtil.connectFtpServer(ftp.getIpAddr(), ftp.getPort(), ftp.getUserName(), ftp.getPwd(), ftp.getEncoding());
-        FTPUtil.downloadSingleFile(ftpClient, ftp.getLocalpath(), machine.getImageModelPath());
+//        FTPUtil.downloadSingleFile(ftpClient, ftp.getLocalpath(), machine.getImageModelPath());
         FTPUtil.closeFTPConnect(ftpClient);
         System.out.println("-----------------------应用关闭------------------------");
         return ResponseEty.success("下载成功");
@@ -186,9 +186,9 @@ public class MachineServiceImpl extends ServiceImpl<MachineMapper, Machine> impl
         dataupLog.setOperatorName(operator.getOperatorName());
         dataupLog.setNote(operator.getOperatorName()+"下载了"+machine.getMachineName()+"的机检模板");
         dataupLogMapper.insert(dataupLog);//上传日志新增下载记录
-        String url="ftp://"+ftp.getUserName()+":"+ftp.getPwd()+"@"+ftp.getIpAddr()+'\\'+machine.getImageModelPath();
+//        String url="ftp://"+ftp.getUserName()+":"+ftp.getPwd()+"@"+ftp.getIpAddr()+'\\'+machine.getImageModelPath();
         responseEty.setSuccess(20000);
-        responseEty.setAny("ftpUrl",url);
+//        responseEty.setAny("ftpUrl",url);
         return responseEty;
     }
 }

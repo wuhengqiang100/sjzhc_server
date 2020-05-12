@@ -21,39 +21,39 @@ public class TestUserPassword {
     LoginUserService loginUserService;
 
     //复制所有的账户名信息
-    @Test
-    public void testCopyLoginName() {
-
-        List<LoginUser> loginUserList = loginUserService.list();
-        loginUserList.forEach(loginUser -> {
-            loginUser.setLoginUserName(loginUser.getLoginName());
-        });
-        boolean b = loginUserService.saveOrUpdateBatch(loginUserList);
-        System.out.println(b);
-    }
+//    @Test
+//    public void testCopyLoginName() {
+//
+//        List<LoginUser> loginUserList = loginUserService.list();
+//        loginUserList.forEach(loginUser -> {
+//            loginUser.setLoginUserName(loginUser.getLoginName());
+//        });
+//        boolean b = loginUserService.saveOrUpdateBatch(loginUserList);
+//        System.out.println(b);
+//    }
 
     //加密所有的账户的密码
-    @Test
-    public void testEncodeBase64() {
-
-        List<LoginUser> loginUserList = loginUserService.list();
-        loginUserList.forEach(loginUser -> {
-            loginUser.setLoginUserPass(CryptographyUtil.encodeBase64(loginUser.getLoginPass()));
-        });
-        boolean b = loginUserService.saveOrUpdateBatch(loginUserList);
-        System.out.println(b);
-    }
+//    @Test
+//    public void testEncodeBase64() {
+//
+//        List<LoginUser> loginUserList = loginUserService.list();
+//        loginUserList.forEach(loginUser -> {
+//            loginUser.setLoginUserPass(CryptographyUtil.encodeBase64(loginUser.getLoginPass()));
+//        });
+//        boolean b = loginUserService.saveOrUpdateBatch(loginUserList);
+//        System.out.println(b);
+//    }
 
     //解密所有的账户密码
-    @Test
-    public void testDecodeBase64() {
-
-        List<LoginUser> loginUserList = loginUserService.list();
-        loginUserList.forEach(loginUser -> {
-            loginUser.setLoginPass(CryptographyUtil.decodeBase64String(loginUser.getLoginPass()));
-        });
-        boolean b = loginUserService.saveOrUpdateBatch(loginUserList);
-        System.out.println(b);
-    }
+//    @Test
+//    public void testDecodeBase64() {
+//
+//        List<LoginUser> loginUserList = loginUserService.list();
+//        loginUserList.forEach(loginUser -> {
+//            loginUser.setLoginPass(CryptographyUtil.decodeBase64String(loginUser.getLoginPass()));
+//        });
+//        boolean b = loginUserService.saveOrUpdateBatch(loginUserList);
+//        System.out.println(b);
+//    }
 
 }

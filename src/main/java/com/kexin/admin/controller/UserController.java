@@ -90,13 +90,13 @@ public class UserController {
     @PostMapping("listOwn")
     @ResponseBody
     @SysLog("用户已分配的角色")
-    public ResponseEty listOwn(@RequestParam(value = "userId",required = false)Integer userId){
+    public ResponseEty listOwn(@RequestParam(value = "userId",required = false)Integer loginId){
         ResponseEty responseEty=new ResponseEty();
-        if(userId==null){
+        if(loginId==null){
             return ResponseEty.failure("参数错误");
         }
         responseEty.setSuccess(20000);
-        responseEty.setAny("checkedRoles",roleService.getRoleOptionOwn(userId));
+        responseEty.setAny("checkedRoles",roleService.getRoleOptionOwn(loginId));
 
         return responseEty;
     }

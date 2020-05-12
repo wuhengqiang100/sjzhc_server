@@ -27,8 +27,8 @@ public class Operator {
     /**
      * 启用状态:0 禁止,1 启用
      */
-//    @TableField(value = "USE_FLAG", fill = FieldFill.INSERT_UPDATE)
-//    protected Boolean useFlag;
+    @TableField(value = "USE_FLAG", fill = FieldFill.INSERT_UPDATE)
+    protected Boolean useFlag;
     /**
      * 启用时间,写入时间
      */

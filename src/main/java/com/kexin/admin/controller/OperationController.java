@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.Operation;
 import com.kexin.admin.service.OperationService;
+import com.kexin.admin.service.OperationTypeService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
@@ -28,8 +29,9 @@ public class OperationController {
     @Autowired
     OperationService operationService;
 
+    @Autowired
+    OperationTypeService operationTypeService;
 
-    //@CrossOrigin(origins = "http://192.168.0.100:4200", maxAge = 3600)
     @GetMapping("list")
     @ResponseBody
     @SysLog("工序列表获取")
@@ -55,32 +57,16 @@ public class OperationController {
         if (StringUtils.isNotEmpty(title)){
             operationWrapper.like("OPERATION_NAME",title);
         }
-//        if(!map.isEmpty()){
-//            String useFlag = (String) map.get("useFlag");
-//            if(StringUtils.isNotBlank(useFlag)) {
-//                operationWrapper.eq("USE_FLAG", useFlag);
-//            }
-//            String keys = (String) map.get("key");
-//            if(StringUtils.isNotBlank(keys)) {
-//                operationWrapper.and(wrapper -> wrapper.like("OPERATION_NAME", keys));//模糊查询拼接
-//            }
-//        }
+
         IPage<Operation> operationPage = operationService.page(new Page<>(page,limit),operationWrapper);
+        operationPage.getRecords().forEach(r->r.setOperationType(operationTypeService.getById(r.getOperationTypeId())));//外键实体添加
         data.setTotal(operationPage.getTotal());
         data.setItems(operationPage.getRecords());
         operationPageData.setData(data);
         return operationPageData;
     }
 
-/*    private List<Operation> setOperationTypeToOperation(List<Operation> operations){
-        operations.forEach(r -> {
-            if(r.getOperationTypeId()!=null){
-                OperationType operationType=operationTypeService.getById(r.getOperationTypeId());
-                r.setOperationType(operationType);
-            }
-        });
-         return operations;
-    }*/
+
 
 
     @PostMapping("create")

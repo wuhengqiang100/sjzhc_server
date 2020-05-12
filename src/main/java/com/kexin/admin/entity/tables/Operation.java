@@ -2,6 +2,7 @@ package com.kexin.admin.entity.tables;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import java.util.Date;
 
@@ -10,6 +11,7 @@ import java.util.Date;
  */
 @TableName("DIC_OPERATIONS")
 @KeySequence(value = "SQ_DIC_OPERATIONS", clazz = Integer.class)
+@Data
 public class Operation {
 
     private static final long serialVersionUID = 1L;
@@ -25,9 +27,6 @@ public class Operation {
     @TableField(value = "OPERATION_NAME")
     private String operationName; //工序名称
 
-    @TableField(value = "OPERATION_TYPE")
-    private Integer operationType; //工序种类
-
     /**
      * 启用状态:0 禁止,1 启用
      */
@@ -36,14 +35,14 @@ public class Operation {
     /**
      * 启用时间,写入时间
      */
-//    @TableField(value = "START_DATE",strategy= FieldStrategy.IGNORED)
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @TableField(value = "START_DATE")
     protected Date startDate;
     /**
      * 禁用时间,结束时间
      */
-//    @TableField(value = "END_DATE",  strategy = FieldStrategy.IGNORED)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @TableField(value = "END_DATE")
     protected Date endDate;
 
@@ -53,75 +52,10 @@ public class Operation {
     @TableField(value = "NOTE")
     protected String note;
 
+    @TableField(value = "OPERATION_TYPE_ID")
+    private Integer operationTypeId; // 工序种类的外键
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
+    @TableField(exist = false)
+    private OperationType operationType;
 
-    public Integer getOperationId() {
-        return operationId;
-    }
-
-    public void setOperationId(Integer operationId) {
-        this.operationId = operationId;
-    }
-
-    public String getOperationCode() {
-        return operationCode;
-    }
-
-    public void setOperationCode(String operationCode) {
-        this.operationCode = operationCode;
-    }
-
-    public String getOperationName() {
-        return operationName;
-    }
-
-    public void setOperationName(String operationName) {
-        this.operationName = operationName;
-    }
-
-    public Boolean getUseFlag() {
-        return useFlag;
-    }
-
-    public void setUseFlag(Boolean useFlag) {
-        this.useFlag = useFlag;
-    }
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public Integer getOperationType() {
-        return operationType;
-    }
-
-    public void setOperationType(Integer operationType) {
-        this.operationType = operationType;
-    }
 }

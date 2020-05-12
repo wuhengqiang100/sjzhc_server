@@ -59,13 +59,13 @@ public class OperatorServiceImpl extends ServiceImpl<OperatorMapper, Operator> i
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void lockOperator(Operator operator) {
-  /*      if (operator.getUseFlag()){
+        if (operator.getUseFlag()){
             operator.setUseFlag(false);
             operator.setEndDate(new Date());
         }else{
             operator.setUseFlag(true);
             operator.setEndDate(null);
-        }*/
+        }
         baseMapper.updateById(operator);
     }
 }

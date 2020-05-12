@@ -20,6 +20,8 @@ public class MySysUser {
         return ShiroUser().getloginName();
     }
 
+    public static Integer systemId(){return ShiroUser().getSystemId();}
+
 //    public static String nickName() {
 //        return ShiroUser().getNickName();
 //    }

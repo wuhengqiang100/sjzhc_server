@@ -6,7 +6,7 @@
 
 
     <delete id="deleleByRoleId">
-        delete  from SYS_ROLE_MENUS where role_id=#{roleId}
+        delete  from SYS_ROLE_FUNCTIONS where role_id=#{roleId}
     </delete>
 
 

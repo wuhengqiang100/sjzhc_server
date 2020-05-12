@@ -11,6 +11,7 @@ import com.kexin.admin.mapper.RoleMenuMapper;
 import com.kexin.admin.mapper.SysFunctionMapper;
 import com.kexin.admin.mapper.UserRoleMapper;
 import com.kexin.admin.service.SysFunctionService;
+import com.kexin.common.config.MySysUser;
 import com.kexin.common.util.ResponseEty;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -271,6 +272,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     public void saveSysFunctions(SysFunctions SysFunctions) {
 //        Encodes.entryptPassword(user);
 //        user.setIsLock(0);
+        SysFunctions.setSystemId(1);
         baseMapper.insert(SysFunctions);
     }
 
@@ -278,6 +280,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Transactional(rollbackFor = Exception.class)
     public void updateSysFunctions(SysFunctions SysFunctions) {
 //        dropUserRolesByUserId(user.getLoginId());
+        SysFunctions.setSystemId(1);
         baseMapper.updateById(SysFunctions);
     }
 

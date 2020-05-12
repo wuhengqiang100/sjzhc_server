@@ -28,9 +28,9 @@ spring:
     aop:
       proxy-target-class: true
     datasource:
-      url: jdbc:oracle:thin:@192.168.137.200:1521:orcl
-      username: BJFWHC
-      password: BJFWHC
+      url: jdbc:oracle:thin:@zxqsdbscan.sjzyc.cbpm:1521:mhhc
+      username: mhhc
+      password: mhhc
       driver-class-name: oracle.jdbc.driver.OracleDriver
 #      maximum-pool-size: 30
     jackson:
@@ -97,9 +97,9 @@ spring:
 #    driver-class-name: com.mysql.jdbc.Driver
 #    maximum-pool-size: 30
     datasource:
-      url: jdbc:oracle:thin:@192.168.137.200:1521:orcl
-      username: BJFWHC
-      password: BJFWHC
+      url: jdbc:oracle:thin:@zxqsdbscan.sjzyc.cbpm:1521:mhhc
+      username: mhhc
+      password: mhhc
       driver-class-name: oracle.jdbc.driver.OracleDriver
       maximum-pool-size: 30
 #    maximum-pool-size: 30

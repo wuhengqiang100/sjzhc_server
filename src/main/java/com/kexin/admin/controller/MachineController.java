@@ -55,33 +55,12 @@ public class MachineController {
         if (StringUtils.isNotEmpty(title)){
             machineWrapper.like("MACHINE_NAME",title);
         }
-//        if(!map.isEmpty()){
-//            String useFlag = (String) map.get("useFlag");
-//            if(StringUtils.isNotBlank(useFlag)) {
-//                machineWrapper.eq("USE_FLAG", useFlag);
-//            }
-//            String keys = (String) map.get("key");
-//            if(StringUtils.isNotBlank(keys)) {
-//                machineWrapper.and(wrapper -> wrapper.like("MACHINE_NAME", keys));//模糊查询拼接
-//            }
-//        }
         IPage<Machine> machinePage = machineService.page(new Page<>(page,limit),machineWrapper);
         data.setTotal(machinePage.getTotal());
         data.setItems(machinePage.getRecords());
         machinePageData.setData(data);
         return machinePageData;
     }
-
-/*    private List<Machine> setMachineTypeToMachine(List<Machine> machines){
-        machines.forEach(r -> {
-            if(r.getMachineTypeId()!=null){
-                MachineType machineType=machineTypeService.getById(r.getMachineTypeId());
-                r.setMachineType(machineType);
-            }
-        });
-         return machines;
-    }*/
-
 
     @PostMapping("create")
     @ResponseBody

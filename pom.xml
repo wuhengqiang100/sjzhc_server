@@ -27,8 +27,6 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.6.RELEASE</version>
-<!--        <version>2.2.4.RELEASE</version>-->
-<!--        <version>2.0.3.RELEASE</version>-->
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -36,9 +34,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
+        <oracle.jdbc.version>10.2.0.4.0</oracle.jdbc.version>
 
         <shiro.version>1.4.0</shiro.version>
-<!--        <mybatis-plus-boot-starter.version>3.0-RC1</mybatis-plus-boot-starter.version>-->
         <mybatis-plus-boot-starter.version>3.3.1</mybatis-plus-boot-starter.version>
         <HikariCP.version>3.2.0</HikariCP.version>
         <commons-lang3.version>3.4</commons-lang3.version>
@@ -46,13 +44,6 @@
         <fastjson.version>1.2.67</fastjson.version>
         <jackson.version>2.10.2</jackson.version>
         <cxf.version>3.2.6</cxf.version>
-<!--        <cxf.version>3.3.5</cxf.version>-->
-<!--        &lt;!&ndash; Frontend插件版本,用于集成angular服务 &ndash;&gt;-->
-<!--        <plugin.frontend.version>1.6</plugin.frontend.version>-->
-<!--        &lt;!&ndash; node插件版本,用于集成angular服务 &ndash;&gt;-->
-<!--        <system.node.version>v10.16.0</system.node.version>-->
-<!--        &lt;!&ndash; npm插件版本,用于集成angular服务 &ndash;&gt;-->
-<!--        <system.npm.version>6.9.0</system.npm.version>-->
 
 
     </properties>
@@ -78,13 +69,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/javax.jws/javax.jws-api -->
-<!--        <dependency>-->
-<!--            <groupId>javax.jws</groupId>-->
-<!--            <artifactId>javax.jws-api</artifactId>-->
-<!--            <version>1.1</version>-->
-<!--        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/org.glassfish.main.javaee-api/javax.jws -->
+
         <dependency>
             <groupId>org.glassfish.main.javaee-api</groupId>
             <artifactId>javax.jws</artifactId>
@@ -203,6 +188,11 @@
             <artifactId>ojdbc6</artifactId>
             <version>11.2.0.3</version>
         </dependency>
+   <!--     <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc14</artifactId>
+            <version>${oracle.jdbc.version}</version>
+        </dependency>-->
         <!-- Spring Boot JDBC -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

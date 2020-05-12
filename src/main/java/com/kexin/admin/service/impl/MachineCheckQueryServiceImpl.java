@@ -140,7 +140,7 @@ public class MachineCheckQueryServiceImpl extends ServiceImpl<MachineCheckQueryM
     }
 
     /**
-     * 获取机台的selectoption
+     * 获取用户的selectoption
      * @return
      */
     @Override

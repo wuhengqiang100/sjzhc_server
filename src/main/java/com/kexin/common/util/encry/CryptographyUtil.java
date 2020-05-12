@@ -62,9 +62,12 @@ public class CryptographyUtil {
 //		System.out.println("base64加密2:"+ encodeBase64String2);
 //		System.out.println("base64解密:"+ CryptographyUtil.decodeBase64String(encodeBase64String));
 
-		System.out.println("base64加密0:"+ CryptographyUtil.encodeBase64(password0));
-		System.out.println("base64加密1:"+ CryptographyUtil.encodeBase64(password1));
-		System.out.println("base64加密2:"+ CryptographyUtil.encodeBase64(password2));
+//		System.out.println("base64加密0:"+ CryptographyUtil.encodeBase64(password0));
+//		System.out.println("base64加密1:"+ CryptographyUtil.encodeBase64(password1));
+//		System.out.println("base64加密2:"+ CryptographyUtil.encodeBase64(password2));
+
+		System.out.println("base64解密:"+ CryptographyUtil.decodeBase64String("c2p6aGtmY2g="));
+
 
 	}
 }

@@ -2,59 +2,64 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="021d88d3-fb85-4ccf-b86b-80724cbf2d83" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-04-23.0.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-11.0.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/kexin/learn/data/ConstructorRefTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/kexin/learn/data/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/kexin/learn/data/EmployeeData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/kexin/learn/data/MethodRefTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/kexin/learn/java1/LambdaTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/kexin/learn/java1/LambdaTest1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/kexin/learn/java1/LambdaTest2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/kexin/learn/java1/MyFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/kexin/learn/java1/MyFunction2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/kexin/learn/java1/MyInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperationTypeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/OperationType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/mapper/OperationTypeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/OperationTypeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/OperationTypeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_oracle_ojdbc6_11_2_0_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_oracle_ojdbc14_10_2_0_4_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-04-01.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-04-02.0.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/log_info.log" beforeDir="false" afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/log_info.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/CommonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/CommonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/MachineController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/OperationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/RoleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/SystemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/SystemController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/LoginUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/LoginUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Machine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Machine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Products.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Products.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysFunctions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysRoleMenus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysRoleMenus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysUserRoles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SysUserRoles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/MachineCheckQueryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/MachineCheckQueryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineCheckQueryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineCheckQueryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/MachineServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/OperatorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/OperatorServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/RoleServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/UserRoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/UserRoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/common/config/MySysUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/config/MySysUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/common/realm/AuthRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/realm/AuthRealm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/common/util/encry/CryptographyUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/util/encry/CryptographyUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/LoginUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/admin/LoginUserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/UserRoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/admin/UserRoleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/admin/RoleMenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/admin/RoleMenuMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/kexin/admin/TestUserPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/kexin/admin/TestUserPassword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/server.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/CommonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/CommonController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/MachineController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/MachineController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/OperationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/OperationController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/RoleController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/SystemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/SystemController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/LoginUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/LoginUser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Machine.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Machine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Operation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Operation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Operator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Operator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Products.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Products.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/SysFunctions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/SysFunctions.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/SysRoleMenus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/SysRoleMenus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/SysUserRoles.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/SysUserRoles.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/LoginUserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/LoginUserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/MachineServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/MachineServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/OperatorServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/OperatorServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/RoleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/RoleServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/SysFunctionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/SysFunctionServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/UserRoleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/UserRoleServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/common/config/MySysUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/config/MySysUser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/common/realm/AuthRealm$ShiroUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/realm/AuthRealm$ShiroUser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/common/realm/AuthRealm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/realm/AuthRealm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/common/util/encry/CryptographyUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/common/util/encry/CryptographyUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/LoginUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/admin/LoginUserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/UserRoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/admin/UserRoleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/admin/RoleMenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/admin/RoleMenuMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/server.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/kexin/admin/TestUserPassword.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/kexin/admin/TestUserPassword.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -138,22 +143,22 @@
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\kexinwork\sjz\sjzhc_server\src\main\resources\static\admin\img" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.kexin.admin.service.impl" />
+      <recent name="com.kexin.admin.mapper" />
+      <recent name="com.kexin.admin.service" />
+      <recent name="com.kexin.admin.entity.tables" />
+      <recent name="com.kexin.admin.controller" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\kexinwork\sjz\sjzhc_server\src\test\java\com\kexin\learn\java1" />
       <recent name="E:\kexinwork\sjz\sjzhc_server\src\test\java\com\kexin\learn\data" />
       <recent name="E:\kexinwork\sjz\sjzhc_server\src\test\java\com\kexin\learn" />
       <recent name="E:\kexinwork\sjz\sjzhc_server\src\main\resources\mapper\admin" />
       <recent name="E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\util\redis" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.kexin.admin.entity.vo" />
-      <recent name="com.kexin.admin.entity.pojo" />
-      <recent name="com.kexin.admin.controller" />
-      <recent name="com.kexin.common.util" />
-      <recent name="com.kexin.admin.mapper" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\kexinwork\sjz\sjzhc_server\src\main\resources\static\admin\img" />
     </key>
   </component>
   <component name="RequestMappingsEndpointTabSettings">
@@ -256,15 +261,15 @@
       <item itemvalue="Application.CxfClient" />
       <item itemvalue="JUnit.TestUserPassword.testEncodeBase64" />
       <item itemvalue="JUnit.TestUserPassword.testDecodeBase64" />
-      <item itemvalue="Spring Boot.AdminApplication" />
       <item itemvalue="JUnit.TestUserPassword.testCopyLoginName" />
+      <item itemvalue="Spring Boot.AdminApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CryptographyUtil" />
         <item itemvalue="JUnit.TestUserPassword.testCopyLoginName" />
         <item itemvalue="JUnit.TestUserPassword.testEncodeBase64" />
         <item itemvalue="JUnit.TestUserPassword.testDecodeBase64" />
-        <item itemvalue="Application.CryptographyUtil" />
         <item itemvalue="Application.CxfClient" />
       </list>
     </recent_temporary>
@@ -361,7 +366,8 @@
       <workItem from="1588211767352" duration="7116000" />
       <workItem from="1588814987323" duration="921000" />
       <workItem from="1589159782969" duration="6831000" />
-      <workItem from="1589206231496" duration="6726000" />
+      <workItem from="1589206231496" duration="6898000" />
+      <workItem from="1589246421934" duration="20605000" />
     </task>
     <task id="LOCAL-00001" summary="更改图片加载从服务器加载">
       <created>1587543760670</created>
@@ -429,18 +435,18 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1587694975500" />
-    <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser" timestamp="1587950914411">
+    <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser" timestamp="1589262465771">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1587950914411" />
+    <state x="574" y="127" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1589262465771" />
     <state x="396" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1586743634404">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="396" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.834@0.0.1536.834" timestamp="1586743634404" />
-    <state x="548" y="276" width="439" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1586334268030">
+    <state x="548" y="276" width="439" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1589247252636">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="548" y="276" width="439" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.834@0.0.1536.834" timestamp="1586334268030" />
+    <state x="548" y="276" width="439" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.834@0.0.1536.834" timestamp="1589247252636" />
     <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587543585136">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -453,62 +459,62 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="372" y="11" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1587543759574" />
-    <state width="728" height="468" key="DebuggerActiveHint" timestamp="1589215484506">
+    <state width="728" height="468" key="DebuggerActiveHint" timestamp="1589249383620">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="728" height="468" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1589215484506" />
+    <state width="728" height="468" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1589249383620" />
     <state x="673" y="146" key="FileChooserDialogImpl" timestamp="1588227220899">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="673" y="146" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1588227220899" />
-    <state width="1493" height="401" key="GridCell.Tab.0.bottom" timestamp="1589216077818">
+    <state width="1493" height="470" key="GridCell.Tab.0.bottom" timestamp="1589271999780">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1589216077818" />
-    <state width="1493" height="401" key="GridCell.Tab.0.center" timestamp="1589216077818">
+    <state width="1493" height="470" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1589271999780" />
+    <state width="1493" height="470" key="GridCell.Tab.0.center" timestamp="1589271999780">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1589216077818" />
-    <state width="1493" height="401" key="GridCell.Tab.0.left" timestamp="1589216077817">
+    <state width="1493" height="470" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1589271999780" />
+    <state width="1493" height="470" key="GridCell.Tab.0.left" timestamp="1589271999780">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1589216077817" />
-    <state width="1493" height="401" key="GridCell.Tab.0.right" timestamp="1589216077818">
+    <state width="1493" height="470" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1589271999780" />
+    <state width="1493" height="470" key="GridCell.Tab.0.right" timestamp="1589271999780">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1589216077818" />
-    <state width="1493" height="401" key="GridCell.Tab.1.bottom" timestamp="1589216077672">
+    <state width="1493" height="470" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1589271999780" />
+    <state width="1493" height="470" key="GridCell.Tab.1.bottom" timestamp="1589271999780">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1589216077672" />
-    <state width="1493" height="401" key="GridCell.Tab.1.center" timestamp="1589216077672">
+    <state width="1493" height="470" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1589271999780" />
+    <state width="1493" height="470" key="GridCell.Tab.1.center" timestamp="1589271999780">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1589216077672" />
-    <state width="1493" height="401" key="GridCell.Tab.1.left" timestamp="1589216077672">
+    <state width="1493" height="470" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1589271999780" />
+    <state width="1493" height="470" key="GridCell.Tab.1.left" timestamp="1589271999780">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1589216077672" />
-    <state width="1493" height="401" key="GridCell.Tab.1.right" timestamp="1589216077672">
+    <state width="1493" height="470" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1589271999780" />
+    <state width="1493" height="470" key="GridCell.Tab.1.right" timestamp="1589271999780">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1589216077672" />
-    <state width="1493" height="401" key="GridCell.Tab.2.bottom" timestamp="1589216077672">
+    <state width="1493" height="470" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1589271999780" />
+    <state width="1493" height="470" key="GridCell.Tab.2.bottom" timestamp="1589271999781">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1589216077672" />
-    <state width="1493" height="401" key="GridCell.Tab.2.center" timestamp="1589216077672">
+    <state width="1493" height="470" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1589271999781" />
+    <state width="1493" height="470" key="GridCell.Tab.2.center" timestamp="1589271999781">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1589216077672" />
-    <state width="1493" height="401" key="GridCell.Tab.2.left" timestamp="1589216077672">
+    <state width="1493" height="470" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1589271999781" />
+    <state width="1493" height="470" key="GridCell.Tab.2.left" timestamp="1589271999781">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1589216077672" />
-    <state width="1493" height="401" key="GridCell.Tab.2.right" timestamp="1589216077672">
+    <state width="1493" height="470" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1589271999781" />
+    <state width="1493" height="470" key="GridCell.Tab.2.right" timestamp="1589271999781">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="401" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1589216077672" />
+    <state width="1493" height="470" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1589271999781" />
     <state x="299" y="72" key="Maven.ArtifactSearchDialog" timestamp="1587536931738">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -537,10 +543,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1587529142637" />
-    <state x="425" y="71" width="672" height="676" key="search.everywhere.popup" timestamp="1589214028124">
+    <state x="425" y="71" width="672" height="676" key="search.everywhere.popup" timestamp="1589257270441">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="425" y="71" width="672" height="676" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1589214028124" />
+    <state x="425" y="71" width="672" height="676" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1589257270441" />
     <state x="439" y="100" key="spring file set editor" timestamp="1585810445181">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -865,11 +871,6 @@
           <option name="timeStamp" value="253" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/CommonController.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="256" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java</url>
           <line>100</line>
           <option name="timeStamp" value="264" />
@@ -946,7 +947,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java</url>
-          <line>171</line>
+          <line>172</line>
           <option name="timeStamp" value="335" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -1010,39 +1011,39 @@
           <option name="timeStamp" value="362" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java</url>
-          <line>202</line>
-          <option name="timeStamp" value="366" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/UserController.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="373" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/CommonController.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="367" />
+          <line>80</line>
+          <option name="timeStamp" value="375" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java</url>
-          <line>176</line>
-          <option name="timeStamp" value="368" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="376" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java</url>
-          <line>184</line>
-          <option name="timeStamp" value="369" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="377" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java</url>
-          <line>186</line>
-          <option name="timeStamp" value="370" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java</url>
+          <line>87</line>
+          <option name="timeStamp" value="378" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java</url>
-          <line>195</line>
-          <option name="timeStamp" value="371" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="379" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java</url>
-          <line>201</line>
-          <option name="timeStamp" value="372" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="380" />
         </line-breakpoint>
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/LoginUserServiceImpl.java</url>

@@ -17,7 +17,7 @@ public interface MachineCheckQueryService extends IService<MachineCheckQuery> {
     ResponseEty getQuerySelectOption();
 
     /**
-     * 获取查询条件的9用户select option
+     * 获取查询条件的用户select option
      * @return
      */
     List<SelectOption> getOperatorSelectOption();
