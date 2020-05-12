@@ -36,7 +36,7 @@
         <java.version>11</java.version>
         <oracle.jdbc.version>10.2.0.4.0</oracle.jdbc.version>
         <ojdbc14.version>10.2.0.5.0</ojdbc14.version>
-        <shiro.version>1.4.0</shiro.version>
+        <shiro.version>1.5.3</shiro.version>
         <mybatis-plus-boot-starter.version>3.3.1</mybatis-plus-boot-starter.version>
         <HikariCP.version>3.2.0</HikariCP.version>
         <commons-lang3.version>3.4</commons-lang3.version>
