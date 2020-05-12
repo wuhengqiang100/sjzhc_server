@@ -28,10 +28,17 @@ spring:
     aop:
       proxy-target-class: true
     datasource:
-      url: jdbc:oracle:thin:@zxqsdbscan.sjzyc.cbpm:1521:mhhc
-      username: mhhc
-      password: mhhc
-      driver-class-name: oracle.jdbc.driver.OracleDriver
+      url: jdbc:oracle:thin:@192.168.137.200:1521:orcl
+      username: BJFWHC
+      password: BJFWHC
+      driver-class-name: oracle.jdbc.OracleDriver
+#      driver-class-name: oracle.jdbc.driver.OracleDriver
+#      maximum-pool-size: 30
+#    datasource:
+#      url: jdbc:oracle:thin:@zxqsdbscan.sjzyc.cbpm:1521:mhhc
+#      username: mhhc
+#      password: mhhc
+#      driver-class-name: oracle.jdbc.driver.OracleDriver
 #      maximum-pool-size: 30
     jackson:
       default-property-inclusion: USE_DEFAULTS # 全局jackson配置
@@ -97,10 +104,11 @@ spring:
 #    driver-class-name: com.mysql.jdbc.Driver
 #    maximum-pool-size: 30
     datasource:
-      url: jdbc:oracle:thin:@zxqsdbscan.sjzyc.cbpm:1521:mhhc
-      username: mhhc
-      password: mhhc
-      driver-class-name: oracle.jdbc.driver.OracleDriver
+      url: jdbc:oracle:thin:@192.168.137.200:1521:orcl
+      username: BJFWHC
+      password: BJFWHC
+      driver-class-name: oracle.jdbc.OracleDriver
+#      driver-class-name: oracle.jdbc.driver.OracleDriver
       maximum-pool-size: 30
 #    maximum-pool-size: 30
 #    url: jdbc:mysql://192.168.0.100:3306/recount?useUnicode=true&characterEncoding=utf8
