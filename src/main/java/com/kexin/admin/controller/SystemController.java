@@ -3,9 +3,11 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kexin.admin.entity.tables.Company;
 import com.kexin.admin.entity.tables.Machine;
 import com.kexin.admin.entity.tables.SysFunctions;
 import com.kexin.admin.entity.vo.query.QueryDateParent;
+import com.kexin.admin.service.CompanyService;
 import com.kexin.admin.service.RoleMenuService;
 import com.kexin.admin.service.SysFunctionService;
 import com.kexin.common.annotation.SysLog;
@@ -29,11 +31,14 @@ public class SystemController {
 
 
     @Autowired
-    SysFunctionService sysFunctionService;
+    SysFunctionService sysFunctionService; //系统权限sservice
 
 
     @Autowired
     RoleMenuService roleMenuService;//角色菜单关系service
+
+    @Autowired
+    CompanyService companyService;// 公司service
 
 
     /**
@@ -121,6 +126,7 @@ public class SystemController {
         sysFunctionsPageData.setData(data);
         return sysFunctionsPageData;
     }
+
 
 
     /**
@@ -215,18 +221,6 @@ public class SystemController {
         sysFunctionService.deleteSysFunctions(sysFunctions);
         return ResponseEty.success("删除成功");
     }
-    //
-//    @RequiresPermissions("sys:user:delete")
-/*    @PostMapping("cMenu/deleteSome")
-    @ResponseBody
-    @SysLog("删除权限数据(多个)")
-    public ResponseEty deleteSome(@RequestBody List<Machine> Machines){
-        if(Machines == null || Machines.size()==0){
-            return ResponseEty.failure("请选择需要删除的信息");
-        }
-        Machines.forEach(m -> machineService.deleteMachine(m));
-        return ResponseEty.success("批量删除成功");
-    }*/
 
 
     /**
@@ -246,6 +240,150 @@ public class SystemController {
             return ResponseEty.failure("权限不存在");
         }
         sysFunctionService.lockSysFunctions(sysFunctions);
+        return ResponseEty.success("操作成功");
+    }
+
+    /**
+     *
+     * 获取所有公司list
+     * @param query
+     * @return
+     */
+    @PostMapping("company/list")
+    @ResponseBody
+    @SysLog("公司list获取")
+    public PageDataBase<Company> listCompany(@RequestBody QueryDateParent query){
+        PageDataBase<Company> companyPageData = new PageDataBase<>();
+        Data data=new Data();
+        QueryWrapper<Company> companyQueryWrapper = new QueryWrapper<>();
+        if (query.getSort().equals("+id")){
+            companyQueryWrapper.orderByAsc("COMPANY_ID");
+        }else{
+            companyQueryWrapper.orderByDesc("COMPANY_ID");
+        }
+        if (StringUtils.isNotEmpty(query.getUseFlag())){
+            companyQueryWrapper.eq("USE_FLAG",query.getUseFlag());
+        }
+        if (StringUtils.isNotEmpty(query.getTitle())){
+            companyQueryWrapper.like("COMPANY_NAME",query.getTitle());
+        }
+
+        IPage<Company> companyPage = companyService.page(new Page<>(query.getPage(),query.getLimit()),companyQueryWrapper);
+        data.setTotal(companyPage.getTotal());
+        data.setItems(companyPage.getRecords());
+        companyPageData.setData(data);
+        return companyPageData;
+    }
+
+    /**
+     * 新增公司
+     * @param company
+     * @return
+     */
+    @PostMapping("company/create")
+    @ResponseBody
+    @SysLog("新增公司数据")
+    public ResponseEty createCompany(@RequestBody Company company){
+        if(StringUtils.isBlank(company.getCompanyCode())){
+            return ResponseEty.failure("公司code编号不能为空");
+        }
+        if(StringUtils.isBlank(company.getCompanyName())){
+            return ResponseEty.failure("公司名称不能为空");
+        }
+        if (companyService.companyCountByCode(company.getCompanyCode())>0){
+            return ResponseEty.failure("公司编号已使用,请重新输入");
+        }
+        if (companyService.companyCountByName(company.getCompanyName())>0){
+            return ResponseEty.failure("公司名称已使用,请重新输入");
+        }
+
+
+        companyService.saveCompany(company);
+        if(company.getCompanyId()==null){
+            return ResponseEty.failure("保存信息出错");
+        }
+        return ResponseEty.success("保存成功");
+    }
+
+    /**
+     * 更新保存公司
+     * @param company
+     * @return
+     */
+    @PostMapping("company/update")
+    @ResponseBody
+    @SysLog("保存公司修改数据")
+    public ResponseEty updateCompany(@RequestBody  Company company){
+        if(company.getCompanyId()==null){
+            return ResponseEty.failure("公司ID不能为空");
+        }
+        if(StringUtils.isBlank(company.getCompanyCode())){
+            return ResponseEty.failure("公司编号不能为空");
+        }
+        if(StringUtils.isBlank(company.getCompanyName())){
+            return ResponseEty.failure("公司名称不能为空");
+        }
+        Company oldFuncton = companyService.getById(company.getCompanyId());
+        if(StringUtils.isNotBlank(company.getCompanyCode())){
+            if(!company.getCompanyCode().equals(oldFuncton.getCompanyCode())){
+                if(companyService.companyCountByCode(company.getCompanyCode())>0){
+                    return ResponseEty.failure("该公司编码已经使用");
+                }
+            }
+        }
+        if(StringUtils.isNotBlank(company.getCompanyName())){
+            if(!company.getCompanyName().equals(oldFuncton.getCompanyName())){
+                if(companyService.companyCountByName(company.getCompanyName())>0){
+                    return ResponseEty.failure("该公司名称已经使用");
+                }
+            }
+        }
+        companyService.updateCompany(company);
+
+        if(company.getCompanyId()==null){
+            return ResponseEty.failure("保存信息出错");
+        }
+        return ResponseEty.success("操作成功");
+    }
+
+    /**
+     * 删除公司
+     * @param id
+     * @return
+     */
+    @PostMapping("company/delete")
+    @ResponseBody
+    @SysLog("删除公司数据(单个)公司")
+    public ResponseEty deleteCompany(@RequestParam(value = "id",required = false)Integer id){
+        if(id==null){
+            return ResponseEty.failure("参数错误");
+        }
+        Company company=companyService.getById(id);
+        if(company == null){
+            return ResponseEty.failure("公司不存在");
+        }
+        companyService.deleteCompany(company);
+        return ResponseEty.success("删除成功");
+    }
+
+
+    /**
+     * 禁用公司
+     * @param id
+     * @return
+     */
+    @PostMapping("company/updateUseFlag")
+    @ResponseBody
+    @SysLog("禁用或者启用公司")
+    public ResponseEty updateCompanyUseFlag(@RequestParam(value = "id",required = false)Integer id){
+        if(id==null){
+            return ResponseEty.failure("参数错误");
+        }
+        Company company=companyService.getById(id);
+        if(company == null){
+            return ResponseEty.failure("公司不存在");
+        }
+        companyService.lockCompany(company);
         return ResponseEty.success("操作成功");
     }
 }
