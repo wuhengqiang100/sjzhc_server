@@ -36,6 +36,10 @@ public class MachineCheckQueryServiceImpl extends ServiceImpl<MachineCheckQueryM
     @Resource
     OperatorMapper operatorMapper;//人员mapper
 
+    @Resource
+    CartNumFirstMapper cartNumFirstMapper;//车号首字母mapper
+
+
     //新增和编辑加上,事务回滚时用到
     //@Transactional(rollbackFor = Exception.class)
 
@@ -47,6 +51,7 @@ public class MachineCheckQueryServiceImpl extends ServiceImpl<MachineCheckQueryM
         responseEty.setAny("operationOption",getOperationSelectOption());
         responseEty.setAny("machineOption",getMachineSelectOption());
         responseEty.setAny("dicWorkUnitOption",getWorkUnitSelectOption());
+        responseEty.setAny("cartNumfirstOption",getWorkUnitSelectOption());
 
         return responseEty;
     }
@@ -58,6 +63,7 @@ public class MachineCheckQueryServiceImpl extends ServiceImpl<MachineCheckQueryM
      */
     private List<SelectOption> getProductSelectOption(){
         QueryWrapper<Products> productsQueryWrapper = new QueryWrapper<>();
+        productsQueryWrapper.eq("USE_FLAG",1);//启用状态的产品
         List<Products> productsList= productsMapper.selectList(productsQueryWrapper);
         List<SelectOption> selectOptionList=new ArrayList<>(productsList.size());
         SelectOption selectOption;
@@ -81,6 +87,7 @@ public class MachineCheckQueryServiceImpl extends ServiceImpl<MachineCheckQueryM
      */
     private List<SelectOption> getOperationSelectOption(){
         QueryWrapper<Operation> operationQueryWrapper = new QueryWrapper<>();
+        operationQueryWrapper.eq("USE_FLAG",1);//启用状态
         List<Operation> operationList= operationMapper.selectList(operationQueryWrapper);
         List<SelectOption> selectOptionList=new ArrayList<>(operationList.size());
         SelectOption selectOption;
@@ -104,6 +111,7 @@ public class MachineCheckQueryServiceImpl extends ServiceImpl<MachineCheckQueryM
      */
     private List<SelectOption> getMachineSelectOption(){
         QueryWrapper<Machine> machineQueryWrapper = new QueryWrapper<>();
+        machineQueryWrapper.eq("USE_FLAG",1);//启用状态
         List<Machine> machineList= machineMapper.selectList(machineQueryWrapper);
         List<SelectOption> selectOptionList=new ArrayList<>(machineList.size());
         SelectOption selectOption;
@@ -127,6 +135,7 @@ public class MachineCheckQueryServiceImpl extends ServiceImpl<MachineCheckQueryM
      */
     private List<SelectOption> getWorkUnitSelectOption(){
         QueryWrapper<DicWorkUnits> dicWorkUnitsQueryWrapper = new QueryWrapper<>();
+        dicWorkUnitsQueryWrapper.eq("USE_FLAG",1);//启用状态
         List<DicWorkUnits> dicWorkUnitsList= dicWorkUnitsMapper.selectList(dicWorkUnitsQueryWrapper);
         List<SelectOption> selectOptionList=new ArrayList<>(dicWorkUnitsList.size());
         SelectOption selectOption;
@@ -134,6 +143,23 @@ public class MachineCheckQueryServiceImpl extends ServiceImpl<MachineCheckQueryM
             selectOption=new SelectOption();
             selectOption.setValue(r.getWorkUnitId());
             selectOption.setLabel(r.getWorkUnitName());
+            selectOptionList.add(selectOption);
+        }
+        return selectOptionList;
+    }
+    /**
+     * 获取车号首字母的selectoption
+     * @return
+     */
+    private List<SelectOption> getCartNumFirstSelectOption(){
+        QueryWrapper<CartNumFirst> cartNumFirstQueryWrapper = new QueryWrapper<>();
+        List<CartNumFirst> cartNumFirstList= cartNumFirstMapper.selectList(cartNumFirstQueryWrapper);
+        List<SelectOption> selectOptionList=new ArrayList<>(cartNumFirstList.size());
+        SelectOption selectOption;
+        for (CartNumFirst r : cartNumFirstList) {
+            selectOption=new SelectOption();
+            selectOption.setValue(r.getNumId());
+            selectOption.setLabel(r.getNumCode());
             selectOptionList.add(selectOption);
         }
         return selectOptionList;
@@ -146,6 +172,7 @@ public class MachineCheckQueryServiceImpl extends ServiceImpl<MachineCheckQueryM
     @Override
     public List<SelectOption> getOperatorSelectOption(){
         QueryWrapper<Operator> operatorQueryWrapper = new QueryWrapper<>();
+        operatorQueryWrapper.eq("USE_FLAG",1);//启用状态
         List<Operator> operatorList= operatorMapper.selectList(operatorQueryWrapper);
         List<SelectOption> selectOptionList=new ArrayList<>(operatorList.size());
         SelectOption selectOption;
@@ -157,5 +184,7 @@ public class MachineCheckQueryServiceImpl extends ServiceImpl<MachineCheckQueryM
         }
         return selectOptionList;
     }
+
+
 
 }

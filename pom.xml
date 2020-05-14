@@ -5,7 +5,7 @@
 
     <groupId>com.kexin</groupId>
     <artifactId>sjzhc_server</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>sjzhc_server</name>

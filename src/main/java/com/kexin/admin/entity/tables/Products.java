@@ -62,10 +62,14 @@ public class Products{
 
     @TableField(value = "NOTE")
     private String note;//备注
+
     @TableField(value = "QA_CODE_NAME")
     private String qaCodeName;//防重号系统的名称
+
     @TableField(value = "LOCAL_PRODUCT_NAME")
     private String localProductName;//机检系统本地产品名称
 
+    @TableField(value = "PRODUCT_CODE_MES")
+    private String productCodeMes;//MES产品代码
 
 }

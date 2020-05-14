@@ -25,8 +25,8 @@ spring:
       active: dev
     servlet:
       multipart:
-        max-file-size: 200MB
-        max-request-size: 200MB
+        max-file-size: 2000MB
+        max-request-size: 2000MB
     #视图配置
     mvc:
       static-path-pattern: /static/**
@@ -34,8 +34,8 @@ spring:
       proxy-target-class: true
     datasource:
       url: jdbc:oracle:thin:@192.168.137.200:1521/orcl
-      username: BJFWHC
-      password: BJFWHC
+      username: sjzmhhc
+      password: sjzmhhc
       driver-class-name: oracle.jdbc.OracleDriver
       maximum-pool-size: 30
 #    datasource:
@@ -113,8 +113,8 @@ spring:
 #      maximum-pool-size: 30
     datasource:
       url: jdbc:oracle:thin:@192.168.137.200:1521/orcl
-      username: BJFWHC
-      password: BJFWHC
+      username: sjzmhhc
+      password: sjzmhhc
       driver-class-name: oracle.jdbc.OracleDriver
       maximum-pool-size: 30
 server:
