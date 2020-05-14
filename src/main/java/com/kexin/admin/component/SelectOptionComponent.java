@@ -45,7 +45,7 @@ public class SelectOptionComponent {
      * 获取产品的selectOption
      * @return
      */
-    private List<SelectOption> getProductSelectOption(){
+    public List<SelectOption> getProductSelectOption(){
         QueryWrapper<Products> productsQueryWrapper = new QueryWrapper<>();
         productsQueryWrapper.eq("USE_FLAG",1);//启用状态的产品
         List<Products> productsList= productsMapper.selectList(productsQueryWrapper);
@@ -66,12 +66,14 @@ public class SelectOptionComponent {
     }
 
     /**
-     * 获取工序的selectOption
+     * 获取工序的selectOption，生产工序
      * @return
      */
-    private List<SelectOption> getOperationSelectOption(){
+    public List<SelectOption> getOperationSelectOption(){
         QueryWrapper<Operation> operationQueryWrapper = new QueryWrapper<>();
-        operationQueryWrapper.eq("USE_FLAG",1);//启用状态
+        operationQueryWrapper.eq("USE_FLAG",1)//启用状态
+        .eq("OPERATION_TYPE_ID",1)//生产工序
+        ;
         List<Operation> operationList= operationMapper.selectList(operationQueryWrapper);
         List<SelectOption> selectOptionList=new ArrayList<>(operationList.size());
         SelectOption selectOption;
@@ -93,7 +95,7 @@ public class SelectOptionComponent {
      * 获取设备的selectOption
      * @return
      */
-    private List<SelectOption> getMachineSelectOption(){
+    public List<SelectOption> getMachineSelectOption(){
         QueryWrapper<Machine> machineQueryWrapper = new QueryWrapper<>();
         machineQueryWrapper.eq("USE_FLAG",1);//启用状态
         List<Machine> machineList= machineMapper.selectList(machineQueryWrapper);
@@ -117,7 +119,7 @@ public class SelectOptionComponent {
      * 获取机台的selectoption
      * @return
      */
-    private List<SelectOption> getWorkUnitSelectOption(){
+    public List<SelectOption> getWorkUnitSelectOption(){
         QueryWrapper<DicWorkUnits> dicWorkUnitsQueryWrapper = new QueryWrapper<>();
         dicWorkUnitsQueryWrapper.eq("USE_FLAG",1);//启用状态
         List<DicWorkUnits> dicWorkUnitsList= dicWorkUnitsMapper.selectList(dicWorkUnitsQueryWrapper);
@@ -135,7 +137,7 @@ public class SelectOptionComponent {
      * 获取车号首字母的selectoption
      * @return
      */
-    private List<SelectOption> getCartNumFirstSelectOption(){
+    public List<SelectOption> getCartNumFirstSelectOption(){
         QueryWrapper<CartNumFirst> cartNumFirstQueryWrapper = new QueryWrapper<>();
         List<CartNumFirst> cartNumFirstList= cartNumFirstMapper.selectList(cartNumFirstQueryWrapper);
         List<SelectOption> selectOptionList=new ArrayList<>(cartNumFirstList.size());

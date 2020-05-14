@@ -207,7 +207,6 @@ public class FTPUtil {
             flag = ftpClient.changeWorkingDirectory(directory);
             if (flag) {
                 System.out.println("进入文件夹" + directory + " 成功！");
-
             } else {
                 System.out.println("进入文件夹" + directory + " 失败！");
             }
@@ -456,42 +455,55 @@ public class FTPUtil {
                 /**变更 FTPClient 工作目录到新目录
                  * 1)不以"/"开头表示相对路径，新目录以当前工作目录为基准，即当前工作目录下不存在此新目录时，变更失败
                  * 2)参数必须是目录，当是文件时改变路径无效*/
-                String remote=ftp.getRemotepath()+'\\'+machineModel.getMachineModelName();
+                //#\\JudgeModels\\机器ID或机器名称\\工序ID或工序I名称\\产品ID或产品名称\\模版版本号+原模版压缩包名称
+//                String remote=ftp.getRemotepath()+'\\'+machineModel.getMachineModelName();
+                String remote1=ftp.getRemotepath()+'\\'+machineModel.getMachine().getMachineName();
+                String remote2=ftp.getRemotepath()+'\\'+machineModel.getMachine().getMachineName()+'\\'+machineModel.getOperation().getOperationName();
+                String remote3=ftp.getRemotepath()+'\\'+machineModel.getMachine().getMachineName()+'\\'+machineModel.getOperation().getOperationName()+'\\'+machineModel.getProduct().getProductName();
+                if (FTPUtil.changeWorkingDirectory(ftpClient,ftp.getRemotepath())){
+                    if (FTPUtil.changeWorkingDirectory(ftpClient,machineModel.getMachine().getMachineName())){//目录存在时
+                        if (FTPUtil.changeWorkingDirectory(ftpClient,machineModel.getOperation().getOperationName())){//目录存在时
+                            if (FTPUtil.changeWorkingDirectory(ftpClient,machineModel.getProduct().getProductName())){//目录存在时
+                                /**如果被上传的是文件时*/
+                                FileInputStream input = new FileInputStream(uploadFile);
+                                /** storeFile:将本地文件上传到服务器
+                                 * 1）如果服务器已经存在此文件，则不会重新覆盖,即不会再重新上传
+                                 * 2）如果当前连接FTP服务器的用户没有写入的权限，则不会上传成功，但是也不会报错抛异常
+                                 * */
+                                String remotePath=uploadFile.getName();
+                                ftpClient.storeFile(remotePath, input);
+                                input.close();
+                                System.out.println(">>>>>文件上传成功****" + uploadFile.getPath());
+                                map.put("success",true);
+                                return map;
+                            }else{
+                                FTPUtil.makeDirectory(ftpClient,machineModel.getProduct().getProductName());
+                                FTPUtil.changeWorkingDirectory(ftpClient,"../../../../");
+                                uploadMachineModelFiles(ftpClient, uploadFile,ftp,machineModel);
+                                map.put("success",true);
+                                return map;
+                            }
+                        }else{
+                            FTPUtil.makeDirectory(ftpClient,machineModel.getOperation().getOperationName());
+                            FTPUtil.changeWorkingDirectory(ftpClient,"../../../");
+                            uploadMachineModelFiles(ftpClient, uploadFile,ftp,machineModel);
+                            map.put("success",true);
+                            return map;
+                        }
 
-                if (FTPUtil.changeWorkingDirectory(ftpClient,remote)){//目录存在时
-                    /**如果被上传的是文件时*/
-                    FileInputStream input = new FileInputStream(uploadFile);
-                    /** storeFile:将本地文件上传到服务器
-                     * 1）如果服务器已经存在此文件，则不会重新覆盖,即不会再重新上传
-                     * 2）如果当前连接FTP服务器的用户没有写入的权限，则不会上传成功，但是也不会报错抛异常
-                     * */
-//                    String remotePath=ftp.getRemotepath()+machineModel.getMachineName()+'\\'+uploadFile.getName();
-                    //更改模板名称
-//                    Integer num=machineModel.getMachineModelNum()+1;
-//                    String modelName=num+machineModel.getMachineModelName();
-//                    machineModel.setMachineModelName(modelName);//重命名新的模板名称
-                    String remotePath=uploadFile.getName();
-
-                    try {
-                        ftpClient.storeFile(remotePath, input);
-                    } catch (IOException e) {
-                        map.put("success",false);
-                        map.put("message","模板文件不能超过200MB");
+                    }else{
+                        FTPUtil.makeDirectory(ftpClient,machineModel.getMachine().getMachineName());
+                        FTPUtil.changeWorkingDirectory(ftpClient,"../../");
+                        uploadMachineModelFiles(ftpClient, uploadFile,ftp,machineModel);
+                        map.put("success",true);
                         return map;
-
                     }
 
-                    input.close();
-                    System.out.println(">>>>>文件上传成功****" + uploadFile.getPath());
-                    map.put("success",true);
-                    return map;
                 }else{
-                    FTPUtil.makeDirectory(ftpClient,remote);
-                    uploadMachineModelFiles(ftpClient, uploadFile,ftp,machineModel);
-                    map.put("success",true);
+                    map.put("success",false);
+                    map.put("message","请创建ftp机检模板根目录");
                     return map;
                 }
-
 
 
             }

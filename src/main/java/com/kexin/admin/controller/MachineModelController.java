@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * 机器模板上传下载controller
@@ -56,7 +57,7 @@ public class MachineModelController {
                                        @RequestParam(value = "sort")String sort,
                                        @RequestParam(value = "useFlag",defaultValue = "")String useFlag,
                                        @RequestParam(value = "title",defaultValue = "") String title,
-                                       ServletRequest request){
+                                       HttpServletRequest request){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
         PageDataBase<MachineModel> machineModelPageData = new PageDataBase<>();
         Data data=new Data();
@@ -89,7 +90,7 @@ public class MachineModelController {
 
 
 
-    @PostMapping("upload")
+/*    @PostMapping("upload")
     @ResponseBody
     @SysLog("上传机检模板数据")
     public ResponseEty multipleSave(@RequestParam("fileUpload") MultipartFile[] file,
@@ -99,6 +100,17 @@ public class MachineModelController {
                                     HttpServletRequest request){
 
         return machineModelService.uploadTemplate(file,  rfilename,Integer.parseInt(addId),request,ftp,tokenId);
+    }*/
+
+    @PostMapping("upload1")
+    @ResponseBody
+    @SysLog("上传机检模板数据")
+    public ResponseEty multipleSave1(@RequestParam("file") MultipartFile[] file,
+                                     @RequestParam("tokenId") Integer tokenId,
+                                     @RequestParam("machineModelId") Integer machineModelId,
+                                     HttpServletRequest request){
+
+        return machineModelService.uploadTemplate1(file, machineModelId,request,tokenId);
     }
 
     @PostMapping("download")

@@ -18,7 +18,7 @@ ftpserver:
   encoding: GBK
   localpath: D:\ftplocal\
   remotepath: Model\Images\
-
+#\\JudgeModels\\机器ID或机器名称\\工序ID或工序I名称\\产品ID或产品名称\\模版版本号+原模版压缩包名称
 spring:
     #激活哪一个环境的配置文件
     profiles:

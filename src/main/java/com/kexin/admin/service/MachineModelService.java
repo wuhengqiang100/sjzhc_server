@@ -68,6 +68,15 @@ public interface MachineModelService extends IService<MachineModel> {
     ResponseEty uploadTemplate(MultipartFile[] file, String rfilename, Integer addId, HttpServletRequest request, Ftp ftp, Integer tokenId);
 
     /**
+     * 最新的文件上传服务
+     * @param file
+     * @param machineModelId
+     * @param tokenId
+     * @return
+     */
+    ResponseEty uploadTemplate1(MultipartFile[] file,  Integer machineModelId,HttpServletRequest request,   Integer tokenId);
+
+    /**
      * 从ftp服务器上下载文件到本地
      * @param machineModelId
      * @return
