@@ -21,29 +21,29 @@ public interface LoginUserService extends IService<LoginUser> {
 
     /**
      * 根据用户名称计算数量
-     * @param loginName
+     * @param loginUserName
      * @return
      */
-    Integer loginUserCountByName(@Param("loginName") String loginName);
+    Integer loginUserCountByName(@Param("loginUserName") String loginUserName);
 
     /**
      * 保存用户
      * @param loginUser
      */
-    void saveLoginUser(@Param("loginUser") LoginUser loginUser);
+    ResponseEty saveLoginUser(@Param("loginUser") LoginUser loginUser);
 
 
     /**
      * 修改更新用户
      * @param loginUser
      */
-    void updateLoginUser(@Param("loginUser") LoginUser loginUser);
+    ResponseEty updateLoginUser(@Param("loginUser") LoginUser loginUser);
 
     /**
      * 删除用户(单个)
-     * @param loginUser
+     * @param id
      */
-    void deleteLoginUser(@Param("loginUser") LoginUser loginUser);
+    ResponseEty deleteLoginUser( Integer id);
 
     /**
      * 禁用或者启用用户

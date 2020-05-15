@@ -161,6 +161,31 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
         }
     }
 
+    @Override
+    public List<SysFunctions> getAllSysFunctions() {
+        QueryWrapper<SysFunctions> sysMenusQueryWrapper = new QueryWrapper<>();
+        sysMenusQueryWrapper.eq("USE_FLAG",1).orderByAsc("FUNCTION_TYPE_ID");//所有启用的权限
+        List<SysFunctions> functionList=baseMapper.selectList(sysMenusQueryWrapper);
+        return functionList;
+    }
+
+    @Override
+    public Integer[] getSysFunctionOwn(Integer roleId) {
+        QueryWrapper<SysRoleMenus> roleMenusQueryWrapper = new QueryWrapper<>();
+        roleMenusQueryWrapper.eq("ROLE_ID",roleId);
+        List<SysRoleMenus> sysRoleMenusList=roleMenuMapper.selectList(roleMenusQueryWrapper);
+        Integer[] menuIds=new Integer[sysRoleMenusList.size()];
+        if (sysRoleMenusList.size()!=0){
+
+            for (int i = 0; i <sysRoleMenusList.size() ; i++) {
+                menuIds[i]=sysRoleMenusList.get(i).getFunctionId();
+            }
+            return menuIds;
+        }
+        menuIds=null;
+        return menuIds;
+    }
+
     /**
      * 菜单初始化获取
      * @return
@@ -272,7 +297,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     public void saveSysFunctions(SysFunctions SysFunctions) {
 //        Encodes.entryptPassword(user);
 //        user.setIsLock(0);
-        SysFunctions.setSystemId(1);
+//        SysFunctions.setSystemId(1);
         baseMapper.insert(SysFunctions);
     }
 
@@ -280,7 +305,7 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Transactional(rollbackFor = Exception.class)
     public void updateSysFunctions(SysFunctions SysFunctions) {
 //        dropUserRolesByUserId(user.getLoginId());
-        SysFunctions.setSystemId(1);
+//        SysFunctions.setSystemId(1);
         baseMapper.updateById(SysFunctions);
     }
 
@@ -293,10 +318,10 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void lockSysFunctions(SysFunctions SysFunctions) {
-        if (SysFunctions.getHidden()){
-            SysFunctions.setHidden(false);
+        if (SysFunctions.getUseFlag()){
+            SysFunctions.setUseFlag(false);
         }else{
-            SysFunctions.setHidden(true);
+            SysFunctions.setUseFlag(true);
         }
         baseMapper.updateById(SysFunctions);
     }

@@ -1,15 +1,12 @@
 package com.kexin.admin.entity.tables;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 /**
  * 机台信息表
  */
-//@KeySequence(value = "SQ_DIC_MACHINES", clazz = Integer.class)
+@KeySequence(value = "SQ_DIC_WORK_UNITS")
 @TableName(value = "dic_work_units")
 public class DicWorkUnits {
 

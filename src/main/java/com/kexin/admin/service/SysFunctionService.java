@@ -6,6 +6,8 @@ import com.kexin.admin.entity.vo.MenuTree;
 import com.kexin.common.util.ResponseEty;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 
 /**
  * 菜单服务接口类
@@ -13,7 +15,18 @@ import org.apache.ibatis.annotations.Param;
 public interface SysFunctionService extends IService<SysFunctions> {
 
 
+    /**
+     * 获取所有的functionList
+     * @return
+     */
+    List<SysFunctions> getAllSysFunctions();
 
+    /**
+     * 当前已分配的所有,权限
+     * @param roleId
+     * @return
+     */
+    Integer[] getSysFunctionOwn(@Param("roleId") Integer roleId);
     /**
      * @Title:
      * @Description: TODO(获取所有的菜单)

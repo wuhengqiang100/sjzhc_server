@@ -11,7 +11,7 @@ public interface UserRoleMapper extends BaseMapper<SysUserRoles> {
 
     /**
      * 根据用户id,删除用户和角色关系表数据
-     * @param userId
+     * @param loginId"
      */
-    void deleleByUserId(@Param("userId") Integer userId);
+    void deleleByLoginId(@Param("loginId") Integer loginId);
 }

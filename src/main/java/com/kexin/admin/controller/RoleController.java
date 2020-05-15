@@ -3,7 +3,9 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kexin.admin.component.SelectOptionComponent;
 import com.kexin.admin.entity.tables.*;
+import com.kexin.admin.entity.vo.QaInspectChange;
 import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
@@ -44,6 +46,9 @@ public class RoleController {
     @Autowired
     MachineCheckQueryService machineCheckQueryService;//获取查询条件
 
+    @Autowired
+    SelectOptionComponent selectOptionComponent;//获取查询条件
+
 
     //@CrossOrigin(origins = "http://192.168.0.100:4200", maxAge = 3600)
     @GetMapping("list")
@@ -59,7 +64,7 @@ public class RoleController {
         PageDataBase<Role> rolePageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<Role> roleWrapper = new QueryWrapper<>();
-        roleWrapper.eq("USE_FLAG",1);
+//        roleWrapper.eq("USE_FLAG",1);
         if (sort.equals("+id")){
             roleWrapper.orderByAsc("ROLE_ID");
         }else{
@@ -94,7 +99,8 @@ public class RoleController {
     public ResponseEty listopetion(){
         ResponseEty responseEty=new ResponseEty();
         responseEty.setSuccess(20000);
-        responseEty.setAny("roleOptions",roleService.listRoleOption());
+
+        responseEty.setAny("roleOptions",selectOptionComponent.getRoleSelectOption());
         responseEty.setAny("operatorOption",machineCheckQueryService.getOperatorSelectOption());
         return responseEty;
     }
@@ -110,42 +116,9 @@ public class RoleController {
         if (roleService.roleCountByName(role.getRoleName())>0){
             return ResponseEty.failure("角色名称已使用,请重新输入");
         }
-        roleService.saveRole(role);
-        if(role.getRoleId()==null){
-            return ResponseEty.failure("保存信息出错");
-        }
-        Integer roleId=role.getRoleId();
-        //保存b端权限
-        if (role.getMenuIds()!=null){
-            Integer [] menuIds=role.getMenuIds();
 
-            SysRoleMenus sysRoleMenu=null;
-            for (Integer menuId:menuIds) {
-                //保存b端权限和角色之间的关系表
-                sysRoleMenu=new SysRoleMenus();
-                sysRoleMenu.setRoleId(roleId);
-                sysRoleMenu.setFunctionId(menuId);
-                roleMenuService.saveSysRoleMenus(sysRoleMenu);
 
-            }
-        }
-        //保存c端权限
-        if (role.getCheckedPermiss()!=null){
-            String [] checkedPermiss=role.getCheckedPermiss();//根据function 表里面的title字段查找
-            SysRoleMenus sysRoleMenu=null;
-            for (String permiss:checkedPermiss){
-                QueryWrapper<SysFunctions> sysFunctionsQueryWrapper=new QueryWrapper<>();
-                sysFunctionsQueryWrapper.eq("FUNCTION_TITLE",permiss);
-                SysFunctions sysFunction=sysFunctionService.getOne(sysFunctionsQueryWrapper);
-                sysRoleMenu=new SysRoleMenus();
-                sysRoleMenu.setRoleId(roleId);
-                sysRoleMenu.setFunctionId(sysFunction.getFunctionId());
-                roleMenuService.saveSysRoleMenus(sysRoleMenu);
-
-            }
-        }
-
-        return ResponseEty.success("保存成功");
+        return roleService.saveRole(role);
     }
 
     @PostMapping("update")
@@ -229,4 +202,12 @@ public class RoleController {
         roleService.lockRole(role);
         return ResponseEty.success("操作成功");
     }
+
+    @PostMapping("check/save")
+    @ResponseBody
+    public ResponseEty save(@RequestBody QaInspectChange inspectChange){
+        return ResponseEty.success("ss");
+//        return qaInspectMasterService.saveQaInspectMaster(inspectChange);
+    }
+
 }

@@ -10,7 +10,7 @@ import java.util.Date;
  * 设备信息主表
  */
 @TableName("dic_machines")
-@KeySequence(value = "SQ_DIC_MACHINES", clazz = Integer.class)
+@KeySequence(value = "SQ_DIC_MACHINES")
 @Data
 public class Machine {
     @TableId(type = IdType.INPUT)
@@ -52,5 +52,7 @@ public class Machine {
      */
     @TableField(value = "NOTE")
     protected String note;
+
+
 
 }

@@ -20,14 +20,13 @@ public class SysFunctions {
     @TableId(type = IdType.INPUT)
     @TableField(value = "FUNCTION_ID")
     private Integer functionId;//菜单主键id
-    @TableField(value = "SYSTEM_ID")
-    private Integer systemId;//系统id,外键
+
 
     @TableField(value = "FUNCTION_TYPE_ID")
-    private Integer functonTypeId;//模块类型：1  B端权限 2 C端权限
+    private Integer functionTypeId;//模块类型：1  B端权限 2 C端权限
 
     @TableField(value = "FUNCTION_CODE")
-    private String functonCode;//模块编码
+    private String functionCode;//模块编码
 
     @TableField(value = "FUNCTION_NAME")
     private String name;//模块名称
@@ -39,7 +38,7 @@ public class SysFunctions {
     private Integer parentId;//父类id
 
 //    @TableField(value = "FUNCTON_LEVEL_ID")
-//    private Integer functonLevelId;//模块层级（用于菜单）
+//    private Integer functionLevelId;//模块层级（用于菜单）
 
     @TableField(value = "FUNCTION_CHILDREN_IDS")
     private String childrenIds;//子模块联集（用于菜单）
@@ -62,8 +61,8 @@ public class SysFunctions {
     /**
      * 1 删除,默认显示0
      */
-    @TableField(value = "DEL_FLAG")
-    private Boolean delFlag;
+    @TableField(value = "USE_FLAG")
+    private Boolean useFlag;
 
     @TableField(value = "COMPONENT")
     private String component;//请求的组件

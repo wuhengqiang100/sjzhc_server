@@ -159,7 +159,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
     @Override
     public Integer loginUserCountByName(String loginName) {
         QueryWrapper<LoginUser> wrapper = new QueryWrapper<>();
-        wrapper.eq("LOGIN_NAME",loginName);
+        wrapper.eq("LOGIN_USER_NAME",loginName);
         Integer count = baseMapper.selectCount(wrapper);
         return count;
     }
@@ -167,23 +167,78 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void saveLoginUser(LoginUser loginUser) {
-//        Encodes.entryptPassword(user);
-//        user.setIsLock(0);
+    public ResponseEty saveLoginUser(LoginUser loginUser) {
+        loginUser.setLoginUserPass(CryptographyUtil.encodeBase64("123456"));
+        loginUser.setLoginPass("123456");
+        loginUser.setLoginName(loginUser.getLoginUserName());
         baseMapper.insert(loginUser);
+        if(loginUser.getLoginId()==null){
+            return ResponseEty.failure("保存信息出错");
+        }
+//        Integer operatorId=loginUser.getOperatorId();
+        Integer loginId=loginUser.getLoginId();
+        if (loginUser.getRoleIds()!=null){
+            //先删除原来的关系数据
+//            userRoleMapper.deleleByLoginId(loginId);
+            //再添加新的数据
+            Integer [] checkedRole=loginUser.getRoleIds();
+            SysUserRoles sysUserRoles=null;
+            for (Integer roleId:checkedRole) {
+                sysUserRoles=new SysUserRoles();
+                sysUserRoles.setLoginId(loginId);
+                sysUserRoles.setRoleId(roleId);
+                userRoleMapper.insert(sysUserRoles);
+            }
+        }
+        return ResponseEty.success("保存成功");
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateLoginUser(LoginUser loginUser) {
+    public ResponseEty updateLoginUser(LoginUser loginUser) {
 //        dropUserRolesByUserId(user.getLoginId());
         baseMapper.updateById(loginUser);
+        if(loginUser.getLoginId()==null){
+            return ResponseEty.failure("保存信息出错");
+        }
+//        Integer operatorId=loginUser.getOperatorId();
+        Integer loginId=loginUser.getLoginId();
+        if (loginUser.getRoleIds()!=null){
+            //先删除原来的关系数据
+            QueryWrapper<SysUserRoles> sysUserRolesQueryWrapper=new QueryWrapper<>();
+            sysUserRolesQueryWrapper.eq("LOGIN_ID",loginId);
+            userRoleMapper.delete(sysUserRolesQueryWrapper);
+            //再添加新的数据
+            Integer [] checkedRole=loginUser.getRoleIds();
+            SysUserRoles sysUserRoles=null;
+            for (Integer roleId:checkedRole) {
+                sysUserRoles=new SysUserRoles();
+                sysUserRoles.setLoginId(loginId);
+                sysUserRoles.setRoleId(roleId);
+                userRoleMapper.insert(sysUserRoles);
+            }
+        }
+        return ResponseEty.success("保存成功");
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void deleteLoginUser(LoginUser loginUser) {
+    public ResponseEty deleteLoginUser(Integer id) {
+        if(id==null){
+            return ResponseEty.failure("参数错误");
+        }
+        LoginUser loginUser=baseMapper.selectById(id);
+        if(loginUser == null){
+            return ResponseEty.failure("用户不存在");
+        }
+        //删除关系表数据
+        QueryWrapper<SysUserRoles> sysUserRolesQueryWrapper=new QueryWrapper<>();
+        sysUserRolesQueryWrapper.eq("LOGIN_ID",loginUser.getLoginId());
+        userRoleMapper.delete(sysUserRolesQueryWrapper);
+
+        //删除用户数据
         baseMapper.deleteById(loginUser.getLoginId());
+        return ResponseEty.success("删除成功");
     }
 
     @Override

@@ -55,8 +55,9 @@ public class MenuController {
     public ResponseEty listOption(){
         ResponseEty responseEty=new ResponseEty();
         responseEty.setSuccess(20000);
-        responseEty.setAny("menuTree",sysFunctionService.getSysFunctionOptionB()); // 获取b端所有权限的菜单树
-        responseEty.setAny("cPermissOptions",sysFunctionService.getSysFunctionOptionC()); // 获取c端所有权限的菜单树
+        responseEty.setAny("functionList",sysFunctionService.getAllSysFunctions());
+//        responseEty.setAny("menuTree",sysFunctionService.getSysFunctionOptionB()); // 获取b端所有权限的菜单树
+//        responseEty.setAny("cPermissOptions",sysFunctionService.getSysFunctionOptionC()); // 获取c端所有权限的菜单树
         return responseEty;
     }
 
@@ -78,8 +79,9 @@ public class MenuController {
             return ResponseEty.failure("参数错误");
         }
         responseEty.setSuccess(20000);
-        responseEty.setAny("menuIds",sysFunctionService.getSysFunctionOwnB(roleId));//获取已分配的b端权限
-        responseEty.setAny("checkedcPermiss",sysFunctionService.getSysFunctionOwnC(roleId));//获取已分配的c端权限
+        responseEty.setAny("menuIds",sysFunctionService.getSysFunctionOwn(roleId));
+//        responseEty.setAny("menuIds",sysFunctionService.getSysFunctionOwnB(roleId));//获取已分配的b端权限
+//        responseEty.setAny("checkedcPermiss",sysFunctionService.getSysFunctionOwnC(roleId));//获取已分配的c端权限
 
         return responseEty;
     }

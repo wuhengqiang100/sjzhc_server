@@ -1,9 +1,6 @@
 package com.kexin.admin.entity.tables;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -15,6 +12,7 @@ import java.util.Date;
  */
 @Data
 @TableName(value = "LOG_MACHINE_SETS")
+@KeySequence(value = "SQ_LOG_MACHINE_SETS")
 public class MachineLog {
 
     @TableId(type = IdType.INPUT)

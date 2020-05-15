@@ -18,15 +18,24 @@ ftpserver:
   encoding: GBK
   localpath: D:\ftplocal\
   remotepath: Model\Images\
-#\\JudgeModels\\机器ID或机器名称\\工序ID或工序I名称\\产品ID或产品名称\\模版版本号+原模版压缩包名称
+#ftpserver:
+#  ipAddr: mhhcftp.sjzyc.cbpm
+#  port: 21
+#  userName: mhhcadmin
+#  pwd: mhhcadmin
+#  path: /
+#  encoding: GBK
+#  localpath: D:\ftplocal\
+#  remotepath: JudgeModels\
+#\\JudgeModels\\工序名称\\机器名称\\产品名称\\模版版本号+产品名称
 spring:
     #激活哪一个环境的配置文件
     profiles:
       active: dev
     servlet:
       multipart:
-        max-file-size: 2000MB
-        max-request-size: 2000MB
+        max-file-size: 2048MB
+        max-request-size: 2048MB
     #视图配置
     mvc:
       static-path-pattern: /static/**
@@ -97,20 +106,14 @@ spring:
   profiles: dev
   servlet:
     multipart:
-      max-file-size: 200MB
-      max-request-size: 200MB
+      max-file-size: 2048MB
+      max-request-size: 2048MB
   #自定义配置属性
   #视图配置
   mvc:
      static-path-pattern: /static/**
   aop:
     proxy-target-class: true
-#    datasource:
-#      url: jdbc:oracle:thin:@zxqsdbscan.sjzyc.cbpm:1521/mhhc
-#      username: mhhc
-#      password: mhhc
-#      driver-class-name: oracle.jdbc.OracleDriver
-#      maximum-pool-size: 30
     datasource:
       url: jdbc:oracle:thin:@192.168.137.200:1521/orcl
       username: sjzmhhc
@@ -152,18 +155,16 @@ server:
 #生产环境配置
 spring:
   profiles: pro
+  servlet:
+    multipart:
+      max-file-size: 2048MB
+      max-request-size: 2048MB
   datasource:
     url: jdbc:oracle:thin:@zxqsdbscan.sjzyc.cbpm:1521/mhhc
     username: mhhc
     password: mhhc
     driver-class-name: oracle.jdbc.OracleDriver
     maximum-pool-size: 30
-#  datasource:
-#    url: jdbc:mysql://localhost:3306/comadmin?useUnicode=true&characterEncoding=utf8
-#    username: root
-#    password: cmh199410
-#    driver-class-name: com.mysql.jdbc.Driver
-#    maximum-pool-size: 30
 server:
   port: 8088
 

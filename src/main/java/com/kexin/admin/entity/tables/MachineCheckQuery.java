@@ -14,6 +14,7 @@ import java.util.Date;
  * @Author: 巫恒强
  * @Date: 2020/1/3 9:41
  */
+
 @TableName(value = "view_produce_log")
 @Data
 public class MachineCheckQuery {

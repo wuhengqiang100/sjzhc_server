@@ -55,5 +55,5 @@ public interface UserRoleService extends IService<SysUserRoles> {
      * 根据用户id,删除用户和角色关系表数据
      * @param userId
      */
-    void deleleByUserId(@Param("userId") Integer userId);
+    void deleleByLoginId(@Param("userId") Integer userId);
 }

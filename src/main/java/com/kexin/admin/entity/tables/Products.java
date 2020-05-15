@@ -12,7 +12,7 @@ import java.util.Date;
  * 产品信息类
  */
 @TableName(value = "DIC_PRODUCTS")
-@KeySequence(value = "SQ_DIC_PRODUCTS", clazz = Integer.class)
+@KeySequence(value = "SQ_DIC_PRODUCTS")
 @Data
 public class Products{
     private static final long serialVersionUID = 1L;

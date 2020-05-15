@@ -10,7 +10,7 @@ import java.util.Date;
  * 人员实体类
  */
 @TableName("dic_operators")
-@KeySequence(value = "SQ_DIC_OPERATOR")
+@KeySequence(value = "SQ_DIC_OPERATORS")
 @Data
 public class Operator {
     private static final long serialVersionUID = 1L;

@@ -40,6 +40,9 @@ public class SelectOptionComponent {
     @Resource
     CartNumFirstMapper cartNumFirstMapper;//车号首字母mapper
 
+    @Resource
+    RoleMapper roleMapper;//角色mapper
+
 
     /**
      * 获取产品的selectOption
@@ -166,6 +169,25 @@ public class SelectOptionComponent {
             selectOption=new SelectOption();
             selectOption.setValue(r.getOperatorId());
             selectOption.setLabel(r.getOperatorName());
+            selectOptionList.add(selectOption);
+        }
+        return selectOptionList;
+    }
+
+    /**
+     * 获取角色的selectOption
+     * @return
+     */
+    public List<SelectOption> getRoleSelectOption(){
+        QueryWrapper<Role> roleQueryWrapper = new QueryWrapper<>();
+        roleQueryWrapper.eq("USE_FLAG",1);//启用状态
+        List<Role> roleList= roleMapper.selectList(roleQueryWrapper);
+        List<SelectOption> selectOptionList=new ArrayList<>(roleList.size());
+        SelectOption selectOption;
+        for (Role r : roleList) {
+            selectOption=new SelectOption();
+            selectOption.setValue(r.getRoleId());
+            selectOption.setLabel(r.getRoleName());
             selectOptionList.add(selectOption);
         }
         return selectOptionList;

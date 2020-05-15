@@ -7,7 +7,7 @@ import lombok.Data;
  * 角色实体类
  */
 @TableName("SYS_ROLES")
-@KeySequence(value = "SQ_SYS_ROLE", clazz = Integer.class)
+@KeySequence(value = "SQ_SYS_ROLES", clazz = Integer.class)
 @Data
 public class Role{
 
@@ -23,8 +23,12 @@ public class Role{
     @TableField(exist = false)
     private Integer [] menuIds;//菜单权限ids
 
-     @TableField(exist = false)
-    private String [] checkedPermiss;//c端权限的titles
+//     @TableField(exist = false)
+//    private String [] checkedPermiss;//c端权限的titles
+
+    @TableField(exist = false)
+    private String direction;//审核的方向  left 回退,right 审核
+
 
 
     /**

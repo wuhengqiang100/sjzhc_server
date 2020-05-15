@@ -2,6 +2,7 @@ package com.kexin.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kexin.admin.entity.tables.Role;
+import com.kexin.admin.entity.vo.QaInspectChange;
 import com.kexin.common.util.ResponseEty;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,7 +20,7 @@ public interface RoleService extends IService<Role> {
      * @param userId
      * @return
      */
-    String[] getRoleOptionOwn(@Param("userId") Integer userId);
+    Integer[] getRoleOptionOwn(@Param("userId") Integer userId);
 
 
     /**
@@ -29,13 +30,17 @@ public interface RoleService extends IService<Role> {
      */
     Integer roleCountByName(@Param("roleName") String roleName);
 
-    /**
+  /*  *//**
      * 保存角色
      * @param role
-     */
+     *//*
     void saveRole(@Param("role") Role role);
-
-
+*/
+    /**
+     * 修改更新角色
+     * @param role
+     */
+    ResponseEty saveRole(@Param("role") Role role);
     /**
      * 修改更新角色
      * @param role

@@ -15,6 +15,7 @@ import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
 import com.kexin.common.util.ResponseEty;
+import com.kexin.common.util.encry.CryptographyUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -90,7 +91,7 @@ public class UserController {
     @PostMapping("listOwn")
     @ResponseBody
     @SysLog("用户已分配的角色")
-    public ResponseEty listOwn(@RequestParam(value = "userId",required = false)Integer loginId){
+    public ResponseEty listOwn(@RequestParam(value = "loginId",required = false)Integer loginId){
         ResponseEty responseEty=new ResponseEty();
         if(loginId==null){
             return ResponseEty.failure("参数错误");
@@ -107,43 +108,16 @@ public class UserController {
     @SysLog("新增用户数据")
     public ResponseEty create(@RequestBody  LoginUser loginUser){
         if(loginUser.getOperatorId()==null){
-            return ResponseEty.failure("用户编号不能为空");
+            return ResponseEty.failure("请选择用户");
         }
-        if(StringUtils.isBlank(loginUser.getLoginName())){
-            return ResponseEty.failure("用户名称不能为空");
+        if(StringUtils.isBlank(loginUser.getLoginUserName())){
+            return ResponseEty.failure("登陆名称不能为空");
         }
-        if(StringUtils.isBlank(loginUser.getLoginPass())){
-            return ResponseEty.failure("用户密码不能为空");
-        }
-        if (loginUserService.loginUserCountByName(loginUser.getLoginName())>0){
+
+        if (loginUserService.loginUserCountByName(loginUser.getLoginUserName())>0){
             return ResponseEty.failure("用户名称已使用,请重新输入");
         }
-        try {
-            loginUserService.saveLoginUser(loginUser);
-        } catch (Exception e) {
-//            e.printStackTrace();
-            return ResponseEty.failure("用户表没有该用户,不能创建账户");
-        }
-        if(loginUser.getLoginId()==null){
-            return ResponseEty.failure("保存信息出错");
-        }
-        Integer operatorId=loginUser.getOperatorId();
-        Integer loginId=loginUser.getLoginId();
-        if (loginUser.getCheckedRole()!=null){
-            String [] checkRoleName=loginUser.getCheckedRole();
-            SysUserRoles sysUserRoles=null;
-            for (String roleName:checkRoleName) {
-                QueryWrapper<Role> roleQueryWrapper=new QueryWrapper<>();
-                roleQueryWrapper.eq("ROLE_NAME",roleName);
-
-                sysUserRoles=new SysUserRoles();
-                sysUserRoles.setLoginId(loginId);
-                sysUserRoles.setRoleId(roleService.getOne(roleQueryWrapper).getRoleId());
-                userRoleService.saveSysUserRoles(sysUserRoles);
-            }
-            return ResponseEty.success("保存成功");
-        }
-        return ResponseEty.success("保存成功");
+        return loginUserService.saveLoginUser(loginUser);
     }
 
     @PostMapping("update")
@@ -167,68 +141,16 @@ public class UserController {
                 }
             }
         }
-        loginUserService.updateLoginUser(loginUser);
 
-        if(loginUser.getLoginId()==null){
-            return ResponseEty.failure("保存信息出错");
-        }
-        Integer operatorId=loginUser.getOperatorId();
-        Integer loginId=loginUser.getLoginId();
-        if (loginUser.getCheckedRole()!=null){
-            //先删除原来的关系数据
-            userRoleService.deleleByUserId(operatorId);
-            //再添加新的数据
-            String [] checkRoleName=loginUser.getCheckedRole();
-            SysUserRoles sysUserRoles=null;
-            for (String roleName:checkRoleName) {
-                QueryWrapper<Role> roleQueryWrapper=new QueryWrapper<>();
-                roleQueryWrapper.eq("ROLE_NAME",roleName);
-
-                sysUserRoles=new SysUserRoles();
-                sysUserRoles.setLoginId(loginId);
-                sysUserRoles.setRoleId(roleService.getOne(roleQueryWrapper).getRoleId());
-                userRoleService.saveSysUserRoles(sysUserRoles);
-            }
-            return ResponseEty.success("保存成功");
-        }
-        return ResponseEty.success("操作成功");
+        return loginUserService.updateLoginUser(loginUser);
     }
 
     @PostMapping("delete")
     @ResponseBody
     @SysLog("删除用户数据(单个)")
     public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id){
-        if(id==null){
-            return ResponseEty.failure("参数错误");
-        }
-        LoginUser loginUser=loginUserService.getById(id);
-        if(loginUser == null){
-            return ResponseEty.failure("用户不存在");
-        }
-        //先删除关系数据
-        userRoleService.deleleByUserId(id);
-
-        //再删除用户的数据
-        loginUserService.deleteLoginUser(loginUser);
-
-        return ResponseEty.success("删除成功");
+        return  loginUserService.deleteLoginUser(id);
     }
-    //
-//    @RequiresPermissions("sys:user:delete")
-/*
-    @PostMapping("deleteSome")
-    @ResponseBody
-    @SysLog("删除用户数据(多个)")
-    public ResponseEty deleteSome(@RequestBody List<LoginUser> LoginUsers){
-        if(LoginUsers == null || LoginUsers.size()==0){
-            return ResponseEty.failure("请选择需要删除的信息");
-        }
-        LoginUsers.forEach(m -> loginUserService.deleteLoginUser(m));
-        return ResponseEty.success("批量删除成功");
-    }
-*/
-
-
     @PostMapping("updateUseFlag")
     @ResponseBody
     @SysLog("禁用或者启用用户")
@@ -241,6 +163,22 @@ public class UserController {
             return ResponseEty.failure("用户不存在");
         }
         loginUserService.lockLoginUser(loginUser);
+        return ResponseEty.success("操作成功");
+    }
+    @PostMapping("resetPassword")
+    @ResponseBody
+    @SysLog("重置用户密码为123456")
+    public ResponseEty resetPassword(@RequestParam(value = "id",required = false)Integer id){
+        if(id==null){
+            return ResponseEty.failure("参数错误");
+        }
+        LoginUser loginUser=loginUserService.getById(id);
+        if(loginUser == null){
+            return ResponseEty.failure("用户不存在");
+        }
+        loginUser.setLoginPass("123456");
+        loginUser.setLoginUserPass(CryptographyUtil.encodeBase64("123456"));
+        loginUserService.updateById(loginUser);
         return ResponseEty.success("操作成功");
     }
 

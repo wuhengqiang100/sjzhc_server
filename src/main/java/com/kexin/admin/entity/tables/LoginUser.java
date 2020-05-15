@@ -7,7 +7,7 @@ import lombok.Data;
  * 登录用户实体类
  */
 @TableName("SYS_LOGIN_USERS")
-@KeySequence(value = "SQ_SYS_LOGIN_USERS", clazz = Integer.class)
+@KeySequence(value = "SQ_SYS_LOGIN_USERS")
 @Data
 public class LoginUser{
     @TableId(type = IdType.INPUT)
@@ -38,10 +38,10 @@ public class LoginUser{
     /**
      * 启用状态:0 禁止,1 启用
      */
-//    @TableField(value = "USE_FLAG")
-//    protected Boolean useFlag;
+/*    @TableField(value = "USE_FLAG")
+    protected Boolean useFlag;*/
     @TableField(exist = false)
-    private String [] checkedRole;//角色ids
+    private Integer [] roleIds;//角色ids
 
     @TableField(exist = false)
     private Operator operator;

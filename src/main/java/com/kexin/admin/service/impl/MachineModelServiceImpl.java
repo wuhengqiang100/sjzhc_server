@@ -205,9 +205,12 @@ public class MachineModelServiceImpl extends ServiceImpl<MachineModelMapper, Mac
         machineModel.setMachine(machineMapper.selectById(machineModel.getMachineId()));
         machineModel.setOperation(operationMapper.selectById(machineModel.getOperationId()));
         machineModel.setProduct(productsMapper.selectById(machineModel.getProductId()));
-        String rfilename=machineModel.getMachineModelName();
-        machineModel.setMachineModelNum(machineModel.getMachineModelNum()+1);//版本号+1
-        String fileName=machineModel.getMachineModelNum()+rfilename;
+        String rfilename=machineModel.getProduct().getProductName();
+
+        String modelNum001=String.format("%04d",machineModel.getMachineModelNum()+1);
+        machineModel.setMachineModelNum(Integer.parseInt(modelNum001));//版本号+1
+        machineModel.setMachineModelNumString(modelNum001);
+        String fileName=machineModel.getMachineModelNumString()+"_"+rfilename;
         machineModel.setFileName(fileName);
         if ( file.length > 0) {
             for (int i = 0; i < file.length; i++) {
@@ -240,7 +243,7 @@ public class MachineModelServiceImpl extends ServiceImpl<MachineModelMapper, Mac
             if (isSuccess){//上传成功
                 FTPUtil.closeFTPConnect(ftpClient);
                 //String remote3=ftp.getRemotepath()+'\\'+machineModel.getMachine().getMachineName()+'\\'+machineModel.getOperation().getOperationName()+'\\'+machineModel.getProduct().getProductName();
-                rfilename=ftp.getRemotepath()+'\\'+machineModel.getMachine().getMachineName()+'\\'+machineModel.getOperation().getOperationName()+'\\'+machineModel.getProduct().getProductName()+'\\'+fileName+suffix;
+                rfilename=ftp.getRemotepath()+'\\'+machineModel.getOperation().getOperationName()+'\\'+machineModel.getMachine().getMachineName()+'\\'+machineModel.getProduct().getProductName()+'\\'+fileName+suffix;
                 machineModel.setMachineModelPath(rfilename);
 //                machineModel.setMachineModelName(modelName);//重命名新的模板名称
                 baseMapper.updateById(machineModel);//更新machineModel后的上传路径
@@ -248,11 +251,17 @@ public class MachineModelServiceImpl extends ServiceImpl<MachineModelMapper, Mac
                 for (String s1:list) {
                     FileUtil.DeleteFolder(s1);//删除本地暂存的文件
                 }
+                ResponseEty responseEty=new ResponseEty();
+                responseEty.setSuccess(20000);
                 return ResponseEty.success("上传成功");
             }else{//上传失败
+                ResponseEty responseEty=new ResponseEty();
+                responseEty.setSuccess(20001);
                 return ResponseEty.failure(message);
             }
         }
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
         return ResponseEty.failure("上传失败");
   /*      if (isSuccess){
             return ResponseEty.success("上传成功");

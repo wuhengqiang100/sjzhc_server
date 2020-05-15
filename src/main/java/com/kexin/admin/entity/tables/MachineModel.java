@@ -41,6 +41,7 @@ public class MachineModel {
     private String machineModelPath;//模型压缩包路径
 
 
+
     /**
      * 启用状态:0 禁止,1 启用
      */
@@ -73,5 +74,7 @@ public class MachineModel {
 
     @TableField(exist = false)
     private String fileName;//临时拼接的模板名
+    @TableField(exist = false)
+    private String machineModelNumString;//临时num变量"0001"
 
 }

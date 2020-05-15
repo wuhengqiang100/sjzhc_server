@@ -10,6 +10,7 @@ import static com.baomidou.mybatisplus.annotation.FieldStrategy.IGNORED;
 /**
  * 权限实体类
  */
+@KeySequence(value = "SQ_DIC_FUNCTIONS")
 @TableName("dic_functions")
 public class Functions {
 

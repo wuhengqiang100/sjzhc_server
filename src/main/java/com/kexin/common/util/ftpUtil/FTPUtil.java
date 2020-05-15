@@ -457,12 +457,12 @@ public class FTPUtil {
                  * 2)参数必须是目录，当是文件时改变路径无效*/
                 //#\\JudgeModels\\机器ID或机器名称\\工序ID或工序I名称\\产品ID或产品名称\\模版版本号+原模版压缩包名称
 //                String remote=ftp.getRemotepath()+'\\'+machineModel.getMachineModelName();
-                String remote1=ftp.getRemotepath()+'\\'+machineModel.getMachine().getMachineName();
-                String remote2=ftp.getRemotepath()+'\\'+machineModel.getMachine().getMachineName()+'\\'+machineModel.getOperation().getOperationName();
-                String remote3=ftp.getRemotepath()+'\\'+machineModel.getMachine().getMachineName()+'\\'+machineModel.getOperation().getOperationName()+'\\'+machineModel.getProduct().getProductName();
+                String remote1=ftp.getRemotepath()+'\\'+machineModel.getOperation().getOperationName();
+                String remote2=ftp.getRemotepath()+'\\'+machineModel.getOperation().getOperationName()+'\\'+machineModel.getMachine().getMachineName();
+                String remote3=ftp.getRemotepath()+'\\'+machineModel.getOperation().getOperationName()+'\\'+machineModel.getMachine().getMachineName()+'\\'+machineModel.getProduct().getProductName();
                 if (FTPUtil.changeWorkingDirectory(ftpClient,ftp.getRemotepath())){
-                    if (FTPUtil.changeWorkingDirectory(ftpClient,machineModel.getMachine().getMachineName())){//目录存在时
-                        if (FTPUtil.changeWorkingDirectory(ftpClient,machineModel.getOperation().getOperationName())){//目录存在时
+                    if (FTPUtil.changeWorkingDirectory(ftpClient,machineModel.getOperation().getOperationName())){//目录存在时
+                        if (FTPUtil.changeWorkingDirectory(ftpClient,machineModel.getMachine().getMachineName())){//目录存在时
                             if (FTPUtil.changeWorkingDirectory(ftpClient,machineModel.getProduct().getProductName())){//目录存在时
                                 /**如果被上传的是文件时*/
                                 FileInputStream input = new FileInputStream(uploadFile);
@@ -484,7 +484,7 @@ public class FTPUtil {
                                 return map;
                             }
                         }else{
-                            FTPUtil.makeDirectory(ftpClient,machineModel.getOperation().getOperationName());
+                            FTPUtil.makeDirectory(ftpClient,machineModel.getMachine().getMachineName());
                             FTPUtil.changeWorkingDirectory(ftpClient,"../../../");
                             uploadMachineModelFiles(ftpClient, uploadFile,ftp,machineModel);
                             map.put("success",true);
@@ -492,7 +492,7 @@ public class FTPUtil {
                         }
 
                     }else{
-                        FTPUtil.makeDirectory(ftpClient,machineModel.getMachine().getMachineName());
+                        FTPUtil.makeDirectory(ftpClient,machineModel.getOperation().getOperationName());
                         FTPUtil.changeWorkingDirectory(ftpClient,"../../");
                         uploadMachineModelFiles(ftpClient, uploadFile,ftp,machineModel);
                         map.put("success",true);
@@ -500,8 +500,10 @@ public class FTPUtil {
                     }
 
                 }else{
-                    map.put("success",false);
-                    map.put("message","请创建ftp机检模板根目录");
+                    FTPUtil.makeDirectory(ftpClient,ftp.getRemotepath());
+                    FTPUtil.changeWorkingDirectory(ftpClient,"../");
+                    uploadMachineModelFiles(ftpClient, uploadFile,ftp,machineModel);
+                    map.put("success",true);
                     return map;
                 }
 

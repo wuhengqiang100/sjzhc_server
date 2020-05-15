@@ -1,13 +1,11 @@
 package com.kexin.admin.entity.tables;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
-@TableName("grant_role_functions")
+/*@KeySequence(value = "SQ_DIC_WORK_UNITS")
+@TableName("grant_role_functions")*/
 public class GrantRoleFunctions {
-    @TableId(type = IdType.AUTO)
+/*    @TableId(type = IdType.AUTO)
     @TableField(value = "GRANT_ID")
     private int grantId;
 
@@ -50,5 +48,5 @@ public class GrantRoleFunctions {
 
     public void setNote(String note) {
         this.note = note;
-    }
+    }*/
 }
