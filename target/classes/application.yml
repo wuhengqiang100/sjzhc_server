@@ -3,7 +3,9 @@ server:
     port: 8088
     tomcat:
       uri-encoding: UTF-8
-    address: 127.0.0.1
+#    address: 192.168.137.200
+    address: 192.168.137.2
+#    address: 127.0.0.1
 #    address: 10.41.35.150
 
 #cxf:
@@ -32,27 +34,6 @@ spring:
     #激活哪一个环境的配置文件
     profiles:
       active: dev
-    servlet:
-      multipart:
-        max-file-size: 2048MB
-        max-request-size: 2048MB
-    #视图配置
-    mvc:
-      static-path-pattern: /static/**
-    aop:
-      proxy-target-class: true
-    datasource:
-      url: jdbc:oracle:thin:@192.168.137.200:1521/orcl
-      username: sjzmhhc
-      password: sjzmhhc
-      driver-class-name: oracle.jdbc.OracleDriver
-      maximum-pool-size: 30
-#    datasource:
-#      url: jdbc:oracle:thin:@zxqsdbscan.sjzyc.cbpm:1521/mhhc
-#      username: mhhc
-#      password: mhhc
-#      driver-class-name: oracle.jdbc.OracleDriver
-#      maximum-pool-size: 30
     jackson:
       default-property-inclusion: USE_DEFAULTS # 全局jackson配置
     devtools:
@@ -67,6 +48,70 @@ spring:
       port: 6379
 
 
+
+
+---
+#开发环境配置
+spring:
+  profiles: dev
+  servlet:
+    multipart:
+      max-file-size: 2048MB
+      max-request-size: 2048MB
+  #自定义配置属性
+  #视图配置
+  mvc:
+     static-path-pattern: /static/**
+  aop:
+    proxy-target-class: true
+  datasource:
+    url: jdbc:oracle:thin:@192.168.137.200:1521/orcl
+    username: sjzmhhc
+    password: sjzmhhc
+    driver-class-name: oracle.jdbc.OracleDriver
+    maximum-pool-size: 30
+
+
+---
+#生产环境配置
+spring:
+  profiles: pro
+  servlet:
+    multipart:
+      max-file-size: 2048MB
+      max-request-size: 2048MB
+  datasource:
+    url: jdbc:oracle:thin:@zxqsdbscan.sjzyc.cbpm:1521/mhhc
+    username: mhhc
+    password: mhhc
+    driver-class-name: oracle.jdbc.OracleDriver
+    maximum-pool-size: 30
+
+
+---
+#测试环境配置
+spring:
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+  profiles: test
+  #自定义配置属性
+  #视图配置
+  mvc:
+    static-path-pattern: /static/**
+  aop:
+    proxy-target-class: true
+  datasource:
+    url: jdbc:oracle:thin:@192.168.137.200:1521/orcl
+    username: sjzmhhc
+    password: sjzmhhc
+    driver-class-name: oracle.jdbc.OracleDriver
+    maximum-pool-size: 30
+
+
+
+
 #mybatisPlu
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*Mapper.xml
@@ -77,7 +122,7 @@ mybatis-plus:
     db-config:
       #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
       id-type: INPUT
-       #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
       field-strategy: not_empty
       #驼峰下划线转换
       column-underline: true
@@ -97,75 +142,4 @@ mybatis-plus:
 logging:
   config: classpath:logback.xml
   path: D:\logs\comadmin
-
-
-
----
-#开发环境配置
-spring:
-  profiles: dev
-  servlet:
-    multipart:
-      max-file-size: 2048MB
-      max-request-size: 2048MB
-  #自定义配置属性
-  #视图配置
-  mvc:
-     static-path-pattern: /static/**
-  aop:
-    proxy-target-class: true
-    datasource:
-      url: jdbc:oracle:thin:@192.168.137.200:1521/orcl
-      username: sjzmhhc
-      password: sjzmhhc
-      driver-class-name: oracle.jdbc.OracleDriver
-      maximum-pool-size: 30
-server:
-  #端口
-  port: 8088
-
-
-
----
-#测试环境配置
-spring:
-  servlet:
-    multipart:
-      max-file-size: 200MB
-      max-request-size: 200MB
-  profiles: test
-  #自定义配置属性
-  #视图配置
-  mvc:
-    static-path-pattern: /static/**
-  aop:
-    proxy-target-class: true
-  datasource:
-    url: jdbc:mysql://localhost:3306/comadmin?useUnicode=true&characterEncoding=utf8
-    username: root
-    password: cmh199410
-    driver-class-name: com.mysql.jdbc.Driver
-    maximum-pool-size: 30
-server:
-  #端口
-  port: 8088
-
-
----
-#生产环境配置
-spring:
-  profiles: pro
-  servlet:
-    multipart:
-      max-file-size: 2048MB
-      max-request-size: 2048MB
-  datasource:
-    url: jdbc:oracle:thin:@zxqsdbscan.sjzyc.cbpm:1521/mhhc
-    username: mhhc
-    password: mhhc
-    driver-class-name: oracle.jdbc.OracleDriver
-    maximum-pool-size: 30
-server:
-  port: 8088
-
 

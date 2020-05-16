@@ -18,11 +18,13 @@ public class MachineModel {
     @TableField(value = "MACHINE_MODEL_ID")
     private Integer machineModelId;//设备模型主键id
 
+    @TableField(value = "OPERATION_ID")
+    private Integer operationId;//外键：工序ID
+
     @TableField(value = "MACHINE_ID")
     private Integer machineId;//外键:机器id
 
-    @TableField(value = "OPERATION_ID")
-    private Integer operationId;//外键：工序ID
+
 
     @TableField(value = "PRODUCT_ID")
     private Integer productId;//外键：产品ID

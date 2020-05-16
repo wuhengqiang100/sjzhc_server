@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kexin.admin.mapper.MachineModelMapper">
+
+
+    <select id="machineModelCountByOperationMachineProduct" resultType="java.lang.Integer">
+        select count(*) from DIC_MACHINE_MODELS
+        where OPERATION_ID=#{machineModel.operationId}
+            and MACHINE_ID=#{machineModel.machineId}
+            and PRODUCT_ID=#{machineModel.productId}
+    </select>
+</mapper>

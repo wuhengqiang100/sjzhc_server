@@ -1,7 +1,5 @@
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\DataupLog.java
-E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\Rescource.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\query\QaInspectSelect.java
-E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\MenuService.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\MachineModelMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\base\Data.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\Machine.java
@@ -38,7 +36,6 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\QaInspectT
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\config\MySysUser.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\OperationService.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\OperationController.java
-E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\MenuServiceImpl.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\QaInspectMasterServiceImpl.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\config\ShiroConfig.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\login\TokenUser.java
@@ -109,7 +106,6 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\OperationTyp
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\SysMenusMeta.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\config\MybatisPlusConfig.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\util\Constants.java
-E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\Menu.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\MenuTree.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\MachineCheckQueryMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\RoleMenuMapper.java
@@ -159,11 +155,9 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\Role.j
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\SysMenusMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\base\PageDataBase.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\MachineTemplateController.java
-E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\MenuMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\OperationTypeMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\realm\AuthRealm.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\UserRoleServiceImpl.java
-E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\RescourceMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\SysMenus.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\util\ResponseEntity.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\OperationTypeController.java

@@ -169,8 +169,8 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
     @Transactional(rollbackFor = Exception.class)
     public ResponseEty saveLoginUser(LoginUser loginUser) {
         loginUser.setLoginUserPass(CryptographyUtil.encodeBase64("123456"));
-        loginUser.setLoginPass("123456");
-        loginUser.setLoginName(loginUser.getLoginUserName());
+//        loginUser.setLoginPass("123456");
+//        loginUser.setLoginName(loginUser.getLoginUserName());
         baseMapper.insert(loginUser);
         if(loginUser.getLoginId()==null){
             return ResponseEty.failure("保存信息出错");

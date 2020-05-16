@@ -40,8 +40,8 @@ com\kexin\admin\service\impl\SysMenusServiceImpl.class
 com\kexin\common\base\PageDataBase.class
 com\kexin\admin\entity\tables\GrantRoleFunctions.class
 com\kexin\common\config\MyWebMvcConfigurer.class
-com\kexin\admin\entity\Menu.class
 com\kexin\common\util\annotation\testDemo2.class
+com\kexin\common\util\redis\RedisUtil.class
 com\kexin\admin\entity\vo\query\QueryDateParent.class
 com\kexin\admin\mapper\MachineLogMapper.class
 com\kexin\admin\entity\tables\SysRoleMenus.class
@@ -99,7 +99,6 @@ com\kexin\admin\entity\pojo\Token.class
 com\kexin\admin\entity\vo\ShowMenuVo.class
 com\kexin\admin\service\ProduceLogService.class
 com\kexin\common\util\WriterUtil.class
-com\kexin\admin\mapper\MenuMapper.class
 com\kexin\admin\service\SysMenusService.class
 com\kexin\admin\mapper\RoleMapper.class
 com\kexin\common\config\CaptchaConfig.class
@@ -140,10 +139,10 @@ com\kexin\admin\webService\UserService.class
 com\kexin\admin\mapper\SysMenusMapper.class
 com\kexin\admin\mapper\ProductsMapper.class
 com\kexin\admin\service\impl\OperationTypeServiceImpl.class
+com\kexin\admin\component\MonitorBigScreenComponent.class
 com\kexin\admin\entity\tables\WipJobs.class
 com\kexin\common\aspect\LogAspect.class
 com\kexin\admin\mapper\QaInspectMasterMapper.class
-com\kexin\admin\mapper\RescourceMapper.class
 com\kexin\common\base\BaseEntity.class
 com\kexin\common\base\TableEntity.class
 com\kexin\common\util\ResponseEntity.class
@@ -153,7 +152,6 @@ com\kexin\common\config\MybatisPlusConfig.class
 com\kexin\admin\entity\tables\MachineModel.class
 com\kexin\admin\entity\tables\Role.class
 com\kexin\admin\service\QaInspectMasterService.class
-com\kexin\admin\entity\Rescource.class
 com\kexin\admin\service\SysMenusMetaService.class
 com\kexin\admin\entity\tables\Functions.class
 com\kexin\admin\entity\monitor\MonitorView.class
@@ -172,7 +170,6 @@ com\kexin\admin\mapper\LoginUserMapper.class
 com\kexin\admin\service\ProductsService.class
 com\kexin\admin\controller\OperatorController.class
 com\kexin\admin\entity\pojo\User.class
-com\kexin\admin\service\MenuService.class
 com\kexin\admin\service\DataupLogService.class
 com\kexin\admin\entity\tables\MachineCheckQuery.class
 com\kexin\admin\webService\impl\TestWebServiceImpl.class
@@ -182,7 +179,6 @@ com\kexin\common\config\MyHandlerInterceptor.class
 com\kexin\common\util\DateUtil\DateUtil.class
 com\kexin\common\util\Constants.class
 com\kexin\admin\entity\vo\QaInspectChange.class
-com\kexin\admin\service\impl\MenuServiceImpl.class
 com\kexin\admin\entity\vo\Ftp.class
 com\kexin\admin\entity\vo\AllFunction.class
 com\kexin\admin\service\CartNumFirstService.class

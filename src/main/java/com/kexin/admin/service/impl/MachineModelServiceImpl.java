@@ -55,6 +55,12 @@ public class MachineModelServiceImpl extends ServiceImpl<MachineModelMapper, Mac
     @Resource
     ProductsMapper productsMapper;//产品mapper
 
+
+    @Override
+    public Integer machineModelCountByOperationMachineProduct(MachineModel machineModel) {
+        return null;
+    }
+
     @Override
     public Integer machineModelCountByCode(String machineModelCode) {
         QueryWrapper<MachineModel> wrapper = new QueryWrapper<>();

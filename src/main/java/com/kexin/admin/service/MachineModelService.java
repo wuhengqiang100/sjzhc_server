@@ -17,6 +17,13 @@ public interface MachineModelService extends IService<MachineModel> {
 
 
     /**
+     * 根据模板的工序+设备+品种判断此条添加的数据是不是唯一的
+     * @param machineModel
+     * @return
+     */
+    Integer machineModelCountByOperationMachineProduct(@Param("machineModel") MachineModel machineModel);
+
+    /**
      * 根据设备模板编码计算数量,当前机器的code的数量
      * @param machineModelCode
      * @return

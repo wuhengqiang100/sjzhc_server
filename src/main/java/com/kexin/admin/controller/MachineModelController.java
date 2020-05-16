@@ -146,6 +146,11 @@ public class MachineModelController {
         if (machineModelService.machineModelCountByName(machineModel.getMachineModelName())>0){
             return ResponseEty.failure("模板名称已使用,请重新输入");
         }
+        if(machineModelService.machineModelCountByOperationMachineProduct(machineModel)>0){
+            String message=machineModel.getOperation().getOperationName()+","+machineModel.getMachine().getMachineName()+"," +
+                    ""+machineModel.getProduct().getProductName()+"的模板已经存在,不能添加";
+            return ResponseEty.failure(message);
+        }
         machineModelService.saveMachineModel(machineModel);
         if(machineModel.getMachineModelId()==null){
             return ResponseEty.failure("保存信息出错");
