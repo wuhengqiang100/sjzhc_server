@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.component.SelectOptionComponent;
 import com.kexin.admin.entity.tables.*;
 import com.kexin.admin.entity.vo.QaInspectChange;
+import com.kexin.admin.entity.vo.webQuery.RoleChange;
 import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
@@ -203,9 +204,9 @@ public class RoleController {
         return ResponseEty.success("操作成功");
     }
 
-    @PostMapping("check/save")
+    @PostMapping("permission")
     @ResponseBody
-    public ResponseEty save(@RequestBody QaInspectChange inspectChange){
+    public ResponseEty save(@RequestBody RoleChange roleChange){
         return ResponseEty.success("ss");
 //        return qaInspectMasterService.saveQaInspectMaster(inspectChange);
     }

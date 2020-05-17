@@ -109,7 +109,7 @@ public class AuthRealm extends AuthorizingRealm {
         ByteSource salt = ByteSource.Util.bytes(user.getLoginUserName());
         //暂时系统id先写这 1 测试数据
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                new ShiroUser(user.getLoginId(),user.getLoginName(),1),
+                new ShiroUser(user.getLoginId(),user.getLoginUserName(),1),
                 CryptographyUtil.md5(user.getLoginUserPass(),user.getLoginUserName()),//先加密再解密
 //                user.getLoginPass(), //密码
                 salt,

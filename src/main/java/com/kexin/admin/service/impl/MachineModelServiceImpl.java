@@ -58,7 +58,7 @@ public class MachineModelServiceImpl extends ServiceImpl<MachineModelMapper, Mac
 
     @Override
     public Integer machineModelCountByOperationMachineProduct(MachineModel machineModel) {
-        return null;
+        return baseMapper.machineModelCountByOperationMachineProduct(machineModel);
     }
 
     @Override

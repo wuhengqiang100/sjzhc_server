@@ -47,7 +47,8 @@ public class OperatorController {
     public PageDataBase<Operator> list(@RequestParam(value = "page",defaultValue = "1")Integer page,
                                             @RequestParam(value = "limit",defaultValue = "10")Integer limit,
                                             @RequestParam(value = "sort")String sort,
-                                            @RequestParam(value = "title",defaultValue = "") String title,
+                                       @RequestParam(value = "useFlag",defaultValue = "")String useFlag,
+                                       @RequestParam(value = "title",defaultValue = "") String title,
                                             ServletRequest request){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
         PageDataBase<Operator> operatorPageData = new PageDataBase<>();
@@ -57,6 +58,9 @@ public class OperatorController {
             operatorWrapper.orderByAsc("OPERATOR_ID");
         }else{
             operatorWrapper.orderByDesc("OPERATOR_ID");
+        }
+        if (StringUtils.isNotEmpty(useFlag)){
+            operatorWrapper.eq("USE_FLAG",useFlag);
         }
         if (StringUtils.isNotEmpty(title)){
             operatorWrapper.like("OPERATOR_NAME",title);

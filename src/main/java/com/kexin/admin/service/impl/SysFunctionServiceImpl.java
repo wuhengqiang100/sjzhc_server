@@ -162,6 +162,14 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
     }
 
     @Override
+    public Integer countFunctionUseNum(Integer functionId) {
+        // 根据 Wrapper 条件，查询总记录数
+        QueryWrapper<SysRoleMenus> sysRoleMenusQueryWrapper=new QueryWrapper<>();
+        sysRoleMenusQueryWrapper.eq("FUNCTION_ID",functionId);
+        return roleMenuMapper.selectCount(sysRoleMenusQueryWrapper);
+    }
+
+    @Override
     public List<SysFunctions> getAllSysFunctions() {
         QueryWrapper<SysFunctions> sysMenusQueryWrapper = new QueryWrapper<>();
         sysMenusQueryWrapper.eq("USE_FLAG",1).orderByAsc("FUNCTION_TYPE_ID");//所有启用的权限

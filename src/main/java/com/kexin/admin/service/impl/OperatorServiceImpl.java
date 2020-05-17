@@ -40,6 +40,12 @@ public class OperatorServiceImpl extends ServiceImpl<OperatorMapper, Operator> i
     public void saveOperator(Operator operator) {
 //        Encodes.entryptPassword(user);
 //        user.setIsLock(0);
+        if (operator.getUseFlag()){ //启用
+            operator.setStartDate(new Date());
+            operator.setEndDate(null);
+        }else{//禁用
+            operator.setEndDate(new Date());
+        }
         baseMapper.insert(operator);
     }
 

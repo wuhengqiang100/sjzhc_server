@@ -197,6 +197,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
     @Transactional(rollbackFor = Exception.class)
     public ResponseEty updateLoginUser(LoginUser loginUser) {
 //        dropUserRolesByUserId(user.getLoginId());
+        loginUser.setLoginUserPass(CryptographyUtil.encodeBase64(loginUser.getLoginUserPass()));
         baseMapper.updateById(loginUser);
         if(loginUser.getLoginId()==null){
             return ResponseEty.failure("保存信息出错");

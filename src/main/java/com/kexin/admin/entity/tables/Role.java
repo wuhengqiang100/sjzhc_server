@@ -21,13 +21,13 @@ public class Role{
     private String roleName; //角色名称
 
     @TableField(exist = false)
-    private Integer [] menuIds;//菜单权限ids
+    private Integer [] value;//菜单权限ids
 
 //     @TableField(exist = false)
 //    private String [] checkedPermiss;//c端权限的titles
 
-    @TableField(exist = false)
-    private String direction;//审核的方向  left 回退,right 审核
+//    @TableField(exist = false)
+//    private String direction;//审核的方向  left 回退,right 审核
 
 
 

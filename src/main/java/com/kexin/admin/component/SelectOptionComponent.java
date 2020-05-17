@@ -43,6 +43,12 @@ public class SelectOptionComponent {
     @Resource
     RoleMapper roleMapper;//角色mapper
 
+    @Resource
+    AuditParameterTypeMapper auditParameterTypeMapper;//审核参数类型mapper
+
+    @Resource
+    AuditParameterMapper auditParameterMapper;//审核参数mapper
+
 
     /**
      * 获取产品的selectOption
@@ -192,6 +198,44 @@ public class SelectOptionComponent {
         }
         return selectOptionList;
     }
+
+    /**
+     * 获取审核参数类型的selectOption
+     * @return
+     */
+    public List<SelectOption> getAuditParameterTypeSelectOption(){
+        QueryWrapper<AuditParameterType> auditParameterTypeQueryWrapper = new QueryWrapper<>();
+        auditParameterTypeQueryWrapper.eq("USE_FLAG",1);//启用状态
+        List<AuditParameterType> auditParameterTypeList= auditParameterTypeMapper.selectList(auditParameterTypeQueryWrapper);
+        List<SelectOption> selectOptionList=new ArrayList<>(auditParameterTypeList.size());
+        SelectOption selectOption;
+        for (AuditParameterType r : auditParameterTypeList) {
+            selectOption=new SelectOption();
+            selectOption.setValue(r.getJudgeCheckTypeId());
+            selectOption.setLabel(r.getJudgeCheckTypeName());
+            selectOptionList.add(selectOption);
+        }
+        return selectOptionList;
+    }
+
+    /**
+     * 获取审核参数的selectOption
+     * @return
+     */
+/*    public List<SelectOption> getAuditParameterSelectOption(){
+        QueryWrapper<AuditParameter> auditParameterQueryWrapper = new QueryWrapper<>();
+        auditParameterQueryWrapper.eq("USE_FLAG",1);//启用状态
+        List<AuditParameter> auditParameterTypeList= auditParameterMapper.selectList(auditParameterQueryWrapper);
+        List<SelectOption> selectOptionList=new ArrayList<>(auditParameterTypeList.size());
+        SelectOption selectOption;
+        for (AuditParameter r : auditParameterTypeList) {
+            selectOption=new SelectOption();
+            selectOption.setValue(r.getJudgeCheckId());
+            selectOption.setLabel(r.get());
+            selectOptionList.add(selectOption);
+        }
+        return selectOptionList;
+    }*/
 
 
 }

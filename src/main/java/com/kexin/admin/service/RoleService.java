@@ -3,11 +3,19 @@ package com.kexin.admin.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kexin.admin.entity.tables.Role;
 import com.kexin.admin.entity.vo.QaInspectChange;
+import com.kexin.admin.entity.vo.webQuery.RoleChange;
 import com.kexin.common.util.ResponseEty;
 import org.apache.ibatis.annotations.Param;
 
 public interface RoleService extends IService<Role> {
 
+
+    /**
+     * 根据roleId[]数组获取角色string,用于显示
+     * @param roleIds
+     * @return
+     */
+    String getRoleString(Integer[] roleIds);
 
     /**
      * 获取所有的角色checkbox用,option
@@ -59,4 +67,11 @@ public interface RoleService extends IService<Role> {
      */
     void lockRole(@Param("role") Role role);
 
+
+    /**
+     * 保存角色与权限之间的关系表
+     * @param role
+     * @return
+     */
+    ResponseEty saveRolePermission(RoleChange roleChange);
 }

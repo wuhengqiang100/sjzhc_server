@@ -214,6 +214,9 @@ public class SystemController {
         if(sysFunctions == null){
             return ResponseEty.failure("权限不存在");
         }
+        if (sysFunctionService.countFunctionUseNum(id)>0){
+            return ResponseEty.failure("该权限有角色在使用不能删除");
+        }
         sysFunctionService.deleteSysFunctions(sysFunctions);
         return ResponseEty.success("删除成功");
     }

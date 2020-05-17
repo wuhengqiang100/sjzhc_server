@@ -60,5 +60,17 @@ public class SelectOptionController {
         return responseEty;
     }
 
+    @PostMapping("auditParameter")
+    @ResponseBody
+    @SysLog("获取机检模板页面的select条件")
+    public ResponseEty listOptionAuditParameter(){
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        responseEty.setAny("operationOption",selectOptionComponent.getOperationSelectOption());//工序下拉option
+        responseEty.setAny("productOption",selectOptionComponent.getProductSelectOption());//产品下拉option
+        responseEty.setAny("judgeCheckTypeOption",selectOptionComponent.getAuditParameterTypeSelectOption());//审核参数类型下拉option
+        return responseEty;
+    }
+
 
 }

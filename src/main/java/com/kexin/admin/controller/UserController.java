@@ -68,12 +68,18 @@ public class UserController {
             loginUserWrapper.eq("USE_FLAG",useFlag);
         }
         if (StringUtils.isNotEmpty(title)){
-            loginUserWrapper.like("LOGIN_NAME",title);
+            loginUserWrapper.like("LOGIN_USER_NAME",title);
         }
 
         IPage<LoginUser> loginUserPage = loginUserService.page(new Page<>(page,limit),loginUserWrapper);
         data.setTotal(loginUserPage.getTotal());
-        loginUserPage.getRecords().forEach(r->r.setOperator(operatorService.getById(r.getOperatorId())));
+        loginUserPage.getRecords().forEach(r->{
+            r.setOperator(operatorService.getById(r.getOperatorId()));
+            r.setRoleIds(roleService.getRoleOptionOwn(r.getLoginId()));
+            if (r.getRoleIds()!=null){
+                r.setRoleString( roleService.getRoleString(r.getRoleIds()));
+            }
+            });
         data.setItems(loginUserPage.getRecords());
         loginUserPageData.setData(data);
         return loginUserPageData;
@@ -127,16 +133,16 @@ public class UserController {
         if(loginUser.getOperatorId()==null){
             return ResponseEty.failure("用户ID不能为空");
         }
-        if(StringUtils.isBlank(loginUser.getLoginName())){
+        if(StringUtils.isBlank(loginUser.getLoginUserName())){
             return ResponseEty.failure("用户名称不能为空");
         }
-        if(StringUtils.isBlank(loginUser.getLoginPass())){
+        if(StringUtils.isBlank(loginUser.getLoginUserPass())){
             return ResponseEty.failure("用户密码不能为空");
         }
         LoginUser oldLoginUser = loginUserService.getById(loginUser.getLoginId());
-        if(StringUtils.isNotBlank(loginUser.getLoginName())){
-            if(!loginUser.getLoginName().equals(oldLoginUser.getLoginName())){
-                if(loginUserService.loginUserCountByName(loginUser.getLoginName())>0){
+        if(StringUtils.isNotBlank(loginUser.getLoginUserName())){
+            if(!loginUser.getLoginUserName().equals(oldLoginUser.getLoginUserName())){
+                if(loginUserService.loginUserCountByName(loginUser.getLoginUserName())>0){
                     return ResponseEty.failure("该用户名称已经使用");
                 }
             }
@@ -176,7 +182,7 @@ public class UserController {
         if(loginUser == null){
             return ResponseEty.failure("用户不存在");
         }
-        loginUser.setLoginPass("123456");
+
         loginUser.setLoginUserPass(CryptographyUtil.encodeBase64("123456"));
         loginUserService.updateById(loginUser);
         return ResponseEty.success("操作成功");

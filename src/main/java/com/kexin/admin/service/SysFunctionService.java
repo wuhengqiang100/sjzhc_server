@@ -16,6 +16,13 @@ public interface SysFunctionService extends IService<SysFunctions> {
 
 
     /**
+     * 计算这个权限使用的次数
+     * @param functionId
+     * @return
+     */
+    Integer countFunctionUseNum(Integer functionId);
+
+    /**
      * 获取所有的functionList
      * @return
      */

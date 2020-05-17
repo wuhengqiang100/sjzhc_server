@@ -57,6 +57,9 @@ public class MachineModelController {
                                        @RequestParam(value = "sort")String sort,
                                        @RequestParam(value = "useFlag",defaultValue = "")String useFlag,
                                        @RequestParam(value = "title",defaultValue = "") String title,
+                                       @RequestParam(value = "operationId",defaultValue = "") Integer operationId,
+                                       @RequestParam(value = "machineId",defaultValue = "") Integer machineId,
+                                       @RequestParam(value = "productId",defaultValue = "") Integer productId,
                                        HttpServletRequest request){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
         PageDataBase<MachineModel> machineModelPageData = new PageDataBase<>();
@@ -67,14 +70,19 @@ public class MachineModelController {
         }else{
             machineModelWrapper.orderByDesc("MACHINE_MODEL_ID");
         }
-
         if (StringUtils.isNotEmpty(useFlag)){
             machineModelWrapper.eq("USE_FLAG",useFlag);
         }
         if (StringUtils.isNotEmpty(title)){
             machineModelWrapper.like("MACHINE_MODEL_NAME",title);
         }
-
+        if (operationId!=null){
+            machineModelWrapper.eq("OPERATION_ID",operationId);
+        } if (machineId!=null){
+            machineModelWrapper.eq("MACHINE_ID",machineId);
+        } if (productId!=null){
+            machineModelWrapper.eq("PRODUCT_ID",productId);
+        }
         IPage<MachineModel> machineModelPage = machineModelService.page(new Page<>(page,limit),machineModelWrapper);
         //外键实体添加
         machineModelPage.getRecords().forEach(r->{
@@ -128,18 +136,21 @@ public class MachineModelController {
         if(StringUtils.isBlank(machineModel.getMachineModelCode())){
             return ResponseEty.failure("模板编号不能为空");
         }
-        if(StringUtils.isBlank(machineModel.getMachineModelName())){
-            return ResponseEty.failure("模板名称不能为空");
-        }
-        if (machineModel.getMachineId()==null){
-            return ResponseEty.failure("请选择设备");
-        }
         if (machineModel.getOperationId()==null){
             return ResponseEty.failure("请选择工艺");
         }
+        if(StringUtils.isBlank(machineModel.getMachineModelName())){
+            return ResponseEty.failure("模板名称不能为空");
+        }
+        machineModel.setOperation(operationService.getById(machineModel.getOperationId()));
+        if (machineModel.getMachineId()==null){
+            return ResponseEty.failure("请选择设备");
+        }
+        machineModel.setMachine(machineService.getById(machineModel.getMachineId()));
         if (machineModel.getProductId()==null){
             return ResponseEty.failure("请选择产品");
         }
+        machineModel.setProduct(productsService.getById(machineModel.getProductId()));
         if (machineModelService.machineModelCountByCode(machineModel.getMachineModelCode())>0){
             return ResponseEty.failure("模板编号已使用,请重新输入");
         }
@@ -217,7 +228,7 @@ public class MachineModelController {
         machineModelService.deleteMachineModel(machineModel);
         return ResponseEty.success("删除成功");
     }
-    //
+
 
 
     @PostMapping("updateUseFlag")
