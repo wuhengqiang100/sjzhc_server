@@ -2,11 +2,13 @@ package com.kexin.admin.entity.tables;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDetail;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 审核参数实体类
@@ -42,6 +44,14 @@ public class AuditParameter {
 
     @TableField(exist = false)
     private Products products;//产品实体
+
+    @TableField(value = "MACHINE_ID")
+    private Integer machineId;//设备id
+    @TableField(exist = false)
+    private Machine machine;//设备实体
+
+    @TableField(exist = false)
+    private List<AuditParameterDetail> detailList;
 
     @TableField(value = "VALUE")
     private Integer value;//审核参数的值

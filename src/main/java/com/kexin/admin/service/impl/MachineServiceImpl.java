@@ -70,6 +70,12 @@ public class MachineServiceImpl extends ServiceImpl<MachineMapper, Machine> impl
     public void saveMachine(Machine machine) {
 //        Encodes.entryptPassword(user);
 //        user.setIsLock(0);
+        if (machine.getUseFlag()){//启用
+            machine.setStartDate(new Date());
+            machine.setEndDate(null);
+        }else{//禁用
+            machine.setEndDate(new Date());
+        }
         baseMapper.insert(machine);
     }
 
@@ -77,6 +83,12 @@ public class MachineServiceImpl extends ServiceImpl<MachineMapper, Machine> impl
     @Transactional(rollbackFor = Exception.class)
     public void updateMachine(Machine machine) {
 //        dropUserRolesByUserId(user.getLoginId());
+        if (machine.getUseFlag()){//启用
+            machine.setStartDate(new Date());
+            machine.setEndDate(null);
+        }else{//禁用
+            machine.setEndDate(new Date());
+        }
         baseMapper.updateById(machine);
     }
 

@@ -1,7 +1,10 @@
 package com.kexin.admin.entity.tables;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * 角色实体类
@@ -37,6 +40,18 @@ public class Role{
     @TableField(value = "USE_FLAG", fill = FieldFill.INSERT_UPDATE)
     protected Boolean useFlag;
 
+    /**
+     * 启用时间,写入时间
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(value = "START_DATE")
+    protected Date startDate;
+    /**
+     * 禁用时间,结束时间
+     */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(value = "END_DATE")
+    protected Date endDate;
     /**
      * 说明
      */

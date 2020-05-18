@@ -43,6 +43,12 @@ public class OperationServiceImpl extends ServiceImpl<OperationMapper, Operation
     public void saveOperation(Operation operation) {
 //        Encodes.entryptPassword(user);
 //        user.setIsLock(0);
+        if (operation.getUseFlag()){//启用
+            operation.setStartDate(new Date());
+            operation.setEndDate(null);
+        }else{//禁用
+            operation.setEndDate(new Date());
+        }
         baseMapper.insert(operation);
     }
 
@@ -50,6 +56,12 @@ public class OperationServiceImpl extends ServiceImpl<OperationMapper, Operation
     @Transactional(rollbackFor = Exception.class)
     public void updateOperation(Operation operation) {
 //        dropUserRolesByUserId(user.getLoginId());
+        if (operation.getUseFlag()){//启用
+            operation.setStartDate(new Date());
+            operation.setEndDate(null);
+        }else{//禁用
+            operation.setEndDate(new Date());
+        }
         baseMapper.updateById(operation);
     }
 

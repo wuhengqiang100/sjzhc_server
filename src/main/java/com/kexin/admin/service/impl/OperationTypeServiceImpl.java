@@ -47,6 +47,12 @@ public class OperationTypeServiceImpl extends ServiceImpl<OperationTypeMapper, O
     public void saveOperationType(OperationType operationType) {
 //        Encodes.entryptPassword(user);
 //        user.setIsLock(0);
+        if (operationType.getUseFlag()){//启用
+            operationType.setStartDate(new Date());
+            operationType.setEndDate(null);
+        }else{//禁用
+            operationType.setEndDate(new Date());
+        }
         baseMapper.insert(operationType);
     }
 
@@ -54,6 +60,12 @@ public class OperationTypeServiceImpl extends ServiceImpl<OperationTypeMapper, O
     @Transactional(rollbackFor = Exception.class)
     public void updateOperationType(OperationType operationType) {
 //        dropUserRolesByUserId(user.getLoginId());
+        if (operationType.getUseFlag()){//启用
+            operationType.setStartDate(new Date());
+            operationType.setEndDate(null);
+        }else{//禁用
+            operationType.setEndDate(new Date());
+        }
         baseMapper.updateById(operationType);
     }
 

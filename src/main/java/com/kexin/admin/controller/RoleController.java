@@ -28,7 +28,7 @@ import java.util.List;
  * @Return: 
  */
 @Controller
-@RequestMapping("role")
+@RequestMapping("character")
 public class RoleController {
 
     @Autowired

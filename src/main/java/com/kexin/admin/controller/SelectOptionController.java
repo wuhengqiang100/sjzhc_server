@@ -68,6 +68,7 @@ public class SelectOptionController {
         responseEty.setSuccess(20000);
         responseEty.setAny("operationOption",selectOptionComponent.getOperationSelectOption());//工序下拉option
         responseEty.setAny("productOption",selectOptionComponent.getProductSelectOption());//产品下拉option
+        responseEty.setAny("machineOption",selectOptionComponent.getMachineSelectOption());//设备下拉option
         responseEty.setAny("judgeCheckTypeOption",selectOptionComponent.getAuditParameterTypeSelectOption());//审核参数类型下拉option
         return responseEty;
     }

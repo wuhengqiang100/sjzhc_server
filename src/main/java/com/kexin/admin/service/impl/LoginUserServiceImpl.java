@@ -29,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -169,8 +170,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
     @Transactional(rollbackFor = Exception.class)
     public ResponseEty saveLoginUser(LoginUser loginUser) {
         loginUser.setLoginUserPass(CryptographyUtil.encodeBase64("123456"));
-//        loginUser.setLoginPass("123456");
-//        loginUser.setLoginName(loginUser.getLoginUserName());
+
         baseMapper.insert(loginUser);
         if(loginUser.getLoginId()==null){
             return ResponseEty.failure("保存信息出错");
@@ -197,7 +197,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
     @Transactional(rollbackFor = Exception.class)
     public ResponseEty updateLoginUser(LoginUser loginUser) {
 //        dropUserRolesByUserId(user.getLoginId());
-        loginUser.setLoginUserPass(CryptographyUtil.encodeBase64(loginUser.getLoginUserPass()));
+
         baseMapper.updateById(loginUser);
         if(loginUser.getLoginId()==null){
             return ResponseEty.failure("保存信息出错");

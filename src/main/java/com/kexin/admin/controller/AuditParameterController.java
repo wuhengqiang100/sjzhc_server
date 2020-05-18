@@ -5,10 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.AuditParameter;
-import com.kexin.admin.service.AuditParameterService;
-import com.kexin.admin.service.AuditParameterTypeService;
-import com.kexin.admin.service.OperationService;
-import com.kexin.admin.service.ProductsService;
+import com.kexin.admin.entity.tables.Machine;
+import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
@@ -40,6 +38,8 @@ public class AuditParameterController {
     @Autowired
     ProductsService productsService;//产品servcie
 
+    @Autowired
+    MachineService machineService;//设备service
     @GetMapping("list")
     @ResponseBody
     @SysLog("审核参数列表获取")
@@ -51,6 +51,7 @@ public class AuditParameterController {
                                        @RequestParam(value = "judgeCheckTypeId",defaultValue = "") Integer judgeCheckTypeId,
                                        @RequestParam(value = "operationId",defaultValue = "") Integer operationId,
                                        @RequestParam(value = "productId",defaultValue = "") Integer productId,
+                                       @RequestParam(value = "machineId",defaultValue = "") Integer machineId,
                                        ServletRequest request){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
         PageDataBase<AuditParameter> auditParameterPageData = new PageDataBase<>();
@@ -72,12 +73,15 @@ public class AuditParameterController {
             auditParameterWrapper.eq("OPERATION_ID",operationId);
         } if (productId!=null){
             auditParameterWrapper.eq("PRODUCT_ID",productId);
+        }if (machineId!=null){
+            auditParameterWrapper.eq("MACHINE_ID",machineId);
         }
         IPage<AuditParameter> auditParameterPage = auditParameterService.page(new Page<>(page,limit),auditParameterWrapper);
         auditParameterPage.getRecords().forEach(r->{
                     r.setJudgeCheckType(auditParameterTypeService.getById(r.getJudgeCheckTypeId()));
                     r.setOperation(operationService.getById(r.getOperationId()));
                     r.setProducts(productsService.getById(r.getProductId()));
+                    r.setMachine(machineService.getById(r.getMachineId()));
                 });//外键实体添加
         data.setTotal(auditParameterPage.getTotal());
         data.setItems(auditParameterPage.getRecords());
@@ -101,9 +105,11 @@ public class AuditParameterController {
             return ResponseEty.failure("请选择工序");
         } if (auditParameter.getProductId()==null){
             return ResponseEty.failure("请选择产品");
+        }if (auditParameter.getMachineId()==null){
+            return ResponseEty.failure("请选择设备");
         }
-        if (auditParameterService.countParameterByOperationProduct(auditParameter)>0){
-            return ResponseEty.failure("一个工序的一个产品的审核参数,只能唯一");
+        if (auditParameterService.countParameterByTypeOperationProductMachine(auditParameter)>0){
+            return ResponseEty.failure("工序->产品->设备的 审核参数,只能唯一");
         }
         auditParameterService.saveAuditParameter(auditParameter);
         if(auditParameter.getJudgeCheckId()==null){
@@ -129,8 +135,16 @@ public class AuditParameterController {
         } if (auditParameter.getProductId()==null){
             return ResponseEty.failure("请选择产品");
         }
-        if (auditParameterService.countParameterByOperationProduct(auditParameter)>1){
-            return ResponseEty.failure("一个工序的一个产品的审核参数,只能唯一");
+        if (auditParameter.getMachineId()==null){
+            return ResponseEty.failure("请选择设备");
+        }
+        AuditParameter oldAuditParameter = auditParameterService.getById(auditParameter.getJudgeCheckId());
+        if(oldAuditParameter.getOperationId()!=null && oldAuditParameter.getProductId()!=null && oldAuditParameter.getMachineId()!=null){
+            if(!auditParameter.getOperationId().equals(oldAuditParameter.getOperationId()) && !auditParameter.getProductId().equals(oldAuditParameter.getProductId()) && !auditParameter.getMachineId().equals(oldAuditParameter.getMachineId())){
+                if (auditParameterService.countParameterByTypeOperationProductMachine(auditParameter)>0){
+                    return ResponseEty.failure("工序->产品->设备的 审核参数,只能唯一");
+                }
+            }
         }
         auditParameterService.updateAuditParameter(auditParameter);
 

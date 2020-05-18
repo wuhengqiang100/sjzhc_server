@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -88,6 +89,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResponseEty saveRole(Role role) {
+        if (role.getUseFlag()){//启用
+            role.setStartDate(new Date());
+            role.setEndDate(null);
+        }else{//禁用
+            role.setEndDate(new Date());
+        }
         baseMapper.insert(role);
         if(role.getRoleId()==null){
             return ResponseEty.failure("保存信息出错");
@@ -109,6 +116,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     @Override
 //    @Transactional(rollbackFor = Exception.class)
     public ResponseEty updateRole(Role role) {
+        if (role.getUseFlag()){//启用
+            role.setStartDate(new Date());
+            role.setEndDate(null);
+        }else{//禁用
+            role.setEndDate(new Date());
+        }
         baseMapper.updateById(role);
         if(role.getRoleId()==null){
             return ResponseEty.failure("保存信息出错");

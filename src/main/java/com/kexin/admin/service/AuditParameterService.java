@@ -15,7 +15,7 @@ public interface AuditParameterService extends IService<AuditParameter> {
      * @param auditParameter
      * @return
      */
-    Integer countParameterByOperationProduct(AuditParameter auditParameter);
+    Integer countParameterByTypeOperationProductMachine(AuditParameter auditParameter);
 
     /**
      * 根据机器编码计算数量,当前机器的code的数量

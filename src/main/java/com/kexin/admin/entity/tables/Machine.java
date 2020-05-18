@@ -21,6 +21,9 @@ public class Machine {
     @TableField(value = "MACHINE_CODE")
     private String machineCode;//设备编号
 
+    @TableField(value = "MACHINE_CODE_MES")
+    protected String machineCodeMes;//mes设备code,控制显示
+
     @TableField(value = "MACHINE_NAME")
     private String machineName;//设备名称
 
@@ -28,7 +31,7 @@ public class Machine {
     private String machineIp;//机器IP
 
     @TableField(value = "USE_MACHINE_WASTE_NO_JUDGE")
-    private Integer useMachineWasteNoJudge;//机检严重废人工不干预标志： 0 不启用 1 启用
+    private Boolean useMachineWasteNoJudge;//机检严重废人工不干预标志： 0 不启用 1 启用
 
     /**
      * 启用状态:0 禁止,1 启用
@@ -52,6 +55,8 @@ public class Machine {
      */
     @TableField(value = "NOTE")
     protected String note;
+
+
 
 
 

@@ -147,6 +147,12 @@ public class UserController {
                 }
             }
         }
+        //判断修改密码
+        if (StringUtils.isNotBlank(loginUser.getLoginUserPass())){
+            if(!loginUser.getLoginUserPass().equals(oldLoginUser.getLoginUserPass())){
+                loginUser.setLoginUserPass(CryptographyUtil.encodeBase64(loginUser.getLoginUserPass()));
+            }
+        }
 
         return loginUserService.updateLoginUser(loginUser);
     }

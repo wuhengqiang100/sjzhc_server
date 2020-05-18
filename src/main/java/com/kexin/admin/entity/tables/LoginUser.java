@@ -17,11 +17,19 @@ public class LoginUser{
     @TableField(value = "OPERATOR_ID")
     private Integer operatorId; //用户Id,外键
 
+
+
     @TableField(value = "LOGIN_USER_NAME")
     private String loginUserName; //登录名称 (新系统)
 
     @TableField(value = "LOGIN_USER_PASS")
-    private String loginUserPass; //登录密码 (老系统)
+    private String loginUserPass; //登录密码 (新系统)
+
+    @TableField(value = "LOGIN_NAME")
+    private String loginName; //登录名称 (老系统)//已废弃
+
+    @TableField(value = "LOGIN_PASS")
+    private String loginPass; //登录密码 (老系统)//已废弃
 
 
 /*    *//**

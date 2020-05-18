@@ -1,5 +1,6 @@
 package com.kexin.common.util.encry;
 
+
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.crypto.hash.Md5Hash;
 

@@ -21,10 +21,13 @@ public class AuditParameterServiceImpl extends ServiceImpl<AuditParameterMapper,
 
 
     @Override
-    public Integer countParameterByOperationProduct(AuditParameter auditParameter) {
+    public Integer countParameterByTypeOperationProductMachine(AuditParameter auditParameter) {
         QueryWrapper<AuditParameter> auditParameterQueryWrapper=new QueryWrapper<>();
         auditParameterQueryWrapper.eq("OPERATION_ID",auditParameter.getOperationId())
-                .eq("PRODUCT_ID",auditParameter.getProductId());
+                .eq("PRODUCT_ID",auditParameter.getProductId())
+                .eq("MACHINE_ID",auditParameter.getMachineId())
+                .eq("JUDGE_CHECK_TYPE_ID",auditParameter.getJudgeCheckTypeId())
+        ;
         return baseMapper.selectCount(auditParameterQueryWrapper);
     }
 

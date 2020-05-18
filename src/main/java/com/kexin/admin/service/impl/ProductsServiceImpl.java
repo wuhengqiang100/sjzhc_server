@@ -46,6 +46,12 @@ public class ProductsServiceImpl extends ServiceImpl<ProductsMapper, Products> i
     public void saveProducts(Products product) {
 //        Encodes.entryptPassword(user);
 //        user.setIsLock(0);
+        if (product.getUseFlag()){//启用
+            product.setStartDate(new Date());
+            product.setEndDate(null);
+        }else{//禁用
+            product.setEndDate(new Date());
+        }
         baseMapper.insert(product);
     }
 
@@ -53,6 +59,12 @@ public class ProductsServiceImpl extends ServiceImpl<ProductsMapper, Products> i
     @Transactional(rollbackFor = Exception.class)
     public void updateProducts(Products product) {
 //        dropUserRolesByUserId(user.getLoginId());
+        if (product.getUseFlag()){//启用
+            product.setStartDate(new Date());
+            product.setEndDate(null);
+        }else{//禁用
+            product.setEndDate(new Date());
+        }
         baseMapper.updateById(product);
     }
 
