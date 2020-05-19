@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.AuditParameter;
 import com.kexin.admin.entity.tables.Machine;
+import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDelete;
+import com.kexin.admin.entity.vo.AuditParameter.AuditParameterSelect;
 import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
@@ -17,7 +19,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletRequest;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toCollection;
 
 /**
  * 审核参数配置管理controller层
@@ -43,7 +52,7 @@ public class AuditParameterController {
     @GetMapping("list")
     @ResponseBody
     @SysLog("审核参数列表获取")
-    public PageDataBase<AuditParameter> list(@RequestParam(value = "page",defaultValue = "1")Integer page,
+    public PageDataBase<AuditParameterSelect> list(@RequestParam(value = "page",defaultValue = "1")Integer page,
                                        @RequestParam(value = "limit",defaultValue = "10")Integer limit,
                                        @RequestParam(value = "sort")String sort,
                                        @RequestParam(value = "useFlag",defaultValue = "")String useFlag,
@@ -54,7 +63,7 @@ public class AuditParameterController {
                                        @RequestParam(value = "machineId",defaultValue = "") Integer machineId,
                                        ServletRequest request){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
-        PageDataBase<AuditParameter> auditParameterPageData = new PageDataBase<>();
+        PageDataBase<AuditParameterSelect> auditParameterPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<AuditParameter> auditParameterWrapper = new QueryWrapper<>();
         if (sort.equals("+id")){
@@ -83,15 +92,87 @@ public class AuditParameterController {
                     r.setProducts(productsService.getById(r.getProductId()));
                     r.setMachine(machineService.getById(r.getMachineId()));
                 });//外键实体添加
-        data.setTotal(auditParameterPage.getTotal());
-        data.setItems(auditParameterPage.getRecords());
+        List<AuditParameterSelect> auditParameterSelectList = this.handleRecords(auditParameterPage.getRecords());
+
+        data.setTotal(Long.valueOf(auditParameterSelectList.size()));
+
+        data.setItems(auditParameterSelectList);
+//        data.setTotal(auditParameterPage.getTotal());
+//        data.setItems(auditParameterPage.getRecords());
         auditParameterPageData.setData(data);
         return auditParameterPageData;
     }
 
 
+    private List<AuditParameterSelect>  handleRecords(List<AuditParameter> auditParameterList){
+        List<AuditParameterSelect> auditParameterSelectList = new ArrayList<>();
+        if (this.analyze(auditParameterList)!=null){
+            auditParameterSelectList.addAll(this.analyze(auditParameterList));
+        }
+/*        auditParameterSelectList = auditParameterSelectList.stream().collect(
+                collectingAndThen(
+                        toCollection(() -> new TreeSet<>(Comparator.comparing(o-> o.))), ArrayList::new)
+                toCollection(() -> new TreeSet<>(Comparator.comparing(o -> o.getId()))
+        );*/
+        auditParameterSelectList= auditParameterSelectList.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(o -> o.getOperationName() + ";" + o.getProductName()+ ";" + o.getMachineName()))), ArrayList::new));
+
+        for (AuditParameterSelect pSelect:auditParameterSelectList) {
+
+           /* Map map = new HashMap();;
+            pSelect.getDetails().forEach(r->{
+                map.put(r.getName(),r.getValue());
 
 
+            });*/
+            final String[] names = {""};
+            final String[] values = {""};
+            pSelect.getDetails().forEach(r->{
+                names[0] = names[0] +"     &nbsp;  &nbsp;    &nbsp;    &nbsp;                "+r.getName()+"              ";
+                values[0] = values[0] +"                   "+r.getValue()+"              ";
+            });
+            pSelect.setNames(names[0]);
+            pSelect.setValues(values[0]);
+        }
+        return auditParameterSelectList;
+    };
+
+
+    private List<AuditParameterSelect> analyze(List<AuditParameter> auditParameterList){
+
+        List<AuditParameterSelect> auditParameterSelectList=new ArrayList<>();
+        AuditParameterSelect auditParameterSelect = null;
+        for(int i=0;i<auditParameterList.size();i++) {
+
+            boolean secondLoop = true;
+
+            AuditParameter audit1=auditParameterList.get(i);
+
+            for(int j=0;j<auditParameterList.size();j++) {
+                if (!secondLoop){
+                    continue;
+                }
+                AuditParameter audit2=auditParameterList.get(j);
+                //如果工序+产品+设备都一样
+                Boolean insertFlag=false;
+                if (audit1.getOperationId().equals(audit2.getOperationId()) && audit1.getProductId().equals(audit2.getProductId()) && audit1.getMachineId().equals(audit2.getMachineId()) ) {
+                    auditParameterSelect=new AuditParameterSelect();
+                    auditParameterSelect.setOperationName(audit2.getOperation().getOperationName());
+                    auditParameterSelect.setProductName(audit2.getProducts().getProductName());
+                    auditParameterSelect.setMachineName(audit2.getMachine().getMachineName());
+                    auditParameterSelect.setUseFlag(audit2.getUseFlag());
+                    auditParameterSelect.setStartDate(audit2.getStartDate());
+                    auditParameterSelect.setEndDate(audit2.getEndDate());
+                    auditParameterSelect.setNote(audit2.getNote());
+                    insertFlag=true;
+                    auditParameterSelect.setDetails(auditParameterService.getAuditParameterDetail(audit2));//放入参数的list
+                    secondLoop = false;
+                }
+
+            }
+            auditParameterSelectList.add(auditParameterSelect);
+        }
+        return auditParameterSelectList;
+    }
     @PostMapping("create")
     @ResponseBody
     @SysLog("新增审核参数数据")
@@ -157,20 +238,18 @@ public class AuditParameterController {
     @PostMapping("delete")
     @ResponseBody
     @SysLog("删除审核参数数据(单个)")
-    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id){
-        if(id==null){
-            return ResponseEty.failure("参数错误");
-        }
+    public ResponseEty delete(@RequestBody AuditParameterDelete auditParameterDelete){
+        Integer deleteFlag=auditParameterService.deleteAuditParameter(auditParameterDelete);
+        if (deleteFlag>0){
+            return ResponseEty.success("删除成功");
+        }else{
+            return ResponseEty.failure("删除失败");
 
-        AuditParameter auditParameter=auditParameterService.getById(id);
-        if(auditParameter == null){
-            return ResponseEty.failure("审核参数不存在");
         }
-        auditParameterService.deleteAuditParameter(auditParameter);
-        return ResponseEty.success("删除成功");
     }
     //
 //    @RequiresPermissions("sys:user:delete")
+/*
     @PostMapping("deleteSome")
     @ResponseBody
     @SysLog("删除审核参数数据(多个)")
@@ -181,6 +260,7 @@ public class AuditParameterController {
         AuditParameters.forEach(m -> auditParameterService.deleteAuditParameter(m));
         return ResponseEty.success("批量删除成功");
     }
+*/
 
 
     @PostMapping("updateUseFlag")

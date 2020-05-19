@@ -153,6 +153,15 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
         return baseMapper.selectLoginUserByName(userName);
     }
 
+    @Override
+    public Integer loginUserCountByOperatorId(Integer operatorId) {
+        QueryWrapper<LoginUser> wrapper = new QueryWrapper<>();
+        wrapper.eq("OPERATOR_ID",operatorId);
+        Integer count = baseMapper.selectCount(wrapper);
+        return count;
+    }
+
+
     //新增和编辑加上,事务回滚时用到
     //@Transactional(rollbackFor = Exception.class)
 
@@ -169,7 +178,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResponseEty saveLoginUser(LoginUser loginUser) {
-        loginUser.setLoginUserPass(CryptographyUtil.encodeBase64("123456"));
+
 
         baseMapper.insert(loginUser);
         if(loginUser.getLoginId()==null){

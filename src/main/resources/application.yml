@@ -5,8 +5,8 @@ server:
       uri-encoding: UTF-8
 #    address: 192.168.137.200
 #    address: 192.168.137.100
-#    address: 192.168.137.2
-    address: 127.0.0.1
+    address: 192.168.137.2
+#    address: 127.0.0.1
 #    address: 10.41.35.150
 
 #cxf:
@@ -34,7 +34,7 @@ ftpserver:
 spring:
     #激活哪一个环境的配置文件
     profiles:
-      active: pro
+      active: dev
     jackson:
       default-property-inclusion: USE_DEFAULTS # 全局jackson配置
     devtools:
@@ -118,6 +118,7 @@ mybatis-plus:
   mapper-locations: classpath:/mapper/**/*Mapper.xml
   typeAliasesPackage: com.kexin.admin.entity.tables
   global-config:
+    banner: true
     key-generator:
       com.baomidou.mybatisplus.incrementer.OracleKeyGenerator
     db-config:
@@ -126,8 +127,9 @@ mybatis-plus:
       #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
       field-strategy: not_empty
       #驼峰下划线转换
-      column-underline: true
+      column-underline: false
       db-type: oracle
+      table-underline: false
     #刷新mapper
     refresh-mapper: true
   #原生配置

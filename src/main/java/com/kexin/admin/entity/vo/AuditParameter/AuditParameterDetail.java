@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AuditParameterDetail {
     private String name;
-    private String value;
+    private Integer value;
 }

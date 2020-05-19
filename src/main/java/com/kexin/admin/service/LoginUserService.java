@@ -17,7 +17,12 @@ public interface LoginUserService extends IService<LoginUser> {
 
     LoginUser selectLoginUserByName(@Param("userName") String userName);
 
-
+    /**
+     * 判断一个用户只能有一个账户
+     * @param operatorId
+     * @return
+     */
+    Integer loginUserCountByOperatorId(@Param("operatorId") Integer operatorId);
 
     /**
      * 根据用户名称计算数量

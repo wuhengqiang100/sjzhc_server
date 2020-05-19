@@ -28,14 +28,19 @@ public class ProduceLog {
     private Date logDate;
 
     @TableField(value = "PRODUCT_ID")
-//    @BindField(entity = Products.class, field="productName", condition="this.PRODUCT_ID=DIC_PRODUCTS.productId")
     private Integer productId;
+
+    @TableField(exist = false)
+    private Products product;
 
     @TableField(value = "CART_NUMBER")
     private String cartNumber;
 
     @TableField(value = "OPERATION_ID")
     private Integer operationId;
+
+    @TableField(exist = false)
+    private Operation operation;
 
     @TableField(value = "OPERATOR_ID")
     private Integer operatorId;
@@ -55,7 +60,7 @@ public class ProduceLog {
     private Date endDate;
 
     @TableField(value = "ACTION_COUNT")
-    private Integer actionCount;
+    private Integer actionCount;//执行次数
 
     @TableField(value = "NOTE")
     private String note;

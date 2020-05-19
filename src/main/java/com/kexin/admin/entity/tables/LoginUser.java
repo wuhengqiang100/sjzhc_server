@@ -25,11 +25,11 @@ public class LoginUser{
     @TableField(value = "LOGIN_USER_PASS")
     private String loginUserPass; //登录密码 (新系统)
 
-    @TableField(value = "LOGIN_NAME")
+    /*@TableField(value = "LOGIN_NAME")
     private String loginName; //登录名称 (老系统)//已废弃
 
     @TableField(value = "LOGIN_PASS")
-    private String loginPass; //登录密码 (老系统)//已废弃
+    private String loginPass; //登录密码 (老系统)//已废弃*/
 
 
 /*    *//**

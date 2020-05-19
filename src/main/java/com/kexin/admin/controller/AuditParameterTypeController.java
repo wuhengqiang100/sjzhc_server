@@ -143,6 +143,11 @@ public class AuditParameterTypeController {
         if(auditParameterType == null){
             return ResponseEty.failure("审核参数种类不存在");
         }
+        QueryWrapper<AuditParameterType> auditParameterTypeQueryWrapper=new QueryWrapper<>();
+        auditParameterTypeQueryWrapper.eq("JUDGE_CHECK_TYPE_ID",id);
+        if (auditParameterTypeService.count(auditParameterTypeQueryWrapper)>0){
+            return ResponseEty.failure("当前参数种类有参数数据,不能删除");
+        }
         auditParameterTypeService.deleteAuditParameterType(auditParameterType);
         return ResponseEty.success("删除成功");
     }

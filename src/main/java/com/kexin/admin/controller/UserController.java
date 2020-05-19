@@ -53,6 +53,7 @@ public class UserController {
                                       @RequestParam(value = "sort")String sort,
                                       @RequestParam(value = "useFlag",defaultValue = "")String useFlag,
                                       @RequestParam(value = "title",defaultValue = "") String title,
+                                      @RequestParam(value = "operatorId",defaultValue = "") Integer operatorId,
                                       ServletRequest request){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
         PageDataBase<LoginUser> loginUserPageData = new PageDataBase<>();
@@ -69,6 +70,9 @@ public class UserController {
         }
         if (StringUtils.isNotEmpty(title)){
             loginUserWrapper.like("LOGIN_USER_NAME",title);
+        }
+        if (operatorId!=null){
+            loginUserWrapper.like("OPERATOR_ID",operatorId);
         }
 
         IPage<LoginUser> loginUserPage = loginUserService.page(new Page<>(page,limit),loginUserWrapper);
@@ -116,13 +120,19 @@ public class UserController {
         if(loginUser.getOperatorId()==null){
             return ResponseEty.failure("请选择用户");
         }
+        if (loginUserService.loginUserCountByOperatorId(loginUser.getOperatorId())>0){
+            return ResponseEty.failure("一个用户只能有一个账户,该用户已经有账户");
+        }
         if(StringUtils.isBlank(loginUser.getLoginUserName())){
             return ResponseEty.failure("登陆名称不能为空");
         }
-
+        if(StringUtils.isBlank(loginUser.getLoginUserPass())){
+            return ResponseEty.failure("用户密码不能为空");
+        }
         if (loginUserService.loginUserCountByName(loginUser.getLoginUserName())>0){
             return ResponseEty.failure("用户名称已使用,请重新输入");
         }
+
         return loginUserService.saveLoginUser(loginUser);
     }
 
@@ -133,8 +143,9 @@ public class UserController {
         if(loginUser.getOperatorId()==null){
             return ResponseEty.failure("用户ID不能为空");
         }
+
         if(StringUtils.isBlank(loginUser.getLoginUserName())){
-            return ResponseEty.failure("用户名称不能为空");
+            return ResponseEty.failure("登陆名称不能为空");
         }
         if(StringUtils.isBlank(loginUser.getLoginUserPass())){
             return ResponseEty.failure("用户密码不能为空");
@@ -146,6 +157,10 @@ public class UserController {
                     return ResponseEty.failure("该用户名称已经使用");
                 }
             }
+        }
+        if (!loginUser.getOperatorId().equals(oldLoginUser.getOperatorId()))
+        if (loginUserService.loginUserCountByOperatorId(loginUser.getOperatorId())>0){
+            return ResponseEty.failure("一个用户只能有一个账户,该用户已经有账户");
         }
         //判断修改密码
         if (StringUtils.isNotBlank(loginUser.getLoginUserPass())){

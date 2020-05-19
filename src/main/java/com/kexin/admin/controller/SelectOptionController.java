@@ -73,5 +73,46 @@ public class SelectOptionController {
         return responseEty;
     }
 
+    @PostMapping("operator")
+    @ResponseBody
+    @SysLog("获取登陆账户页面的select条件")
+    public ResponseEty listOptionOperator(){
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        responseEty.setAny("operatorOption",selectOptionComponent.getOperatorSelectOption());//工序下拉option
+        return responseEty;
+    }
+
+    @PostMapping("errorType")
+    @ResponseBody
+    @SysLog("获取错误类型页面的select条件")
+    public ResponseEty listOptionErrorType(){
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        responseEty.setAny("operationOption",selectOptionComponent.getOperationSelectOption());//工序下拉option
+        return responseEty;
+    }
+
+    @PostMapping("workUnit")
+    @ResponseBody
+    @SysLog("获取几天配置页面的select条件")
+    public ResponseEty listOptionWorkUnit(){
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        responseEty.setAny("operatorOption",selectOptionComponent.getOperatorSelectOption());//工序下拉option
+        return responseEty;
+    }
+    @PostMapping("produceLog")
+    @ResponseBody
+    @SysLog("获取几天配置页面的select条件")
+    public ResponseEty listOptionProduceLog(){
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        responseEty.setAny("operationOption",selectOptionComponent.getOperationSelectOption());//工序下拉option
+        responseEty.setAny("productOption",selectOptionComponent.getProductSelectOption());//产品下拉option
+        responseEty.setAny("operatorOption",selectOptionComponent.getOperatorSelectOption());//工序下拉option
+        return responseEty;
+    }
+
 
 }

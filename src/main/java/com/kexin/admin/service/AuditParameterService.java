@@ -2,12 +2,23 @@ package com.kexin.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kexin.admin.entity.tables.AuditParameter;
+import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDelete;
+import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDetail;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 审核参数配置,service接口层
  */
 public interface AuditParameterService extends IService<AuditParameter> {
+
+    /**
+     * 根据工序,产品,设备 获取参数list
+     * @param auditParameter
+     * @return
+     */
+    List<AuditParameterDetail> getAuditParameterDetail(AuditParameter auditParameter);
 
 
     /**
@@ -46,10 +57,10 @@ public interface AuditParameterService extends IService<AuditParameter> {
     void updateAuditParameter(@Param("auditParameter") AuditParameter auditParameter);
 
     /**
-     * 删除审核参数(单个)
-     * @param auditParameter
+     * 删除工序+产品+设备下的所有配置数据
+     * @param auditParameterDelete
      */
-    void deleteAuditParameter(@Param("auditParameter") AuditParameter auditParameter);
+    Integer deleteAuditParameter(@Param("auditParameterDelete") AuditParameterDelete auditParameterDelete);
 
     /**
      * 禁用或者启用审核参数
