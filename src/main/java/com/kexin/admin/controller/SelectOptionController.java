@@ -83,7 +83,7 @@ public class SelectOptionController {
         return responseEty;
     }
 
-    @PostMapping("errorType")
+    @PostMapping("wasterReason")
     @ResponseBody
     @SysLog("获取错误类型页面的select条件")
     public ResponseEty listOptionErrorType(){
