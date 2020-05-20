@@ -16,34 +16,59 @@ public interface QaInspectMasterService extends IService<QaInspectMaster> {
 
     ResponseEty saveQaInspectMaster(QaInspectChange inspectChange);
     /**
-     * 获取所有的分活信息
+     * 获取没有审核的车次,以及仅限于今天已经审核的和已分活的车次
      * @return
      */
     List<QaInspectMaster> getAllQaInspectMaster();
 
     /**
-     * 根据 ALLOW_JUDGE 获取分活的QaInspectMaster
+     * 获取没有审核的车次
      * @return
      */
-//    List<Map<String,Object>> getQaInspectMasterHistory();
+    ResponseEty getCanAuditInspectMaster();
 
     /**
-     * 保存当前已审核的信息
-     * @param transferListransfer
+     * 保存审核的车次西门西
+     * @param inspectmIds
      * @return
      */
-//    QaInspectDatas saveQaInspectAllow(List<QaInspectTransfer> transferListransfer);
+    ResponseEty saveCanAuditInspectMaster(Integer[]  inspectmIds);
 
     /**
-     * 回退已审核的信息
-     * @param transferListransfer
+     * 获取没有审核的车次
      * @return
      */
-//    ResponseEntity returnQaInspect(List<QaInspectTransfer> transferListransfer);
+    ResponseEty getAlreadyAuditInspectMaster();
+
 
     /**
-     * 快速审核信息
+     * 保存回退审核的车次西门西
+     * @param inspectmIds
      * @return
      */
-//    ResponseEntity quickSaveInspect();
+    ResponseEty saveAlreadyAuditInspectMaster(Integer[]  inspectmIds);
+
+     /**
+     * 获取不走审核的车次
+     * @return
+     */
+     ResponseEty getNotAuditInspectMaster();
+
+
+    /**
+     * 保存走全检的车次
+     * @param inspectmIds
+     * @return
+     */
+    ResponseEty saveNotAuditInspectMaster(Integer[]  inspectmIds);
+
+    /**
+     * 回退走全检的车次
+     * @param inspectmIds
+     * @return
+     */
+    ResponseEty returnNotAuditInspectMaster(Integer[]  inspectmIds);
+
+
+
 }

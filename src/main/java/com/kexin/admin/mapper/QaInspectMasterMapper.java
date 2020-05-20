@@ -12,6 +12,40 @@ import java.util.List;
 public interface QaInspectMasterMapper extends BaseMapper<QaInspectMaster> {
 
     /**
+     * 获取没有审核的车次
+     * @return
+     */
+    List<QaInspectMaster> getCanAuditInspectMaster();
+
+    /**
+     * 获取已经审核的车次
+     * @return
+     */
+    List<QaInspectMaster> getAlreadyAuditInspectMaster(@Param("startTime") Date startTime,@Param("endTime") Date endTime);
+
+    /**
+     * 获取不走审核的车次
+     * @return
+     */
+    List<QaInspectMaster> getNotAuditInspectMaster(@Param("startTime") Date startTime,@Param("endTime") Date endTime);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
      * 获取所有的分活信息
      * @return
      */

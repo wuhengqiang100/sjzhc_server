@@ -27,7 +27,7 @@ public class QaInspectMaster {
 
     @TableField(value = "INFO_NUMBER")
     private Integer infoNumber;//整万信息数量
-    @TableField(value = "NO_CHECK_NUM")
+    @TableField(value = "NOCHECK_NUMBER")
     private Integer noCheckNum;//未检信息数量
 
     @TableField(value = "ALLOW_JUDGE")

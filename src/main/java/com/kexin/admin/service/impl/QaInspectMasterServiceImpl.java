@@ -35,6 +35,84 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
     @Resource
     OperatorMapper operatorMapper;//人员mapper
 
+
+    @Override
+    public ResponseEty getCanAuditInspectMaster() {
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        responseEty.setAny("canAuditTable",baseMapper.getCanAuditInspectMaster());
+        return responseEty;
+    }
+
+    @Override
+    public ResponseEty saveCanAuditInspectMaster(Integer[] inspectmIds) {
+        QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
+        QaInspectMaster qaInspectMaster=new QaInspectMaster();
+        qaInspectMaster.setAllowJudge(1);
+        qaInspectMasterQueryWrapper.in("INSPECTM_ID",inspectmIds);
+        int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
+        if (flag>0){
+            return ResponseEty.success("审核成功");
+        }
+        return ResponseEty.failure("审核失败");
+    }
+
+    @Override
+    public ResponseEty getAlreadyAuditInspectMaster() {
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        responseEty.setAny("alreadyAuditTable",baseMapper.getAlreadyAuditInspectMaster(TodayUtil.getStartTime(),TodayUtil.getEndTime()));
+        return responseEty;
+    }
+
+    @Override
+    public ResponseEty saveAlreadyAuditInspectMaster(Integer[] inspectmIds) {
+        QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
+        QaInspectMaster qaInspectMaster=new QaInspectMaster();
+        qaInspectMaster.setAllowJudge(0);
+        qaInspectMasterQueryWrapper.in("INSPECTM_ID",inspectmIds);
+        int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
+        if (flag>0){
+            return ResponseEty.success("回退成功");
+        }
+        return ResponseEty.failure("回退失败");
+    }
+
+    @Override
+    public ResponseEty getNotAuditInspectMaster() {
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        responseEty.setAny("notAuditTable",baseMapper.getNotAuditInspectMaster(TodayUtil.getStartTime(),TodayUtil.getEndTime()));
+        return responseEty;
+    }
+
+    @Override
+    public ResponseEty saveNotAuditInspectMaster(Integer[] inspectmIds) {
+        QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
+        QaInspectMaster qaInspectMaster=new QaInspectMaster();
+        qaInspectMaster.setAllowJudge(-1);
+        qaInspectMasterQueryWrapper.in("INSPECTM_ID",inspectmIds);
+        int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
+        if (flag>0){
+            return ResponseEty.success("废弃成功");
+        }
+        return ResponseEty.failure("废弃失败");
+    }
+
+    @Override
+    public ResponseEty returnNotAuditInspectMaster(Integer[] inspectmIds) {
+        QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
+        QaInspectMaster qaInspectMaster=new QaInspectMaster();
+        qaInspectMaster.setAllowJudge(0);
+        qaInspectMasterQueryWrapper.in("INSPECTM_ID",inspectmIds);
+        int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
+        if (flag>0){
+            return ResponseEty.success("全检回退成功");
+        }
+        return ResponseEty.failure("全检回退失败");
+    }
+
+
     @Override
     @Transactional(rollbackFor = Exception.class)//有修改操作一定要加上事务
     public ResponseEty saveQaInspectMaster(QaInspectChange inspectChange) {
@@ -68,6 +146,9 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
 //        Calendar
         return baseMapper.getAllQaInspectMaster(TodayUtil.getStartTime(),TodayUtil.getEndTime());
     }
+
+
+
 
     /**
      * 保存日志操作
@@ -111,152 +192,6 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
             }
         }
     }
-
-
-
-  /*  @Override
-    public List<Map<String,Object>> getQaInspectMasterHistory() {
-        //获取已分活的审核信息 allowJudge==2
-        List<QaInspectMaster> qaInspectMasterList=baseMapper.selectQaInspectMaster(2);
-        List<Map<String,Object>> historyInspectList=new ArrayList<>();
-        Map<String,Object> map=null;
-        for(QaInspectMaster q:qaInspectMasterList){
-            map=new HashMap<>();
-            map.put("title",q.getWipJobs().getCartNumber()+"  "+q.getProduct().getProductName()+"  "+q.getOperation().getOperationName());
-            historyInspectList.add(map);
-        }
-        return historyInspectList;
-    }*/
-
-    /**
-     * 只处理审核
-     * 未审核的数据的更新为审核的数据
-     * allowJudge==1
-     * @param transferListransfer
-     * @return
-     */
-/*    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public List<QaInspectMaster> saveQaInspectAllow(List<QaInspectTransfer> transferListransfer) {
-
-        for(QaInspectTransfer q:transferListransfer){
-            QueryWrapper<QaInspectMaster> wrapper = new QueryWrapper<>();
-            wrapper.eq("LOG_ID",q.getValue());
-            QaInspectMaster qa=baseMapper.selectOne(wrapper);
-            qa.setAllowJudge(1);
-            baseMapper.updateById(qa);
-        }
-        return getInspectMasterData();
-    }*/
-
-    /**
-     * 回退  审核的数据
-     * @param transferListransfer
-     * @return
-     */
- /*   @Transactional(rollbackFor = Exception.class)
-    @Override
-    public ResponseEntity returnQaInspect(List<QaInspectTransfer> transferListransfer) {
-        ResponseEntity responseEntity=new ResponseEntity();
-        String message=null;//错误信息
-        try{
-            for (QaInspectTransfer q:transferListransfer) {
-                //根据logId获取InspectMaster信息
-                QaInspectMaster qa=baseMapper.selectOneInspeceMasterByLogId(Integer.valueOf(q.getValue()));
-                if (qa.getAllowJudge()==1){ //回退操作
-                    qa.setAllowJudge(0);
-                    baseMapper.updateById(qa);
-                }else if(qa.getAllowJudge()==2){
-                    message+=qa.getWipJobs().getCartNumber()+"  "+qa.getProduct().getProductName()+"  "+qa.getOperation().getOperationName()+"1000   20    3"+"\n";
-                }
-            }
-            responseEntity.setSuccess(true);
-            if (message!=null){
-                responseEntity.setMessage(message);
-            }
-        }catch(Exception e){
-            responseEntity.setSuccess(false);
-            responseEntity.setMessage("回退错误!");
-        }
-        responseEntity.setAny("qaInspectData", getInspectMasterData());
-        return responseEntity;
-    }*/
-
-    /**
-     * 快速审核信息
-     * @return
-     */
-/*
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public ResponseEntity quickSaveInspect() {
-        ResponseEntity responseEntity=new ResponseEntity();
-
-        QueryWrapper<QaInspectMaster> wrapper = new QueryWrapper<>();
-        wrapper.eq("ALLOW_JUDGE",0);
-        List<QaInspectMaster> qaInspectMasterList=baseMapper.selectList(wrapper);
-        if (qaInspectMasterList.size()==0){
-            responseEntity.setSuccess(false);
-            return ResponseEntity.failure("当前没有需要审核的信息");
-        }
-        for (QaInspectMaster q:qaInspectMasterList){
-            q.setAllowJudge(1);
-            baseMapper.updateById(q);
-        }
-        responseEntity.setSuccess(true);
-        responseEntity.setAny("qaInspectData", getInspectMasterData());
-         return responseEntity;
-    }
-*/
-
-
-    //新增和编辑加上,事务回滚时用到
-    //@Transactional(rollbackFor = Exception.class)
-/*
-
-    @Override
-    public Integer qaInspectMasterCountByCode(String qaInspectMasterCode) {
-        QueryWrapper<QaInspectMaster> wrapper = new QueryWrapper<>();
-        wrapper.eq("MACHINE_CODE",qaInspectMasterCode);
-        Integer count = baseMapper.selectCount(wrapper);
-        return count;
-    }
-
-    @Override
-    public Integer qaInspectMasterCountByName(String qaInspectMasterName) {
-        QueryWrapper<QaInspectMaster> wrapper = new QueryWrapper<>();
-        wrapper.eq("MACHINE_NAME",qaInspectMasterName);
-        Integer count = baseMapper.selectCount(wrapper);
-        return count;
-    }
-
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void saveQaInspectMaster(QaInspectMaster qaInspectMaster) {
-//        Encodes.entryptPassword(user);
-//        user.setIsLock(0);
-        baseMapper.insert(qaInspectMaster);
-    }
-
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void updateQaInspectMaster(QaInspectMaster qaInspectMaster) {
-//        dropUserRolesByUserId(user.getLoginId());
-        baseMapper.updateById(qaInspectMaster);
-    }
-
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void deleteQaInspectMaster(QaInspectMaster qaInspectMaster) {
-        baseMapper.deleteById(qaInspectMaster.getQaInspectMasterId());
-    }
-
-    @Override
-    public void lockQaInspectMaster(QaInspectMaster qaInspectMaster) {
-        qaInspectMaster.setUseFlag(qaInspectMaster.getUseFlag()==1?0:1);
-        baseMapper.updateById(qaInspectMaster);
-    }
-*/
 
 
 }

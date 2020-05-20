@@ -171,10 +171,21 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
 
     @Override
     public List<SysFunctions> getAllSysFunctions() {
-        QueryWrapper<SysFunctions> sysMenusQueryWrapper = new QueryWrapper<>();
-        sysMenusQueryWrapper.eq("USE_FLAG",1).orderByAsc("FUNCTION_TYPE_ID");//所有启用的权限
-        List<SysFunctions> functionList=baseMapper.selectList(sysMenusQueryWrapper);
-        return functionList;
+        QueryWrapper<SysFunctions> sysMenusQueryWrapperb = new QueryWrapper<>();
+        sysMenusQueryWrapperb.eq("USE_FLAG",1)
+                .isNotNull("FUNCTION_PARENT_ID")
+                .eq("FUNCTION_TYPE_ID",1)
+                .orderByAsc("FUNCTION_SORT");//所有启用的权限
+        List<SysFunctions> functionListb=baseMapper.selectList(sysMenusQueryWrapperb);
+        QueryWrapper<SysFunctions> sysMenusQueryWrapperc= new QueryWrapper<>();
+        sysMenusQueryWrapperc.eq("USE_FLAG",1)
+                .eq("FUNCTION_TYPE_ID",2)
+                .orderByAsc("FUNCTION_ID");//所有启用的权限
+        List<SysFunctions> functionListc=baseMapper.selectList(sysMenusQueryWrapperc);
+        List<SysFunctions> sysFunctionsList=new ArrayList<>();
+        sysFunctionsList.addAll(functionListb);
+        sysFunctionsList.addAll(functionListc);
+        return sysFunctionsList;
     }
 
     @Override
@@ -224,13 +235,48 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
         }
         QueryWrapper<SysFunctions> sysFunctionsQueryWrapper = new QueryWrapper<>();
         sysFunctionsQueryWrapper.eq("FUNCTION_TYPE_ID",1)//1是b端菜单类型
-        .isNull("FUNCTION_PARENT_ID")//第一级菜单
-        .in("FUNCTION_ID",functonIds)
-                .orderByAsc("FUNCTION_SORT");
+        .isNotNull("FUNCTION_PARENT_ID")//第二级菜单
+        .in("FUNCTION_ID",functonIds) //去重,去掉重复的菜单
+                .orderByAsc("FUNCTION_PARENT_ID");
         List<SysFunctions> sysFunctionsList=baseMapper.selectList(sysFunctionsQueryWrapper);
+
         List<Menu> sysMenusList=new ArrayList<>();
-        for (SysFunctions function:sysFunctionsList) {
-            sysMenusList.add(getMenus(function));
+//        for (SysFunctions function:sysFunctionsList) {
+//            sysMenusList.add(getMenus(function));
+//        }
+        Integer parentFunctionId=null;
+        Menu parentMenu = null;
+        List<Menu> menuList=new ArrayList<>();
+        for (int i = 0; i < sysFunctionsList.size(); i++) {
+
+            SysFunctions parentFunction;
+
+
+            if (parentFunctionId==null){
+                parentFunctionId=sysFunctionsList.get(i).getParentId();
+                QueryWrapper<SysFunctions> sysMenusChildQueryWrapper = new QueryWrapper<>();
+                sysMenusChildQueryWrapper.eq("FUNCTION_ID",parentFunctionId);
+                parentFunction=baseMapper.selectOne(sysMenusChildQueryWrapper);
+                parentMenu=getMenuMeta(parentFunction);
+            }
+            Integer pId=sysFunctionsList.get(i).getParentId();
+            System.out.println(parentFunctionId+ "++++"+pId);
+            if (parentFunctionId.equals(pId)){
+                menuList.add(getMenuMeta(sysFunctionsList.get(i)));
+            }else {
+                parentFunctionId=null;
+                parentMenu.setChildren(menuList);
+                sysMenusList.add(parentMenu);
+                parentMenu = null;
+                menuList=new ArrayList<>();
+                menuList.add(getMenuMeta(sysFunctionsList.get(i)));
+
+            }
+            if (i==sysFunctionsList.size()-1){
+                parentMenu.setChildren(menuList);
+                sysMenusList.add(parentMenu);
+            }
+
         }
         responseEty.setSuccess(20000);
         responseEty.setAny("asyncRoutes",sysMenusList);

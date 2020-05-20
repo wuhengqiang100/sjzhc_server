@@ -1,12 +1,17 @@
 package com.kexin.admin.controller;
 
 
+import com.kexin.admin.entity.tables.LoginUser;
+import com.kexin.admin.entity.tables.WasterReason;
+import com.kexin.admin.entity.vo.common.ResetUser;
 import com.kexin.admin.service.LoginUserService;
 import com.kexin.admin.service.SysFunctionService;
 import com.kexin.admin.service.SysMenusService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.component.TestComponent;
 import com.kexin.common.util.ResponseEty;
+import com.kexin.common.util.encry.CryptographyUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,5 +159,32 @@ public class CommonController {
 //        testComponent.list();//测试组件
         return responseEty;
     }
+
+    @PostMapping("resetPassword")
+    @ResponseBody
+    @SysLog("保存错误类型修改数据")
+    public ResponseEty resetPassword(@RequestBody ResetUser resetUser){
+        if (resetUser.getLoginId()==null){
+            return ResponseEty.failure("请重新登录");
+        }
+        LoginUser oldLoginUser=loginUserService.getById(resetUser.getLoginId());
+        if (StringUtils.isEmpty(resetUser.getOldPassword())){
+            return ResponseEty.failure("请输入旧密码");
+        }if (StringUtils.isEmpty(resetUser.getNewPassword())){
+            return ResponseEty.failure("请输入新密码");
+        }if (StringUtils.isEmpty(resetUser.getConfirmPassword())){
+            return ResponseEty.failure("请确认密码");
+        }if (!resetUser.getOldPassword().equals(CryptographyUtil.decodeBase64String(oldLoginUser.getLoginUserPass()))){
+            return ResponseEty.failure("旧密码不正确");
+        }if (!resetUser.getConfirmPassword().equals(resetUser.getNewPassword())){
+            return ResponseEty.failure("两次新密码输入不同,请重新输入");
+        }
+        LoginUser loginUser=new LoginUser();
+        loginUser.setLoginId(resetUser.getLoginId());
+        loginUser.setLoginUserPass(CryptographyUtil.encodeBase64(resetUser.getNewPassword()));
+        loginUserService.updateById(loginUser);
+        return ResponseEty.success("修改密码成功,下次登录生效");
+    }
+
 
 }
