@@ -5,9 +5,10 @@
   <resultMap id="BaseMapper" type="com.kexin.admin.entity.tables.QaInspectMaster">
     <id property="inspectmId" column="INSPECTM_ID" jdbcType="INTEGER"/>
     <result property="allowJudge" column="ALLOW_JUDGE" jdbcType="INTEGER"/>
-    <result property="machineWasterNumber" column="MACHINE_WASTER_NUMBER" jdbcType="INTEGER"/>
     <result property="infoNumber" column="INFO_NUMBER" jdbcType="INTEGER"/>
+    <result property="machineWasterNumber" column="MACHINE_WASTER_NUMBER" jdbcType="INTEGER"/>
     <result property="noCheckNum" column="NOCHECK_NUMBER" jdbcType="INTEGER"/>
+    <result property="judgeWasterNumber" column="JUDGE_WASTER_NUMBER" jdbcType="INTEGER"/>
     <result property="itemFlag" column="ITEM_FLAG" jdbcType="INTEGER"/>
     <collection property="wipProdLogs"  ofType="com.kexin.admin.entity.tables.WipProdLogs">
       <result property="logId" column="LOG_ID" jdbcType="INTEGER"/>
@@ -19,7 +20,7 @@
       <result property="itemFlag" column="ITEM_FLAG" jdbcType="INTEGER"/>
       <result property="qainfonum" column="QAINFONUM" jdbcType="INTEGER"/>
       <result property="qawasternum" column="QAWASTERNUM" jdbcType="INTEGER"/>
-      <result property="sminfonum" column="SMINFONUM" jdbcType="INTEGER"/>
+<!--      <result property="sminfonum" column="SMINFONUM" jdbcType="INTEGER"/>-->
     </collection>
     <collection property="wipJobs"  ofType="com.kexin.admin.entity.tables.WipJobs">
       <result property="jobId" column="JOB_ID" jdbcType="INTEGER"/>
@@ -51,6 +52,15 @@
       <result property="workUnitName" column="WORK_UNIT_NAME" jdbcType="VARCHAR"/>
     </collection>
   </resultMap>
+  <resultMap id="BaseMapper1" type="com.kexin.admin.entity.tables.QaInspectMaster">
+    <id property="inspectmId" column="INSPECTM_ID" jdbcType="INTEGER"/>
+    <result property="allowJudge" column="ALLOW_JUDGE" jdbcType="INTEGER"/>
+    <collection property="wipJobs"  ofType="com.kexin.admin.entity.tables.WipJobs">
+      <result property="jobId" column="JOB_ID" jdbcType="INTEGER"/>
+      <result property="cartNumber" column="CART_NUMBER" jdbcType="VARCHAR"/>
+    </collection>
+
+  </resultMap>
   <select id="selectQaInspectMaster" resultMap="BaseMapper">
        select
     wj.job_id,wj.CART_NUMBER,
@@ -61,7 +71,7 @@
     doa.operator_id,doa.operator_code,doa.operator_name,
     dm.machine_id,dm.machine_code,dm.machine_name,
     dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
-    atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG
+    atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER
 
     from QA_INSPECT_MASTER  atm
 
@@ -87,7 +97,7 @@
     doa.operator_id,doa.operator_code,doa.operator_name,
     dm.machine_id,dm.machine_code,dm.machine_name,
     dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
-    atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG
+    atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER
 
     from QA_INSPECT_MASTER  atm
 
@@ -98,10 +108,7 @@
     left join dic_operators doa on doa.operator_id=wpl.operator_id
     left join dic_machines dm on dm.machine_id=wpl.machine_id
     left join dic_work_units dwu on dwu.work_unit_id=wpl.work_unit_id
-    where atm.INSPECTM_ID in
-      <foreach collection="inspectmIds" item="id" open="(" close=")" separator=",">
-        #{id}
-      </foreach>
+    where atm.INSPECTM_ID in #{inspectmIds}
     </select>
 
   <select id="getAllQaInspectMaster" resultMap="BaseMapper">
@@ -114,7 +121,7 @@
     doa.operator_id,doa.operator_code,doa.operator_name,
     dm.machine_id,dm.machine_code,dm.machine_name,
     dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
-    atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG
+    atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER
     from QA_INSPECT_MASTER  atm
     left join wip_prod_logs wpl on wpl.log_id=atm.log_id
     left join wip_jobs  wj on wj.job_id=wpl.job_id
@@ -137,7 +144,7 @@
     doa.operator_id,doa.operator_code,doa.operator_name,
     dm.machine_id,dm.machine_code,dm.machine_name,
     dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
-    atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG
+    atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER
     from QA_INSPECT_MASTER  atm
     left join wip_prod_logs wpl on wpl.log_id=atm.log_id
     left join wip_jobs  wj on wj.job_id=wpl.job_id
@@ -159,7 +166,7 @@
     doa.operator_id,doa.operator_code,doa.operator_name,
     dm.machine_id,dm.machine_code,dm.machine_name,
     dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
-    atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG
+    atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER
     from QA_INSPECT_MASTER  atm
     left join wip_prod_logs wpl on wpl.log_id=atm.log_id
     left join wip_jobs  wj on wj.job_id=wpl.job_id
@@ -169,7 +176,7 @@
     left join dic_machines dm on dm.machine_id=wpl.machine_id
     left join dic_work_units dwu on dwu.work_unit_id=wpl.work_unit_id
     where atm.allow_judge in (1,2)  and  atm.LAST_UPDATE_TIME BETWEEN #{startTime} AND #{endTime}
-    order by atm.inspectm_id desc
+    order by atm.allow_judge asc
   </select>
   <select id="getNotAuditInspectMaster" resultMap="BaseMapper">
     select
@@ -181,7 +188,7 @@
     doa.operator_id,doa.operator_code,doa.operator_name,
     dm.machine_id,dm.machine_code,dm.machine_name,
     dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
-    atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG
+    atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER
     from QA_INSPECT_MASTER  atm
     left join wip_prod_logs wpl on wpl.log_id=atm.log_id
     left join wip_jobs  wj on wj.job_id=wpl.job_id
@@ -192,6 +199,15 @@
     left join dic_work_units dwu on dwu.work_unit_id=wpl.work_unit_id
     where atm.allow_judge = -1  and  atm.LAST_UPDATE_TIME BETWEEN #{startTime} AND #{endTime}
     order by atm.inspectm_id desc
+  </select>
+  <select id="selectQaInspectMasterByIds" resultMap="BaseMapper1">
+    select
+    wj.job_id,wj.CART_NUMBER,
+    atm.inspectm_id,atm.allow_judge
+    from QA_INSPECT_MASTER  atm
+    left join wip_prod_logs wpl on wpl.log_id=atm.log_id
+    left join wip_jobs  wj on wj.job_id=wpl.job_id
+    where atm.inspectm_id in #{inspectmIds}
   </select>
 
 

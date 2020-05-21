@@ -82,12 +82,21 @@ public class MachineCheckQuery {
     @TableField(value = "INSPECTM_ID")
     private Integer inspectmId;//主键
 
-    @TableField(value = "MACHINE_WASTER_NUMBER")
-    private Integer machineWasterNumber;//整万错误数量
-
 
     @TableField(value = "INFO_NUMBER")
     private Integer infoNumber;//整万信息数量
+
+    @TableField(value = "MACHINE_WASTER_NUMBER")
+    private Integer machineWasterNumber;//检测报错条数
+
+   @TableField(value = "Nocheck_Number")
+    private Integer nocheckNumber;//未检条数
+
+    @TableField(value = "judge_waster_number")
+    private Integer judgeWasterNumber;//判费数量
+
+
+
 
 
 

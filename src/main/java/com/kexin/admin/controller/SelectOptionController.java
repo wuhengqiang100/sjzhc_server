@@ -114,5 +114,18 @@ public class SelectOptionController {
         return responseEty;
     }
 
+    @PostMapping("machineQuery")
+    @ResponseBody
+    @SysLog("获取核查查询的条件")
+    public ResponseEty listOptionMachineQuery(){
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        responseEty.setAny("operationOption",selectOptionComponent.getOperationSelectOption());//工序下拉option
+        responseEty.setAny("productOption",selectOptionComponent.getProductSelectOption());//产品下拉option
+        responseEty.setAny("machineOption",selectOptionComponent.getMachineSelectOption());//设备下拉option
+        responseEty.setAny("dicWorkUnitOption",selectOptionComponent.getWorkUnitSelectOption());//机台下拉option
+        return responseEty;
+    }
+
 
 }

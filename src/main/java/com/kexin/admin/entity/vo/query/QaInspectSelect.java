@@ -8,9 +8,9 @@ import lombok.Data;
 @Data
 public class QaInspectSelect extends QueryDateParent {
     private String cartNumber;
-    private String productName;
-    private String operationName;
-    private String machineName;
-    private String workUnitName;
+    private String productId;
+    private String operationId;
+    private String machineId;
+    private String workUnitId;
 
 }

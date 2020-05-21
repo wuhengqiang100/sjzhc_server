@@ -65,5 +65,6 @@ public interface QaInspectMasterMapper extends BaseMapper<QaInspectMaster> {
      */
     List<QaInspectMaster> selectQaInspectMasterByInspectmIds(@Param("inspectmIds") Integer[] inspectmIds);
 
+    List<QaInspectMaster> selectQaInspectMasterByIds(@Param("inspectmIds") Integer[] inspectmIds);
 
 }

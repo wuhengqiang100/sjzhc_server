@@ -21,20 +21,28 @@ public class QaInspectMaster {
     @TableField(value = "INSPECTM_ID")
     private Integer inspectmId;//主键
 
+    @TableField(value = "INFO_NUMBER")
+    private Integer infoNumber;//机检检测张数
 
     @TableField(value = "MACHINE_WASTER_NUMBER")
-    private Integer machineWasterNumber;//整万错误数量
+    private Integer machineWasterNumber;//机检报错条数
 
-    @TableField(value = "INFO_NUMBER")
-    private Integer infoNumber;//整万信息数量
+
     @TableField(value = "NOCHECK_NUMBER")
-    private Integer noCheckNum;//未检信息数量
+    private Integer noCheckNum;//未检条数
+
+    @TableField(value = "JUDGE_WASTER_NUMBER")
+    private Integer judgeWasterNumber;//判废条数
 
     @TableField(value = "ALLOW_JUDGE")
     private Integer allowJudge;//状态编号
 
-       @TableField(value = "ITEM_FLAG")
+    @TableField(value = "ITEM_FLAG")
     private Integer itemFlag;//进度标志
+
+
+    @TableField(exist = false)
+    private Boolean disabled;//回退审核禁止选用标志,默认都可以回退
 
 
     @TableField(exist = false)

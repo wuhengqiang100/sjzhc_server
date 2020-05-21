@@ -36,8 +36,8 @@ public class MachineCheckController {
 
     @PostMapping("canAudit/save")
     @ResponseBody
-    public ResponseEty saveCanAudit(@RequestParam(required = false) Integer[] map){
-        if (map==null){
+    public ResponseEty saveCanAudit(@RequestBody Integer[] map){
+        if (map.length==0){
             return ResponseEty.failure("请选择要审核的车次");
         }
         return qaInspectMasterService.saveCanAuditInspectMaster(map);
@@ -54,8 +54,8 @@ public class MachineCheckController {
 
     @PostMapping("alreadyAudit/save")
     @ResponseBody
-    public ResponseEty saveAlreadyAudit(@RequestParam(required = false) Integer[] map){
-        if (map==null){
+    public ResponseEty saveAlreadyAudit(@RequestBody Integer[] map){
+        if (map.length==0){
             return ResponseEty.failure("请选择要回退的车次");
         }
         return qaInspectMasterService.saveAlreadyAuditInspectMaster(map);
@@ -73,17 +73,23 @@ public class MachineCheckController {
 
     @PostMapping("notAudit/save")
     @ResponseBody
-    public ResponseEty saveNotAudit(@RequestParam(required = false) Integer[] map){
-        if (map==null){
+    public ResponseEty saveNotAudit(@RequestBody Integer[] map){
+        if (map.length==0){
             return ResponseEty.failure("请选择全检的车次");
         }
         return qaInspectMasterService.saveNotAuditInspectMaster(map);
 
     }
+
+    /**
+     * 全检回退的车次,回退到待审核状态
+     * @param map
+     * @return
+     */
     @PostMapping("notAudit/return")
     @ResponseBody
-    public ResponseEty returnNotAudit(@RequestParam(required = false) Integer[] map){
-        if (map==null){
+    public ResponseEty returnNotAudit(@RequestBody Integer[] map){
+        if (map.length==0){
             return ResponseEty.failure("请选择全检回退的车次");
         }
         return qaInspectMasterService.returnNotAuditInspectMaster(map);

@@ -249,14 +249,14 @@ public class VerifyLogController {
         }
         if (qaSelect.getCartNumber()!=null){//根据车号查询
             machineCheckQueryWrapper.like("CART_NUMBER",qaSelect.getCartNumber());
-        } if (StringUtils.isNotEmpty(qaSelect.getProductName())){//根据产品名称查询
-            machineCheckQueryWrapper.like("PRODUCT_NAME",qaSelect.getProductName());
-        }if (StringUtils.isNotEmpty(qaSelect.getOperationName())){//根据工序名称查询
-            machineCheckQueryWrapper.like("OPERATION_NAME",qaSelect.getOperationName());
-        }if (StringUtils.isNotEmpty(qaSelect.getMachineName())){//根据设备名称查询
-            machineCheckQueryWrapper.like("MACHINE_NAME",qaSelect.getMachineName());
-        }if (StringUtils.isNotEmpty(qaSelect.getWorkUnitName())){//根据车台名称查询
-            machineCheckQueryWrapper.like("WORK_UNIT_NAME",qaSelect.getWorkUnitName());
+        }if (StringUtils.isNotEmpty(qaSelect.getOperationId())){//根据工序名称查询
+            machineCheckQueryWrapper.eq("OPERATION_ID",qaSelect.getOperationId());
+        } if (StringUtils.isNotEmpty(qaSelect.getProductId())){//根据产品名称查询
+            machineCheckQueryWrapper.eq("PRODUCT_ID",qaSelect.getProductId());
+        }if (StringUtils.isNotEmpty(qaSelect.getMachineId())){//根据设备名称查询
+            machineCheckQueryWrapper.eq("MACHINE_ID",qaSelect.getMachineId());
+        }if (StringUtils.isNotEmpty(qaSelect.getWorkUnitId())){//根据车台名称查询
+            machineCheckQueryWrapper.eq("WORK_UNIT_ID",qaSelect.getWorkUnitId());
         }if (qaSelect.getStartDate()!=null && qaSelect.getEndDate()!=null ){//根据车台名称查询
             machineCheckQueryWrapper.between("START_DATE",  qaSelect.getStartDate(), qaSelect.getEndDate());
         }

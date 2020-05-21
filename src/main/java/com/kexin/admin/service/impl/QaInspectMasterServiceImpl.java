@@ -61,12 +61,22 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
     public ResponseEty getAlreadyAuditInspectMaster() {
         ResponseEty responseEty=new ResponseEty();
         responseEty.setSuccess(20000);
+        List<QaInspectMaster> qaInspectMasterList=baseMapper.getAlreadyAuditInspectMaster(TodayUtil.getStartTime(),TodayUtil.getEndTime());
+        qaInspectMasterList.forEach(r->{
+            if (r.getAllowJudge()==1){//已审核未分活
+                r.setDisabled(false);
+            }else{//已分活
+                r.setDisabled(true);
+            }
+        });
         responseEty.setAny("alreadyAuditTable",baseMapper.getAlreadyAuditInspectMaster(TodayUtil.getStartTime(),TodayUtil.getEndTime()));
         return responseEty;
     }
 
     @Override
     public ResponseEty saveAlreadyAuditInspectMaster(Integer[] inspectmIds) {
+//        List<QaInspectMaster> qaInspectMasterList= baseMapper.selectQaInspectMasterByIds(inspectmIds);
+
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
         QaInspectMaster qaInspectMaster=new QaInspectMaster();
         qaInspectMaster.setAllowJudge(0);
