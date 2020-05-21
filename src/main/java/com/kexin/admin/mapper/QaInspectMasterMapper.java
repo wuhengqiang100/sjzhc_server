@@ -15,7 +15,7 @@ public interface QaInspectMasterMapper extends BaseMapper<QaInspectMaster> {
      * 获取没有审核的车次
      * @return
      */
-    List<QaInspectMaster> getCanAuditInspectMaster();
+    List<QaInspectMaster> getCanAuditInspectMaster(@Param("startTime") Date startTime,@Param("endTime") Date endTime);
 
     /**
      * 获取已经审核的车次

@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.AuditParameter;
+import com.kexin.admin.entity.tables.AuditParameterType;
 import com.kexin.admin.entity.tables.Machine;
 import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDelete;
+import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDetail;
 import com.kexin.admin.entity.vo.AuditParameter.AuditParameterSelect;
 import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
@@ -109,21 +111,10 @@ public class AuditParameterController {
         if (this.analyze(auditParameterList)!=null){
             auditParameterSelectList.addAll(this.analyze(auditParameterList));
         }
-/*        auditParameterSelectList = auditParameterSelectList.stream().collect(
-                collectingAndThen(
-                        toCollection(() -> new TreeSet<>(Comparator.comparing(o-> o.))), ArrayList::new)
-                toCollection(() -> new TreeSet<>(Comparator.comparing(o -> o.getId()))
-        );*/
+
         auditParameterSelectList= auditParameterSelectList.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(o -> o.getOperationName() + ";" + o.getProductName()+ ";" + o.getMachineName()))), ArrayList::new));
 
         for (AuditParameterSelect pSelect:auditParameterSelectList) {
-
-           /* Map map = new HashMap();;
-            pSelect.getDetails().forEach(r->{
-                map.put(r.getName(),r.getValue());
-
-
-            });*/
             final String[] names = {""};
             final String[] values = {""};
             pSelect.getDetails().forEach(r->{
@@ -138,6 +129,9 @@ public class AuditParameterController {
 
 
     private List<AuditParameterSelect> analyze(List<AuditParameter> auditParameterList){
+
+
+
 
         List<AuditParameterSelect> auditParameterSelectList=new ArrayList<>();
         AuditParameterSelect auditParameterSelect = null;
@@ -177,12 +171,9 @@ public class AuditParameterController {
     @ResponseBody
     @SysLog("新增审核参数数据")
     public ResponseEty create(@RequestBody  AuditParameter auditParameter){
-        if (auditParameter.getValue()==null){
+        if (auditParameter.getValues()==null){
             return ResponseEty.failure("请填写参数值");
-        }
-        if (auditParameter.getJudgeCheckTypeId()==null){
-            return ResponseEty.failure("请选择审核参数种类");
-        }  if (auditParameter.getOperationId()==null){
+        } if (auditParameter.getOperationId()==null){
             return ResponseEty.failure("请选择工序");
         } if (auditParameter.getProductId()==null){
             return ResponseEty.failure("请选择产品");
@@ -193,9 +184,7 @@ public class AuditParameterController {
             return ResponseEty.failure("工序->产品->设备的 审核参数,只能唯一");
         }
         auditParameterService.saveAuditParameter(auditParameter);
-        if(auditParameter.getJudgeCheckId()==null){
-            return ResponseEty.failure("保存信息出错");
-        }
+
         return ResponseEty.success("保存成功");
     }
 

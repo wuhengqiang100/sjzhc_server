@@ -7,6 +7,7 @@ import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDelete;
 import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDetail;
 import com.kexin.admin.mapper.*;
 import com.kexin.admin.service.AuditParameterService;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,17 +48,29 @@ public class AuditParameterServiceImpl extends ServiceImpl<AuditParameterMapper,
 
 
 
+
         List<AuditParameterDetail> auditParameterDetailList=new ArrayList<>();
-        AuditParameterDetail parameterDetail=null;
+        QueryWrapper<AuditParameterType> auditParameterTypeQueryWrapper=new QueryWrapper<>();
+        List<AuditParameterType> auditParameterTypeList=auditParameterTypeMapper.selectList(auditParameterTypeQueryWrapper);
+
         for (AuditParameter parameter:auditParameterList) {
             //获取的参数类型数据
-
+            AuditParameterDetail parameterDetail=new AuditParameterDetail();
             AuditParameterType auditParameterType = auditParameterTypeMapper.selectById(parameter.getJudgeCheckTypeId());
-            parameterDetail=new AuditParameterDetail();
-            parameterDetail.setName(auditParameterType.getJudgeCheckTypeName());
-            parameterDetail.setValue(parameter.getValue());
-            auditParameterDetailList.add(parameterDetail);
+
+            auditParameterTypeList.forEach(r->{
+                if (r.getJudgeCheckTypeName().equals(auditParameterType.getJudgeCheckTypeName())){
+                    r.setValue(parameter.getValue());
+                }
+            });
         }
+        for (int i = 0; i <auditParameterTypeList.size() ; i++) {
+            AuditParameterDetail auditParameterDetail=new AuditParameterDetail();
+            auditParameterDetail.setName(auditParameterTypeList.get(i).getJudgeCheckTypeName());
+            auditParameterDetail.setValue(auditParameterTypeList.get(i).getValue());
+            auditParameterDetailList.add(auditParameterDetail);
+        }
+
 
         return auditParameterDetailList;
     }
@@ -68,7 +81,6 @@ public class AuditParameterServiceImpl extends ServiceImpl<AuditParameterMapper,
         auditParameterQueryWrapper.eq("OPERATION_ID",auditParameter.getOperationId())
                 .eq("PRODUCT_ID",auditParameter.getProductId())
                 .eq("MACHINE_ID",auditParameter.getMachineId())
-                .eq("JUDGE_CHECK_TYPE_ID",auditParameter.getJudgeCheckTypeId())
         ;
         return baseMapper.selectCount(auditParameterQueryWrapper);
     }
@@ -101,7 +113,19 @@ public class AuditParameterServiceImpl extends ServiceImpl<AuditParameterMapper,
         }else{//禁用
             auditParameter.setEndDate(new Date());
         }
-        baseMapper.insert(auditParameter);
+        QueryWrapper<AuditParameterType> auditParameterTypeQueryWrapper=new QueryWrapper<>();
+        List<AuditParameterType> auditParameterTypeList=auditParameterTypeMapper.selectList(auditParameterTypeQueryWrapper);
+        AuditParameter auditParameter1=null;
+        for (int i = 0; i < auditParameterTypeList.size(); i++) {
+            auditParameter1=new AuditParameter();
+            auditParameter1.setOperationId(auditParameter.getOperationId());
+            auditParameter1.setProductId(auditParameter.getProductId());
+            auditParameter1.setMachineId(auditParameter.getMachineId());
+            auditParameter1.setJudgeCheckTypeId(auditParameterTypeList.get(i).getJudgeCheckTypeId());
+            auditParameter1.setValue(auditParameter.getValues()[i]);
+            baseMapper.insert(auditParameter1);
+        }
+
     }
 
     @Override

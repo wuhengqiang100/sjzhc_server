@@ -129,6 +129,7 @@ public class UserController {
         if(StringUtils.isBlank(loginUser.getLoginUserPass())){
             return ResponseEty.failure("用户密码不能为空");
         }
+        loginUser.setLoginUserPass(CryptographyUtil.encodeBase64(loginUser.getLoginUserPass()));
         if (loginUserService.loginUserCountByName(loginUser.getLoginUserName())>0){
             return ResponseEty.failure("用户名称已使用,请重新输入");
         }
@@ -158,10 +159,12 @@ public class UserController {
                 }
             }
         }
-        if (!loginUser.getOperatorId().equals(oldLoginUser.getOperatorId()))
-        if (loginUserService.loginUserCountByOperatorId(loginUser.getOperatorId())>0){
-            return ResponseEty.failure("一个用户只能有一个账户,该用户已经有账户");
+        if (!loginUser.getOperatorId().equals(oldLoginUser.getOperatorId())){
+            if (loginUserService.loginUserCountByOperatorId(loginUser.getOperatorId())>0){
+                return ResponseEty.failure("一个用户只能有一个账户,该用户已经有账户");
+            }
         }
+
         //判断修改密码
         if (StringUtils.isNotBlank(loginUser.getLoginUserPass())){
             if(!loginUser.getLoginUserPass().equals(oldLoginUser.getLoginUserPass())){

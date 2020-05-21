@@ -6,6 +6,8 @@ import com.kexin.admin.entity.tables.OperationLog;
 import com.kexin.admin.entity.tables.Operator;
 import com.kexin.admin.entity.tables.QaInspectMaster;
 import com.kexin.admin.entity.vo.QaInspectChange;
+import com.kexin.admin.entity.vo.query.QueryDate;
+import com.kexin.admin.entity.vo.query.SaveCheckData;
 import com.kexin.admin.mapper.LoginUserMapper;
 import com.kexin.admin.mapper.OperationLogMapper;
 import com.kexin.admin.mapper.OperatorMapper;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,19 +40,22 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
 
 
     @Override
-    public ResponseEty getCanAuditInspectMaster() {
+    public ResponseEty getCanAuditInspectMaster(QueryDate queryDate) {
         ResponseEty responseEty=new ResponseEty();
         responseEty.setSuccess(20000);
-        responseEty.setAny("canAuditTable",baseMapper.getCanAuditInspectMaster());
+        responseEty.setAny("canAuditTable",baseMapper.getCanAuditInspectMaster(queryDate.getStartDate(),queryDate.getEndDate()));
         return responseEty;
     }
 
     @Override
-    public ResponseEty saveCanAuditInspectMaster(Integer[] inspectmIds) {
+    public ResponseEty saveCanAuditInspectMaster(SaveCheckData saveCheckData) {
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
         QaInspectMaster qaInspectMaster=new QaInspectMaster();
         qaInspectMaster.setAllowJudge(1);
-        qaInspectMasterQueryWrapper.in("INSPECTM_ID",inspectmIds);
+        qaInspectMasterQueryWrapper.in("INSPECTM_ID",saveCheckData.getData());
+        if (saveCheckData.getNote()!=null){
+            qaInspectMaster.setNote(saveCheckData.getNote());
+        }
         int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
         if (flag>0){
             return ResponseEty.success("审核成功");
@@ -58,10 +64,15 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
     }
 
     @Override
-    public ResponseEty getAlreadyAuditInspectMaster() {
+    public ResponseEty getAlreadyAuditInspectMaster(QueryDate queryDate) {
         ResponseEty responseEty=new ResponseEty();
         responseEty.setSuccess(20000);
-        List<QaInspectMaster> qaInspectMasterList=baseMapper.getAlreadyAuditInspectMaster(TodayUtil.getStartTime(),TodayUtil.getEndTime());
+        List<QaInspectMaster> qaInspectMasterList=new ArrayList<>();
+        if (queryDate.getStartDate()==null){
+            qaInspectMasterList=baseMapper.getAlreadyAuditInspectMaster(TodayUtil.getStartTime(),TodayUtil.getEndTime());
+        }else{
+            qaInspectMasterList=baseMapper.getAlreadyAuditInspectMaster(queryDate.getStartDate(),queryDate.getEndDate());
+        }
         qaInspectMasterList.forEach(r->{
             if (r.getAllowJudge()==1){//已审核未分活
                 r.setDisabled(false);
@@ -69,18 +80,20 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
                 r.setDisabled(true);
             }
         });
-        responseEty.setAny("alreadyAuditTable",baseMapper.getAlreadyAuditInspectMaster(TodayUtil.getStartTime(),TodayUtil.getEndTime()));
+        responseEty.setAny("alreadyAuditTable",qaInspectMasterList);
         return responseEty;
     }
 
     @Override
-    public ResponseEty saveAlreadyAuditInspectMaster(Integer[] inspectmIds) {
-//        List<QaInspectMaster> qaInspectMasterList= baseMapper.selectQaInspectMasterByIds(inspectmIds);
+    public ResponseEty saveAlreadyAuditInspectMaster(SaveCheckData saveCheckData) {
 
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
         QaInspectMaster qaInspectMaster=new QaInspectMaster();
         qaInspectMaster.setAllowJudge(0);
-        qaInspectMasterQueryWrapper.in("INSPECTM_ID",inspectmIds);
+        qaInspectMasterQueryWrapper.in("INSPECTM_ID",saveCheckData.getData());
+        if (saveCheckData.getNote()!=null){
+            qaInspectMaster.setNote(saveCheckData.getNote());
+        }
         int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
         if (flag>0){
             return ResponseEty.success("回退成功");
@@ -89,19 +102,28 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
     }
 
     @Override
-    public ResponseEty getNotAuditInspectMaster() {
+    public ResponseEty getNotAuditInspectMaster(QueryDate queryDate) {
         ResponseEty responseEty=new ResponseEty();
         responseEty.setSuccess(20000);
-        responseEty.setAny("notAuditTable",baseMapper.getNotAuditInspectMaster(TodayUtil.getStartTime(),TodayUtil.getEndTime()));
+        List<QaInspectMaster> qaInspectMasterList=new ArrayList<>();
+        if (queryDate.getStartDate()==null){
+            qaInspectMasterList=baseMapper.getNotAuditInspectMaster(TodayUtil.getStartTime(),TodayUtil.getEndTime());
+        }else{
+            qaInspectMasterList=baseMapper.getNotAuditInspectMaster(queryDate.getStartDate(),queryDate.getEndDate());
+        }
+        responseEty.setAny("notAuditTable",qaInspectMasterList);
         return responseEty;
     }
 
     @Override
-    public ResponseEty saveNotAuditInspectMaster(Integer[] inspectmIds) {
+    public ResponseEty saveNotAuditInspectMaster(SaveCheckData saveCheckData) {
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
         QaInspectMaster qaInspectMaster=new QaInspectMaster();
         qaInspectMaster.setAllowJudge(-1);
-        qaInspectMasterQueryWrapper.in("INSPECTM_ID",inspectmIds);
+        qaInspectMasterQueryWrapper.in("INSPECTM_ID",saveCheckData.getData());
+        if (saveCheckData.getNote()!=null){
+            qaInspectMaster.setNote(saveCheckData.getNote());
+        }
         int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
         if (flag>0){
             return ResponseEty.success("废弃成功");
@@ -110,11 +132,14 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
     }
 
     @Override
-    public ResponseEty returnNotAuditInspectMaster(Integer[] inspectmIds) {
+    public ResponseEty returnNotAuditInspectMaster(SaveCheckData saveCheckData) {
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
         QaInspectMaster qaInspectMaster=new QaInspectMaster();
         qaInspectMaster.setAllowJudge(0);
-        qaInspectMasterQueryWrapper.in("INSPECTM_ID",inspectmIds);
+        qaInspectMasterQueryWrapper.in("INSPECTM_ID",saveCheckData.getData());
+        if (saveCheckData.getNote()!=null){
+            qaInspectMaster.setNote(saveCheckData.getNote());
+        }
         int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
         if (flag>0){
             return ResponseEty.success("全检回退成功");

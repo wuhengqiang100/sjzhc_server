@@ -26,6 +26,10 @@ public class AuditParameterType {
     @TableField(value = "JUDGE_CHECK_TYPE_NAME")
     private String judgeCheckTypeName; //审核参数种类名称
 
+
+    @TableField(exist = false)
+    private Integer value;//临时传值
+
     /**
      * 启用状态:0 禁止,1 启用
      */

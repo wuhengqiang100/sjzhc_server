@@ -3,6 +3,8 @@ package com.kexin.admin.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kexin.admin.entity.tables.QaInspectMaster;
 import com.kexin.admin.entity.vo.QaInspectChange;
+import com.kexin.admin.entity.vo.query.QueryDate;
+import com.kexin.admin.entity.vo.query.SaveCheckData;
 import com.kexin.common.util.ResponseEntity;
 import com.kexin.common.util.ResponseEty;
 
@@ -25,49 +27,49 @@ public interface QaInspectMasterService extends IService<QaInspectMaster> {
      * 获取没有审核的车次
      * @return
      */
-    ResponseEty getCanAuditInspectMaster();
+    ResponseEty getCanAuditInspectMaster(QueryDate queryDate);
 
     /**
      * 保存审核的车次西门西
-     * @param inspectmIds
+     * @param saveCheckData
      * @return
      */
-    ResponseEty saveCanAuditInspectMaster(Integer[]  inspectmIds);
+    ResponseEty saveCanAuditInspectMaster(SaveCheckData saveCheckData);
 
     /**
-     * 获取没有审核的车次
+     * 获取已经审核的车次
      * @return
      */
-    ResponseEty getAlreadyAuditInspectMaster();
+    ResponseEty getAlreadyAuditInspectMaster(QueryDate queryDate);
 
 
     /**
-     * 保存回退审核的车次西门西
-     * @param inspectmIds
+     * 保存回退审核的车次西
+     * @param saveCheckData
      * @return
      */
-    ResponseEty saveAlreadyAuditInspectMaster(Integer[]  inspectmIds);
+    ResponseEty saveAlreadyAuditInspectMaster(SaveCheckData saveCheckData);
 
      /**
      * 获取不走审核的车次
      * @return
      */
-     ResponseEty getNotAuditInspectMaster();
+     ResponseEty getNotAuditInspectMaster(QueryDate queryDate);
 
 
     /**
      * 保存走全检的车次
-     * @param inspectmIds
+     * @param saveCheckData
      * @return
      */
-    ResponseEty saveNotAuditInspectMaster(Integer[]  inspectmIds);
+    ResponseEty saveNotAuditInspectMaster(SaveCheckData saveCheckData);
 
     /**
      * 回退走全检的车次
-     * @param inspectmIds
+     * @param saveCheckData
      * @return
      */
-    ResponseEty returnNotAuditInspectMaster(Integer[]  inspectmIds);
+    ResponseEty returnNotAuditInspectMaster(SaveCheckData saveCheckData);
 
 
 

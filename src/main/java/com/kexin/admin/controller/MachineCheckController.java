@@ -1,12 +1,15 @@
 package com.kexin.admin.controller;
 
 import com.kexin.admin.entity.vo.QaInspectChange;
+import com.kexin.admin.entity.vo.query.QueryDate;
+import com.kexin.admin.entity.vo.query.SaveCheckData;
 import com.kexin.admin.service.QaInspectMasterService;
 import com.kexin.common.util.ResponseEty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -26,73 +29,75 @@ public class MachineCheckController {
      * 获取可以审核的车次数据
      * @return
      */
-    @GetMapping("canAudit/list")
+    @PostMapping("canAudit/list")
     @ResponseBody
-    public ResponseEty listCanAuditList(){
-        return qaInspectMasterService.getCanAuditInspectMaster();
+    public ResponseEty listCanAuditList(@RequestBody QueryDate queryDate){
+
+        return qaInspectMasterService.getCanAuditInspectMaster(queryDate);
     }
 
 
 
     @PostMapping("canAudit/save")
     @ResponseBody
-    public ResponseEty saveCanAudit(@RequestBody Integer[] map){
-        if (map.length==0){
+    public ResponseEty saveCanAudit(@RequestBody SaveCheckData saveCheckData){
+        if (saveCheckData.getData()==null){
             return ResponseEty.failure("请选择要审核的车次");
         }
-        return qaInspectMasterService.saveCanAuditInspectMaster(map);
+        return qaInspectMasterService.saveCanAuditInspectMaster(saveCheckData);
     }
     /**
      * 获取已经审核的车次数据,今天
      * @return
      */
-    @GetMapping("alreadyAudit/list")
+    @PostMapping("alreadyAudit/list")
     @ResponseBody
-    public ResponseEty listAlreadyAuditList(){
-        return qaInspectMasterService.getAlreadyAuditInspectMaster();
+    public ResponseEty listAlreadyAuditList(@RequestBody QueryDate queryDate){
+        return qaInspectMasterService.getAlreadyAuditInspectMaster(queryDate);
     }
 
     @PostMapping("alreadyAudit/save")
     @ResponseBody
-    public ResponseEty saveAlreadyAudit(@RequestBody Integer[] map){
-        if (map.length==0){
+    public ResponseEty saveAlreadyAudit(@RequestBody SaveCheckData saveCheckData
+                                        ){
+        if (saveCheckData.getData()==null){
             return ResponseEty.failure("请选择要回退的车次");
         }
-        return qaInspectMasterService.saveAlreadyAuditInspectMaster(map);
+        return qaInspectMasterService.saveAlreadyAuditInspectMaster(saveCheckData);
     }
     /**
     /**
      * 获取不走核查的车次数据,今天
      * @return
      */
-    @GetMapping("notAudit/list")
+    @PostMapping("notAudit/list")
     @ResponseBody
-    public ResponseEty listNotAuditList(){
-        return qaInspectMasterService.getNotAuditInspectMaster();
+    public ResponseEty listNotAuditList(@RequestBody QueryDate queryDate){
+        return qaInspectMasterService.getNotAuditInspectMaster(queryDate);
     }
 
     @PostMapping("notAudit/save")
     @ResponseBody
-    public ResponseEty saveNotAudit(@RequestBody Integer[] map){
-        if (map.length==0){
+    public ResponseEty saveNotAudit(@RequestBody SaveCheckData saveCheckData){
+        if (saveCheckData.getData()==null){
             return ResponseEty.failure("请选择全检的车次");
         }
-        return qaInspectMasterService.saveNotAuditInspectMaster(map);
+        return qaInspectMasterService.saveNotAuditInspectMaster(saveCheckData);
 
     }
 
     /**
      * 全检回退的车次,回退到待审核状态
-     * @param map
+     * @param saveCheckData
      * @return
      */
     @PostMapping("notAudit/return")
     @ResponseBody
-    public ResponseEty returnNotAudit(@RequestBody Integer[] map){
-        if (map.length==0){
+    public ResponseEty returnNotAudit(@RequestBody SaveCheckData saveCheckData){
+        if (saveCheckData.getData()==null){
             return ResponseEty.failure("请选择全检回退的车次");
         }
-        return qaInspectMasterService.returnNotAuditInspectMaster(map);
+        return qaInspectMasterService.returnNotAuditInspectMaster(saveCheckData);
 
     }
     /**

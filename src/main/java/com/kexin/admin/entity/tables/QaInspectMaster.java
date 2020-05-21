@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+
+import java.util.Date;
 
 
 /**
@@ -40,6 +43,12 @@ public class QaInspectMaster {
     @TableField(value = "ITEM_FLAG")
     private Integer itemFlag;//进度标志
 
+    @TableField(value = "NOTE")
+    private String note;//备注
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(value = "LAST_UPDATE_TIME")
+    private Date lastUpdateTime;//更新的之间
 
     @TableField(exist = false)
     private Boolean disabled;//回退审核禁止选用标志,默认都可以回退

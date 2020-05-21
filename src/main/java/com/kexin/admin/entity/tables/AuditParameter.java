@@ -53,6 +53,12 @@ public class AuditParameter {
     @TableField(exist = false)
     private List<AuditParameterDetail> detailList;
 
+    @TableField(exist = false)
+    private Integer[] values;//添加,修改时的value
+
+    @TableField(exist = false)
+    private Integer[] typeIds;//添加,修改时的参数类型id
+
     @TableField(value = "VALUE")
     private Integer value;//审核参数的值
     /**
