@@ -2,6 +2,7 @@ package com.kexin.admin.controller;
 
 
 import com.kexin.admin.component.SelectOptionComponent;
+import com.kexin.admin.entity.vo.AuditParameter.ParameterByIds;
 import com.kexin.admin.service.LoginUserService;
 import com.kexin.admin.service.MachineCheckQueryService;
 import com.kexin.admin.service.SysFunctionService;
@@ -70,6 +71,19 @@ public class SelectOptionController {
         responseEty.setAny("productOption",selectOptionComponent.getProductSelectOption());//产品下拉option
         responseEty.setAny("machineOption",selectOptionComponent.getMachineSelectOption());//设备下拉option
         responseEty.setAny("judgeCheckTypeOption",selectOptionComponent.getAuditParameterTypeSelectOption());//审核参数类型下拉option
+        return responseEty;
+    }
+
+    @PostMapping("auditParameterByIds")
+    @ResponseBody
+    @SysLog("获取机检模板页面的select条件")
+    public ResponseEty listOptionAuditParameterByIds(@RequestBody ParameterByIds parameterByIds){
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        responseEty.setAny("operationOption",selectOptionComponent.getOperationSelectOption());//工序下拉option
+        responseEty.setAny("productOption",selectOptionComponent.getProductSelectOption());//产品下拉option
+        responseEty.setAny("machineOption",selectOptionComponent.getMachineSelectOption());//设备下拉option
+        responseEty.setAny("judgeCheckTypeOption",selectOptionComponent.getAuditParameterTypeSelectOptionByIds(parameterByIds));//审核参数类型下拉option
         return responseEty;
     }
 

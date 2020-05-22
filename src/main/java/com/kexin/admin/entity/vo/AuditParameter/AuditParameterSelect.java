@@ -25,9 +25,15 @@ public class AuditParameterSelect {
 
     private String operationName;//工序名称
 
+    private Integer operationId;
+
     private String productName;//产品名称
+    private Integer productId;
+
 
     private String machineName;//设备名称
+    private Integer machineId;
+
 
     private List<AuditParameterDetail> details;//可变的审核参数类型,名称+值
 

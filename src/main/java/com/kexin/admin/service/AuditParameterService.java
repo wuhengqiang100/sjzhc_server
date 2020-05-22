@@ -7,11 +7,21 @@ import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDetail;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 审核参数配置,service接口层
  */
 public interface AuditParameterService extends IService<AuditParameter> {
+
+    /**
+     * 根据operationId,productid,machineId查询审核参数
+     * @param auditParameter
+     * @return
+     */
+//    AuditParameter getByIds(AuditParameter auditParameter);
+
+    List<Map<String,Object>> getAuditParameterSecond();
 
     /**
      * 根据工序,产品,设备 获取参数list
@@ -58,9 +68,9 @@ public interface AuditParameterService extends IService<AuditParameter> {
 
     /**
      * 删除工序+产品+设备下的所有配置数据
-     * @param auditParameterDelete
+     * @param auditParameter
      */
-    Integer deleteAuditParameter(@Param("auditParameterDelete") AuditParameterDelete auditParameterDelete);
+    Integer deleteAuditParameter(@Param("auditParameter") AuditParameter auditParameter);
 
     /**
      * 禁用或者启用审核参数

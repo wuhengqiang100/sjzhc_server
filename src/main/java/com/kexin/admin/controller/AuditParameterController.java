@@ -10,6 +10,7 @@ import com.kexin.admin.entity.tables.Machine;
 import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDelete;
 import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDetail;
 import com.kexin.admin.entity.vo.AuditParameter.AuditParameterSelect;
+import com.kexin.admin.mapper.AuditParameterMapper;
 import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
@@ -87,6 +88,8 @@ public class AuditParameterController {
         }if (machineId!=null){
             auditParameterWrapper.eq("MACHINE_ID",machineId);
         }
+
+//        List<Map<String,Object>> mapList= auditParameterService.getAuditParameterSecond();
         IPage<AuditParameter> auditParameterPage = auditParameterService.page(new Page<>(page,limit),auditParameterWrapper);
         auditParameterPage.getRecords().forEach(r->{
                     r.setJudgeCheckType(auditParameterTypeService.getById(r.getJudgeCheckTypeId()));
@@ -115,14 +118,17 @@ public class AuditParameterController {
         auditParameterSelectList= auditParameterSelectList.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(o -> o.getOperationName() + ";" + o.getProductName()+ ";" + o.getMachineName()))), ArrayList::new));
 
         for (AuditParameterSelect pSelect:auditParameterSelectList) {
-            final String[] names = {""};
-            final String[] values = {""};
+            StringBuffer values=new StringBuffer();
             pSelect.getDetails().forEach(r->{
-                names[0] = names[0] +"     &nbsp;  &nbsp;    &nbsp;    &nbsp;                "+r.getName()+"              ";
-                values[0] = values[0] +"                   "+r.getValue()+"              ";
+                if (r.getValue()==null){
+                    r.setValue(0);
+                }
+
+                values.append("                   "+r.getName()+":"+r.getValue()+"              ");
+
             });
-            pSelect.setNames(names[0]);
-            pSelect.setValues(values[0]);
+            pSelect.setValues(String.valueOf(values));
+
         }
         return auditParameterSelectList;
     };
@@ -157,6 +163,9 @@ public class AuditParameterController {
                     auditParameterSelect.setStartDate(audit2.getStartDate());
                     auditParameterSelect.setEndDate(audit2.getEndDate());
                     auditParameterSelect.setNote(audit2.getNote());
+                    auditParameterSelect.setOperationId(audit2.getOperationId());
+                    auditParameterSelect.setProductId(audit2.getProductId());
+                    auditParameterSelect.setMachineId(audit2.getMachineId());
                     insertFlag=true;
                     auditParameterSelect.setDetails(auditParameterService.getAuditParameterDetail(audit2));//放入参数的list
                     secondLoop = false;
@@ -192,15 +201,11 @@ public class AuditParameterController {
     @ResponseBody
     @SysLog("保存审核参数修改数据")
     public ResponseEty update(@RequestBody  AuditParameter auditParameter){
-        if(auditParameter.getJudgeCheckId()==null){
-            return ResponseEty.failure("审核参数ID不能为空");
-        }
-        if (auditParameter.getValue()==null){
+
+        if (auditParameter.getValues()==null){
             return ResponseEty.failure("请填写参数值");
         }
-        if (auditParameter.getJudgeCheckTypeId()==null){
-            return ResponseEty.failure("请选择审核参数种类");
-        }  if (auditParameter.getOperationId()==null){
+         if (auditParameter.getOperationId()==null){
             return ResponseEty.failure("请选择工序");
         } if (auditParameter.getProductId()==null){
             return ResponseEty.failure("请选择产品");
@@ -208,27 +213,24 @@ public class AuditParameterController {
         if (auditParameter.getMachineId()==null){
             return ResponseEty.failure("请选择设备");
         }
-        AuditParameter oldAuditParameter = auditParameterService.getById(auditParameter.getJudgeCheckId());
+        /*AuditParameter oldAuditParameter = auditParameterService.getById(auditParameter.getJudgeCheckId());
         if(oldAuditParameter.getOperationId()!=null && oldAuditParameter.getProductId()!=null && oldAuditParameter.getMachineId()!=null){
             if(!auditParameter.getOperationId().equals(oldAuditParameter.getOperationId()) && !auditParameter.getProductId().equals(oldAuditParameter.getProductId()) && !auditParameter.getMachineId().equals(oldAuditParameter.getMachineId())){
                 if (auditParameterService.countParameterByTypeOperationProductMachine(auditParameter)>0){
                     return ResponseEty.failure("工序->产品->设备的 审核参数,只能唯一");
                 }
             }
-        }
+        }*/
         auditParameterService.updateAuditParameter(auditParameter);
 
-        if(auditParameter.getJudgeCheckId()==null){
-            return ResponseEty.failure("保存信息出错");
-        }
         return ResponseEty.success("操作成功");
     }
 
     @PostMapping("delete")
     @ResponseBody
     @SysLog("删除审核参数数据(单个)")
-    public ResponseEty delete(@RequestBody AuditParameterDelete auditParameterDelete){
-        Integer deleteFlag=auditParameterService.deleteAuditParameter(auditParameterDelete);
+    public ResponseEty delete(@RequestBody AuditParameter auditParameter){
+        Integer deleteFlag=auditParameterService.deleteAuditParameter(auditParameter);
         if (deleteFlag>0){
             return ResponseEty.success("删除成功");
         }else{

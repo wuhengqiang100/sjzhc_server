@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 工序配置service层
@@ -36,6 +37,15 @@ public class AuditParameterServiceImpl extends ServiceImpl<AuditParameterMapper,
     ProductsMapper productsMapper;//产品mapper
     @Resource
     MachineMapper machineMapper;//设备mapper
+
+
+
+    @Override
+    public List<Map<String, Object>> getAuditParameterSecond() {
+        String sqlQuery= baseMapper.getAuditParameterFirst();
+        List<Map<String, Object>> mapList=baseMapper.getAuditParameterSecond(sqlQuery);
+        return mapList;
+    }
 
     @Override
     public List<AuditParameterDetail> getAuditParameterDetail(AuditParameter auditParameter) {
@@ -123,6 +133,9 @@ public class AuditParameterServiceImpl extends ServiceImpl<AuditParameterMapper,
             auditParameter1.setMachineId(auditParameter.getMachineId());
             auditParameter1.setJudgeCheckTypeId(auditParameterTypeList.get(i).getJudgeCheckTypeId());
             auditParameter1.setValue(auditParameter.getValues()[i]);
+            auditParameter1.setUseFlag(auditParameter.getUseFlag());
+            auditParameter1.setStartDate(auditParameter.getStartDate());
+            auditParameter1.setEndDate(auditParameter.getEndDate());
             baseMapper.insert(auditParameter1);
         }
 
@@ -138,29 +151,40 @@ public class AuditParameterServiceImpl extends ServiceImpl<AuditParameterMapper,
         }else{//禁用
             auditParameter.setEndDate(new Date());
         }
-        baseMapper.updateById(auditParameter);
+        QueryWrapper<AuditParameterType> auditParameterTypeQueryWrapper=new QueryWrapper<>();
+        List<AuditParameterType> auditParameterTypeList=auditParameterTypeMapper.selectList(auditParameterTypeQueryWrapper);
+        AuditParameter auditParameter1=null;
+        for (int i = 0; i < auditParameterTypeList.size(); i++) {
+
+            QueryWrapper<AuditParameter> auditParameterQueryWrapper=new QueryWrapper<>();
+
+            auditParameter1=new AuditParameter();
+            auditParameter1.setOperationId(auditParameter.getOperationId());
+            auditParameter1.setProductId(auditParameter.getProductId());
+            auditParameter1.setMachineId(auditParameter.getMachineId());
+            auditParameter1.setJudgeCheckTypeId(auditParameterTypeList.get(i).getJudgeCheckTypeId());
+            auditParameter1.setValue(auditParameter.getValues()[i]);
+            auditParameter1.setUseFlag(auditParameter.getUseFlag());
+            auditParameter1.setStartDate(auditParameter.getStartDate());
+            auditParameter1.setEndDate(auditParameter.getEndDate());
+            QueryWrapper<AuditParameter> auditParameterQueryWrapper1=new QueryWrapper<>();
+            auditParameterQueryWrapper1.eq("OPERATION_ID",auditParameter1.getOperationId());
+            auditParameterQueryWrapper1.eq("PRODUCT_ID",auditParameter1.getProductId());
+            auditParameterQueryWrapper1.eq("MACHINE_ID",auditParameter1.getMachineId());
+            auditParameterQueryWrapper1.eq("JUDGE_CHECK_TYPE_ID",auditParameter1.getJudgeCheckTypeId());
+            baseMapper.update(auditParameter1,auditParameterQueryWrapper1);
+        }
+
+
     }
 
     @Override
-    public Integer deleteAuditParameter(AuditParameterDelete auditParameterDelete) {
-
-        //工序
-        QueryWrapper<Operation> operationQueryWrapper=new QueryWrapper<>();
-        operationQueryWrapper.eq("OPERATION_NAME",auditParameterDelete.getOperationName());
-        Operation operation=operationMapper.selectOne(operationQueryWrapper);
-        //工序
-        QueryWrapper<Products> productsQueryWrapper=new QueryWrapper<>();
-        productsQueryWrapper.eq("PRODUCT_NAME",auditParameterDelete.getProductName());
-        Products products=productsMapper.selectOne(productsQueryWrapper);
-        //设备
-        QueryWrapper<Machine> machineQueryWrapper=new QueryWrapper<>();
-        machineQueryWrapper.eq("MACHINE_NAME",auditParameterDelete.getMachineName());
-        Machine machine=machineMapper.selectOne(machineQueryWrapper);
+    public Integer deleteAuditParameter(AuditParameter auditParameter) {
 
         QueryWrapper<AuditParameter> auditParameterQueryWrapper=new QueryWrapper<>();
-        auditParameterQueryWrapper.eq("OPERATION_ID",operation.getOperationId())
-        .eq("PRODUCT_ID",products.getProductId())
-        .eq("MACHINE_ID",machine.getMachineId());
+        auditParameterQueryWrapper.eq("OPERATION_ID",auditParameter.getOperationId())
+        .eq("PRODUCT_ID",auditParameter.getProductId())
+        .eq("MACHINE_ID",auditParameter.getMachineId());
         return  baseMapper.delete(auditParameterQueryWrapper);
     }
 

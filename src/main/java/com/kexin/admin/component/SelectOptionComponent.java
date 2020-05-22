@@ -2,7 +2,9 @@ package com.kexin.admin.component;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.kexin.admin.entity.tables.*;
+import com.kexin.admin.entity.vo.AuditParameter.ParameterByIds;
 import com.kexin.admin.entity.vo.webQuery.SelectOption;
+import com.kexin.admin.entity.vo.webQuery.SelectOptionValue;
 import com.kexin.admin.mapper.*;
 import com.kexin.admin.service.MachineService;
 import com.kexin.common.util.ResponseEty;
@@ -213,6 +215,39 @@ public class SelectOptionComponent {
             selectOption=new SelectOption();
             selectOption.setValue(r.getJudgeCheckTypeId());
             selectOption.setLabel(r.getJudgeCheckTypeName());
+            selectOptionList.add(selectOption);
+        }
+        return selectOptionList;
+    }
+
+    /**
+     * 获取审核参数类型的selectOption,根据工序id,产品id,设备id
+     * @return
+     */
+    public List<SelectOptionValue> getAuditParameterTypeSelectOptionByIds(ParameterByIds parameterByIds){
+        QueryWrapper<AuditParameterType> auditParameterTypeQueryWrapper = new QueryWrapper<>();
+        auditParameterTypeQueryWrapper.eq("USE_FLAG",1);//启用状态
+        List<AuditParameterType> auditParameterTypeList= auditParameterTypeMapper.selectList(auditParameterTypeQueryWrapper);
+
+
+
+        List<SelectOptionValue> selectOptionList=new ArrayList<>(auditParameterTypeList.size());
+        SelectOptionValue selectOption;
+        for (AuditParameterType r : auditParameterTypeList) {
+            selectOption=new SelectOptionValue();
+            selectOption.setValue(r.getJudgeCheckTypeId());
+            selectOption.setLabel(r.getJudgeCheckTypeName());
+            QueryWrapper<AuditParameter> auditParameterQueryWrapper = new QueryWrapper<>();
+            auditParameterQueryWrapper.eq("OPERATION_ID",parameterByIds.getOperationId());
+            auditParameterQueryWrapper.eq("PRODUCT_ID",parameterByIds.getProductId());
+            auditParameterQueryWrapper.eq("MACHINE_ID",parameterByIds.getMachineId());
+            auditParameterQueryWrapper.eq("JUDGE_CHECK_TYPE_ID",r.getJudgeCheckTypeId());
+            AuditParameter auditParameter= auditParameterMapper.selectOne(auditParameterQueryWrapper);
+            if (auditParameter!=null){
+                selectOption.setValueData(auditParameter.getValue());
+            }else{
+                selectOption.setValueData(0);
+            }
             selectOptionList.add(selectOption);
         }
         return selectOptionList;

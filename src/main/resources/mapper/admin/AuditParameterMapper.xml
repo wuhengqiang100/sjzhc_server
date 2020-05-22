@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kexin.admin.mapper.AuditParameterMapper">
+
+<!--    <resultMap id="BaseResultMap" type="com.kexin.admin.entity.tables.AuditParameter">
+        <id column="MACHINE_TYPE_ID" property="machineTypeId" />
+        <result column="MACHINE_TYPE_CODE" property="machineTypeCode" />
+        <result column="MACHINE_TYPE_NAME" property="machineTypeName" />
+        <result column="USE_FLAG" property="useFlag" />
+        <result column="START_DATE" property="startDate" />
+        <result column="END_DATE" property="endDate" />
+        <result column="NOTE" property="note" />
+    </resultMap>-->
+<!--    <select id="selectAuditParameterPage" resultMap="BaseResultMap">
+        select MACHINE_TYPE_ID,MACHINE_TYPE_CODE,MACHINE_TYPE_NAME,USE_FLAG,START_DATE,END_DATE,NOTE
+        FROM dic_machine_types
+        <where>
+            <if test="useFlag!=3">
+                USE_FLAG=#{useFlag}
+            </if>
+            <if test="facilityTypeName!='' and facilityTypeName!=null">
+                and  MACHINE_TYPE_NAME like  '%${facilityTypeName}%'
+            </if>
+
+        </where>
+        GROUP BY MACHINE_TYPE_ID
+        order by START_DATE ASC
+    </select>-->
+
+
+    <select id="getAuditParameterFirst" resultType="java.lang.String">
+        select 'select * from (select a.product_id,a.operation_id,a.machine_id,a.judge_check_type_id,a.value from set_judge_check a ) pivot(sum(value) for judge_check_type_id in('||wm_concat(''''||b.judge_check_type_id||''''||' as '||b.judge_check_type_name)||'))' from set_judge_check_types b
+    </select>
+    <select id="getAuditParameterSecond" resultType="java.util.Map">
+        #{sqlQuery}
+    </select>
+</mapper>

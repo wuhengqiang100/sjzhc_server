@@ -6,6 +6,7 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\OperatorMappe
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\MachineModelService.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\DataupLogServiceImpl.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\ProductsMapper.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\SystemLogServiceImpl.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\ProductsService.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\annotation\SysLog.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\util\ftpUtil\FTPUtil.java
@@ -21,12 +22,15 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\MenuMetas.
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\config\CORSAuthenticationFilter.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\component\ScheduledComponent.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\SystemController.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\common\ResetUser.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\webQuery\RoleChange.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\WasterReasonService.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\SystemLogMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\UploadServiceImpl.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\SystemLogService.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\config\MySysUser.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\WorkUnitMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\QaInspectMasterServiceImpl.java
-E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\ErrorTypeController.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\AuditParameter\AuditParameterDetail.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\config\ShiroConfig.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\login\TokenUser.java
@@ -39,6 +43,7 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\Operati
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\DataupLogService.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\MachineLogService.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\AuditParameterTypeController.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\SystemLog.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\LoginUserServiceImpl.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\UserRoleMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\pojo\Token.java
@@ -48,7 +53,6 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\monitor\Monit
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\webQuery\SelectOption.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\SysMenusMetaMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\config\CaptchaConfig.java
-E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\ErrorTypeMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\MachineLogServiceImpl.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\base\TableEntity.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\util\ResponseEty.java
@@ -66,6 +70,7 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\Machine
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\AdminApplication.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\component\TestComponent.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\SysFunctionServiceImpl.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\WasterReason.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\MachineCheckQuery.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\config\MyWebMvcConfigurer.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\OperationTypeService.java
@@ -110,16 +115,19 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\SysMenusMeta
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\AuditParameter\AuditParameterSelect.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\ProductController.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\LoginUserService.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\query\SaveCheckData.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\query\QaInspectSelect.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\AllFunction.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\monitor\MonitorAssignPo.java
-E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\ErrorTypeServiceImpl.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\MachineLog.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\AuditParameter\ParameterByIds.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\webService\TestWebService.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\MachineService.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\RoleController.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\AuditParameterTypeServiceImpl.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\WasterReasonMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\AuditParameterType.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\WasterReasonServiceImpl.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\MachineLogMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\ViewProduceLogServiceImpl.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\query\QueryDateParent.java
@@ -145,6 +153,8 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\DicWor
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\MachineCheckController.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\ProduceLog.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\MachineCheckQueryService.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\query\QueryProduceLog.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\query\QueryDate.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\component\MonitorBigScreenComponent.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\config\CorsConfig.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\QaInspectMaster.java
@@ -188,6 +198,7 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\SysMenusMappe
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\base\PageDataBase.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\MachineTemplateController.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\realm\AuthRealm.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\webQuery\SelectOptionValue.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\util\ResponseEntity.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\SysRoleMenus.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\base\BaseEntity.java
@@ -196,8 +207,8 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\Functi
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\ProduceLogMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\util\annotation\testAnnotation.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\QaInspectChange.java
-E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\ErrorTypeService.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\base\TableEntityTask.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\WasterReasonController.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\GrantRoleFunctions.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\MachineController.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\OperationTypeServiceImpl.java
