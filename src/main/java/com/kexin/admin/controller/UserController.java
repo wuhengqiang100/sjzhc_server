@@ -7,10 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.LoginUser;
 import com.kexin.admin.entity.tables.Role;
 import com.kexin.admin.entity.tables.SysUserRoles;
-import com.kexin.admin.service.LoginUserService;
-import com.kexin.admin.service.OperatorService;
-import com.kexin.admin.service.RoleService;
-import com.kexin.admin.service.UserRoleService;
+import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
@@ -43,6 +40,9 @@ public class UserController {
     @Autowired
     OperatorService operatorService;
 
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
+
 
     //@CrossOrigin(origins = "http://192.168.0.100:4200", maxAge = 3600)
     @GetMapping("list")
@@ -54,7 +54,8 @@ public class UserController {
                                       @RequestParam(value = "useFlag",defaultValue = "")String useFlag,
                                       @RequestParam(value = "title",defaultValue = "") String title,
                                       @RequestParam(value = "operatorId",defaultValue = "") Integer operatorId,
-                                      ServletRequest request){
+                                        @RequestHeader(value="token",required = false) Integer token,
+                                        ServletRequest request){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
         PageDataBase<LoginUser> loginUserPageData = new PageDataBase<>();
         Data data=new Data();
@@ -86,6 +87,7 @@ public class UserController {
             });
         data.setItems(loginUserPage.getRecords());
         loginUserPageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了用户列表");
         return loginUserPageData;
     }
 
@@ -116,7 +118,7 @@ public class UserController {
     @PostMapping("create")
     @ResponseBody
     @SysLog("新增用户数据")
-    public ResponseEty create(@RequestBody  LoginUser loginUser){
+    public ResponseEty create(@RequestBody  LoginUser loginUser,@RequestHeader(value="token",required = false) Integer token){
         if(loginUser.getOperatorId()==null){
             return ResponseEty.failure("请选择用户");
         }
@@ -134,13 +136,13 @@ public class UserController {
             return ResponseEty.failure("用户名称已使用,请重新输入");
         }
 
-        return loginUserService.saveLoginUser(loginUser);
+        return loginUserService.saveLoginUser(loginUser,token);
     }
 
     @PostMapping("update")
     @ResponseBody
     @SysLog("保存用户修改数据")
-    public ResponseEty update(@RequestBody  LoginUser loginUser){
+    public ResponseEty update(@RequestBody  LoginUser loginUser,@RequestHeader(value="token",required = false) Integer token){
         if(loginUser.getOperatorId()==null){
             return ResponseEty.failure("用户ID不能为空");
         }
@@ -172,19 +174,19 @@ public class UserController {
             }
         }
 
-        return loginUserService.updateLoginUser(loginUser);
+        return loginUserService.updateLoginUser(loginUser,token);
     }
 
     @PostMapping("delete")
     @ResponseBody
     @SysLog("删除用户数据(单个)")
-    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id){
-        return  loginUserService.deleteLoginUser(id);
+    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
+        return  loginUserService.deleteLoginUser(id,token);
     }
     @PostMapping("updateUseFlag")
     @ResponseBody
     @SysLog("禁用或者启用用户")
-    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -193,12 +195,14 @@ public class UserController {
             return ResponseEty.failure("用户不存在");
         }
         loginUserService.lockLoginUser(loginUser);
+        systemLogService.saveMachineLog(token,"禁用","禁用了用户:"+loginUser.getLoginUserName());
+
         return ResponseEty.success("操作成功");
     }
     @PostMapping("resetPassword")
     @ResponseBody
     @SysLog("重置用户密码为123456")
-    public ResponseEty resetPassword(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty resetPassword(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -209,7 +213,9 @@ public class UserController {
 
         loginUser.setLoginUserPass(CryptographyUtil.encodeBase64("123456"));
         loginUserService.updateById(loginUser);
-        return ResponseEty.success("操作成功");
+        systemLogService.saveMachineLog(token,"更新","重置了用户:"+loginUser.getLoginUserName()+"的密码");
+
+        return ResponseEty.success("重置密码为123456成功");
     }
 
 }

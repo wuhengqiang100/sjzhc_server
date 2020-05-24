@@ -16,6 +16,7 @@ import com.kexin.admin.mapper.OperatorMapper;
 import com.kexin.admin.mapper.RoleMapper;
 import com.kexin.admin.mapper.UserRoleMapper;
 import com.kexin.admin.service.LoginUserService;
+import com.kexin.admin.service.SystemLogService;
 import com.kexin.common.util.ResponseEty;
 import com.kexin.common.util.encry.CryptographyUtil;
 import org.apache.shiro.SecurityUtils;
@@ -40,6 +41,9 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
 
     @Autowired
     SystemWebApi systemWebApi;
+
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
 
     @Override
     public ResponseEty login(Map map, HttpSession session) {
@@ -71,11 +75,13 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
 //            System.out.println("token密码:"+CryptographyUtil.md5NotSalt(password));
         try {
             user.login(token);
+
             Tokens tokens=new Tokens();
             // 讲用户的operatorId作为用户登陆的token
             tokens.setToken(String.valueOf(loginUser.getLoginId()));//后台shiro和前台权限token都是operatorId
             responseEty.setSuccess(20000);
             responseEty.setData(tokens);
+            systemLogService.saveMachineLog(loginUser.getLoginId(),"登陆","登陆了系统");
 //            session.setAttribute("tokenName",userName);
 //            return responseEty;
         }catch (IncorrectCredentialsException e) {
@@ -115,6 +121,8 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
 
     @Resource
     LoginUserMapper loginUserMapper;
+
+
 
     @Override
     public ResponseEty userInfo(String token) {
@@ -177,7 +185,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ResponseEty saveLoginUser(LoginUser loginUser) {
+    public ResponseEty saveLoginUser(LoginUser loginUser,Integer  token) {
 
 
         baseMapper.insert(loginUser);
@@ -199,12 +207,14 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
                 userRoleMapper.insert(sysUserRoles);
             }
         }
+        systemLogService.saveMachineLog(token,"新增","新增了用户:"+loginUser.getLoginUserName());
+
         return ResponseEty.success("保存成功");
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ResponseEty updateLoginUser(LoginUser loginUser) {
+    public ResponseEty updateLoginUser(LoginUser loginUser,Integer  token) {
 //        dropUserRolesByUserId(user.getLoginId());
 
         baseMapper.updateById(loginUser);
@@ -228,12 +238,14 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
                 userRoleMapper.insert(sysUserRoles);
             }
         }
+        systemLogService.saveMachineLog(token,"更新","更新了用户:"+loginUser.getLoginUserName());
+
         return ResponseEty.success("保存成功");
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ResponseEty deleteLoginUser(Integer id) {
+    public ResponseEty deleteLoginUser(Integer id,Integer  token) {
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -248,6 +260,7 @@ public class LoginUserServiceImpl extends ServiceImpl<LoginUserMapper, LoginUser
 
         //删除用户数据
         baseMapper.deleteById(loginUser.getLoginId());
+        systemLogService.saveMachineLog(token,"删除","删除了用户:"+loginUser.getLoginUserName());
         return ResponseEty.success("删除成功");
     }
 

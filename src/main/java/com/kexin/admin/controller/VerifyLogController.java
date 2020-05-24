@@ -72,7 +72,8 @@ public class VerifyLogController {
     @PostMapping("machine")
     @ResponseBody
     @SysLog("设备日志查询")
-    public PageDataBase<MachineLog> listMachineLog(@RequestBody QueryDateParent query){
+    public PageDataBase<MachineLog> listMachineLog(@RequestBody QueryDateParent query,
+                                                   @RequestHeader(value="token",required = false) Integer token){
         PageDataBase<MachineLog> machineLogPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<MachineLog> machineLogWrapper = new QueryWrapper<>();
@@ -92,13 +93,15 @@ public class VerifyLogController {
         machineLogPage.getRecords().forEach(r->r.setOperator(operatorService.getById(r.getOperatorId())));
         data.setItems(machineLogPage.getRecords());
         machineLogPageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了设备日志列表");
+
         return machineLogPageData;
     }
 
     @PostMapping("system")
     @ResponseBody
     @SysLog("系统日志查询")
-    public PageDataBase<SystemLog> listSystemLog(@RequestBody QueryDateParent query){
+    public PageDataBase<SystemLog> listSystemLog(@RequestBody QueryDateParent query,@RequestHeader(value="token",required = false) Integer token){
         PageDataBase<SystemLog> systemLogPageDataBase = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<SystemLog> systemLogQueryWrapper = new QueryWrapper<>();
@@ -120,13 +123,15 @@ public class VerifyLogController {
 //        machineLogPage.getRecords().forEach(r->r.setOperator(operatorService.getById(r.getOperatorId())));
         data.setItems(machineLogPage.getRecords());
         systemLogPageDataBase.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了系统日志列表");
+
         return systemLogPageDataBase;
     }
 
     @PostMapping("produce")
     @ResponseBody
     @SysLog("生产日志查询")
-    public PageDataBase<ProduceLog> listProduceLog(@RequestBody QueryProduceLog query){
+    public PageDataBase<ProduceLog> listProduceLog(@RequestBody QueryProduceLog query,@RequestHeader(value="token",required = false) Integer token){
         PageDataBase<ProduceLog> produceLogPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<ProduceLog> produceLogWrapper = new QueryWrapper<>();
@@ -161,6 +166,8 @@ public class VerifyLogController {
         });
         data.setItems(produceLogPage.getRecords());
         produceLogPageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了系统日志列表");
+
         return produceLogPageData;
     }
 
@@ -177,7 +184,7 @@ public class VerifyLogController {
     @PostMapping("dataup")
     @ResponseBody
     @SysLog("上传日志查询list")
-    public PageDataBase<DataupLog> listDataUpLog(@RequestBody QueryDateParent query){
+    public PageDataBase<DataupLog> listDataUpLog(@RequestBody QueryDateParent query,@RequestHeader(value="token",required = false) Integer token){
         PageDataBase<DataupLog> dataupLogPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<DataupLog> dataupLogWrapper = new QueryWrapper<>();
@@ -195,6 +202,8 @@ public class VerifyLogController {
         data.setTotal(dataupLogPage.getTotal());
         data.setItems(dataupLogPage.getRecords());
         dataupLogPageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了上传日志列表");
+
         return dataupLogPageData;
     }
 
@@ -211,7 +220,7 @@ public class VerifyLogController {
     @PostMapping("operation")
     @ResponseBody
     @SysLog("操作日志查询")
-    public PageDataBase<OperationLog> listOperationLog(@RequestBody QueryDateParent query){
+    public PageDataBase<OperationLog> listOperationLog(@RequestBody QueryDateParent query,@RequestHeader(value="token",required = false) Integer token){
         PageDataBase<OperationLog> operationLogPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<OperationLog> operationLogWrapper = new QueryWrapper<>();
@@ -232,14 +241,16 @@ public class VerifyLogController {
         data.setTotal(operationLogPage.getTotal());
         data.setItems(operationLogPage.getRecords());
         operationLogPageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了操作日志列表");
+
         return operationLogPageData;
     }
 
 
     @PostMapping("CheckQuery")
     @ResponseBody
-    @SysLog("生产综合查询")
-    public PageDataBase<MachineCheckQuery> listCheckQuery(@RequestBody QaInspectSelect qaSelect){
+    @SysLog("核查审核查询")
+    public PageDataBase<MachineCheckQuery> listCheckQuery(@RequestBody QaInspectSelect qaSelect,@RequestHeader(value="token",required = false) Integer token){
         PageDataBase<MachineCheckQuery> machineCheckQueryPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<MachineCheckQuery> machineCheckQueryWrapper = new QueryWrapper<>();
@@ -267,6 +278,8 @@ public class VerifyLogController {
         data.setTotal(machineCheckQueryPage.getTotal());
         data.setItems(machineCheckQueryPage.getRecords());
         machineCheckQueryPageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了核查审核列表");
+
         return machineCheckQueryPageData;
     }
 

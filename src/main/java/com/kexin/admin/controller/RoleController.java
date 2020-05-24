@@ -50,8 +50,9 @@ public class RoleController {
     @Autowired
     SelectOptionComponent selectOptionComponent;//获取查询条件
 
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
 
-    //@CrossOrigin(origins = "http://192.168.0.100:4200", maxAge = 3600)
     @GetMapping("list")
     @ResponseBody
     @SysLog("角色列表获取")
@@ -60,7 +61,9 @@ public class RoleController {
                                       @RequestParam(value = "sort")String sort,
                                       @RequestParam(value = "useFlag",defaultValue = "")String useFlag,
                                       @RequestParam(value = "title",defaultValue = "") String title,
-                                      ServletRequest request){
+                                   @RequestHeader(value="token",required = false) Integer token,
+
+                                   ServletRequest request){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
         PageDataBase<Role> rolePageData = new PageDataBase<>();
         Data data=new Data();
@@ -82,6 +85,8 @@ public class RoleController {
         data.setTotal(rolePage.getTotal());
         data.setItems(rolePage.getRecords());
         rolePageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了角色列表");
+
         return rolePageData;
     }
 
@@ -109,7 +114,7 @@ public class RoleController {
     @PostMapping("create")
     @ResponseBody
     @SysLog("新增角色数据")
-    public ResponseEty create(@RequestBody  Role role){
+    public ResponseEty create(@RequestBody  Role role,@RequestHeader(value="token",required = false) Integer token){
 
         if(StringUtils.isBlank(role.getRoleName())){
             return ResponseEty.failure("角色名称不能为空");
@@ -118,14 +123,13 @@ public class RoleController {
             return ResponseEty.failure("角色名称已使用,请重新输入");
         }
 
-
-        return roleService.saveRole(role);
+        return roleService.saveRole(role,token);
     }
 
     @PostMapping("update")
     @ResponseBody
     @SysLog("保存角色修改数据")
-    public ResponseEty update(@RequestBody  Role role){
+    public ResponseEty update(@RequestBody  Role role,@RequestHeader(value="token",required = false) Integer token){
         if(role.getRoleId()==null){
             return ResponseEty.failure("角色ID不能为空");
         }
@@ -143,13 +147,13 @@ public class RoleController {
         }
 
 
-        return  roleService.updateRole(role);
+        return  roleService.updateRole(role,token);
     }
 
     @PostMapping("delete")
     @ResponseBody
     @SysLog("删除角色数据(单个)")
-    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -170,29 +174,16 @@ public class RoleController {
         //删除角色数据
         roleService.deleteRole(role);
 
+        systemLogService.saveMachineLog(token,"删除","删除了角色:"+role.getRoleName());
 
         return ResponseEty.success("删除成功");
     }
-    //
-//    @RequiresPermissions("sys:user:delete")
-/*
-    @PostMapping("deleteSome")
-    @ResponseBody
-    @SysLog("删除角色数据(多个)")
-    public ResponseEty deleteSome(@RequestBody List<Role> Roles){
-        if(Roles == null || Roles.size()==0){
-            return ResponseEty.failure("请选择需要删除的信息");
-        }
-        Roles.forEach(m -> roleService.deleteRole(m));
-        return ResponseEty.success("批量删除成功");
-    }
-*/
 
 
     @PostMapping("updateUseFlag")
     @ResponseBody
     @SysLog("禁用或者启用角色")
-    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -201,14 +192,9 @@ public class RoleController {
             return ResponseEty.failure("角色不存在");
         }
         roleService.lockRole(role);
+        systemLogService.saveMachineLog(token,"禁用","禁用了角色:"+role.getRoleName());
         return ResponseEty.success("操作成功");
     }
 
-    @PostMapping("permission")
-    @ResponseBody
-    public ResponseEty save(@RequestBody RoleChange roleChange){
-        return ResponseEty.success("ss");
-//        return qaInspectMasterService.saveQaInspectMaster(inspectChange);
-    }
 
 }

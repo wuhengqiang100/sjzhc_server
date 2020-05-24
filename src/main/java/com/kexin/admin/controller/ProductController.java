@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.Products;
 import com.kexin.admin.service.ProductsService;
+import com.kexin.admin.service.SystemLogService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
@@ -28,9 +29,11 @@ public class ProductController {
 
     @Autowired
     ProductsService productService;
-    
 
-    //@CrossOrigin(origins = "http://192.168.0.100:4200", maxAge = 3600)
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
+
+
     @GetMapping("list")
     @ResponseBody
     @SysLog("产品列表获取")
@@ -39,6 +42,7 @@ public class ProductController {
                                        @RequestParam(value = "sort")String sort,
                                        @RequestParam(value = "useFlag",defaultValue = "")String useFlag,
                                        @RequestParam(value = "title",defaultValue = "") String title,
+                                       @RequestHeader(value="token",required = false) Integer token,
                                        ServletRequest request){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
         PageDataBase<Products> productPageData = new PageDataBase<>();
@@ -59,6 +63,8 @@ public class ProductController {
         data.setTotal(productPage.getTotal());
         data.setItems(productPage.getRecords());
         productPageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了产品种类列表");
+
         return productPageData;
     }
 
@@ -66,7 +72,7 @@ public class ProductController {
     @PostMapping("create")
     @ResponseBody
     @SysLog("新增产品数据")
-    public ResponseEty create(@RequestBody  Products product){
+    public ResponseEty create(@RequestBody  Products product,@RequestHeader(value="token",required = false) Integer token){
         if(StringUtils.isBlank(product.getProductCode())){
             return ResponseEty.failure("产品编号不能为空");
         }
@@ -83,13 +89,14 @@ public class ProductController {
         if(product.getProductId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        systemLogService.saveMachineLog(token,"新增","新增了产品种类:"+product.getProductName());
         return ResponseEty.success("保存成功");
     }
 
     @PostMapping("update")
     @ResponseBody
     @SysLog("保存产品修改数据")
-    public ResponseEty update(@RequestBody  Products product){
+    public ResponseEty update(@RequestBody  Products product,@RequestHeader(value="token",required = false) Integer token){
         if(product.getProductId()==null){
             return ResponseEty.failure("产品ID不能为空");
         }
@@ -119,13 +126,15 @@ public class ProductController {
         if(product.getProductId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        systemLogService.saveMachineLog(token,"更新","更新了产品种类:"+product.getProductName());
+
         return ResponseEty.success("操作成功");
     }
 
     @PostMapping("delete")
     @ResponseBody
     @SysLog("删除产品数据(单个)")
-    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -134,26 +143,15 @@ public class ProductController {
             return ResponseEty.failure("产品不存在");
         }
         productService.deleteProducts(product);
+        systemLogService.saveMachineLog(token,"删除","删除了产品种类:"+product.getProductName());
+
         return ResponseEty.success("删除成功");
     }
-    //
-//    @RequiresPermissions("sys:user:delete")
-    @PostMapping("deleteSome")
-    @ResponseBody
-    @SysLog("删除产品数据(多个)")
-    public ResponseEty deleteSome(@RequestBody List<Products> Products){
-        if(Products == null || Products.size()==0){
-            return ResponseEty.failure("请选择需要删除的信息");
-        }
-        Products.forEach(m -> productService.deleteProducts(m));
-        return ResponseEty.success("批量删除成功");
-    }
-
 
     @PostMapping("updateUseFlag")
     @ResponseBody
     @SysLog("禁用或者启用产品")
-    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -162,6 +160,8 @@ public class ProductController {
             return ResponseEty.failure("产品不存在");
         }
         productService.lockProducts(product);
+        systemLogService.saveMachineLog(token,"禁用","禁用了产品种类:"+product.getProductName());
+
         return ResponseEty.success("操作成功");
     }
 }

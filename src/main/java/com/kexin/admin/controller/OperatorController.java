@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.Operator;
 import com.kexin.admin.service.OperatorService;
+import com.kexin.admin.service.SystemLogService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
@@ -29,27 +30,18 @@ public class OperatorController {
     @Autowired
     OperatorService operatorService;
 
-  /*  @GetMapping("listOption")
-    @ResponseBody
-    @SysLog("人员options列表获取")
-    public ResponseEty listopetion(){
-        ResponseEty responseEty=new ResponseEty();
-        QueryWrapper<Operator> operatorWrapper = new QueryWrapper<>();
-        responseEty.setData(operatorService.list(operatorWrapper));
-        responseEty.setSuccess(20000);
-        return responseEty;
-    }
-*/
-    //@CrossOrigin(origins = "http://192.168.0.100:4200", maxAge = 3600)
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
     @GetMapping("list")
     @ResponseBody
     @SysLog("人员列表获取")
     public PageDataBase<Operator> list(@RequestParam(value = "page",defaultValue = "1")Integer page,
-                                            @RequestParam(value = "limit",defaultValue = "10")Integer limit,
-                                            @RequestParam(value = "sort")String sort,
+                                        @RequestParam(value = "limit",defaultValue = "10")Integer limit,
+                                        @RequestParam(value = "sort")String sort,
                                        @RequestParam(value = "useFlag",defaultValue = "")String useFlag,
                                        @RequestParam(value = "title",defaultValue = "") String title,
-                                            ServletRequest request){
+                                        ServletRequest request,
+                                       @RequestHeader(value="token",required = false) Integer token){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
         PageDataBase<Operator> operatorPageData = new PageDataBase<>();
         Data data=new Data();
@@ -69,6 +61,8 @@ public class OperatorController {
         data.setTotal(operatorPage.getTotal());
         data.setItems(operatorPage.getRecords());
         operatorPageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了人员列表");
+
         return operatorPageData;
     }
 
@@ -76,7 +70,7 @@ public class OperatorController {
     @PostMapping("create")
     @ResponseBody
     @SysLog("新增人员数据")
-    public ResponseEty create(@RequestBody  Operator operator){
+    public ResponseEty create(@RequestBody  Operator operator,@RequestHeader(value="token",required = false) Integer token){
         if(StringUtils.isBlank(operator.getOperatorCode())){
             return ResponseEty.failure("人员编号不能为空");
         }
@@ -93,13 +87,15 @@ public class OperatorController {
         if(operator.getOperatorId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        systemLogService.saveMachineLog(token,"新增","新增了人员:"+operator.getOperatorName());
+
         return ResponseEty.success("保存成功");
     }
 
     @PostMapping("update")
     @ResponseBody
     @SysLog("保存人员修改数据")
-    public ResponseEty update(@RequestBody  Operator operator){
+    public ResponseEty update(@RequestBody  Operator operator,@RequestHeader(value="token",required = false) Integer token){
         if(operator.getOperatorId()==null){
             return ResponseEty.failure("人员ID不能为空");
         }
@@ -129,13 +125,15 @@ public class OperatorController {
         if(operator.getOperatorId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        systemLogService.saveMachineLog(token,"更新","更新了人员:"+operator.getOperatorName());
+
         return ResponseEty.success("操作成功");
     }
 
     @PostMapping("delete")
     @ResponseBody
     @SysLog("删除人员数据(单个)")
-    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -144,26 +142,18 @@ public class OperatorController {
             return ResponseEty.failure("人员不存在");
         }
         operatorService.deleteOperator(operator);
+        systemLogService.saveMachineLog(token,"删除","删除了人员:"+operator.getOperatorName());
+
         return ResponseEty.success("删除成功");
     }
     //
-//    @RequiresPermissions("sys:user:delete")
-    @PostMapping("deleteSome")
-    @ResponseBody
-    @SysLog("删除人员数据(多个)")
-    public ResponseEty deleteSome(@RequestBody List<Operator> Operators){
-        if(Operators == null || Operators.size()==0){
-            return ResponseEty.failure("请选择需要删除的信息");
-        }
-        Operators.forEach(m -> operatorService.deleteOperator(m));
-        return ResponseEty.success("批量删除成功");
-    }
+
 
 
     @PostMapping("updateUseFlag")
     @ResponseBody
     @SysLog("禁用或者启用人员")
-    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -172,6 +162,8 @@ public class OperatorController {
             return ResponseEty.failure("人员不存在");
         }
         operatorService.lockOperator(operator);
+        systemLogService.saveMachineLog(token,"禁用","禁用了人员:"+operator.getOperatorName());
+
         return ResponseEty.success("操作成功");
     }
 }

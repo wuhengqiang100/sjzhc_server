@@ -2,6 +2,7 @@ package com.kexin.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kexin.admin.entity.tables.MachineLog;
+import com.kexin.admin.entity.tables.WorkUnit;
 import org.apache.ibatis.annotations.Param;
 
 public interface MachineLogService extends IService<MachineLog> {
@@ -22,28 +23,27 @@ public interface MachineLogService extends IService<MachineLog> {
     Integer machineLogCountByName(@Param("machineLogName") String machineLogName);
 
     /**
-     * 保存设备日志
-     * @param machineLog
+     * 新增机台配置日志
+     * @param workUnit
+     * @param token
      */
-    void saveMachineLog(@Param("machineLog") MachineLog machineLog);
+    void saveMachineLog(WorkUnit workUnit,Integer token);
 
 
     /**
-     * 修改更新设备日志
-     * @param machineLog
+     * 保存机台配置日志
+     * @param workUnit
+     * @param token
      */
-    void updateMachineLog(@Param("machineLog") MachineLog machineLog);
+    void updateMachineLog(WorkUnit workUnit,Integer token);
 
     /**
-     * 删除设备日志(单个)
-     * @param machineLog
+     * 删除机台配置日志
+     * @param workUnit
+     * @param token
      */
-    void deleteMachineLog(@Param("machineLog") MachineLog machineLog);
+    void deleteMachineLog(WorkUnit workUnit,Integer token);
 
-    /**
-     * 禁用或者启用设备日志
-     * @param machineLog
-     */
-    void lockMachineLog(@Param("machineLog") MachineLog machineLog);
+
 
 }

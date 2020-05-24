@@ -48,12 +48,12 @@ public interface RoleService extends IService<Role> {
      * 修改更新角色
      * @param role
      */
-    ResponseEty saveRole(@Param("role") Role role);
+    ResponseEty saveRole(@Param("role") Role role,Integer token);
     /**
      * 修改更新角色
      * @param role
      */
-    ResponseEty updateRole(@Param("role") Role role);
+    ResponseEty updateRole(@Param("role") Role role,Integer token);
 
     /**
      * 删除角色(单个)
@@ -68,10 +68,5 @@ public interface RoleService extends IService<Role> {
     void lockRole(@Param("role") Role role);
 
 
-    /**
-     * 保存角色与权限之间的关系表
-     * @param role
-     * @return
-     */
-    ResponseEty saveRolePermission(RoleChange roleChange);
+
 }

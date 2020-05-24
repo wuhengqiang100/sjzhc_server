@@ -2,11 +2,10 @@ package com.kexin.admin.controller;
 
 
 import com.kexin.admin.entity.tables.LoginUser;
+import com.kexin.admin.entity.tables.Operator;
 import com.kexin.admin.entity.tables.WasterReason;
 import com.kexin.admin.entity.vo.common.ResetUser;
-import com.kexin.admin.service.LoginUserService;
-import com.kexin.admin.service.SysFunctionService;
-import com.kexin.admin.service.SysMenusService;
+import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.component.TestComponent;
 import com.kexin.common.util.ResponseEty;
@@ -14,6 +13,7 @@ import com.kexin.common.util.encry.CryptographyUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +42,12 @@ public class CommonController {
 
     @Autowired
     TestComponent testComponent;
+
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
+
+    @Autowired
+    OperatorService operatorService;
 
     /**
      * @Title:
@@ -151,11 +157,14 @@ public class CommonController {
      */
     @GetMapping("logout")
     @ResponseBody
-    public ResponseEty logout(HttpSession session){
+    public ResponseEty logout(HttpSession session,@RequestHeader(value="token",required = false) Integer token){
         ResponseEty responseEty=new ResponseEty();
         responseEty.setSuccess(20000);
         responseEty.setData("success");
         SecurityUtils.getSubject().logout();
+        LoginUser loginUser=loginUserService.getById(token);
+        Operator operator=operatorService.getById(loginUser.getOperatorId());
+        systemLogService.saveMachineLog(token,"退出系统","退出了系统");
 //        testComponent.list();//测试组件
         return responseEty;
     }
@@ -163,7 +172,7 @@ public class CommonController {
     @PostMapping("resetPassword")
     @ResponseBody
     @SysLog("保存错误类型修改数据")
-    public ResponseEty resetPassword(@RequestBody ResetUser resetUser){
+    public ResponseEty resetPassword(@RequestBody ResetUser resetUser,@RequestHeader(value="token",required = false) Integer token){
         if (resetUser.getLoginId()==null){
             return ResponseEty.failure("请重新登录");
         }
@@ -183,6 +192,9 @@ public class CommonController {
         loginUser.setLoginId(resetUser.getLoginId());
         loginUser.setLoginUserPass(CryptographyUtil.encodeBase64(resetUser.getNewPassword()));
         loginUserService.updateById(loginUser);
+
+        Operator operator=operatorService.getById(loginUser.getOperatorId());
+        systemLogService.saveMachineLog(token,"重置密码","重置了密码");
         return ResponseEty.success("修改密码成功,下次登录生效");
     }
 

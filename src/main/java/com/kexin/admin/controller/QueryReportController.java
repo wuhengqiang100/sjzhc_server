@@ -13,10 +13,7 @@ import com.kexin.common.util.ResponseEty;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 核查综合查询的report相关查询
@@ -63,10 +60,13 @@ public class QueryReportController {
     @Autowired
     QueryReportQaService queryReportQaService;//报表缺陷视图service
 
+
+
     @PostMapping("reportMain")
     @ResponseBody
     @SysLog("报表查询主视图")
-    public PageDataBase<QueryReportMain> listReportMain(@RequestBody QueryReportMainSelect qaSelect){
+    public PageDataBase<QueryReportMain> listReportMain(@RequestBody QueryReportMainSelect qaSelect,
+                                                        @RequestHeader(value="token",required = false) Integer token){
         PageDataBase<QueryReportMain> queryReportMainPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<QueryReportMain> queryReportMainWrapper = new QueryWrapper<>();
@@ -90,13 +90,15 @@ public class QueryReportController {
         data.setTotal(queryReportMainPage.getTotal());
         data.setItems(queryReportMainPage.getRecords());
         queryReportMainPageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了报表主信息");
         return queryReportMainPageData;
     }
 
     @PostMapping("reportNck")
     @ResponseBody
     @SysLog("报表查询未检视图")
-    public PageDataBase<QueryReportNck> listReportNck(@RequestBody QueryReportNckSelect qaSelect){
+    public PageDataBase<QueryReportNck> listReportNck(@RequestBody QueryReportNckSelect qaSelect,
+                                                @RequestHeader(value="token",required = false) Integer token){
         PageDataBase<QueryReportNck> queryReportNckPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<QueryReportNck> queryReportNckWrapper = new QueryWrapper<>();
@@ -120,13 +122,15 @@ public class QueryReportController {
         data.setTotal(queryReportNckPage.getTotal());
         data.setItems(queryReportNckPage.getRecords());
         queryReportNckPageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了报表未检信息");
         return queryReportNckPageData;
     }
 
     @PostMapping("reportQa")
     @ResponseBody
     @SysLog("报表查询未检视图")
-    public PageDataBase<QueryReportQa> listReportQa(@RequestBody QueryReportQaSelect qaSelect){
+    public PageDataBase<QueryReportQa> listReportQa(@RequestBody QueryReportQaSelect qaSelect,
+                                                    @RequestHeader(value="token",required = false) Integer token){
         PageDataBase<QueryReportQa> queryReportQaPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<QueryReportQa> queryReportQaWrapper = new QueryWrapper<>();
@@ -150,6 +154,7 @@ public class QueryReportController {
         data.setTotal(queryReportQaPage.getTotal());
         data.setItems(queryReportQaPage.getRecords());
         queryReportQaPageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了报表缺陷信息");
         return queryReportQaPageData;
     }
 

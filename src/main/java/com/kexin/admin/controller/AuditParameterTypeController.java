@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.AuditParameterType;
 import com.kexin.admin.service.AuditParameterTypeService;
+import com.kexin.admin.service.SystemLogService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
@@ -28,6 +29,9 @@ public class AuditParameterTypeController {
     @Autowired
     AuditParameterTypeService auditParameterTypeService;
 
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
+
 
     @GetMapping("list")
     @ResponseBody
@@ -37,7 +41,8 @@ public class AuditParameterTypeController {
                                        @RequestParam(value = "sort")String sort,
                                        @RequestParam(value = "useFlag",defaultValue = "")String useFlag,
                                        @RequestParam(value = "title",defaultValue = "") String title,
-                                       ServletRequest request){
+                                       @RequestHeader(value="token",required = false) Integer token
+                                       ){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
         PageDataBase<AuditParameterType> auditParameterTypePageData = new PageDataBase<>();
         Data data=new Data();
@@ -59,6 +64,7 @@ public class AuditParameterTypeController {
         data.setTotal(auditParameterTypePage.getTotal());
         data.setItems(auditParameterTypePage.getRecords());
         auditParameterTypePageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了审核参数类型");
         return auditParameterTypePageData;
     }
 
@@ -76,7 +82,7 @@ public class AuditParameterTypeController {
     @PostMapping("create")
     @ResponseBody
     @SysLog("新增审核参数种类数据")
-    public ResponseEty create(@RequestBody  AuditParameterType auditParameterType){
+    public ResponseEty create(@RequestBody  AuditParameterType auditParameterType,@RequestHeader(value="token",required = false) Integer token){
         if(StringUtils.isBlank(auditParameterType.getJudgeCheckTypeCode())){
             return ResponseEty.failure("审核参数种类编号不能为空");
         }
@@ -93,13 +99,14 @@ public class AuditParameterTypeController {
         if(auditParameterType.getJudgeCheckTypeId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        systemLogService.saveMachineLog(token,"新增","新增了审核参数类型:"+auditParameterType.getJudgeCheckTypeName());
         return ResponseEty.success("保存成功");
     }
 
     @PostMapping("update")
     @ResponseBody
     @SysLog("保存审核参数种类修改数据")
-    public ResponseEty update(@RequestBody  AuditParameterType auditParameterType){
+    public ResponseEty update(@RequestBody  AuditParameterType auditParameterType,@RequestHeader(value="token",required = false) Integer token){
         if(auditParameterType.getJudgeCheckTypeId()==null){
             return ResponseEty.failure("审核参数种类ID不能为空");
         }
@@ -129,13 +136,14 @@ public class AuditParameterTypeController {
         if(auditParameterType.getJudgeCheckTypeId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        systemLogService.saveMachineLog(token,"更新","更新了审核参数类型:"+auditParameterType.getJudgeCheckTypeName());
         return ResponseEty.success("操作成功");
     }
 
     @PostMapping("delete")
     @ResponseBody
     @SysLog("删除审核参数种类数据(单个)")
-    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -149,26 +157,16 @@ public class AuditParameterTypeController {
             return ResponseEty.failure("当前参数种类有参数数据,不能删除");
         }
         auditParameterTypeService.deleteAuditParameterType(auditParameterType);
+        systemLogService.saveMachineLog(token,"删除","删除了审核参数类型:"+auditParameterType.getJudgeCheckTypeName());
         return ResponseEty.success("删除成功");
     }
     //
-//    @RequiresPermissions("sys:user:delete")
-    @PostMapping("deleteSome")
-    @ResponseBody
-    @SysLog("删除审核参数种类数据(多个)")
-    public ResponseEty deleteSome(@RequestBody List<AuditParameterType> AuditParameterTypes){
-        if(AuditParameterTypes == null || AuditParameterTypes.size()==0){
-            return ResponseEty.failure("请选择需要删除的信息");
-        }
-        AuditParameterTypes.forEach(m -> auditParameterTypeService.deleteAuditParameterType(m));
-        return ResponseEty.success("批量删除成功");
-    }
 
 
     @PostMapping("updateUseFlag")
     @ResponseBody
     @SysLog("禁用或者启用审核参数种类")
-    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -177,6 +175,8 @@ public class AuditParameterTypeController {
             return ResponseEty.failure("审核参数种类不存在");
         }
         auditParameterTypeService.lockAuditParameterType(auditParameterType);
+        systemLogService.saveMachineLog(token,"禁用","禁用了审核参数类型:"+auditParameterType.getJudgeCheckTypeName());
+
         return ResponseEty.success("操作成功");
     }
 }

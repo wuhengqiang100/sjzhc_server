@@ -1,15 +1,23 @@
 package com.kexin.admin.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.kexin.admin.entity.tables.LoginUser;
+import com.kexin.admin.entity.tables.Operator;
+import com.kexin.admin.entity.tables.QaInspectMaster;
 import com.kexin.admin.entity.vo.QaInspectChange;
 import com.kexin.admin.entity.vo.query.QueryDate;
 import com.kexin.admin.entity.vo.query.SaveCheckData;
+import com.kexin.admin.service.LoginUserService;
+import com.kexin.admin.service.OperatorService;
 import com.kexin.admin.service.QaInspectMasterService;
+import com.kexin.admin.service.SystemLogService;
 import com.kexin.common.util.ResponseEty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,15 +32,22 @@ public class MachineCheckController {
 
     @Autowired
     QaInspectMasterService qaInspectMasterService;
-
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
+    @Autowired
+    LoginUserService loginUserService;
+    @Autowired
+    OperatorService operatorService;
     /**
      * 获取可以审核的车次数据
      * @return
      */
     @PostMapping("canAudit/list")
     @ResponseBody
-    public ResponseEty listCanAuditList(@RequestBody QueryDate queryDate){
+    public ResponseEty listCanAuditList(@RequestBody QueryDate queryDate,@RequestHeader(value="token",required = false) Integer token){
 
+
+//        systemLogService.saveMachineLog(token,"查询","查询了可审核的车次");
         return qaInspectMasterService.getCanAuditInspectMaster(queryDate);
     }
 
@@ -40,11 +55,11 @@ public class MachineCheckController {
 
     @PostMapping("canAudit/save")
     @ResponseBody
-    public ResponseEty saveCanAudit(@RequestBody SaveCheckData saveCheckData){
+    public ResponseEty saveCanAudit(@RequestBody SaveCheckData saveCheckData,@RequestHeader(value="token",required = false) Integer token){
         if (saveCheckData.getData()==null){
             return ResponseEty.failure("请选择要审核的车次");
         }
-        return qaInspectMasterService.saveCanAuditInspectMaster(saveCheckData);
+        return qaInspectMasterService.saveCanAuditInspectMaster(saveCheckData,token);
     }
     /**
      * 获取已经审核的车次数据,今天
@@ -52,18 +67,19 @@ public class MachineCheckController {
      */
     @PostMapping("alreadyAudit/list")
     @ResponseBody
-    public ResponseEty listAlreadyAuditList(@RequestBody QueryDate queryDate){
+    public ResponseEty listAlreadyAuditList(@RequestBody QueryDate queryDate,@RequestHeader(value="token",required = false) Integer token){
+//        systemLogService.saveMachineLog(token,"查询","查询了已经审核的车次");
         return qaInspectMasterService.getAlreadyAuditInspectMaster(queryDate);
     }
 
     @PostMapping("alreadyAudit/save")
     @ResponseBody
-    public ResponseEty saveAlreadyAudit(@RequestBody SaveCheckData saveCheckData
+    public ResponseEty saveAlreadyAudit(@RequestBody SaveCheckData saveCheckData,@RequestHeader(value="token",required = false) Integer token
                                         ){
         if (saveCheckData.getData()==null){
             return ResponseEty.failure("请选择要回退的车次");
         }
-        return qaInspectMasterService.saveAlreadyAuditInspectMaster(saveCheckData);
+        return qaInspectMasterService.saveAlreadyAuditInspectMaster(saveCheckData,token);
     }
     /**
     /**
@@ -72,17 +88,19 @@ public class MachineCheckController {
      */
     @PostMapping("notAudit/list")
     @ResponseBody
-    public ResponseEty listNotAuditList(@RequestBody QueryDate queryDate){
+    public ResponseEty listNotAuditList(@RequestBody QueryDate queryDate,@RequestHeader(value="token",required = false) Integer token){
+
+//        systemLogService.saveMachineLog(token,"查询","查询了走全检的车次");
         return qaInspectMasterService.getNotAuditInspectMaster(queryDate);
     }
 
     @PostMapping("notAudit/save")
     @ResponseBody
-    public ResponseEty saveNotAudit(@RequestBody SaveCheckData saveCheckData){
+    public ResponseEty saveNotAudit(@RequestBody SaveCheckData saveCheckData,@RequestHeader(value="token",required = false) Integer token){
         if (saveCheckData.getData()==null){
             return ResponseEty.failure("请选择全检的车次");
         }
-        return qaInspectMasterService.saveNotAuditInspectMaster(saveCheckData);
+        return qaInspectMasterService.saveNotAuditInspectMaster(saveCheckData,token);
 
     }
 
@@ -93,39 +111,13 @@ public class MachineCheckController {
      */
     @PostMapping("notAudit/return")
     @ResponseBody
-    public ResponseEty returnNotAudit(@RequestBody SaveCheckData saveCheckData){
+    public ResponseEty returnNotAudit(@RequestBody SaveCheckData saveCheckData,@RequestHeader(value="token",required = false) Integer token){
         if (saveCheckData.getData()==null){
             return ResponseEty.failure("请选择全检回退的车次");
         }
-        return qaInspectMasterService.returnNotAuditInspectMaster(saveCheckData);
+        return qaInspectMasterService.returnNotAuditInspectMaster(saveCheckData,token);
 
     }
-    /**
-     * @Title: 初始化机检审核的的数据
-     * @param @param
-     * @return @return
-     * @author 巫恒强
-     * @throws
-     * @date 2020/3/18 11:12
-     */
- /*   @GetMapping("/check")
-    @ResponseBody
-    public ResponseEty list(){
-        //获取已经分活的审核信息 allowJudge==2
-//        modelMap.put("historyInspectList",qaInspectMasterService.getQaInspectMasterHistory());
-        ResponseEty responseEty=new ResponseEty();
-        responseEty.setSuccess(20000);
-        responseEty.setAny("qaInspectMasterList",qaInspectMasterService.getAllQaInspectMaster());
-        return responseEty;
-    }
-
-    @PostMapping("check/save")
-    @ResponseBody
-    public ResponseEty save(@RequestBody QaInspectChange inspectChange){
-
-        return qaInspectMasterService.saveQaInspectMaster(inspectChange);
-    }
-*/
 
 
 

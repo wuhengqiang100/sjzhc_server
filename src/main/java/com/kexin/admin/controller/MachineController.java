@@ -6,9 +6,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.Machine;
 import com.kexin.admin.service.MachineService;
+import com.kexin.admin.service.SystemLogService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
+import com.kexin.common.config.MySysUser;
 import com.kexin.common.util.ResponseEty;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class MachineController {
     @Autowired
     MachineService machineService;
 
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
+
 
     //@CrossOrigin(origins = "http://192.168.0.100:4200", maxAge = 3600)
     @GetMapping("list")
@@ -38,7 +43,7 @@ public class MachineController {
                                        @RequestParam(value = "sort")String sort,
                                        @RequestParam(value = "useFlag",defaultValue = "")String useFlag,
                                        @RequestParam(value = "title",defaultValue = "") String title,
-                                       ServletRequest request){
+                                       @RequestHeader(value="token",required = false) Integer token){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
         PageDataBase<Machine> machinePageData = new PageDataBase<>();
         Data data=new Data();
@@ -59,13 +64,15 @@ public class MachineController {
         data.setTotal(machinePage.getTotal());
         data.setItems(machinePage.getRecords());
         machinePageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了设备列表");
+
         return machinePageData;
     }
 
     @PostMapping("create")
     @ResponseBody
     @SysLog("新增设备数据")
-    public ResponseEty create(@RequestBody  Machine machine){
+    public ResponseEty create(@RequestBody  Machine machine,@RequestHeader(value="token",required = false) Integer token){
         if(StringUtils.isBlank(machine.getMachineCode())){
             return ResponseEty.failure("设备编号不能为空");
         }
@@ -82,13 +89,15 @@ public class MachineController {
         if(machine.getMachineId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        systemLogService.saveMachineLog(token,"新增","新增了设备:"+machine.getMachineName());
+
         return ResponseEty.success("保存成功");
     }
 
     @PostMapping("update")
     @ResponseBody
     @SysLog("保存设备修改数据")
-    public ResponseEty update(@RequestBody  Machine machine){
+    public ResponseEty update(@RequestBody  Machine machine,@RequestHeader(value="token",required = false) Integer token){
         if(machine.getMachineId()==null){
             return ResponseEty.failure("设备ID不能为空");
         }
@@ -118,13 +127,15 @@ public class MachineController {
         if(machine.getMachineId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        systemLogService.saveMachineLog(token,"更新","更新了设备:"+machine.getMachineName());
+
         return ResponseEty.success("操作成功");
     }
 
     @PostMapping("delete")
     @ResponseBody
     @SysLog("删除设备数据(单个)")
-    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -133,26 +144,16 @@ public class MachineController {
             return ResponseEty.failure("设备不存在");
         }
         machineService.deleteMachine(machine);
+        systemLogService.saveMachineLog(token,"删除","删除了设备:"+machine.getMachineName());
+
         return ResponseEty.success("删除成功");
-    }
-    //
-//    @RequiresPermissions("sys:user:delete")
-    @PostMapping("deleteSome")
-    @ResponseBody
-    @SysLog("删除设备数据(多个)")
-    public ResponseEty deleteSome(@RequestBody List<Machine> Machines){
-        if(Machines == null || Machines.size()==0){
-            return ResponseEty.failure("请选择需要删除的信息");
-        }
-        Machines.forEach(m -> machineService.deleteMachine(m));
-        return ResponseEty.success("批量删除成功");
     }
 
 
     @PostMapping("updateUseFlag")
     @ResponseBody
     @SysLog("禁用或者启用设备")
-    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -161,6 +162,8 @@ public class MachineController {
             return ResponseEty.failure("设备不存在");
         }
         machineService.lockMachine(machine);
+        systemLogService.saveMachineLog(token,"删除","禁用了设备:"+machine.getMachineName());
+
         return ResponseEty.success("操作成功");
     }
 }

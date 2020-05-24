@@ -81,14 +81,14 @@ public interface MachineModelService extends IService<MachineModel> {
      * @param tokenId
      * @return
      */
-    ResponseEty uploadTemplate1(MultipartFile[] file,  Integer machineModelId,HttpServletRequest request,   Integer tokenId);
+    ResponseEty uploadTemplate1(MultipartFile[] file,  Integer machineModelId,HttpServletRequest request,   Integer tokenId,Integer token);
 
     /**
      * 从ftp服务器上下载文件到本地
      * @param machineModelId
      * @return
      */
-    ResponseEty downloadTemplate(Integer machineModelId);
+    ResponseEty downloadTemplate(Integer machineModelId,Integer token);
 
-    ResponseEty getDownloadUrl(Integer machineModelId, Integer tokenId);
+    ResponseEty getDownloadUrl(Integer machineModelId, Integer tokenId,Integer token);
 }

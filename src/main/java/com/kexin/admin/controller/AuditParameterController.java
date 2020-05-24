@@ -4,9 +4,7 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.kexin.admin.entity.tables.AuditParameter;
-import com.kexin.admin.entity.tables.AuditParameterType;
-import com.kexin.admin.entity.tables.Machine;
+import com.kexin.admin.entity.tables.*;
 import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDelete;
 import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDetail;
 import com.kexin.admin.entity.vo.AuditParameter.AuditParameterSelect;
@@ -52,6 +50,9 @@ public class AuditParameterController {
 
     @Autowired
     MachineService machineService;//设备service
+
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
     @GetMapping("list")
     @ResponseBody
     @SysLog("审核参数列表获取")
@@ -64,7 +65,8 @@ public class AuditParameterController {
                                        @RequestParam(value = "operationId",defaultValue = "") Integer operationId,
                                        @RequestParam(value = "productId",defaultValue = "") Integer productId,
                                        @RequestParam(value = "machineId",defaultValue = "") Integer machineId,
-                                       ServletRequest request){
+                                       @RequestHeader(value="token",required = false) Integer token
+                                       ){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
         PageDataBase<AuditParameterSelect> auditParameterPageData = new PageDataBase<>();
         Data data=new Data();
@@ -98,13 +100,10 @@ public class AuditParameterController {
                     r.setMachine(machineService.getById(r.getMachineId()));
                 });//外键实体添加
         List<AuditParameterSelect> auditParameterSelectList = this.handleRecords(auditParameterPage.getRecords());
-
         data.setTotal(Long.valueOf(auditParameterSelectList.size()));
-
         data.setItems(auditParameterSelectList);
-//        data.setTotal(auditParameterPage.getTotal());
-//        data.setItems(auditParameterPage.getRecords());
         auditParameterPageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了审核参数");
         return auditParameterPageData;
     }
 
@@ -177,7 +176,7 @@ public class AuditParameterController {
     @PostMapping("create")
     @ResponseBody
     @SysLog("新增审核参数数据")
-    public ResponseEty create(@RequestBody  AuditParameter auditParameter){
+    public ResponseEty create(@RequestBody  AuditParameter auditParameter,@RequestHeader(value="token",required = false) Integer token){
         if (auditParameter.getValues()==null){
             return ResponseEty.failure("请填写参数值");
         } if (auditParameter.getOperationId()==null){
@@ -191,14 +190,19 @@ public class AuditParameterController {
         if (auditParameterService.countParameterByTypeOperationProduct(auditParameter)>0){
             return ResponseEty.failure("一个工序->产品->设备的审核参数,只能添加一组数据");
         }
-            updateParameterWithMachine(auditParameter);
-            return ResponseEty.success("添加成功!");
+        updateParameterWithMachine(auditParameter);
+        Operation operation=operationService.getById(auditParameter.getOperationId());
+        Products product=productsService.getById(auditParameter.getProductId());
+        Machine machine=machineService.getById(auditParameter.getMachineId());
+        systemLogService.saveMachineLog(token,"新增","新增了"+operation.getOperationName()+","+product.getProductName()+","+machine.getMachineName()+"的审核参数");
+
+        return ResponseEty.success("添加成功!");
     }
 
     @PostMapping("update")
     @ResponseBody
     @SysLog("保存审核参数修改数据")
-    public ResponseEty update(@RequestBody  AuditParameter auditParameter){
+    public ResponseEty update(@RequestBody  AuditParameter auditParameter,@RequestHeader(value="token",required = false) Integer token){
 
         if (auditParameter.getValues()==null){
             return ResponseEty.failure("请填写参数值");
@@ -225,9 +229,16 @@ public class AuditParameterController {
                     r.setNote(auditParameter.getNote());
                     updateParameterWithNotMachine(r);
                 });
-
+            Operation operation=operationService.getById(auditParameter.getOperationId());
+            Products product=productsService.getById(auditParameter.getProductId());
+            systemLogService.saveMachineLog(token,"修改","修改了"+operation.getOperationName()+","+product.getProductName()+"的审核参数");
             return ResponseEty.success("批量修改成功!");
         }else{
+            Operation operation=operationService.getById(auditParameter.getOperationId());
+            Products product=productsService.getById(auditParameter.getProductId());
+            Machine machine=machineService.getById(auditParameter.getMachineId());
+            systemLogService.saveMachineLog(token,"修改","修改了"+operation.getOperationName()+","+product.getProductName()+","+machine.getMachineName()+"的审核参数");
+
             updateParameterWithMachine(auditParameter);
             return ResponseEty.success("修改成功!");
 
@@ -289,9 +300,15 @@ public class AuditParameterController {
     @PostMapping("delete")
     @ResponseBody
     @SysLog("删除审核参数数据(单个)")
-    public ResponseEty delete(@RequestBody AuditParameter auditParameter){
+    public ResponseEty delete(@RequestBody AuditParameter auditParameter,@RequestHeader(value="token",required = false) Integer token){
         Integer deleteFlag=auditParameterService.deleteAuditParameter(auditParameter);
+
+
         if (deleteFlag>0){
+            Operation operation=operationService.getById(auditParameter.getOperationId());
+            Products product=productsService.getById(auditParameter.getProductId());
+            Machine machine=machineService.getById(auditParameter.getMachineId());
+            systemLogService.saveMachineLog(token,"删除","删除了"+operation.getOperationName()+","+product.getProductName()+","+machine.getMachineName()+"的审核参数");
             return ResponseEty.success("删除成功");
         }else{
             return ResponseEty.failure("删除失败");
@@ -304,7 +321,7 @@ public class AuditParameterController {
     @PostMapping("updateUseFlag")
     @ResponseBody
     @SysLog("禁用或者启用审核参数")
-    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -313,6 +330,10 @@ public class AuditParameterController {
             return ResponseEty.failure("审核参数不存在");
         }
         auditParameterService.lockAuditParameter(auditParameter);
+        Operation operation=operationService.getById(auditParameter.getOperationId());
+        Products product=productsService.getById(auditParameter.getProductId());
+        Machine machine=machineService.getById(auditParameter.getMachineId());
+        systemLogService.saveMachineLog(token,"禁用","禁用了"+operation.getOperationName()+","+product.getProductName()+","+machine.getMachineName()+"的审核参数");
         return ResponseEty.success("操作成功");
     }
 }

@@ -34,6 +34,12 @@ public class ResponseEty extends HashMap<String, Object> {
         return response;
     }
 
+    public static ResponseEty reLogin(){
+        ResponseEty response = new ResponseEty();
+        response.setSuccess(50008);
+        return response;
+    }
+
     public ResponseEty setSuccess(Integer code) {
         if (code != null) put("code", code);
         return this;

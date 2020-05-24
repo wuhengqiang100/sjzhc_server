@@ -60,6 +60,7 @@ public class WorkUnit {
     @TableField(value = "WORK_UNIT_CODE_MES")
     private String workUnitCodeMes; // MES机台代码 控制显示
 
-
+    @TableField(exist = false)
+    private String requestIp;//请求ip
 
 }

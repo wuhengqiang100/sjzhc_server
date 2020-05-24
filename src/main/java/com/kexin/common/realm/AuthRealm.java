@@ -109,7 +109,7 @@ public class AuthRealm extends AuthorizingRealm {
         ByteSource salt = ByteSource.Util.bytes(user.getLoginUserName());
         //暂时系统id先写这 1 测试数据
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                new ShiroUser(user.getLoginId(),user.getLoginUserName(),1),
+                new ShiroUser(user.getLoginId(),user.getLoginUserName()),
                 CryptographyUtil.md5(user.getLoginUserPass(),user.getLoginUserName()),//先加密再解密
 //                user.getLoginPass(), //密码
                 salt,
@@ -152,20 +152,25 @@ public class AuthRealm extends AuthorizingRealm {
 
         public Integer id;
         public String loginName;
-        public Integer systemId;
+//        public String nickName;
+//        public String icon;
 
-        public ShiroUser(Integer id, String loginName,Integer systemId) {
+        public ShiroUser(Integer id, String loginName) {
             this.id = id;
             this.loginName = loginName;
-            this.systemId = systemId;
+//            this.nickName = nickName;
+//            this.icon=icon;
         }
 
         public String getloginName() {
             return loginName;
         }
-        public Integer getSystemId() {
-            return systemId;
-        }
+//        public String getNickName() {
+//            return nickName;
+//        }
+        //        public String getIcon() {
+//            return icon;
+//        }
         public Integer getId() {
             return id;
         }

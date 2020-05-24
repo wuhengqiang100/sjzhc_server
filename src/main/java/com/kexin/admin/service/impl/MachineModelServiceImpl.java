@@ -2,17 +2,16 @@ package com.kexin.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.kexin.admin.entity.tables.DataupLog;
-import com.kexin.admin.entity.tables.MachineModel;
-import com.kexin.admin.entity.tables.Operation;
-import com.kexin.admin.entity.tables.Operator;
+import com.kexin.admin.entity.tables.*;
 import com.kexin.admin.entity.vo.Ftp;
 import com.kexin.admin.mapper.*;
 import com.kexin.admin.service.MachineModelService;
+import com.kexin.admin.service.SystemLogService;
 import com.kexin.common.util.FileUtil.FileUtil;
 import com.kexin.common.util.ResponseEty;
 import com.kexin.common.util.ftpUtil.FTPUtil;
 import org.apache.commons.net.ftp.FTPClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -54,6 +53,9 @@ public class MachineModelServiceImpl extends ServiceImpl<MachineModelMapper, Mac
 
     @Resource
     ProductsMapper productsMapper;//产品mapper
+
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
 
 
     @Override
@@ -201,7 +203,7 @@ public class MachineModelServiceImpl extends ServiceImpl<MachineModelMapper, Mac
     }
 
     @Override
-    public ResponseEty uploadTemplate1(MultipartFile[] file, Integer machineModelId,HttpServletRequest request, Integer tokenId) {
+    public ResponseEty uploadTemplate1(MultipartFile[] file, Integer machineModelId,HttpServletRequest request, Integer tokenId,Integer token) {
         List<String> list = new ArrayList<String>();
         String[] suffixs=new String[file.length];
         if (file.length>1){
@@ -259,6 +261,8 @@ public class MachineModelServiceImpl extends ServiceImpl<MachineModelMapper, Mac
                 }
                 ResponseEty responseEty=new ResponseEty();
                 responseEty.setSuccess(20000);
+                Machine machine=machineMapper.selectById(machineModel.getMachineId());
+                systemLogService.saveMachineLog(token,"上传","上传了"+machine.getMachineName()+"设备模板");
                 return ResponseEty.success("上传成功");
             }else{//上传失败
                 ResponseEty responseEty=new ResponseEty();
@@ -277,18 +281,21 @@ public class MachineModelServiceImpl extends ServiceImpl<MachineModelMapper, Mac
     }
 
     @Override
-    public ResponseEty downloadTemplate(Integer machineModelId) {
+    public ResponseEty downloadTemplate(Integer machineModelId,Integer token) {
         MachineModel machineModel=baseMapper.selectById(machineModelId);
         System.out.println("-----------------------应用启动------------------------");
         FTPClient ftpClient = FTPUtil.connectFtpServer(ftp.getIpAddr(), ftp.getPort(), ftp.getUserName(), ftp.getPwd(), ftp.getEncoding());
 //        FTPUtil.downloadSingleFile(ftpClient, ftp.getLocalpath(), machineModel.getImageModelPath());
         FTPUtil.closeFTPConnect(ftpClient);
         System.out.println("-----------------------应用关闭------------------------");
+        Machine machine=machineMapper.selectById(machineModel.getMachineId());
+        systemLogService.saveMachineLog(token,"下载","下载了设备"+machine.getMachineName()+"模板");
+
         return ResponseEty.success("下载成功");
     }
 
     @Override
-    public ResponseEty getDownloadUrl(Integer machineModelId,Integer tokenId) {
+    public ResponseEty getDownloadUrl(Integer machineModelId,Integer tokenId,Integer token) {
         ResponseEty responseEty=new ResponseEty();
 
         MachineModel machineModel=baseMapper.selectById(machineModelId);
@@ -301,6 +308,8 @@ public class MachineModelServiceImpl extends ServiceImpl<MachineModelMapper, Mac
         dataupLog.setNote(operator.getOperatorName()+"下载了"+machineModel.getMachineModelName()+"的机检模板");
         dataupLogMapper.insert(dataupLog);//上传日志新增下载记录
 //        String url="ftp://"+ftp.getUserName()+":"+ftp.getPwd()+"@"+ftp.getIpAddr()+'\\'+machineModel.getImageModelPath();
+        Machine machine=machineMapper.selectById(machineModel.getMachineId());
+        systemLogService.saveMachineLog(token,"下载","下载了设备"+machine.getMachineName()+"模板");
         responseEty.setSuccess(20000);
 //        responseEty.setAny("ftpUrl",url);
         return responseEty;

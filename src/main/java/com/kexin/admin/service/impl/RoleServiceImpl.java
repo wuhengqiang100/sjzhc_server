@@ -10,8 +10,10 @@ import com.kexin.admin.mapper.RoleMenuMapper;
 import com.kexin.admin.mapper.SysFunctionMapper;
 import com.kexin.admin.mapper.UserRoleMapper;
 import com.kexin.admin.service.RoleService;
+import com.kexin.admin.service.SystemLogService;
 import com.kexin.common.util.ResponseEty;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +37,9 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 
     @Resource
     SysFunctionMapper sysFunctionMapper;
+
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
 
 
     @Override
@@ -88,7 +93,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public ResponseEty saveRole(Role role) {
+    public ResponseEty saveRole(Role role,Integer token) {
         if (role.getUseFlag()){//启用
             role.setStartDate(new Date());
             role.setEndDate(null);
@@ -110,12 +115,13 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
                 roleMenuMapper.insert(sysRoleMenus);
             }
         }
+        systemLogService.saveMachineLog(token,"新增","新增了角色:"+role.getRoleName());
         return ResponseEty.success("操作成功");
     }
 
     @Override
 //    @Transactional(rollbackFor = Exception.class)
-    public ResponseEty updateRole(Role role) {
+    public ResponseEty updateRole(Role role,Integer token) {
         if (role.getUseFlag()){//启用
             role.setStartDate(new Date());
             role.setEndDate(null);
@@ -142,6 +148,8 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
                 roleMenuMapper.insert(sysRoleMenus);
             }
         }
+        systemLogService.saveMachineLog(token,"更新","更新了角色:"+role.getRoleName());
+
         return ResponseEty.success("操作成功");
     }
 
@@ -158,28 +166,5 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         baseMapper.updateById(role);
     }
 
-    @Override
-    public ResponseEty saveRolePermission(RoleChange roleChange) {
-        Integer roleId=roleChange.getRoleId();
-        Integer[] menuIds=roleChange.getMovedKeys();
-        if (StringUtils.isNotBlank(roleChange.getDirection())){
-            if (roleChange.getDirection().equals("right")){//新增权限 添加一行数据
-                SysRoleMenus sysRoleMenus=new SysRoleMenus();
-                for (Integer menuId:menuIds) {
-                    sysRoleMenus.setFunctionId(menuId);
-                    sysRoleMenus.setRoleId(roleId);
-                    roleMenuMapper.insert(sysRoleMenus);
-                }
-            }else{
-                for (Integer menuId:menuIds) {
-                    QueryWrapper<SysRoleMenus> sysRoleMenusQueryWrapper=new QueryWrapper<>();
-                    sysRoleMenusQueryWrapper.eq("FUNCTION_ID",menuId);
-                    sysRoleMenusQueryWrapper.eq("ROLE_ID",roleId);
-                    roleMenuMapper.delete(sysRoleMenusQueryWrapper);
-                }
-            }
-        }
-        return ResponseEty.success("操作成功");
-    }
 
 }

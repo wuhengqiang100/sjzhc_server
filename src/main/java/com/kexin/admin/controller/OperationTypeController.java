@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.OperationType;
 import com.kexin.admin.service.OperationTypeService;
+import com.kexin.admin.service.SystemLogService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
@@ -28,6 +29,9 @@ public class OperationTypeController {
     @Autowired
     OperationTypeService operationTypeService;
 
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
+
 
     @GetMapping("list")
     @ResponseBody
@@ -37,7 +41,8 @@ public class OperationTypeController {
                                        @RequestParam(value = "sort")String sort,
                                        @RequestParam(value = "useFlag",defaultValue = "")String useFlag,
                                        @RequestParam(value = "title",defaultValue = "") String title,
-                                       ServletRequest request){
+                                            @RequestHeader(value="token",required = false) Integer token,
+                                            ServletRequest request){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
         PageDataBase<OperationType> operationTypePageData = new PageDataBase<>();
         Data data=new Data();
@@ -59,6 +64,8 @@ public class OperationTypeController {
         data.setTotal(operationTypePage.getTotal());
         data.setItems(operationTypePage.getRecords());
         operationTypePageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了工序种类列表");
+
         return operationTypePageData;
     }
 
@@ -76,7 +83,8 @@ public class OperationTypeController {
     @PostMapping("create")
     @ResponseBody
     @SysLog("新增工序种类数据")
-    public ResponseEty create(@RequestBody  OperationType operationType){
+    public ResponseEty create(@RequestBody  OperationType operationType,
+                              @RequestHeader(value="token",required = false) Integer token){
         if(StringUtils.isBlank(operationType.getOperationTypeCode())){
             return ResponseEty.failure("工序种类编号不能为空");
         }
@@ -93,13 +101,17 @@ public class OperationTypeController {
         if(operationType.getOperationTypeId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        systemLogService.saveMachineLog(token,"新增","新增了工序种类:"+operationType.getOperationTypeName());
+
         return ResponseEty.success("保存成功");
     }
 
     @PostMapping("update")
     @ResponseBody
     @SysLog("保存工序种类修改数据")
-    public ResponseEty update(@RequestBody  OperationType operationType){
+    public ResponseEty update(@RequestBody  OperationType operationType,
+                              @RequestHeader(value="token",required = false) Integer token
+    ){
         if(operationType.getOperationTypeId()==null){
             return ResponseEty.failure("工序种类ID不能为空");
         }
@@ -129,13 +141,15 @@ public class OperationTypeController {
         if(operationType.getOperationTypeId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        systemLogService.saveMachineLog(token,"更新","更新了工序种类:"+operationType.getOperationTypeName());
+
         return ResponseEty.success("操作成功");
     }
 
     @PostMapping("delete")
     @ResponseBody
     @SysLog("删除工序种类数据(单个)")
-    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -144,26 +158,16 @@ public class OperationTypeController {
             return ResponseEty.failure("工序种类不存在");
         }
         operationTypeService.deleteOperationType(operationType);
+        systemLogService.saveMachineLog(token,"删除","删除了工序种类:"+operationType.getOperationTypeName());
+
         return ResponseEty.success("删除成功");
-    }
-    //
-//    @RequiresPermissions("sys:user:delete")
-    @PostMapping("deleteSome")
-    @ResponseBody
-    @SysLog("删除工序种类数据(多个)")
-    public ResponseEty deleteSome(@RequestBody List<OperationType> OperationTypes){
-        if(OperationTypes == null || OperationTypes.size()==0){
-            return ResponseEty.failure("请选择需要删除的信息");
-        }
-        OperationTypes.forEach(m -> operationTypeService.deleteOperationType(m));
-        return ResponseEty.success("批量删除成功");
     }
 
 
     @PostMapping("updateUseFlag")
     @ResponseBody
     @SysLog("禁用或者启用工序种类")
-    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -172,6 +176,8 @@ public class OperationTypeController {
             return ResponseEty.failure("工序种类不存在");
         }
         operationTypeService.lockOperationType(operationType);
+        systemLogService.saveMachineLog(token,"禁用","禁用了工序种类:"+operationType.getOperationTypeName());
+
         return ResponseEty.success("操作成功");
     }
 }

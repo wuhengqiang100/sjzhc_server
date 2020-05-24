@@ -7,6 +7,7 @@ import com.kexin.admin.entity.tables.SysFunctions;
 import com.kexin.admin.entity.vo.query.QueryDateParent;
 import com.kexin.admin.service.RoleMenuService;
 import com.kexin.admin.service.SysFunctionService;
+import com.kexin.admin.service.SystemLogService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
@@ -35,7 +36,8 @@ public class SystemController {
     RoleMenuService roleMenuService;//角色菜单关系service
 
 
-
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
 
     /**
      * 获取网站菜单树list
@@ -133,7 +135,8 @@ public class SystemController {
     @PostMapping("cMenu/create")
     @ResponseBody
     @SysLog("新增c端权限数据")
-    public ResponseEty create(@RequestBody SysFunctions sysFunctions){
+    public ResponseEty create(@RequestBody SysFunctions sysFunctions,
+                              @RequestHeader(value="token",required = false) Integer token){
         if(StringUtils.isBlank(sysFunctions.getFunctionCode())){
             return ResponseEty.failure("权限code编号不能为空");
         }
@@ -153,6 +156,7 @@ public class SystemController {
         if(sysFunctions.getFunctionId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        systemLogService.saveMachineLog(token,"新增","新增了权限:"+sysFunctions.getTitle());
         return ResponseEty.success("保存成功");
     }
 
@@ -164,7 +168,7 @@ public class SystemController {
     @PostMapping("cMenu/update")
     @ResponseBody
     @SysLog("保存c端权限修改数据")
-    public ResponseEty update(@RequestBody  SysFunctions sysFunctions){
+    public ResponseEty update(@RequestBody  SysFunctions sysFunctions,@RequestHeader(value="token",required = false) Integer token){
         if(sysFunctions.getFunctionId()==null){
             return ResponseEty.failure("权限ID不能为空");
         }
@@ -195,6 +199,7 @@ public class SystemController {
         if(sysFunctions.getFunctionId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        systemLogService.saveMachineLog(token,"新增","新增了权限:"+sysFunctions.getTitle());
         return ResponseEty.success("操作成功");
     }
 
@@ -206,7 +211,7 @@ public class SystemController {
     @PostMapping("cMenu/delete")
     @ResponseBody
     @SysLog("删除权限数据(单个)c端权限")
-    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -218,6 +223,8 @@ public class SystemController {
             return ResponseEty.failure("该权限有角色在使用不能删除");
         }
         sysFunctionService.deleteSysFunctions(sysFunctions);
+        systemLogService.saveMachineLog(token,"删除","删除了权限:"+sysFunctions.getTitle());
+
         return ResponseEty.success("删除成功");
     }
 
@@ -230,7 +237,7 @@ public class SystemController {
     @PostMapping("cMenu/updateUseFlag")
     @ResponseBody
     @SysLog("禁用或者启用c端权限")
-    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -239,6 +246,8 @@ public class SystemController {
             return ResponseEty.failure("权限不存在");
         }
         sysFunctionService.lockSysFunctions(sysFunctions);
+        systemLogService.saveMachineLog(token,"禁用","禁用了权限:"+sysFunctions.getTitle());
+
         return ResponseEty.success("操作成功");
     }
 

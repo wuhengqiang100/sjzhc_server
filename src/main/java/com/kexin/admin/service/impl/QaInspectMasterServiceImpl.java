@@ -13,8 +13,10 @@ import com.kexin.admin.mapper.OperationLogMapper;
 import com.kexin.admin.mapper.OperatorMapper;
 import com.kexin.admin.mapper.QaInspectMasterMapper;
 import com.kexin.admin.service.QaInspectMasterService;
+import com.kexin.admin.service.SystemLogService;
 import com.kexin.common.util.DateUtil.TodayUtil;
 import com.kexin.common.util.ResponseEty;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,7 +40,8 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
     @Resource
     OperatorMapper operatorMapper;//人员mapper
 
-
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
     @Override
     public ResponseEty getCanAuditInspectMaster(QueryDate queryDate) {
         ResponseEty responseEty=new ResponseEty();
@@ -48,7 +51,7 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
     }
 
     @Override
-    public ResponseEty saveCanAuditInspectMaster(SaveCheckData saveCheckData) {
+    public ResponseEty saveCanAuditInspectMaster(SaveCheckData saveCheckData,Integer token) {
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
         QaInspectMaster qaInspectMaster=new QaInspectMaster();
         qaInspectMaster.setAllowJudge(1);
@@ -57,6 +60,12 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
             qaInspectMaster.setNote(saveCheckData.getNote());
         }
         int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
+        List<QaInspectMaster> qaInspectMasterList=baseMapper.selectQaInspectMasterByInspectmIds(saveCheckData.getData());
+        StringBuffer note = new StringBuffer();
+        qaInspectMasterList.forEach(r->{
+            note.append(" "+r.getWipJobs().getCartNumber());
+        });
+        systemLogService.saveMachineLog(token,"审核","审核了车号为:"+note+"的车次");
         if (flag>0){
             return ResponseEty.success("审核成功");
         }
@@ -85,7 +94,7 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
     }
 
     @Override
-    public ResponseEty saveAlreadyAuditInspectMaster(SaveCheckData saveCheckData) {
+    public ResponseEty saveAlreadyAuditInspectMaster(SaveCheckData saveCheckData,Integer token) {
 
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
         QaInspectMaster qaInspectMaster=new QaInspectMaster();
@@ -96,6 +105,12 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         }
         int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
         if (flag>0){
+            List<QaInspectMaster> qaInspectMasterList=baseMapper.selectQaInspectMasterByInspectmIds(saveCheckData.getData());
+            StringBuffer note = new StringBuffer();
+            qaInspectMasterList.forEach(r->{
+                note.append(" "+r.getWipJobs().getCartNumber());
+            });
+            systemLogService.saveMachineLog(token,"审核","回退了车号为:"+note+"的车次");
             return ResponseEty.success("回退成功");
         }
         return ResponseEty.failure("回退失败");
@@ -116,7 +131,7 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
     }
 
     @Override
-    public ResponseEty saveNotAuditInspectMaster(SaveCheckData saveCheckData) {
+    public ResponseEty saveNotAuditInspectMaster(SaveCheckData saveCheckData,Integer token) {
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
         QaInspectMaster qaInspectMaster=new QaInspectMaster();
         qaInspectMaster.setAllowJudge(-1);
@@ -126,13 +141,19 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         }
         int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
         if (flag>0){
-            return ResponseEty.success("废弃成功");
+            List<QaInspectMaster> qaInspectMasterList=baseMapper.selectQaInspectMasterByInspectmIds(saveCheckData.getData());
+            StringBuffer note = new StringBuffer();
+            qaInspectMasterList.forEach(r->{
+                note.append(" "+r.getWipJobs().getCartNumber());
+            });
+            systemLogService.saveMachineLog(token,"审核","审核全检了车号为:"+note+"的车次");
+            return ResponseEty.success("审核全检成功");
         }
-        return ResponseEty.failure("废弃失败");
+        return ResponseEty.failure("审核全检失败");
     }
 
     @Override
-    public ResponseEty returnNotAuditInspectMaster(SaveCheckData saveCheckData) {
+    public ResponseEty returnNotAuditInspectMaster(SaveCheckData saveCheckData,Integer token) {
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
         QaInspectMaster qaInspectMaster=new QaInspectMaster();
         qaInspectMaster.setAllowJudge(0);
@@ -142,6 +163,12 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         }
         int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
         if (flag>0){
+            List<QaInspectMaster> qaInspectMasterList=baseMapper.selectQaInspectMasterByInspectmIds(saveCheckData.getData());
+            StringBuffer note = new StringBuffer();
+            qaInspectMasterList.forEach(r->{
+                note.append(" "+r.getWipJobs().getCartNumber());
+            });
+            systemLogService.saveMachineLog(token,"审核","审核全检回退了车号为:"+note+"的车次");
             return ResponseEty.success("全检回退成功");
         }
         return ResponseEty.failure("全检回退失败");

@@ -4,13 +4,11 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kexin.admin.entity.tables.Machine;
 import com.kexin.admin.entity.tables.MachineModel;
 import com.kexin.admin.entity.tables.Operation;
 import com.kexin.admin.entity.vo.Ftp;
-import com.kexin.admin.service.MachineModelService;
-import com.kexin.admin.service.MachineService;
-import com.kexin.admin.service.OperationService;
-import com.kexin.admin.service.ProductsService;
+import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
@@ -48,6 +46,9 @@ public class MachineModelController {
     @Autowired
     Ftp ftp;
 
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
+
     //@CrossOrigin(origins = "http://192.168.0.100:4200", maxAge = 3600)
     @GetMapping("list")
     @ResponseBody
@@ -60,6 +61,8 @@ public class MachineModelController {
                                        @RequestParam(value = "operationId",defaultValue = "") Integer operationId,
                                        @RequestParam(value = "machineId",defaultValue = "") Integer machineId,
                                        @RequestParam(value = "productId",defaultValue = "") Integer productId,
+                                           @RequestHeader(value="token",required = false) Integer token,
+
                                        HttpServletRequest request){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
         PageDataBase<MachineModel> machineModelPageData = new PageDataBase<>();
@@ -93,6 +96,7 @@ public class MachineModelController {
         data.setTotal(machineModelPage.getTotal());
         data.setItems(machineModelPage.getRecords());
         machineModelPageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了设备模板");
         return machineModelPageData;
     }
 
@@ -116,23 +120,27 @@ public class MachineModelController {
     public ResponseEty multipleSave1(@RequestParam("file") MultipartFile[] file,
                                      @RequestParam("tokenId") Integer tokenId,
                                      @RequestParam("machineModelId") Integer machineModelId,
+                                     @RequestHeader(value="token",required = false) Integer token,
                                      HttpServletRequest request){
 
-        return machineModelService.uploadTemplate1(file, machineModelId,request,tokenId);
+        return machineModelService.uploadTemplate1(file, machineModelId,request,tokenId,token);
     }
 
     @PostMapping("download")
     @ResponseBody
     @SysLog("下载机检模板数据")
     public ResponseEty download(@RequestParam(name = "id") Integer machineModelId,
+                                @RequestHeader(value="token",required = false) Integer token,
                                 @RequestParam("tokenId") Integer tokenId){
-        return machineModelService.getDownloadUrl(machineModelId,tokenId);
+        return machineModelService.getDownloadUrl(machineModelId,tokenId,token);
 //        return machineModelService.downloadTemplate(machineModelId);
     }
     @PostMapping("create")
     @ResponseBody
     @SysLog("新增模板数据")
-    public ResponseEty create(@RequestBody  MachineModel machineModel){
+    public ResponseEty create(@RequestBody  MachineModel machineModel         ,
+                              @RequestHeader(value="token",required = false) Integer token
+                              ){
         if(StringUtils.isBlank(machineModel.getMachineModelCode())){
             return ResponseEty.failure("模板编号不能为空");
         }
@@ -163,6 +171,8 @@ public class MachineModelController {
             return ResponseEty.failure(message);
         }
         machineModelService.saveMachineModel(machineModel);
+        Machine machine=machineService.getById(machineModel.getMachineId());
+        systemLogService.saveMachineLog(token,"新增","新增了设备"+machine.getMachineName()+"模板");
         if(machineModel.getMachineModelId()==null){
             return ResponseEty.failure("保存信息出错");
         }
@@ -172,7 +182,7 @@ public class MachineModelController {
     @PostMapping("update")
     @ResponseBody
     @SysLog("保存模板修改数据")
-    public ResponseEty update(@RequestBody  MachineModel machineModel){
+    public ResponseEty update(@RequestBody  MachineModel machineModel,@RequestHeader(value="token",required = false) Integer token){
         if(machineModel.getMachineModelId()==null){
             return ResponseEty.failure("模板ID不能为空");
         }
@@ -207,6 +217,8 @@ public class MachineModelController {
             }
         }
         machineModelService.updateMachineModel(machineModel);
+        Machine machine=machineService.getById(machineModel.getMachineId());
+        systemLogService.saveMachineLog(token,"更新","更新了设备"+machine.getMachineName()+"模板");
 
         if(machineModel.getMachineModelId()==null){
             return ResponseEty.failure("保存信息出错");
@@ -217,7 +229,7 @@ public class MachineModelController {
     @PostMapping("delete")
     @ResponseBody
     @SysLog("删除模板数据(单个)")
-    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -226,6 +238,9 @@ public class MachineModelController {
             return ResponseEty.failure("模板不存在");
         }
         machineModelService.deleteMachineModel(machineModel);
+        Machine machine=machineService.getById(machineModel.getMachineId());
+        systemLogService.saveMachineLog(token,"删除","删除了设备"+machine.getMachineName()+"模板");
+
         return ResponseEty.success("删除成功");
     }
 
@@ -234,7 +249,7 @@ public class MachineModelController {
     @PostMapping("updateUseFlag")
     @ResponseBody
     @SysLog("禁用或者启用模板")
-    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -243,6 +258,8 @@ public class MachineModelController {
             return ResponseEty.failure("模板不存在");
         }
         machineModelService.lockMachineModel(machineModel);
+        Machine machine=machineService.getById(machineModel.getMachineId());
+        systemLogService.saveMachineLog(token,"禁用","禁用了设备"+machine.getMachineName()+"模板");
         return ResponseEty.success("操作成功");
     }
 }

@@ -35,20 +35,20 @@ public interface LoginUserService extends IService<LoginUser> {
      * 保存用户
      * @param loginUser
      */
-    ResponseEty saveLoginUser(@Param("loginUser") LoginUser loginUser);
+    ResponseEty saveLoginUser(@Param("loginUser") LoginUser loginUser,Integer  token);
 
 
     /**
      * 修改更新用户
      * @param loginUser
      */
-    ResponseEty updateLoginUser(@Param("loginUser") LoginUser loginUser);
+    ResponseEty updateLoginUser(@Param("loginUser") LoginUser loginUser,Integer  token);
 
     /**
      * 删除用户(单个)
      * @param id
      */
-    ResponseEty deleteLoginUser( Integer id);
+    ResponseEty deleteLoginUser( Integer id,Integer  token);
 
     /**
      * 禁用或者启用用户

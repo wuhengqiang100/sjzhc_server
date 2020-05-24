@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.WasterReason;
 import com.kexin.admin.service.OperationService;
+import com.kexin.admin.service.SystemLogService;
 import com.kexin.admin.service.WasterReasonService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
@@ -31,6 +32,9 @@ public class WasterReasonController {
     @Autowired
     OperationService operationService;
 
+    @Autowired
+    SystemLogService systemLogService;//系统日志记录service
+
     @GetMapping("list")
     @ResponseBody
     @SysLog("错误类型列表获取")
@@ -40,7 +44,7 @@ public class WasterReasonController {
                                        @RequestParam(value = "useFlag",defaultValue = "")String useFlag,
                                        @RequestParam(value = "title",defaultValue = "") String title,
                                        @RequestParam(value = "operationId",defaultValue = "") Integer operationId,
-
+                                           @RequestHeader(value="token",required = false) Integer token,
                                        ServletRequest request){
 //        Map map = WebUtils.getParametersStartingWith(request, "s_");
         PageDataBase<WasterReason> wasterReasonPageData = new PageDataBase<>();
@@ -71,6 +75,8 @@ public class WasterReasonController {
         data.setTotal(wasterReasonPage.getTotal());
         data.setItems(wasterReasonPage.getRecords());
         wasterReasonPageData.setData(data);
+        systemLogService.saveMachineLog(token,"查询","查询了错误类型列表");
+
         return wasterReasonPageData;
     }
 
@@ -80,7 +86,9 @@ public class WasterReasonController {
     @PostMapping("create")
     @ResponseBody
     @SysLog("新增错误类型数据")
-    public ResponseEty create(@RequestBody  WasterReason wasterReason){
+    public ResponseEty create(@RequestBody  WasterReason wasterReason,
+                              @RequestHeader(value="token",required = false) Integer token
+                              ){
         if(StringUtils.isBlank(wasterReason.getWasterReasonsCode())){
             return ResponseEty.failure("错误类型编号不能为空");
         }
@@ -102,13 +110,15 @@ public class WasterReasonController {
         if(wasterReason.getWasterReasonsId()==null){
             return ResponseEty.failure("保存信息出错");
         }
+        systemLogService.saveMachineLog(token,"新增","新增了错误类型:"+wasterReason.getWasterReasonsName());
+
         return ResponseEty.success("保存成功");
     }
 
     @PostMapping("update")
     @ResponseBody
     @SysLog("保存错误类型修改数据")
-    public ResponseEty update(@RequestBody  WasterReason wasterReason){
+    public ResponseEty update(@RequestBody  WasterReason wasterReason,@RequestHeader(value="token",required = false) Integer token){
         if(wasterReason.getWasterReasonsId()==null){
             return ResponseEty.failure("错误类型ID不能为空");
         }
@@ -142,15 +152,18 @@ public class WasterReasonController {
         wasterReasonService.updateWasterReason(wasterReason);
 
         if(wasterReason.getWasterReasonsId()==null){
+
             return ResponseEty.failure("保存信息出错");
         }
+        systemLogService.saveMachineLog(token,"更新","更新了错误类型:"+wasterReason.getWasterReasonsName());
+
         return ResponseEty.success("操作成功");
     }
 
     @PostMapping("delete")
     @ResponseBody
     @SysLog("删除错误类型数据(单个)")
-    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty delete(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -159,6 +172,8 @@ public class WasterReasonController {
             return ResponseEty.failure("错误类型不存在");
         }
         wasterReasonService.deleteWasterReason(wasterReason);
+        systemLogService.saveMachineLog(token,"删除","删除了错误类型:"+wasterReason.getWasterReasonsName());
+
         return ResponseEty.success("删除成功");
     }
     //
@@ -167,7 +182,7 @@ public class WasterReasonController {
     @PostMapping("updateUseFlag")
     @ResponseBody
     @SysLog("禁用或者启用错误类型")
-    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id){
+    public ResponseEty updateUseFlag(@RequestParam(value = "id",required = false)Integer id,@RequestHeader(value="token",required = false) Integer token){
         if(id==null){
             return ResponseEty.failure("参数错误");
         }
@@ -176,6 +191,8 @@ public class WasterReasonController {
             return ResponseEty.failure("错误类型不存在");
         }
         wasterReasonService.lockWasterReason(wasterReason);
+        systemLogService.saveMachineLog(token,"禁用","禁用了错误类型:"+wasterReason.getWasterReasonsName());
+
         return ResponseEty.success("操作成功");
     }
 }

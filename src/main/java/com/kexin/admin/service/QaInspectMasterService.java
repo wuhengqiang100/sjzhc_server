@@ -34,7 +34,7 @@ public interface QaInspectMasterService extends IService<QaInspectMaster> {
      * @param saveCheckData
      * @return
      */
-    ResponseEty saveCanAuditInspectMaster(SaveCheckData saveCheckData);
+    ResponseEty saveCanAuditInspectMaster(SaveCheckData saveCheckData,Integer token);
 
     /**
      * 获取已经审核的车次
@@ -48,7 +48,7 @@ public interface QaInspectMasterService extends IService<QaInspectMaster> {
      * @param saveCheckData
      * @return
      */
-    ResponseEty saveAlreadyAuditInspectMaster(SaveCheckData saveCheckData);
+    ResponseEty saveAlreadyAuditInspectMaster(SaveCheckData saveCheckData,Integer token);
 
      /**
      * 获取不走审核的车次
@@ -62,14 +62,14 @@ public interface QaInspectMasterService extends IService<QaInspectMaster> {
      * @param saveCheckData
      * @return
      */
-    ResponseEty saveNotAuditInspectMaster(SaveCheckData saveCheckData);
+    ResponseEty saveNotAuditInspectMaster(SaveCheckData saveCheckData,Integer token);
 
     /**
      * 回退走全检的车次
      * @param saveCheckData
      * @return
      */
-    ResponseEty returnNotAuditInspectMaster(SaveCheckData saveCheckData);
+    ResponseEty returnNotAuditInspectMaster(SaveCheckData saveCheckData,Integer token);
 
 
 
