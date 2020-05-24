@@ -4,10 +4,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.SysFunctions;
+import com.kexin.admin.entity.tables.SystemSet;
 import com.kexin.admin.entity.vo.query.QueryDateParent;
 import com.kexin.admin.service.RoleMenuService;
 import com.kexin.admin.service.SysFunctionService;
 import com.kexin.admin.service.SystemLogService;
+import com.kexin.admin.service.SystemSetService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
@@ -248,6 +250,34 @@ public class SystemController {
         sysFunctionService.lockSysFunctions(sysFunctions);
         systemLogService.saveMachineLog(token,"禁用","禁用了权限:"+sysFunctions.getTitle());
 
+        return ResponseEty.success("操作成功");
+    }
+
+    @Autowired
+    SystemSetService systemSetService;//系统设置sevice
+
+    /**
+     * 保存系统设置
+     * @param systemSet
+     * @param token
+     * @return
+     */
+    @PostMapping("systemSet")
+    @ResponseBody
+    @SysLog("保存系统设置的数据")
+    public ResponseEty saveSystemSet(@RequestBody SystemSet systemSet, @RequestHeader(value="token",required = false) Integer token){
+        if(systemSet.getSystemId()==null){
+            return ResponseEty.failure("系统ID不能为空");
+        }
+
+
+
+        systemSetService.updateSystemSet(systemSet);
+
+        if(systemSet.getSystemId()==null){
+            return ResponseEty.failure("保存信息出错");
+        }
+        systemLogService.saveMachineLog(token,"保存","保存了系统:"+systemSet.getSystemName());
         return ResponseEty.success("操作成功");
     }
 
