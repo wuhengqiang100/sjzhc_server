@@ -95,6 +95,9 @@ public class MachineCheckQuery {
     @TableField(value = "judge_waster_number")
     private Integer judgeWasterNumber;//判费数量
 
+    @TableField(value = "note")
+    private String note;//备注
+
 
 
 

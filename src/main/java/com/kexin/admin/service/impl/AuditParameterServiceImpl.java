@@ -1,5 +1,6 @@
 package com.kexin.admin.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.Query;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kexin.admin.entity.tables.*;
@@ -7,6 +8,7 @@ import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDelete;
 import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDetail;
 import com.kexin.admin.mapper.*;
 import com.kexin.admin.service.AuditParameterService;
+import com.kexin.common.util.ResponseEty;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -86,7 +88,7 @@ public class AuditParameterServiceImpl extends ServiceImpl<AuditParameterMapper,
     }
 
     @Override
-    public Integer countParameterByTypeOperationProductMachine(AuditParameter auditParameter) {
+    public Integer countParameterByTypeOperationProduct(AuditParameter auditParameter) {
         QueryWrapper<AuditParameter> auditParameterQueryWrapper=new QueryWrapper<>();
         auditParameterQueryWrapper.eq("OPERATION_ID",auditParameter.getOperationId())
                 .eq("PRODUCT_ID",auditParameter.getProductId())
@@ -143,7 +145,7 @@ public class AuditParameterServiceImpl extends ServiceImpl<AuditParameterMapper,
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateAuditParameter(AuditParameter auditParameter) {
+    public ResponseEty updateAuditParameter(AuditParameter auditParameter) {
 //        dropUserRolesByUserId(user.getLoginId());
         if (auditParameter.getUseFlag()){//启用
             auditParameter.setStartDate(new Date());
@@ -151,6 +153,22 @@ public class AuditParameterServiceImpl extends ServiceImpl<AuditParameterMapper,
         }else{//禁用
             auditParameter.setEndDate(new Date());
         }
+        if (auditParameter.getMachineId()==null){
+            QueryWrapper<AuditParameter> auditParameterQueryWrapper=new QueryWrapper<>();
+            auditParameterQueryWrapper.eq("OPERATION_ID",auditParameter.getOperationId());
+            auditParameterQueryWrapper.eq("PRODUCT_ID",auditParameter.getProductId());
+            List<AuditParameter> auditParameterList=baseMapper.selectList(auditParameterQueryWrapper);
+            auditParameterList.forEach(r->this.updateParameter(r));
+            return ResponseEty.success("批量修改成功!");
+        }else{
+            this.updateParameter(auditParameter);
+            return ResponseEty.success("修改成功!");
+
+        }
+
+    }
+
+    private void updateParameter(AuditParameter auditParameter){
         QueryWrapper<AuditParameterType> auditParameterTypeQueryWrapper=new QueryWrapper<>();
         List<AuditParameterType> auditParameterTypeList=auditParameterTypeMapper.selectList(auditParameterTypeQueryWrapper);
         AuditParameter auditParameter1=null;
@@ -174,9 +192,8 @@ public class AuditParameterServiceImpl extends ServiceImpl<AuditParameterMapper,
             auditParameterQueryWrapper1.eq("JUDGE_CHECK_TYPE_ID",auditParameter1.getJudgeCheckTypeId());
             baseMapper.update(auditParameter1,auditParameterQueryWrapper1);
         }
-
-
     }
+
 
     @Override
     public Integer deleteAuditParameter(AuditParameter auditParameter) {

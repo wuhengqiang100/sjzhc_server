@@ -12,24 +12,24 @@ server:
 #cxf:
 #  path=/service
 #ftp配置
-#ftpserver:
-#  ipAddr: 192.168.137.200
-#  port: 21
-#  userName: ftpuser
-#  pwd: ftpuser
-#  path: /
-#  encoding: GBK
-#  localpath: D:\ftplocal\
-#  remotepath: Model\Images\
 ftpserver:
-  ipAddr: mhhcftp.sjzyc.cbpm
+  ipAddr: 192.168.137.200
   port: 21
-  userName: mhhcadmin
-  pwd: mhhcadmin
+  userName: ftpuser
+  pwd: ftpuser
   path: /
   encoding: GBK
   localpath: D:\ftplocal\
-  remotepath: JudgeModels\
+  remotepath: Model\Images\
+#ftpserver:
+#  ipAddr: mhhcftp.sjzyc.cbpm
+#  port: 21
+#  userName: mhhcadmin
+#  pwd: mhhcadmin
+#  path: /
+#  encoding: GBK
+#  localpath: D:\ftplocal\
+#  remotepath: JudgeModels\
 #\\JudgeModels\\工序名称\\机器名称\\产品名称\\模版版本号+产品名称
 spring:
     #激活哪一个环境的配置文件

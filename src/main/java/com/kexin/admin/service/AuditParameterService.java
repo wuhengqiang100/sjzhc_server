@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.kexin.admin.entity.tables.AuditParameter;
 import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDelete;
 import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDetail;
+import com.kexin.common.util.ResponseEty;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public interface AuditParameterService extends IService<AuditParameter> {
      * @param auditParameter
      * @return
      */
-    Integer countParameterByTypeOperationProductMachine(AuditParameter auditParameter);
+    Integer countParameterByTypeOperationProduct(AuditParameter auditParameter);
 
     /**
      * 根据机器编码计算数量,当前机器的code的数量
@@ -64,7 +65,7 @@ public interface AuditParameterService extends IService<AuditParameter> {
      * 修改更新审核参数
      * @param auditParameter
      */
-    void updateAuditParameter(@Param("auditParameter") AuditParameter auditParameter);
+    ResponseEty updateAuditParameter(@Param("auditParameter") AuditParameter auditParameter);
 
     /**
      * 删除工序+产品+设备下的所有配置数据

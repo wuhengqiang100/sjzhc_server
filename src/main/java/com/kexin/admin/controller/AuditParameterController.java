@@ -137,8 +137,6 @@ public class AuditParameterController {
     private List<AuditParameterSelect> analyze(List<AuditParameter> auditParameterList){
 
 
-
-
         List<AuditParameterSelect> auditParameterSelectList=new ArrayList<>();
         AuditParameterSelect auditParameterSelect = null;
         for(int i=0;i<auditParameterList.size();i++) {
@@ -189,12 +187,12 @@ public class AuditParameterController {
         }if (auditParameter.getMachineId()==null){
             return ResponseEty.failure("请选择设备");
         }
-        if (auditParameterService.countParameterByTypeOperationProductMachine(auditParameter)>0){
-            return ResponseEty.failure("工序->产品->设备的 审核参数,只能唯一");
-        }
-        auditParameterService.saveAuditParameter(auditParameter);
 
-        return ResponseEty.success("保存成功");
+        if (auditParameterService.countParameterByTypeOperationProduct(auditParameter)>0){
+            return ResponseEty.failure("一个工序->产品->设备的审核参数,只能添加一组数据");
+        }
+            updateParameterWithMachine(auditParameter);
+            return ResponseEty.success("添加成功!");
     }
 
     @PostMapping("update")
@@ -210,22 +208,84 @@ public class AuditParameterController {
         } if (auditParameter.getProductId()==null){
             return ResponseEty.failure("请选择产品");
         }
-        if (auditParameter.getMachineId()==null){
-            return ResponseEty.failure("请选择设备");
+        if (auditParameter.getUseFlag()){//启用
+            auditParameter.setStartDate(new Date());
+            auditParameter.setEndDate(null);
+        }else{//禁用
+            auditParameter.setEndDate(new Date());
         }
-        /*AuditParameter oldAuditParameter = auditParameterService.getById(auditParameter.getJudgeCheckId());
-        if(oldAuditParameter.getOperationId()!=null && oldAuditParameter.getProductId()!=null && oldAuditParameter.getMachineId()!=null){
-            if(!auditParameter.getOperationId().equals(oldAuditParameter.getOperationId()) && !auditParameter.getProductId().equals(oldAuditParameter.getProductId()) && !auditParameter.getMachineId().equals(oldAuditParameter.getMachineId())){
-                if (auditParameterService.countParameterByTypeOperationProductMachine(auditParameter)>0){
-                    return ResponseEty.failure("工序->产品->设备的 审核参数,只能唯一");
-                }
-            }
-        }*/
-        auditParameterService.updateAuditParameter(auditParameter);
+        if (auditParameter.getMachineId()==null){
+            QueryWrapper<AuditParameter> auditParameterQueryWrapper=new QueryWrapper<>();
+            auditParameterQueryWrapper.eq("OPERATION_ID",auditParameter.getOperationId());
+            auditParameterQueryWrapper.eq("PRODUCT_ID",auditParameter.getProductId());
+            List<AuditParameter> auditParameterList=auditParameterService.list(auditParameterQueryWrapper);
+                auditParameterList.forEach(r->{
+                    r.setValues(auditParameter.getValues());
+                    r.setUseFlag(auditParameter.getUseFlag());
+                    r.setNote(auditParameter.getNote());
+                    updateParameterWithNotMachine(r);
+                });
 
-        return ResponseEty.success("操作成功");
+            return ResponseEty.success("批量修改成功!");
+        }else{
+            updateParameterWithMachine(auditParameter);
+            return ResponseEty.success("修改成功!");
+
+        }
+
     }
 
+    private void updateParameterWithNotMachine(AuditParameter auditParameter){
+        QueryWrapper<AuditParameterType> auditParameterTypeQueryWrapper=new QueryWrapper<>();
+        List<AuditParameterType> auditParameterTypeList=auditParameterTypeService.list(auditParameterTypeQueryWrapper);
+        AuditParameter auditParameter1=null;
+        for (int i = 0; i < auditParameterTypeList.size(); i++) {
+
+            QueryWrapper<AuditParameter> auditParameterQueryWrapper=new QueryWrapper<>();
+
+            auditParameter1=new AuditParameter();
+            auditParameter1.setOperationId(auditParameter.getOperationId());
+            auditParameter1.setProductId(auditParameter.getProductId());
+            auditParameter1.setMachineId(auditParameter.getMachineId());
+            auditParameter1.setJudgeCheckTypeId(auditParameterTypeList.get(i).getJudgeCheckTypeId());
+            auditParameter1.setValue(auditParameter.getValues()[i]);
+            auditParameter1.setUseFlag(auditParameter.getUseFlag());
+            auditParameter1.setStartDate(auditParameter.getStartDate());
+            auditParameter1.setEndDate(auditParameter.getEndDate());
+            QueryWrapper<AuditParameter> auditParameterQueryWrapper1=new QueryWrapper<>();
+            auditParameterQueryWrapper1.eq("OPERATION_ID",auditParameter1.getOperationId());
+            auditParameterQueryWrapper1.eq("PRODUCT_ID",auditParameter1.getProductId());
+            auditParameterQueryWrapper1.eq("MACHINE_ID",auditParameter1.getMachineId());
+            auditParameterQueryWrapper1.eq("JUDGE_CHECK_TYPE_ID",auditParameter1.getJudgeCheckTypeId());
+            auditParameterService.saveOrUpdate(auditParameter1,auditParameterQueryWrapper1);
+        }
+    }
+
+    private void updateParameterWithMachine(AuditParameter auditParameter){
+        QueryWrapper<AuditParameterType> auditParameterTypeQueryWrapper=new QueryWrapper<>();
+        List<AuditParameterType> auditParameterTypeList=auditParameterTypeService.list(auditParameterTypeQueryWrapper);
+        AuditParameter auditParameter1=null;
+        for (int i = 0; i < auditParameterTypeList.size(); i++) {
+
+            QueryWrapper<AuditParameter> auditParameterQueryWrapper=new QueryWrapper<>();
+
+            auditParameter1=new AuditParameter();
+            auditParameter1.setOperationId(auditParameter.getOperationId());
+            auditParameter1.setProductId(auditParameter.getProductId());
+            auditParameter1.setMachineId(auditParameter.getMachineId());
+            auditParameter1.setJudgeCheckTypeId(auditParameterTypeList.get(i).getJudgeCheckTypeId());
+            auditParameter1.setValue(auditParameter.getValues()[i]);
+            auditParameter1.setUseFlag(auditParameter.getUseFlag());
+            auditParameter1.setStartDate(auditParameter.getStartDate());
+            auditParameter1.setEndDate(auditParameter.getEndDate());
+            QueryWrapper<AuditParameter> auditParameterQueryWrapper1=new QueryWrapper<>();
+            auditParameterQueryWrapper1.eq("OPERATION_ID",auditParameter1.getOperationId());
+            auditParameterQueryWrapper1.eq("PRODUCT_ID",auditParameter1.getProductId());
+            auditParameterQueryWrapper1.eq("MACHINE_ID",auditParameter1.getMachineId());
+            auditParameterQueryWrapper1.eq("JUDGE_CHECK_TYPE_ID",auditParameter1.getJudgeCheckTypeId());
+            auditParameterService.saveOrUpdate(auditParameter1,auditParameterQueryWrapper1);
+        }
+    }
     @PostMapping("delete")
     @ResponseBody
     @SysLog("删除审核参数数据(单个)")
@@ -238,20 +298,7 @@ public class AuditParameterController {
 
         }
     }
-    //
-//    @RequiresPermissions("sys:user:delete")
-/*
-    @PostMapping("deleteSome")
-    @ResponseBody
-    @SysLog("删除审核参数数据(多个)")
-    public ResponseEty deleteSome(@RequestBody List<AuditParameter> AuditParameters){
-        if(AuditParameters == null || AuditParameters.size()==0){
-            return ResponseEty.failure("请选择需要删除的信息");
-        }
-        AuditParameters.forEach(m -> auditParameterService.deleteAuditParameter(m));
-        return ResponseEty.success("批量删除成功");
-    }
-*/
+
 
 
     @PostMapping("updateUseFlag")

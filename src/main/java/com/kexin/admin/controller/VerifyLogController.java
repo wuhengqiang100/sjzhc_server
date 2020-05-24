@@ -153,8 +153,11 @@ public class VerifyLogController {
         IPage<ProduceLog> produceLogPage = produceLogService.page(new Page<>(query.getPage(),query.getLimit()),produceLogWrapper);
         data.setTotal(produceLogPage.getTotal());
         produceLogPage.getRecords().forEach(r->{
-            r.setProduct(productsService.getById(r.getProductId()));
-            r.setOperation(operationService.getById(r.getOperationId()));
+            if(productsService.getById(r.getProductId())!=null)
+                r.setProduct(productsService.getById(r.getProductId()));
+            if (r.getOperationId()!=null)
+                if (operationService.getById(r.getOperationId())!=null)
+                    r.setOperation(operationService.getById(r.getOperationId()));
         });
         data.setItems(produceLogPage.getRecords());
         produceLogPageData.setData(data);

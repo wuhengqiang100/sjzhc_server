@@ -1,0 +1,18 @@
+package com.kexin.admin.entity.vo.query;
+
+import lombok.Data;
+
+/**
+ * 综合查询的主视图查询条件
+ */
+@Data
+public class QueryReportQaSelect extends QueryDateParent {
+
+    private Integer productId;
+
+    private Integer operationId;
+
+    private String sheetNum;//大张号
+    private String codeNum;//印码号
+
+}
