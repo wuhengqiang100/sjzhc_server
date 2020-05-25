@@ -17,6 +17,7 @@ import com.kexin.admin.service.QaInspectMasterService;
 import com.kexin.admin.service.SystemLogService;
 import com.kexin.common.util.DateUtil.TodayUtil;
 import com.kexin.common.util.ResponseEty;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,6 +51,9 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
     public ResponseEty getCanAuditInspectMaster(QueryDate queryDate) {
         ResponseEty responseEty=new ResponseEty();
         responseEty.setSuccess(20000);
+        if (StringUtils.isNotEmpty(queryDate.getCartNumber())){
+            queryDate.setCartNumber(queryDate.getCartNumber().toUpperCase());
+        }
         responseEty.setAny("canAuditTable",baseMapper.getCanAuditInspectMaster(queryDate.getStartDate(),queryDate.getEndDate(),queryDate.getCartNumber()));
         return responseEty;
     }
@@ -59,10 +63,12 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
         QaInspectMaster qaInspectMaster=new QaInspectMaster();
         qaInspectMaster.setAllowJudge(1);
+        qaInspectMaster.setCheckDate(new Date());
         qaInspectMasterQueryWrapper.in("INSPECTM_ID",saveCheckData.getData());
         if (saveCheckData.getNote()!=null){
             qaInspectMaster.setNote(saveCheckData.getNote());
         }
+
         int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
         List<QaInspectMaster> qaInspectMasterList=baseMapper.selectQaInspectMasterByInspectmIds(saveCheckData.getData());
         StringBuffer note = new StringBuffer();
@@ -82,6 +88,9 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         ResponseEty responseEty=new ResponseEty();
         responseEty.setSuccess(20000);
         List<QaInspectMaster> qaInspectMasterList=new ArrayList<>();
+        if (StringUtils.isNotEmpty(queryDate.getCartNumber())){
+            queryDate.setCartNumber(queryDate.getCartNumber().toUpperCase());
+        }
         if (queryDate.getAllowJudge()==null){
             if (queryDate.getStartDate()==null){
                 qaInspectMasterList=baseMapper.getAlreadyAuditInspectMaster(TodayUtil.get3StartTime(),TodayUtil.getEndTime(),queryDate.getCartNumber());
@@ -110,6 +119,7 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
         QaInspectMaster qaInspectMaster=new QaInspectMaster();
         qaInspectMaster.setAllowJudge(0);
+        qaInspectMaster.setCheckDate(new Date());
         qaInspectMasterQueryWrapper.in("INSPECTM_ID",saveCheckData.getData());
         if (saveCheckData.getNote()!=null){
             qaInspectMaster.setNote(saveCheckData.getNote());
@@ -146,6 +156,7 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
         QaInspectMaster qaInspectMaster=new QaInspectMaster();
         qaInspectMaster.setAllowJudge(-1);
+        qaInspectMaster.setCheckDate(new Date());
         qaInspectMasterQueryWrapper.in("INSPECTM_ID",saveCheckData.getData());
         if (saveCheckData.getNote()!=null){
             qaInspectMaster.setNote(saveCheckData.getNote());

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.apache.ibatis.type.JdbcType;
 
+import java.io.File;
 import java.sql.Blob;
 import java.util.Date;
 
@@ -72,6 +73,9 @@ public class QueryReportQa {
 
     @TableField(value = "image_blob",jdbcType = JdbcType.BLOB)
     private byte[] imageBlob;//图像
+
+    @TableField(exist = false)
+    private String filePath;
 
    @TableField(value = "error_note")
     private String errorNote;//错误原因

@@ -4,16 +4,21 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kexin.admin.entity.tables.*;
+import com.kexin.admin.entity.vo.Ftp;
+import com.kexin.admin.entity.vo.SystemWebApi;
 import com.kexin.admin.entity.vo.query.*;
 import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
-import com.kexin.common.util.ResponseEty;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * 核查综合查询的report相关查询
@@ -60,7 +65,8 @@ public class QueryReportController {
     @Autowired
     QueryReportQaService queryReportQaService;//报表缺陷视图service
 
-
+    @Autowired
+    SystemWebApi systemWebApi;
 
     @PostMapping("reportMain")
     @ResponseBody
@@ -110,6 +116,9 @@ public class QueryReportController {
                 queryReportNckWrapper.orderByDesc("JOB_ID");
             }
         }
+        if(qaSelect.getJobId()!=null){//根据生产序号查询
+            queryReportNckWrapper.like("JOB_ID",qaSelect.getJobId());
+        }
         if (qaSelect.getSheetNum()!=null){//根据大张号查询
             queryReportNckWrapper.like("sheet_num",qaSelect.getSheetNum());
         }if (qaSelect.getCodeNum()!=null){//根据印码查询
@@ -142,7 +151,9 @@ public class QueryReportController {
                 queryReportQaWrapper.orderByDesc("JOB_ID");
             }
         }
-        if (qaSelect.getSheetNum()!=null){//根据大张号查询
+        if(qaSelect.getJobId()!=null){//根据生产序号查询
+            queryReportQaWrapper.like("JOB_ID",qaSelect.getJobId());
+        }if (qaSelect.getSheetNum()!=null){//根据大张号查询
             queryReportQaWrapper.like("sheet_num",qaSelect.getSheetNum());
         }if (qaSelect.getCodeNum()!=null){//根据印码查询
             queryReportQaWrapper.like("code_num",qaSelect.getCodeNum());
@@ -153,6 +164,27 @@ public class QueryReportController {
         }
         IPage<QueryReportQa> queryReportQaPage = queryReportQaService.page(new Page<>(qaSelect.getPage(),qaSelect.getLimit()),queryReportQaWrapper);
         data.setTotal(queryReportQaPage.getTotal());
+        String path = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+        queryReportQaPage.getRecords().forEach(r->{
+            File file = new File( path+ "/static/" +r.getQaId()+".jpg");
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream(file);
+                fos.write(r.getImageBlob(), 0, r.getImageBlob().length);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }finally {
+                try {
+                    fos.flush();
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            r.setFilePath("http://"+systemWebApi.getAddress()+":"+systemWebApi.getPort()+"/static/"+r.getQaId()+".jpg");
+            //http://192.168.137.2:8088/static/15714489.jpg
+        });
+
         data.setItems(queryReportQaPage.getRecords());
         queryReportQaPageData.setData(data);
         systemLogService.saveMachineLog(token,"查询","查询了报表缺陷信息");

@@ -50,6 +50,13 @@ public class QaInspectMaster {
     @TableField(value = "LAST_UPDATE_TIME")
     private Date lastUpdateTime;//更新的之间
 
+   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(value = "CHECK_DATE")
+    private Date checkDate;//审核时间
+
+    @TableField(value = "AUTO_CHECK_FLAG")
+    private Integer autoCheckFlag;//自动审核标志: 0 未设定 1 自动审核 2 人工审核
+
     @TableField(exist = false)
     private Boolean disabled;//回退审核禁止选用标志,默认都可以回退
 

@@ -7,7 +7,7 @@ import lombok.Data;
  */
 @Data
 public class QueryReportQaSelect extends QueryDateParent {
-
+    private Integer jobId;//生产序号
     private Integer productId;
 
     private Integer operationId;

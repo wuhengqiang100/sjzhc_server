@@ -12,6 +12,8 @@
     <result property="itemFlag" column="ITEM_FLAG" jdbcType="INTEGER"/>
     <result property="lastUpdateTime" column="LAST_UPDATE_TIME" jdbcType="DATE"/>
     <result property="note" column="NOTE" jdbcType="VARCHAR"/>
+    <result property="autoCheckFlag" column="AUTO_CHECK_FLAG" jdbcType="INTEGER"/>
+    <result property="checkDate" column="CHECK_DATE" jdbcType="DATE"/>
     <collection property="wipProdLogs"  ofType="com.kexin.admin.entity.tables.WipProdLogs">
       <result property="logId" column="LOG_ID" jdbcType="INTEGER"/>
       <result property="jobId" column="JOB_ID" jdbcType="INTEGER"/>
@@ -74,7 +76,8 @@
     dm.machine_id,dm.machine_code,dm.machine_name,
     dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
     atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,
-    atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER,atm.LAST_UPDATE_TIME,atm.NOTE
+    atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER,atm.LAST_UPDATE_TIME,
+    atm.NOTE,atm.AUTO_CHECK_FLAG,atm.CHECK_DATE
 
     from QA_INSPECT_MASTER  atm
 
@@ -85,7 +88,7 @@
     left join dic_operators doa on doa.operator_id=wpl.operator_id
     left join dic_machines dm on dm.machine_id=wpl.machine_id
     left join dic_work_units dwu on dwu.work_unit_id=wpl.work_unit_id
-    where atm.allow_judge=#{allowJudge}
+    where atm.allow_judge=#{allowJudge} and atm.AUTO_CHECK_FLAG=2
 
     order by atm.inspectm_id desc
   </select>
@@ -103,7 +106,8 @@
     dm.machine_id,dm.machine_code,dm.machine_name,
     dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
     atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,
-    atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER,atm.LAST_UPDATE_TIME,atm.NOTE
+    atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER,atm.LAST_UPDATE_TIME,
+    atm.NOTE,,atm.AUTO_CHECK_FLAG,atm.CHECK_DATE
     from QA_INSPECT_MASTER  atm
     left join wip_prod_logs wpl on wpl.log_id=atm.log_id
     left join wip_jobs  wj on wj.job_id=wpl.job_id
@@ -112,7 +116,8 @@
     left join dic_operators doa on doa.operator_id=wpl.operator_id
     left join dic_machines dm on dm.machine_id=wpl.machine_id
     left join dic_work_units dwu on dwu.work_unit_id=wpl.work_unit_id
-    where atm.allow_judge = 0 or  (atm.allow_judge in (1,2)  and  atm.LAST_UPDATE_TIME BETWEEN #{startTime} AND #{endTime})
+    where atm.AUTO_CHECK_FLAG=2 and atm.allow_judge = 0
+    or  (atm.allow_judge in (1,2)  and  atm.LAST_UPDATE_TIME BETWEEN #{startTime} AND #{endTime})
     order by atm.inspectm_id desc
   </select>
 
@@ -127,7 +132,8 @@
     dm.machine_id,dm.machine_code,dm.machine_name,
     dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
     atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,
-    atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER,atm.LAST_UPDATE_TIME,atm.NOTE
+    atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER,atm.LAST_UPDATE_TIME,
+    atm.NOTE,atm.AUTO_CHECK_FLAG,atm.CHECK_DATE
     from QA_INSPECT_MASTER  atm
     left join wip_prod_logs wpl on wpl.log_id=atm.log_id
     left join wip_jobs  wj on wj.job_id=wpl.job_id
@@ -137,7 +143,7 @@
     left join dic_machines dm on dm.machine_id=wpl.machine_id
     left join dic_work_units dwu on dwu.work_unit_id=wpl.work_unit_id
     <where>
-       atm.allow_judge = 0
+       atm.allow_judge = 0 and atm.AUTO_CHECK_FLAG = 2
       <if test="startTime!=null and endTime!=null">
         and  atm.LAST_UPDATE_TIME BETWEEN #{startTime} AND #{endTime}
       </if>
@@ -159,7 +165,8 @@
     dm.machine_id,dm.machine_code,dm.machine_name,
     dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
     atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,
-    atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER,atm.LAST_UPDATE_TIME,atm.NOTE
+    atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER,atm.LAST_UPDATE_TIME,
+    atm.NOTE,atm.AUTO_CHECK_FLAG,atm.CHECK_DATE
     from QA_INSPECT_MASTER  atm
     left join wip_prod_logs wpl on wpl.log_id=atm.log_id
     left join wip_jobs  wj on wj.job_id=wpl.job_id
@@ -173,13 +180,14 @@
       atm.allow_judge in (1,-1,2)
 
       <if test="startTime!=null and endTime!=null">
-        and  atm.LAST_UPDATE_TIME BETWEEN #{startTime} AND #{endTime}
+        and  atm.CHECK_DATE BETWEEN #{startTime} AND #{endTime}
       </if>
       <if test="cartNumber!=null">
         and wj.CART_NUMBER like '%${cartNumber}%'
       </if>
+      and atm.AUTO_CHECK_FLAG = 2
     </where>
-    order by atm.allow_judge asc
+    order by atm.CHECK_DATE desc
   </select>
   <select id="getNotAuditInspectMaster" resultMap="BaseMapper">
     select
@@ -192,7 +200,8 @@
     dm.machine_id,dm.machine_code,dm.machine_name,
     dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
     atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,
-    atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER,atm.LAST_UPDATE_TIME,atm.NOTE
+    atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER,atm.LAST_UPDATE_TIME,
+    atm.NOTE,atm.AUTO_CHECK_FLAG,atm.CHECK_DATE
     from QA_INSPECT_MASTER  atm
     left join wip_prod_logs wpl on wpl.log_id=atm.log_id
     left join wip_jobs  wj on wj.job_id=wpl.job_id
@@ -226,7 +235,8 @@
     dm.machine_id,dm.machine_code,dm.machine_name,
     dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
     atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,
-    atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER,atm.LAST_UPDATE_TIME,atm.NOTE
+    atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER,atm.LAST_UPDATE_TIME,
+    atm.NOTE,atm.AUTO_CHECK_FLAG,atm.CHECK_DATE
 
     from QA_INSPECT_MASTER  atm
 
@@ -237,7 +247,7 @@
     left join dic_operators doa on doa.operator_id=wpl.operator_id
     left join dic_machines dm on dm.machine_id=wpl.machine_id
     left join dic_work_units dwu on dwu.work_unit_id=wpl.work_unit_id
-    where atm.INSPECTM_ID in
+    where atm.AUTO_CHECK_FLAG=2 and atm.INSPECTM_ID in
     <foreach collection="inspectmIds" item="item" index="index" open="("
              separator="," close=")">
       #{item}
@@ -254,7 +264,8 @@
     dm.machine_id,dm.machine_code,dm.machine_name,
     dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
     atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,
-    atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER,atm.LAST_UPDATE_TIME,atm.NOTE
+    atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER,atm.LAST_UPDATE_TIME,
+    atm.NOTE,atm.AUTO_CHECK_FLAG,atm.CHECK_DATE
     from QA_INSPECT_MASTER  atm
     left join wip_prod_logs wpl on wpl.log_id=atm.log_id
     left join wip_jobs  wj on wj.job_id=wpl.job_id
@@ -264,7 +275,7 @@
     left join dic_machines dm on dm.machine_id=wpl.machine_id
     left join dic_work_units dwu on dwu.work_unit_id=wpl.work_unit_id
     <where>
-
+      atm.AUTO_CHECK_FLAG=2
       <if test="allowJudge!=null">
         and atm.allow_judge = #{allowJudge}
       </if>

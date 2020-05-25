@@ -98,7 +98,12 @@ public class MachineCheckQuery {
     @TableField(value = "note")
     private String note;//备注
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(value = "CHECK_DATE")
+    private Date checkDate;//审核时间
 
+    @TableField(value = "AUTO_CHECK_FLAG")
+    private Integer autoCheckFlag;//自动审核标志: 0 未设定 1 自动审核 2 人工审核
 
 
 
