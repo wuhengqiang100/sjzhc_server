@@ -166,7 +166,7 @@ public class VerifyLogController {
         });
         data.setItems(produceLogPage.getRecords());
         produceLogPageData.setData(data);
-        systemLogService.saveMachineLog(token,"查询","查询了系统日志列表");
+        systemLogService.saveMachineLog(token,"查询","查询了生产日志列表");
 
         return produceLogPageData;
     }

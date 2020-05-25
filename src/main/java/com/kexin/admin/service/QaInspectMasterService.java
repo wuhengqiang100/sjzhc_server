@@ -54,7 +54,7 @@ public interface QaInspectMasterService extends IService<QaInspectMaster> {
      * 获取不走审核的车次
      * @return
      */
-     ResponseEty getNotAuditInspectMaster(QueryDate queryDate);
+//     ResponseEty getNotAuditInspectMaster(QueryDate queryDate);
 
 
     /**
@@ -69,7 +69,7 @@ public interface QaInspectMasterService extends IService<QaInspectMaster> {
      * @param saveCheckData
      * @return
      */
-    ResponseEty returnNotAuditInspectMaster(SaveCheckData saveCheckData,Integer token);
+//    ResponseEty returnNotAuditInspectMaster(SaveCheckData saveCheckData,Integer token);
 
 
 

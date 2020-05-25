@@ -13,8 +13,8 @@ public class LoginInterceptor  implements HandlerInterceptor {
     @Override //进入Controller之前执行该方法
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //登录拦截的业务逻辑
-        System.out.println("-------登录请求拦截器--------------");
-        System.out.println(request.getRequestURI().toString());
+//        System.out.println("-------登录请求拦截器--------------");
+//        System.out.println(request.getRequestURI().toString());
         String token=request.getHeader("token");
 
 

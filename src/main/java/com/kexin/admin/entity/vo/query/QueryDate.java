@@ -8,6 +8,10 @@ import java.util.Date;
 
 @Data
 public class QueryDate {
+    private String cartNumber;
+
+    private Integer allowJudge;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date startDate;//首字母启用日期
 

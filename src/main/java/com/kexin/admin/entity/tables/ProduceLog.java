@@ -1,9 +1,6 @@
 package com.kexin.admin.entity.tables;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -17,6 +14,7 @@ import java.util.Date;
  */
 @Data
 @TableName(value = "LOG_PROD_ACTIONS")
+@KeySequence(value = "SQ_LOG_PROD_ACTIONS")
 public class ProduceLog {
 
     @TableId(type = IdType.INPUT)

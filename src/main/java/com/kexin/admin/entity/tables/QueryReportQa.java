@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.apache.ibatis.type.JdbcType;
 
 import java.sql.Blob;
 import java.util.Date;
@@ -69,8 +70,8 @@ public class QueryReportQa {
     @TableField(value = "sheet_waster_flag")
     private Integer sheetWasterFlag;//判废大张废标志
 
-    @TableField(value = "image_blob")
-    private Blob imageBlob;//图像
+    @TableField(value = "image_blob",jdbcType = JdbcType.BLOB)
+    private byte[] imageBlob;//图像
 
    @TableField(value = "error_note")
     private String errorNote;//错误原因

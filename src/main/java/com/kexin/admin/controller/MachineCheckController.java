@@ -53,14 +53,7 @@ public class MachineCheckController {
 
 
 
-    @PostMapping("canAudit/save")
-    @ResponseBody
-    public ResponseEty saveCanAudit(@RequestBody SaveCheckData saveCheckData,@RequestHeader(value="token",required = false) Integer token){
-        if (saveCheckData.getData()==null){
-            return ResponseEty.failure("请选择要审核的车次");
-        }
-        return qaInspectMasterService.saveCanAuditInspectMaster(saveCheckData,token);
-    }
+
     /**
      * 获取已经审核的车次数据,今天
      * @return
@@ -72,6 +65,15 @@ public class MachineCheckController {
         return qaInspectMasterService.getAlreadyAuditInspectMaster(queryDate);
     }
 
+    @PostMapping("canAudit/save")
+    @ResponseBody
+    public ResponseEty saveCanAudit(@RequestBody SaveCheckData saveCheckData,@RequestHeader(value="token",required = false) Integer token){
+        if (saveCheckData.getData()==null){
+            return ResponseEty.failure("请选择要审核的车次");
+        }
+        return qaInspectMasterService.saveCanAuditInspectMaster(saveCheckData,token);
+    }
+
     @PostMapping("alreadyAudit/save")
     @ResponseBody
     public ResponseEty saveAlreadyAudit(@RequestBody SaveCheckData saveCheckData,@RequestHeader(value="token",required = false) Integer token
@@ -80,18 +82,6 @@ public class MachineCheckController {
             return ResponseEty.failure("请选择要回退的车次");
         }
         return qaInspectMasterService.saveAlreadyAuditInspectMaster(saveCheckData,token);
-    }
-    /**
-    /**
-     * 获取不走核查的车次数据,今天
-     * @return
-     */
-    @PostMapping("notAudit/list")
-    @ResponseBody
-    public ResponseEty listNotAuditList(@RequestBody QueryDate queryDate,@RequestHeader(value="token",required = false) Integer token){
-
-//        systemLogService.saveMachineLog(token,"查询","查询了走全检的车次");
-        return qaInspectMasterService.getNotAuditInspectMaster(queryDate);
     }
 
     @PostMapping("notAudit/save")
@@ -105,11 +95,25 @@ public class MachineCheckController {
     }
 
     /**
+    /**
+     * 获取不走核查的车次数据,今天
+     * @return
+     */
+/*    @PostMapping("notAudit/list")
+    @ResponseBody
+    public ResponseEty listNotAuditList(@RequestBody QueryDate queryDate,@RequestHeader(value="token",required = false) Integer token){
+
+//        systemLogService.saveMachineLog(token,"查询","查询了走全检的车次");
+        return qaInspectMasterService.getNotAuditInspectMaster(queryDate);
+    }*/
+
+
+    /**
      * 全检回退的车次,回退到待审核状态
      * @param saveCheckData
      * @return
      */
-    @PostMapping("notAudit/return")
+/*    @PostMapping("notAudit/return")
     @ResponseBody
     public ResponseEty returnNotAudit(@RequestBody SaveCheckData saveCheckData,@RequestHeader(value="token",required = false) Integer token){
         if (saveCheckData.getData()==null){
@@ -117,7 +121,7 @@ public class MachineCheckController {
         }
         return qaInspectMasterService.returnNotAuditInspectMaster(saveCheckData,token);
 
-    }
+    }*/
 
 
 

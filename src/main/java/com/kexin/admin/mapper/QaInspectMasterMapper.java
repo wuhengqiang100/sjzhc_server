@@ -15,13 +15,14 @@ public interface QaInspectMasterMapper extends BaseMapper<QaInspectMaster> {
      * 获取没有审核的车次
      * @return
      */
-    List<QaInspectMaster> getCanAuditInspectMaster(@Param("startTime") Date startTime,@Param("endTime") Date endTime);
+    List<QaInspectMaster> getCanAuditInspectMaster(@Param("startTime") Date startTime,@Param("endTime") Date endTime,@Param("cartNumber") String cartNumber);
 
     /**
      * 获取已经审核的车次
      * @return
      */
-    List<QaInspectMaster> getAlreadyAuditInspectMaster(@Param("startTime") Date startTime,@Param("endTime") Date endTime);
+    List<QaInspectMaster> getAlreadyAuditInspectMaster(@Param("startTime") Date startTime,@Param("endTime") Date endTime,@Param("cartNumber") String cartNumber);
+    List<QaInspectMaster> getAlreadyAuditInspectMasterByAllowJudge(@Param("startTime") Date startTime,@Param("endTime") Date endTime,@Param("cartNumber") String cartNumber,@Param("allowJudge") Integer allowJudge);
 
     /**
      * 获取不走审核的车次

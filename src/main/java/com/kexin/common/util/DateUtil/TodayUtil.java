@@ -23,6 +23,18 @@ public class TodayUtil {
         todayStart.set(Calendar.MILLISECOND, 0);
         return todayStart.getTime();
     }
+    /**
+     * 获取前天的起始时间
+     * @return
+     */
+    public static Date get3StartTime() {
+        Calendar todayStart = Calendar.getInstance();
+        todayStart.set(Calendar.HOUR_OF_DAY, -48);
+        todayStart.set(Calendar.MINUTE, 0);
+        todayStart.set(Calendar.SECOND, 0);
+        todayStart.set(Calendar.MILLISECOND, 0);
+        return todayStart.getTime();
+    }
 
     /**
      * 获取今天的借书时间

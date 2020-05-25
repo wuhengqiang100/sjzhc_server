@@ -87,7 +87,8 @@ public class QueryReportController {
             queryReportMainWrapper.between("START_DATE",  qaSelect.getStartDate(), qaSelect.getEndDate());
         }
         IPage<QueryReportMain> queryReportMainPage = queryReportMainService.page(new Page<>(qaSelect.getPage(),qaSelect.getLimit()),queryReportMainWrapper);
-        data.setTotal(queryReportMainPage.getTotal());
+//        data.setTotal(queryReportMainPage.getTotal());
+        data.setTotal((long) 100000);
         data.setItems(queryReportMainPage.getRecords());
         queryReportMainPageData.setData(data);
         systemLogService.saveMachineLog(token,"查询","查询了报表主信息");
@@ -128,7 +129,7 @@ public class QueryReportController {
 
     @PostMapping("reportQa")
     @ResponseBody
-    @SysLog("报表查询未检视图")
+    @SysLog("报表查询缺陷视图")
     public PageDataBase<QueryReportQa> listReportQa(@RequestBody QueryReportQaSelect qaSelect,
                                                     @RequestHeader(value="token",required = false) Integer token){
         PageDataBase<QueryReportQa> queryReportQaPageData = new PageDataBase<>();
