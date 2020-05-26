@@ -173,6 +173,9 @@ public class QueryReportController {
         }
         IPage<QueryReportQa> queryReportQaPage = queryReportQaService.page(new Page<>(qaSelect.getPage(),qaSelect.getLimit()),queryReportQaWrapper);
         data.setTotal(queryReportQaPage.getTotal());
+/*        queryReportQaPage.getRecords().forEach(r->{
+            r.setFilePath("data:image/jpeg;base64,"+String.valueOf(r.getImageBlob()));
+        });
         String path = ClassUtils.getDefaultClassLoader().getResource("").getPath();
         queryReportQaPage.getRecords().forEach(r->{
             File file = new File( path+ "/static/" +r.getQaId()+".jpg");
@@ -191,22 +194,21 @@ public class QueryReportController {
                 }
             }
             r.setFilePath("http://"+systemWebApi.getAddress()+":"+systemWebApi.getPort()+"/static/"+r.getQaId()+".jpg");
-//            r.setFilePath("http://"+systemWebApi.getAddress()+":"+systemWebApi.getPort()+"/reportMain/img?qaId="+r.getQaId());
-//            byte[] img = r.getImageBlob();
-//            httpServletResponse.setContentType("image/png");
-//            OutputStream os = null;
-//            try {
-//                os = httpServletResponse.getOutputStream();
-//                os.write(img);
-//                os.flush();
-//                os.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+            r.setFilePath("http://"+systemWebApi.getAddress()+":"+systemWebApi.getPort()+"/reportMain/img?qaId="+r.getQaId());
+            byte[] img = r.getImageBlob();
+            httpServletResponse.setContentType("image/png");
+            OutputStream os = null;
+            try {
+                os = httpServletResponse.getOutputStream();
+                os.write(img);
+                os.flush();
+                os.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-            //http://192.168.137.2:8088/static/15714489.jpg
-        });
-
+            http://192.168.137.2:8088/static/15714489.jpg
+        });*/
         data.setItems(queryReportQaPage.getRecords());
         queryReportQaPageData.setData(data);
         systemLogService.saveMachineLog(token,"查询","查询了报表缺陷信息");
