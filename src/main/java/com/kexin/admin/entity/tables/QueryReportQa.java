@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.apache.ibatis.type.JdbcType;
 
@@ -33,6 +34,12 @@ public class QueryReportQa {
     @TableField(value = "PRODUCT_NAME")
     private String productName;//产品名称
 
+    @TableField(value = "OPERATION_ID")
+    private Integer operationId;//工序id
+
+    @TableField(value = "OPERATION_NAME")
+    private String operationName;//工序名称
+
 
     @TableField(value = "qa_id")
     private Integer qaId;//质量序号
@@ -42,8 +49,6 @@ public class QueryReportQa {
 
     @TableField(value = "code_num")
     private String codeNum;//印码号
-    @TableField(value = "operation_id")
-    private Integer operationId;//工序id
 
     @TableField(value = "convert_num")
     private Integer convertNum;//开位
@@ -70,7 +75,7 @@ public class QueryReportQa {
 
     @TableField(value = "sheet_waster_flag")
     private Integer sheetWasterFlag;//判废大张废标志
-
+//    @JsonIgnore
     @TableField(value = "image_blob",jdbcType = JdbcType.BLOB)
     private byte[] imageBlob;//图像
 

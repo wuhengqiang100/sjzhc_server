@@ -57,7 +57,7 @@ public class AuditParameterController {
     @ResponseBody
     @SysLog("审核参数列表获取")
     public PageDataBase<AuditParameterSelect> list(@RequestParam(value = "page",defaultValue = "1")Integer page,
-                                       @RequestParam(value = "limit",defaultValue = "10")Integer limit,
+                                       @RequestParam(value = "limit",defaultValue = "1000")Integer limit,
                                        @RequestParam(value = "sort")String sort,
                                        @RequestParam(value = "useFlag",defaultValue = "")String useFlag,
                                        @RequestParam(value = "title",defaultValue = "") String title,

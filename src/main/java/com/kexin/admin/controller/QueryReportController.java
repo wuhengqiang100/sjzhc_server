@@ -16,9 +16,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * 核查综合查询的report相关查询
@@ -68,6 +71,9 @@ public class QueryReportController {
     @Autowired
     SystemWebApi systemWebApi;
 
+    @Autowired
+    Ftp ftp;
+
     @PostMapping("reportMain")
     @ResponseBody
     @SysLog("报表查询主视图")
@@ -93,8 +99,8 @@ public class QueryReportController {
             queryReportMainWrapper.between("START_DATE",  qaSelect.getStartDate(), qaSelect.getEndDate());
         }
         IPage<QueryReportMain> queryReportMainPage = queryReportMainService.page(new Page<>(qaSelect.getPage(),qaSelect.getLimit()),queryReportMainWrapper);
-//        data.setTotal(queryReportMainPage.getTotal());
-        data.setTotal((long) 100000);
+        data.setTotal(queryReportMainPage.getTotal());
+//        data.setTotal((long) 100000);
         data.setItems(queryReportMainPage.getRecords());
         queryReportMainPageData.setData(data);
         systemLogService.saveMachineLog(token,"查询","查询了报表主信息");
@@ -117,7 +123,7 @@ public class QueryReportController {
             }
         }
         if(qaSelect.getJobId()!=null){//根据生产序号查询
-            queryReportNckWrapper.like("JOB_ID",qaSelect.getJobId());
+            queryReportNckWrapper.eq("JOB_ID",qaSelect.getJobId());
         }
         if (qaSelect.getSheetNum()!=null){//根据大张号查询
             queryReportNckWrapper.like("sheet_num",qaSelect.getSheetNum());
@@ -140,7 +146,9 @@ public class QueryReportController {
     @ResponseBody
     @SysLog("报表查询缺陷视图")
     public PageDataBase<QueryReportQa> listReportQa(@RequestBody QueryReportQaSelect qaSelect,
-                                                    @RequestHeader(value="token",required = false) Integer token){
+                                                    @RequestHeader(value="token",required = false) Integer token,
+                                                    HttpServletRequest httpServletRequest,
+                                                    HttpServletResponse httpServletResponse){
         PageDataBase<QueryReportQa> queryReportQaPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<QueryReportQa> queryReportQaWrapper = new QueryWrapper<>();
@@ -152,8 +160,9 @@ public class QueryReportController {
             }
         }
         if(qaSelect.getJobId()!=null){//根据生产序号查询
-            queryReportQaWrapper.like("JOB_ID",qaSelect.getJobId());
-        }if (qaSelect.getSheetNum()!=null){//根据大张号查询
+            queryReportQaWrapper.eq("JOB_ID",qaSelect.getJobId());
+        }
+        if (qaSelect.getSheetNum()!=null){//根据大张号查询
             queryReportQaWrapper.like("sheet_num",qaSelect.getSheetNum());
         }if (qaSelect.getCodeNum()!=null){//根据印码查询
             queryReportQaWrapper.like("code_num",qaSelect.getCodeNum());
@@ -182,6 +191,19 @@ public class QueryReportController {
                 }
             }
             r.setFilePath("http://"+systemWebApi.getAddress()+":"+systemWebApi.getPort()+"/static/"+r.getQaId()+".jpg");
+//            r.setFilePath("http://"+systemWebApi.getAddress()+":"+systemWebApi.getPort()+"/reportMain/img?qaId="+r.getQaId());
+//            byte[] img = r.getImageBlob();
+//            httpServletResponse.setContentType("image/png");
+//            OutputStream os = null;
+//            try {
+//                os = httpServletResponse.getOutputStream();
+//                os.write(img);
+//                os.flush();
+//                os.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+
             //http://192.168.137.2:8088/static/15714489.jpg
         });
 
@@ -189,6 +211,26 @@ public class QueryReportController {
         queryReportQaPageData.setData(data);
         systemLogService.saveMachineLog(token,"查询","查询了报表缺陷信息");
         return queryReportQaPageData;
+    }
+
+//    @RequestMapping(value = {"/img/{qaId}"}, method = RequestMethod.GET)
+    @GetMapping("img")
+    @ResponseBody
+    @SysLog("缺陷视图图像查看")
+    public String qaImg(HttpServletRequest request,
+                       HttpServletResponse httpServletResponse,
+                        @RequestParam(value = "qaId") Long qaId) throws IOException {
+        // img为图片的二进制流
+        QueryWrapper<QueryReportQa> qaQueryWrapper=new QueryWrapper<>();
+        qaQueryWrapper.eq("qa_id",qaId);
+        QueryReportQa queryReportQa=queryReportQaService.getOne(qaQueryWrapper);
+        byte[] img =queryReportQa.getImageBlob();
+        httpServletResponse.setContentType("image/jpg");
+        OutputStream os = httpServletResponse.getOutputStream();
+        os.write(img);
+        os.flush();
+        os.close();
+        return "success";
     }
 
 }

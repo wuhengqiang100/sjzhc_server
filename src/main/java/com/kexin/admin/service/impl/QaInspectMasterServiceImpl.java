@@ -63,6 +63,7 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
         QaInspectMaster qaInspectMaster=new QaInspectMaster();
         qaInspectMaster.setAllowJudge(1);
+        qaInspectMaster.setAutoCheckFlag(2);
         qaInspectMaster.setCheckDate(new Date());
         qaInspectMasterQueryWrapper.in("INSPECTM_ID",saveCheckData.getData());
         if (saveCheckData.getNote()!=null){
@@ -124,6 +125,7 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         if (saveCheckData.getNote()!=null){
             qaInspectMaster.setNote(saveCheckData.getNote());
         }
+        qaInspectMaster.setAutoCheckFlag(0);
         int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
         if (flag>0){
             List<QaInspectMaster> qaInspectMasterList=baseMapper.selectQaInspectMasterByInspectmIds(saveCheckData.getData());
@@ -156,11 +158,14 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
         QaInspectMaster qaInspectMaster=new QaInspectMaster();
         qaInspectMaster.setAllowJudge(-1);
+
+
         qaInspectMaster.setCheckDate(new Date());
         qaInspectMasterQueryWrapper.in("INSPECTM_ID",saveCheckData.getData());
         if (saveCheckData.getNote()!=null){
             qaInspectMaster.setNote(saveCheckData.getNote());
         }
+        qaInspectMaster.setAutoCheckFlag(2);
         int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
         if (flag>0){
             List<QaInspectMaster> qaInspectMasterList=baseMapper.selectQaInspectMasterByInspectmIds(saveCheckData.getData());

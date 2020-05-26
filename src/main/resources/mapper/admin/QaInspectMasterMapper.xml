@@ -143,7 +143,8 @@
     left join dic_machines dm on dm.machine_id=wpl.machine_id
     left join dic_work_units dwu on dwu.work_unit_id=wpl.work_unit_id
     <where>
-       atm.allow_judge = 0 and atm.AUTO_CHECK_FLAG = 2
+--        atm.allow_judge = 0 and atm.AUTO_CHECK_FLAG = 0
+       atm.allow_judge = 0
       <if test="startTime!=null and endTime!=null">
         and  atm.LAST_UPDATE_TIME BETWEEN #{startTime} AND #{endTime}
       </if>

@@ -48,6 +48,7 @@ public class MachineController {
         PageDataBase<Machine> machinePageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<Machine> machineWrapper = new QueryWrapper<>();
+        machineWrapper.orderByAsc("MACHINE_NAME");
         if (sort.equals("+id")){
             machineWrapper.orderByAsc("MACHINE_ID");
         }else{
@@ -60,6 +61,7 @@ public class MachineController {
         if (StringUtils.isNotEmpty(title)){
             machineWrapper.like("MACHINE_NAME",title);
         }
+
         IPage<Machine> machinePage = machineService.page(new Page<>(page,limit),machineWrapper);
         data.setTotal(machinePage.getTotal());
         data.setItems(machinePage.getRecords());

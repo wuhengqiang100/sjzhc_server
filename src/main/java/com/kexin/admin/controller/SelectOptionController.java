@@ -149,26 +149,6 @@ public class SelectOptionController {
         ResponseEty responseEty=new ResponseEty();
         responseEty.setSuccess(20000);
         responseEty.setAny("productOption",selectOptionComponent.getProductSelectOption());//产品下拉option
-        return responseEty;
-    }
-
-    @PostMapping("reportNck")
-    @ResponseBody
-    @SysLog("获取报表未检视图的查询条件")
-    public ResponseEty listOptionReportNck(){
-        ResponseEty responseEty=new ResponseEty();
-        responseEty.setSuccess(20000);
-        responseEty.setAny("productOption",selectOptionComponent.getProductSelectOption());//产品下拉option
-        responseEty.setAny("operationOption",selectOptionComponent.getOperationSelectOption());//工序下拉option
-        return responseEty;
-    }
-    @PostMapping("reportQa")
-    @ResponseBody
-    @SysLog("获取报表缺陷视图的查询条件")
-    public ResponseEty listOptionReportQa(){
-        ResponseEty responseEty=new ResponseEty();
-        responseEty.setSuccess(20000);
-        responseEty.setAny("productOption",selectOptionComponent.getProductSelectOption());//产品下拉option
         responseEty.setAny("operationOption",selectOptionComponent.getOperationSelectOption());//工序下拉option
         return responseEty;
     }
