@@ -77,6 +77,8 @@ public class VerifyLogController {
         PageDataBase<MachineLog> machineLogPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<MachineLog> machineLogWrapper = new QueryWrapper<>();
+        machineLogWrapper.orderByDesc("LOG_DATE");
+
         if (query.getSort().equals("+id")){
             machineLogWrapper.orderByAsc("LOG_MACHINE_ID");
         }else{
@@ -105,6 +107,7 @@ public class VerifyLogController {
         PageDataBase<SystemLog> systemLogPageDataBase = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<SystemLog> systemLogQueryWrapper = new QueryWrapper<>();
+        systemLogQueryWrapper.orderByDesc("LOG_DATE");
         if (query.getSort().equals("+id")){
             systemLogQueryWrapper.orderByAsc("LOG_SYS_ID");
         }else{
@@ -135,6 +138,7 @@ public class VerifyLogController {
         PageDataBase<ProduceLog> produceLogPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<ProduceLog> produceLogWrapper = new QueryWrapper<>();
+        produceLogWrapper.orderByDesc("LOG_DATE");
         if (query.getSort().equals("+id")){
             produceLogWrapper.orderByAsc("LOG_PROD_ID");
         }else{
@@ -188,6 +192,7 @@ public class VerifyLogController {
         PageDataBase<DataupLog> dataupLogPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<DataupLog> dataupLogWrapper = new QueryWrapper<>();
+        dataupLogWrapper.orderByDesc("DATAUP_SET_DATE");
         if (query.getSort().equals("+id")){
             dataupLogWrapper.orderByAsc("DATAUP_SET_ID");
         }else{
@@ -224,6 +229,7 @@ public class VerifyLogController {
         PageDataBase<OperationLog> operationLogPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<OperationLog> operationLogWrapper = new QueryWrapper<>();
+        operationLogWrapper.orderByDesc("START_DATE");
         if (query.getSort().equals("+id")){
             operationLogWrapper.orderByAsc("LOG_OPERATION_NOTE_ID");
         }else{
@@ -254,6 +260,7 @@ public class VerifyLogController {
         PageDataBase<MachineCheckQuery> machineCheckQueryPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<MachineCheckQuery> machineCheckQueryWrapper = new QueryWrapper<>();
+        machineCheckQueryWrapper.orderByDesc("START_DATE");
         if (qaSelect.getSort()!=null){
             if (qaSelect.getSort().equals("+id")){
                 machineCheckQueryWrapper.orderByAsc("LOG_ID");

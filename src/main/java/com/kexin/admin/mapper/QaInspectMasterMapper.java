@@ -66,6 +66,13 @@ public interface QaInspectMasterMapper extends BaseMapper<QaInspectMaster> {
      */
     List<QaInspectMaster> selectQaInspectMasterByInspectmIds(@Param("inspectmIds") Integer[] inspectmIds);
 
+    /**
+     * 根据logId生产日志id获取InspectMaster信息
+     * @param inspectmId
+     * @return
+     */
+    QaInspectMaster selectQaInspectMasterByInspectmId(@Param("inspectmId") Integer inspectmId);
+
     List<QaInspectMaster> selectQaInspectMasterByIds(@Param("inspectmIds") Integer[] inspectmIds);
 
 }

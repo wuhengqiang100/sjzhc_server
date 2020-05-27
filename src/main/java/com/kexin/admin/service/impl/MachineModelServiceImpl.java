@@ -262,7 +262,7 @@ public class MachineModelServiceImpl extends ServiceImpl<MachineModelMapper, Mac
                 ResponseEty responseEty=new ResponseEty();
                 responseEty.setSuccess(20000);
                 Machine machine=machineMapper.selectById(machineModel.getMachineId());
-                systemLogService.saveMachineLog(token,"上传","上传了"+machine.getMachineName()+"设备模板");
+                systemLogService.saveMachineLog(tokenId,"上传","上传了"+machine.getMachineName()+"设备模板");
                 return ResponseEty.success("上传成功");
             }else{//上传失败
                 ResponseEty responseEty=new ResponseEty();

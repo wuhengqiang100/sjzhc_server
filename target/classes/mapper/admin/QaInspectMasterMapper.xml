@@ -253,7 +253,32 @@
              separator="," close=")">
       #{item}
     </foreach>
-    </select>
+  </select>
+  <select id="selectQaInspectMasterByInspectmId" resultMap="BaseMapper" parameterType="java.lang.Integer">
+    select
+    wj.job_id,wj.CART_NUMBER,
+    dp.product_id,dp.product_code,dp.product_name,
+    wpl.log_id, wpl.JOB_ID,wpl.OPERATION_ID,wpl.MACHINE_ID,wpl.WORK_UNIT_ID,
+    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,
+    dop.operation_id,dop.operation_code,dop.operation_name,
+    doa.operator_id,doa.operator_code,doa.operator_name,
+    dm.machine_id,dm.machine_code,dm.machine_name,
+    dwu.work_unit_id,dwu.work_unit_code,dwu.work_unit_name,
+    atm.inspectm_id,atm.allow_judge,atm.MACHINE_WASTER_NUMBER,
+    atm.INFO_NUMBER,atm.NOCHECK_NUMBER,atm.ITEM_FLAG,atm.JUDGE_WASTER_NUMBER,atm.LAST_UPDATE_TIME,
+    atm.NOTE,atm.AUTO_CHECK_FLAG,atm.CHECK_DATE
+
+    from QA_INSPECT_MASTER  atm
+
+    left join wip_prod_logs wpl on wpl.log_id=atm.log_id
+    left join wip_jobs  wj on wj.job_id=wpl.job_id
+    left join dic_products dp on dp.product_id=wj.product_id
+    left join dic_operations dop on dop.operation_id=wpl.operation_id
+    left join dic_operators doa on doa.operator_id=wpl.operator_id
+    left join dic_machines dm on dm.machine_id=wpl.machine_id
+    left join dic_work_units dwu on dwu.work_unit_id=wpl.work_unit_id
+    where atm.AUTO_CHECK_FLAG=2 and atm.INSPECTM_ID = #{inspectmId}
+  </select>
   <select id="getAlreadyAuditInspectMasterByAllowJudge"  resultMap="BaseMapper">
     select
     wj.job_id,wj.CART_NUMBER,

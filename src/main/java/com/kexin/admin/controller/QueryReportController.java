@@ -82,6 +82,7 @@ public class QueryReportController {
         PageDataBase<QueryReportMain> queryReportMainPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<QueryReportMain> queryReportMainWrapper = new QueryWrapper<>();
+        queryReportMainWrapper.orderByDesc("START_DATE");
         if (qaSelect.getSort()!=null){
             if (qaSelect.getSort().equals("+id")){
                 queryReportMainWrapper.orderByAsc("JOB_ID");
@@ -116,10 +117,18 @@ public class QueryReportController {
         Data data=new Data();
         QueryWrapper<QueryReportNck> queryReportNckWrapper = new QueryWrapper<>();
         if (qaSelect.getSort()!=null){
-            if (qaSelect.getSort().equals("+id")){
-                queryReportNckWrapper.orderByAsc("JOB_ID");
-            }else{
-                queryReportNckWrapper.orderByDesc("JOB_ID");
+            if (qaSelect.getSort().equals("+codeNum")){
+                queryReportNckWrapper.orderByAsc("code_num");
+            }else if(qaSelect.getSort().equals("-codeNum")){
+                queryReportNckWrapper.orderByDesc("code_num");
+            }else if (qaSelect.getSort().equals("+thousandIndex")){
+                queryReportNckWrapper.orderByAsc("thousand_index");
+            }else if(qaSelect.getSort().equals("-thousandIndex")){
+                queryReportNckWrapper.orderByDesc("thousand_index");
+            }else if (qaSelect.getSort().equals("+hundredIndex")){
+                queryReportNckWrapper.orderByAsc("hundred_index");
+            }else if(qaSelect.getSort().equals("-hundredIndex")){
+                queryReportNckWrapper.orderByDesc("hundred_index");
             }
         }
         if(qaSelect.getJobId()!=null){//根据生产序号查询
@@ -153,10 +162,26 @@ public class QueryReportController {
         Data data=new Data();
         QueryWrapper<QueryReportQa> queryReportQaWrapper = new QueryWrapper<>();
         if (qaSelect.getSort()!=null){
-            if (qaSelect.getSort().equals("+id")){
-                queryReportQaWrapper.orderByAsc("JOB_ID");
-            }else{
-                queryReportQaWrapper.orderByDesc("JOB_ID");
+            if (qaSelect.getSort().equals("+codeNum")){
+                queryReportQaWrapper.orderByAsc("code_num");
+            }else if(qaSelect.getSort().equals("-codeNum")){
+                queryReportQaWrapper.orderByDesc("code_num");
+            }else if (qaSelect.getSort().equals("+thousandIndex")){
+                queryReportQaWrapper.orderByAsc("thousand_index");
+            }else if(qaSelect.getSort().equals("-thousandIndex")){
+                queryReportQaWrapper.orderByDesc("thousand_index");
+            }else if (qaSelect.getSort().equals("+hundredIndex")){
+                queryReportQaWrapper.orderByAsc("hundred_index");
+            }else if(qaSelect.getSort().equals("-hundredIndex")){
+                queryReportQaWrapper.orderByDesc("hundred_index");
+            }else if (qaSelect.getSort().equals("+convertNum")){
+                queryReportQaWrapper.orderByAsc("convert_num");
+            }else if(qaSelect.getSort().equals("-convertNum")){
+                queryReportQaWrapper.orderByDesc("convert_num");
+            }else if (qaSelect.getSort().equals("+routeNum")){
+                queryReportQaWrapper.orderByAsc("route_num");
+            }else if(qaSelect.getSort().equals("-routeNum")){
+                queryReportQaWrapper.orderByDesc("route_num");
             }
         }
         if(qaSelect.getJobId()!=null){//根据生产序号查询

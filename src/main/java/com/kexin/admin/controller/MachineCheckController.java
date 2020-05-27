@@ -7,6 +7,7 @@ import com.kexin.admin.entity.tables.QaInspectMaster;
 import com.kexin.admin.entity.vo.QaInspectChange;
 import com.kexin.admin.entity.vo.query.QueryDate;
 import com.kexin.admin.entity.vo.query.SaveCheckData;
+import com.kexin.admin.entity.vo.query.SaveNoteData;
 import com.kexin.admin.service.LoginUserService;
 import com.kexin.admin.service.OperatorService;
 import com.kexin.admin.service.QaInspectMasterService;
@@ -91,6 +92,24 @@ public class MachineCheckController {
             return ResponseEty.failure("请选择全检的车次");
         }
         return qaInspectMasterService.saveNotAuditInspectMaster(saveCheckData,token);
+
+    }
+    @PostMapping("saveNoteCan")
+    @ResponseBody
+    public ResponseEty saveNoteCan(@RequestBody SaveNoteData saveNoteData, @RequestHeader(value="token",required = false) Integer token){
+        if (saveNoteData.getData()==null){
+            return ResponseEty.failure("请选择全检的车次");
+        }
+        return qaInspectMasterService.saveNoteInspectMaster(saveNoteData,token);
+
+    }
+    @PostMapping("saveNoteAlready")
+    @ResponseBody
+    public ResponseEty saveNoteAlready(@RequestBody SaveNoteData saveNoteData, @RequestHeader(value="token",required = false) Integer token){
+        if (saveNoteData.getData()==null){
+            return ResponseEty.failure("请选择全检的车次");
+        }
+        return qaInspectMasterService.saveNoteInspectMaster(saveNoteData,token);
 
     }
 

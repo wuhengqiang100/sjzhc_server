@@ -68,6 +68,7 @@ public class MachineModelController {
         PageDataBase<MachineModel> machineModelPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<MachineModel> machineModelWrapper = new QueryWrapper<>();
+        machineModelWrapper.orderByDesc("START_DATE");
         if (sort.equals("+id")){
             machineModelWrapper.orderByAsc("MACHINE_MODEL_ID");
         }else{

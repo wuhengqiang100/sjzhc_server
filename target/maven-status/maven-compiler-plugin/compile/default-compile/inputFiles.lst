@@ -131,6 +131,7 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\query\Save
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\query\QaInspectSelect.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\QueryReportController.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\AllFunction.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\query\SaveNoteData.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\monitor\MonitorAssignPo.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\MachineLog.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\AuditParameter\ParameterByIds.java

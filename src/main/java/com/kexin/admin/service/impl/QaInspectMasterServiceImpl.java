@@ -8,6 +8,7 @@ import com.kexin.admin.entity.tables.QaInspectMaster;
 import com.kexin.admin.entity.vo.QaInspectChange;
 import com.kexin.admin.entity.vo.query.QueryDate;
 import com.kexin.admin.entity.vo.query.SaveCheckData;
+import com.kexin.admin.entity.vo.query.SaveNoteData;
 import com.kexin.admin.mapper.LoginUserMapper;
 import com.kexin.admin.mapper.OperationLogMapper;
 import com.kexin.admin.mapper.OperatorMapper;
@@ -177,6 +178,24 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
             return ResponseEty.success("审核全检成功");
         }
         return ResponseEty.failure("审核全检失败");
+    }
+
+    @Override
+    public ResponseEty saveNoteInspectMaster(SaveNoteData saveNoteData, Integer token) {
+
+        QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
+        QaInspectMaster qaInspectMaster=new QaInspectMaster();
+        qaInspectMaster.setInspectmId(saveNoteData.getData());
+        qaInspectMaster.setNote(saveNoteData.getNote());
+        qaInspectMasterQueryWrapper.eq("INSPECTM_ID",saveNoteData.getData());
+        int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
+        if (flag>0){
+//            QaInspectMaster qaInspectMaster1=baseMapper.selectQaInspectMasterByInspectmId(saveNoteData.getData());
+//            produceLogService.saveProduceLog(qaInspectMaster1,token,"核查审核","修改了车号为:"+qaInspectMaster1.getWipJobs().getCartNumber()+"的车次的备注:"+qaInspectMaster1.getNote());
+            return ResponseEty.success("备注成功");
+        }else{
+            return ResponseEty.success("备注失败");
+        }
     }
 
 /*

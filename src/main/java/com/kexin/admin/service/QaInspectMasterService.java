@@ -5,6 +5,7 @@ import com.kexin.admin.entity.tables.QaInspectMaster;
 import com.kexin.admin.entity.vo.QaInspectChange;
 import com.kexin.admin.entity.vo.query.QueryDate;
 import com.kexin.admin.entity.vo.query.SaveCheckData;
+import com.kexin.admin.entity.vo.query.SaveNoteData;
 import com.kexin.common.util.ResponseEntity;
 import com.kexin.common.util.ResponseEty;
 
@@ -63,6 +64,12 @@ public interface QaInspectMasterService extends IService<QaInspectMaster> {
      * @return
      */
     ResponseEty saveNotAuditInspectMaster(SaveCheckData saveCheckData,Integer token);
+    /**
+     * 保存修改的备注
+     * @param saveNoteData
+     * @return
+     */
+    ResponseEty saveNoteInspectMaster(SaveNoteData saveNoteData, Integer token);
 
     /**
      * 回退走全检的车次
