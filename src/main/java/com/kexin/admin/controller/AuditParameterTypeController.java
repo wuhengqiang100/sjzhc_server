@@ -47,6 +47,7 @@ public class AuditParameterTypeController {
         PageDataBase<AuditParameterType> auditParameterTypePageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<AuditParameterType> auditParameterTypeWrapper = new QueryWrapper<>();
+        auditParameterTypeWrapper.orderByDesc("START_DATE");
         if (sort.equals("+id")){
             auditParameterTypeWrapper.orderByAsc("JUDGE_CHECK_TYPE_ID");
         }else{

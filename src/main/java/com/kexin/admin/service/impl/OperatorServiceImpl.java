@@ -53,6 +53,12 @@ public class OperatorServiceImpl extends ServiceImpl<OperatorMapper, Operator> i
     @Transactional(rollbackFor = Exception.class)
     public void updateOperator(Operator operator) {
 //        dropUserRolesByUserId(user.getLoginId());
+        if (operator.getUseFlag()){ //启用
+            operator.setStartDate(new Date());
+            operator.setEndDate(null);
+        }else{//禁用
+            operator.setEndDate(new Date());
+        }
         baseMapper.updateById(operator);
     }
 

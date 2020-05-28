@@ -140,7 +140,7 @@ public class QueryReportController {
             queryReportNckWrapper.like("code_num",qaSelect.getCodeNum());
         }if (qaSelect.getProductId()!=null){//根据产品查询
             queryReportNckWrapper.eq("PRODUCT_ID",qaSelect.getProductId());
-        }if (qaSelect.getProductId()!=null){//根据工序查询
+        }if (qaSelect.getOperationId()!=null){//根据工序查询
             queryReportNckWrapper.eq("operation_id",qaSelect.getOperationId());
         }
         IPage<QueryReportNck> queryReportNckPage = queryReportNckService.page(new Page<>(qaSelect.getPage(),qaSelect.getLimit()),queryReportNckWrapper);
@@ -193,7 +193,7 @@ public class QueryReportController {
             queryReportQaWrapper.like("code_num",qaSelect.getCodeNum());
         }if (qaSelect.getProductId()!=null){//根据产品查询
             queryReportQaWrapper.eq("PRODUCT_ID",qaSelect.getProductId());
-        }if (qaSelect.getProductId()!=null){//根据工序查询
+        }if (qaSelect.getOperationId()!=null){//根据工序查询
             queryReportQaWrapper.eq("operation_id",qaSelect.getOperationId());
         }
         IPage<QueryReportQa> queryReportQaPage = queryReportQaService.page(new Page<>(qaSelect.getPage(),qaSelect.getLimit()),queryReportQaWrapper);

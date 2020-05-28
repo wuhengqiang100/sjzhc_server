@@ -47,6 +47,7 @@ public class OperationTypeController {
         PageDataBase<OperationType> operationTypePageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<OperationType> operationTypeWrapper = new QueryWrapper<>();
+        operationTypeWrapper.orderByDesc("START_DATE");
         if (sort.equals("+id")){
             operationTypeWrapper.orderByAsc("OPERATION_TYPE_ID");
         }else{

@@ -46,6 +46,8 @@ public class OperatorController {
         PageDataBase<Operator> operatorPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<Operator> operatorWrapper = new QueryWrapper<>();
+        operatorWrapper.orderByDesc("START_DATE");
+
         if (sort.equals("+id")){
             operatorWrapper.orderByAsc("OPERATOR_ID");
         }else{

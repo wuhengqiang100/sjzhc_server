@@ -4,7 +4,9 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kexin.admin.entity.tables.CartNumFirst;
 import com.kexin.admin.entity.tables.Products;
+import com.kexin.admin.service.CartNumFirstService;
 import com.kexin.admin.service.ProductsService;
 import com.kexin.admin.service.SystemLogService;
 import com.kexin.common.annotation.SysLog;
@@ -12,6 +14,7 @@ import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
 import com.kexin.common.util.ResponseEty;
 import org.apache.commons.lang3.StringUtils;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +36,9 @@ public class ProductController {
     @Autowired
     SystemLogService systemLogService;//系统日志记录service
 
+    @Autowired
+    CartNumFirstService cartNumFirstService;//首字母序号service
+
 
     @GetMapping("list")
     @ResponseBody
@@ -48,6 +54,8 @@ public class ProductController {
         PageDataBase<Products> productPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<Products> productWrapper = new QueryWrapper<>();
+        productWrapper.orderByDesc("START_DATE");
+
         if (sort.equals("+id")){
             productWrapper.orderByAsc("PRODUCT_ID");
         }else{
@@ -61,6 +69,7 @@ public class ProductController {
         }
         IPage<Products> productPage = productService.page(new Page<>(page,limit),productWrapper);
         data.setTotal(productPage.getTotal());
+        productPage.getRecords().forEach(r->r.setCartNumFirst(cartNumFirstService.getById(r.getCartnumFirstId())));//外键实体添加
         data.setItems(productPage.getRecords());
         productPageData.setData(data);
         systemLogService.saveMachineLog(token,"查询","查询了产品种类列表");

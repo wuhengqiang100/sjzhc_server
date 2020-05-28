@@ -24,7 +24,8 @@
       <result property="itemFlag" column="ITEM_FLAG" jdbcType="INTEGER"/>
       <result property="qainfonum" column="QAINFONUM" jdbcType="INTEGER"/>
       <result property="qawasternum" column="QAWASTERNUM" jdbcType="INTEGER"/>
-<!--      <result property="sminfonum" column="SMINFONUM" jdbcType="INTEGER"/>-->
+      <result property="qawasternum" column="QAWASTERNUM" jdbcType="INTEGER"/>
+      <result property="startDate" column="START_DATE" jdbcType="DATE"/>
     </collection>
     <collection property="wipJobs"  ofType="com.kexin.admin.entity.tables.WipJobs">
       <result property="jobId" column="JOB_ID" jdbcType="INTEGER"/>
@@ -70,7 +71,7 @@
     wj.job_id,wj.CART_NUMBER,
     dp.product_id,dp.product_code,dp.product_name,
     wpl.log_id, wpl.JOB_ID,wpl.OPERATION_ID,wpl.MACHINE_ID,wpl.WORK_UNIT_ID,
-    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,
+    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,wpl.START_DATE,
     dop.operation_id,dop.operation_code,dop.operation_name,
     doa.operator_id,doa.operator_code,doa.operator_name,
     dm.machine_id,dm.machine_code,dm.machine_name,
@@ -100,7 +101,7 @@
     wj.job_id,wj.CART_NUMBER,
     dp.product_id,dp.product_code,dp.product_name,
     wpl.log_id, wpl.JOB_ID,wpl.OPERATION_ID,wpl.MACHINE_ID,wpl.WORK_UNIT_ID,
-    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,
+    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,wpl.START_DATE,
     dop.operation_id,dop.operation_code,dop.operation_name,
     doa.operator_id,doa.operator_code,doa.operator_name,
     dm.machine_id,dm.machine_code,dm.machine_name,
@@ -126,7 +127,7 @@
     wj.job_id,wj.CART_NUMBER,
     dp.product_id,dp.product_code,dp.product_name,
     wpl.log_id, wpl.JOB_ID,wpl.OPERATION_ID,wpl.MACHINE_ID,wpl.WORK_UNIT_ID,
-    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,
+    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,wpl.START_DATE,
     dop.operation_id,dop.operation_code,dop.operation_name,
     doa.operator_id,doa.operator_code,doa.operator_name,
     dm.machine_id,dm.machine_code,dm.machine_name,
@@ -160,7 +161,7 @@
     wj.job_id,wj.CART_NUMBER,
     dp.product_id,dp.product_code,dp.product_name,
     wpl.log_id, wpl.JOB_ID,wpl.OPERATION_ID,wpl.MACHINE_ID,wpl.WORK_UNIT_ID,
-    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,
+    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,wpl.START_DATE,
     dop.operation_id,dop.operation_code,dop.operation_name,
     doa.operator_id,doa.operator_code,doa.operator_name,
     dm.machine_id,dm.machine_code,dm.machine_name,
@@ -195,7 +196,7 @@
     wj.job_id,wj.CART_NUMBER,
     dp.product_id,dp.product_code,dp.product_name,
     wpl.log_id, wpl.JOB_ID,wpl.OPERATION_ID,wpl.MACHINE_ID,wpl.WORK_UNIT_ID,
-    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,
+    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,wpl.START_DATE,
     dop.operation_id,dop.operation_code,dop.operation_name,
     doa.operator_id,doa.operator_code,doa.operator_name,
     dm.machine_id,dm.machine_code,dm.machine_name,
@@ -230,7 +231,7 @@
     wj.job_id,wj.CART_NUMBER,
     dp.product_id,dp.product_code,dp.product_name,
     wpl.log_id, wpl.JOB_ID,wpl.OPERATION_ID,wpl.MACHINE_ID,wpl.WORK_UNIT_ID,
-    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,
+    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,wpl.START_DATE,
     dop.operation_id,dop.operation_code,dop.operation_name,
     doa.operator_id,doa.operator_code,doa.operator_name,
     dm.machine_id,dm.machine_code,dm.machine_name,
@@ -259,7 +260,7 @@
     wj.job_id,wj.CART_NUMBER,
     dp.product_id,dp.product_code,dp.product_name,
     wpl.log_id, wpl.JOB_ID,wpl.OPERATION_ID,wpl.MACHINE_ID,wpl.WORK_UNIT_ID,
-    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,
+    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,wpl.START_DATE,
     dop.operation_id,dop.operation_code,dop.operation_name,
     doa.operator_id,doa.operator_code,doa.operator_name,
     dm.machine_id,dm.machine_code,dm.machine_name,
@@ -284,7 +285,7 @@
     wj.job_id,wj.CART_NUMBER,
     dp.product_id,dp.product_code,dp.product_name,
     wpl.log_id, wpl.JOB_ID,wpl.OPERATION_ID,wpl.MACHINE_ID,wpl.WORK_UNIT_ID,
-    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,
+    wpl.ITEM_FLAG,wpl.QAINFONUM,wpl.QAWASTERNUM,wpl.SMINFONUM,wpl.START_DATE,
     dop.operation_id,dop.operation_code,dop.operation_name,
     doa.operator_id,doa.operator_code,doa.operator_name,
     dm.machine_id,dm.machine_code,dm.machine_name,

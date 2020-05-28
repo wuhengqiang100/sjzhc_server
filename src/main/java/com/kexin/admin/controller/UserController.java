@@ -60,6 +60,8 @@ public class UserController {
         PageDataBase<LoginUser> loginUserPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<LoginUser> loginUserWrapper = new QueryWrapper<>();
+//        loginUserWrapper.orderByDesc("START_DATE");
+        loginUserWrapper.orderByDesc("LOGIN_ID");
         if (sort.equals("+id")){
             loginUserWrapper.orderByAsc("LOGIN_ID");
         }else{

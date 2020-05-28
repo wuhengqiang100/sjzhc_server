@@ -50,6 +50,8 @@ public class WasterReasonController {
         PageDataBase<WasterReason> wasterReasonPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<WasterReason> wasterReasonWrapper = new QueryWrapper<>();
+        wasterReasonWrapper.orderByDesc("START_DATE");
+
         if (sort.equals("+id")){
             wasterReasonWrapper.orderByAsc("WASTER_REASONS_ID");
         }else{

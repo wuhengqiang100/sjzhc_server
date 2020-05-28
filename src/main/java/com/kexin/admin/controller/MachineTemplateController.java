@@ -47,6 +47,8 @@ public class MachineTemplateController {
         PageDataBase<Machine> machinePageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<Machine> machineWrapper = new QueryWrapper<>();
+        machineWrapper.orderByDesc("START_DATE");
+
         if (sort.equals("+id")){
             machineWrapper.orderByAsc("MACHINE_ID");
         }else{

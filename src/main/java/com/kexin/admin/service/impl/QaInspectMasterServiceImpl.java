@@ -58,31 +58,34 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         responseEty.setAny("canAuditTable",baseMapper.getCanAuditInspectMaster(queryDate.getStartDate(),queryDate.getEndDate(),queryDate.getCartNumber()));
         return responseEty;
     }
-
+    //新增和编辑加上,事务回滚时用到
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public ResponseEty saveCanAuditInspectMaster(SaveCheckData saveCheckData,Integer token) {
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
-        QaInspectMaster qaInspectMaster=new QaInspectMaster();
-        qaInspectMaster.setAllowJudge(1);
-        qaInspectMaster.setAutoCheckFlag(2);
-        qaInspectMaster.setCheckDate(new Date());
-        qaInspectMasterQueryWrapper.in("INSPECTM_ID",saveCheckData.getData());
-        if (saveCheckData.getNote()!=null){
-            qaInspectMaster.setNote(saveCheckData.getNote());
-        }
 
-        int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
-        List<QaInspectMaster> qaInspectMasterList=baseMapper.selectQaInspectMasterByInspectmIds(saveCheckData.getData());
-        StringBuffer note = new StringBuffer();
+        qaInspectMasterQueryWrapper.in("INSPECTM_ID",saveCheckData.getData());
+        List<QaInspectMaster> qaInspectMasterList=baseMapper.selectList(qaInspectMasterQueryWrapper);
         qaInspectMasterList.forEach(r->{
+            r.setAllowJudge(1);
+            r.setAutoCheckFlag(2);
+            r.setCheckDate(new Date());
+            if (StringUtils.isNotEmpty(saveCheckData.getNote())){
+                r.setNote(saveCheckData.getNote());
+            }
+            baseMapper.updateById(r);
+        });
+
+        StringBuffer note = new StringBuffer();
+        List<QaInspectMaster> qaInspectMasterList1=baseMapper.selectQaInspectMasterByInspectmIds(saveCheckData.getData());
+        qaInspectMasterList1.forEach(r->{
             note.append(" "+r.getWipJobs().getCartNumber());
             produceLogService.saveProduceLog(r,token,"核查审核","审核了车号为:"+r.getWipJobs().getCartNumber()+"的车次");
         });
 
-        if (flag>0){
+
             return ResponseEty.success("审核成功");
-        }
-        return ResponseEty.failure("审核失败");
+
     }
 
     @Override
@@ -114,30 +117,32 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         responseEty.setAny("alreadyAuditTable",qaInspectMasterList);
         return responseEty;
     }
-
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public ResponseEty saveAlreadyAuditInspectMaster(SaveCheckData saveCheckData,Integer token) {
 
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
-        QaInspectMaster qaInspectMaster=new QaInspectMaster();
-        qaInspectMaster.setAllowJudge(0);
-        qaInspectMaster.setCheckDate(new Date());
+
         qaInspectMasterQueryWrapper.in("INSPECTM_ID",saveCheckData.getData());
-        if (saveCheckData.getNote()!=null){
-            qaInspectMaster.setNote(saveCheckData.getNote());
-        }
-        qaInspectMaster.setAutoCheckFlag(0);
-        int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
-        if (flag>0){
-            List<QaInspectMaster> qaInspectMasterList=baseMapper.selectQaInspectMasterByInspectmIds(saveCheckData.getData());
-            StringBuffer note = new StringBuffer();
-            qaInspectMasterList.forEach(r->{
-                note.append(" "+r.getWipJobs().getCartNumber());
-                produceLogService.saveProduceLog(r,token,"核查审核","回退了车号为:"+r.getWipJobs().getCartNumber()+"的车次");
-            });
-            return ResponseEty.success("回退成功");
-        }
-        return ResponseEty.failure("回退失败");
+        List<QaInspectMaster> qaInspectMasterList=baseMapper.selectList(qaInspectMasterQueryWrapper);
+        qaInspectMasterList.forEach(r->{
+            r.setAllowJudge(0);
+            r.setCheckDate(new Date());
+            if (StringUtils.isNotEmpty(saveCheckData.getNote())){
+                r.setNote(saveCheckData.getNote());
+            }
+            r.setAutoCheckFlag(0);
+            baseMapper.updateById(r);
+        });
+
+        StringBuffer note = new StringBuffer();
+        List<QaInspectMaster> qaInspectMasterList1=baseMapper.selectQaInspectMasterByInspectmIds(saveCheckData.getData());
+        qaInspectMasterList1.forEach(r->{
+            note.append(" "+r.getWipJobs().getCartNumber());
+            produceLogService.saveProduceLog(r,token,"核查审核","回退了车号为:"+r.getWipJobs().getCartNumber()+"的车次");
+        });
+        return ResponseEty.success("回退成功");
+
     }
 
  /*   @Override
@@ -153,7 +158,7 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         responseEty.setAny("notAuditTable",qaInspectMasterList);
         return responseEty;
     }*/
-
+ @Transactional(rollbackFor = Exception.class)
     @Override
     public ResponseEty saveNotAuditInspectMaster(SaveCheckData saveCheckData,Integer token) {
         QueryWrapper<QaInspectMaster> qaInspectMasterQueryWrapper=new QueryWrapper<>();
@@ -179,7 +184,7 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         }
         return ResponseEty.failure("审核全检失败");
     }
-
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public ResponseEty saveNoteInspectMaster(SaveNoteData saveNoteData, Integer token) {
 
@@ -187,8 +192,9 @@ public class QaInspectMasterServiceImpl extends ServiceImpl<QaInspectMasterMappe
         QaInspectMaster qaInspectMaster=new QaInspectMaster();
         qaInspectMaster.setInspectmId(saveNoteData.getData());
         qaInspectMaster.setNote(saveNoteData.getNote());
-        qaInspectMasterQueryWrapper.eq("INSPECTM_ID",saveNoteData.getData());
-        int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
+//        qaInspectMasterQueryWrapper.eq("INSPECTM_ID",saveNoteData.getData());
+//        int flag=baseMapper.update(qaInspectMaster,qaInspectMasterQueryWrapper);
+        int flag=baseMapper.updateById(qaInspectMaster);
         if (flag>0){
 //            QaInspectMaster qaInspectMaster1=baseMapper.selectQaInspectMasterByInspectmId(saveNoteData.getData());
 //            produceLogService.saveProduceLog(qaInspectMaster1,token,"核查审核","修改了车号为:"+qaInspectMaster1.getWipJobs().getCartNumber()+"的车次的备注:"+qaInspectMaster1.getNote());

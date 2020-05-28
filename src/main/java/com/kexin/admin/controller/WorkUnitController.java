@@ -61,6 +61,8 @@ public class WorkUnitController {
         PageDataBase<WorkUnit> workUnitPageData = new PageDataBase<>();
         Data data=new Data();
         QueryWrapper<WorkUnit> workUnitWrapper = new QueryWrapper<>();
+        workUnitWrapper.orderByDesc("START_DATE");
+
         if (sort.equals("+id")){
             workUnitWrapper.orderByAsc("WORK_UNIT_ID");
         }else{

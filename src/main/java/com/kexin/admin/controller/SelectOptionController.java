@@ -106,6 +106,15 @@ public class SelectOptionController {
         responseEty.setAny("operationOption",selectOptionComponent.getOperationSelectOption());//工序下拉option
         return responseEty;
     }
+    @PostMapping("product")
+    @ResponseBody
+    @SysLog("获取产品页面的select条件")
+    public ResponseEty listOptionProduct(){
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        responseEty.setAny("cartNumFirstOption",selectOptionComponent.getCartNumFirstSelectOption());//前缀字母option
+        return responseEty;
+    }
 
     @PostMapping("workUnit")
     @ResponseBody

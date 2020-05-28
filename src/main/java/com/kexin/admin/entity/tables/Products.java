@@ -30,6 +30,9 @@ public class Products{
     @TableField(value = "CARTNUM_FIRST_ID")
     private Integer cartnumFirstId;//外键（首字母）
 
+    @TableField(exist = false)
+    private CartNumFirst cartNumFirst;//首字母序号实体
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @TableField(value = "CARTNUM_FIRST_DATE")
     private Date cartnumFirstDate;//首字母启用日期

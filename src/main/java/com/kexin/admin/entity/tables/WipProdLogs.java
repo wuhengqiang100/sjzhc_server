@@ -4,12 +4,17 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+
+import java.util.Date;
 
 /**
  * 生产日志表
  */
 //@KeySequence(value = "SQ_DIC_MACHINES", clazz = Integer.class)
 @TableName(value = "wip_prod_logs")
+@Data
 public class WipProdLogs {
 
     private static final long serialVersionUID = 1L;
@@ -46,88 +51,9 @@ public class WipProdLogs {
     @TableField(value = "SMINFONUM")
     private Integer sminfonum;//识码数量
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(value = "START_DATE")
+    protected Date startDate;
 
-    public Integer getItemFlag() {
-        return itemFlag;
-    }
 
-    public void setItemFlag(Integer itemFlag) {
-        this.itemFlag = itemFlag;
-    }
-
-    public Integer getQainfonum() {
-        return qainfonum;
-    }
-
-    public void setQainfonum(Integer qainfonum) {
-        this.qainfonum = qainfonum;
-    }
-
-    public Integer getQawasternum() {
-        return qawasternum;
-    }
-
-    public void setQawasternum(Integer qawasternum) {
-        this.qawasternum = qawasternum;
-    }
-
-    public Integer getSminfonum() {
-        return sminfonum;
-    }
-
-    public void setSminfonum(Integer sminfonum) {
-        this.sminfonum = sminfonum;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    public Integer getLogId() {
-        return logId;
-    }
-
-    public void setLogId(Integer logId) {
-        this.logId = logId;
-    }
-
-    public Integer getJobId() {
-        return jobId;
-    }
-
-    public void setJobId(Integer jobId) {
-        this.jobId = jobId;
-    }
-
-    public Integer getOperationId() {
-        return operationId;
-    }
-
-    public void setOperationId(Integer operationId) {
-        this.operationId = operationId;
-    }
-
-    public Integer getMachineId() {
-        return machineId;
-    }
-
-    public void setMachineId(Integer machineId) {
-        this.machineId = machineId;
-    }
-
-    public Integer getWorkUnitId() {
-        return workUnitId;
-    }
-
-    public void setWorkUnitId(Integer workUnitId) {
-        this.workUnitId = workUnitId;
-    }
-
-    public Integer getOperatorId() {
-        return operatorId;
-    }
-
-    public void setOperatorId(Integer operatorId) {
-        this.operatorId = operatorId;
-    }
 }
