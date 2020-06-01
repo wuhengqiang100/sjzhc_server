@@ -5,38 +5,38 @@ server:
       uri-encoding: UTF-8
 #    address: 192.168.137.200
 #    address: 192.168.137.100
-#    address: 192.168.137.2
+    address: 192.168.137.2
 #    address: 127.0.0.1
 #    address: 10.41.35.150
-    address: 10.41.35.192
+#    address: 10.41.35.192
 
 #cxf:
 #  path=/service
 #ftp配置
-#ftpserver:
-#  ipAddr: 192.168.137.200
-#  port: 21
-#  userName: ftpuser
-#  pwd: ftpuser
-#  path: /
-#  encoding: GBK
-#  localpath: D:\ftplocal\
-#  remotepath: JudgeModels\
-#  remotepath: Model\Images\
 ftpserver:
-  ipAddr: mhhcftp.sjzyc.cbpm
+  ipAddr: 192.168.137.200
   port: 21
-  userName: mhhcadmin
-  pwd: mhhcadmin
+  userName: ftpuser
+  pwd: ftpuser
   path: /
   encoding: GBK
   localpath: D:\ftplocal\
   remotepath: JudgeModels\
+#  remotepath: Model\Images\
+#ftpserver:
+#  ipAddr: mhhcftp.sjzyc.cbpm
+#  port: 21
+#  userName: mhhcadmin
+#  pwd: mhhcadmin
+#  path: /
+#  encoding: GBK
+#  localpath: D:\ftplocal\
+#  remotepath: JudgeModels\
 #\\JudgeModels\\工序名称\\机器名称\\产品名称\\模版版本号+产品名称
 spring:
     #激活哪一个环境的配置文件
     profiles:
-      active: pro
+      active: dev
     jackson:
       default-property-inclusion: USE_DEFAULTS # 全局jackson配置
     devtools:
