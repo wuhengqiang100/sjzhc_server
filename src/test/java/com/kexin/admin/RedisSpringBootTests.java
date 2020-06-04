@@ -2,13 +2,19 @@ package com.kexin.admin;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.kexin.admin.component.ScheduledComponent;
 import com.kexin.admin.entity.pojo.User;
+import com.kexin.admin.entity.vo.monitor.Monitor;
 import com.kexin.common.util.redis.RedisUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cglib.beans.BeanMap;
 import org.springframework.data.redis.core.RedisTemplate;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @SpringBootTest
 public class RedisSpringBootTests {
@@ -16,13 +22,19 @@ public class RedisSpringBootTests {
     @Autowired
     @Qualifier("redisTemplate")
     private RedisTemplate redisTemplate;
+
     @Autowired
     private RedisUtil redisUtil;
 
+    @Autowired
+    ScheduledComponent scheduledComponent;//定时组件
+
     @Test
     public void testRedisUtil() {
-        redisUtil.set("name", "看源码学redis");
-        System.out.println(redisUtil.get("name"));
+        Monitor monitor=new Monitor(
+                "1","产品1","模板1","班组1","2020-6-3 15:43:60"
+                ,"2020-6-3 15:43:60",10000,9999,1,222, (float) 0.88,"5000z",1,"设备1");
+        redisUtil.hmset("machine:1", BeanMap.create(monitor));
     }
 
 
