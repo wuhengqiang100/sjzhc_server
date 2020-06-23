@@ -29,17 +29,17 @@ public class RedisSpringBootTests {
     @Autowired
     ScheduledComponent scheduledComponent;//定时组件
 
-    @Test
+/*    @Test
     public void testRedisUtil() {
         Monitor monitor=new Monitor(
                 "1","产品1","模板1","班组1","2020-6-3 15:43:60"
                 ,"2020-6-3 15:43:60",10000,9999,1,222, (float) 0.88,"5000z",1,"设备1");
         redisUtil.hmset("machine:1", BeanMap.create(monitor));
-    }
+    }*/
 
 
-    @Test
-    void contextLoads() {
+//    @Test
+//    void contextLoads() {
         // redisTemplate 操作不同的数据类型，api和我们的指令是一样的
         // opsForValue 操作字符串 类似String
         // opsForList 操作List 类似List
@@ -51,21 +51,21 @@ public class RedisSpringBootTests {
         // 除了进本的操作，我们常用的方法都可以直接通过redisTemplate操作，比如事务，和基本CRUD
         // 获取redis的连接对象
         // RedisConnection connection =
-        redisTemplate.getConnectionFactory().getConnection();
+//        redisTemplate.getConnectionFactory().getConnection();
         // connection.flushDb();
         // connection.flushAll();
-        redisTemplate.opsForValue().set("mykey", "看源码学redis");
-        System.out.println(redisTemplate.opsForValue().get("mykey"));
-    }
+//        redisTemplate.opsForValue().set("mykey", "看源码学redis");
+//        System.out.println(redisTemplate.opsForValue().get("mykey"));
+//    }
 
 
-    @Test
-    public void test() throws JsonProcessingException {
-        User user =new User("巫恒强",23);
-//        String jsonUser=new ObjectMapper().writeValueAsString(user);//jdk序列化
-        redisTemplate.opsForValue().set("user",user);
-        System.out.println(redisTemplate.opsForValue().get("user"));
-    }
+//    @Test
+//    public void test() throws JsonProcessingException {
+//        User user =new User("巫恒强",23);
+////        String jsonUser=new ObjectMapper().writeValueAsString(user);//jdk序列化
+//        redisTemplate.opsForValue().set("user",user);
+//        System.out.println(redisTemplate.opsForValue().get("user"));
+//    }
 
 
 }

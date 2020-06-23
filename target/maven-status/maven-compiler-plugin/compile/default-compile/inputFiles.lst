@@ -57,6 +57,7 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\webQuery\S
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\SysMenusMetaMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\config\CaptchaConfig.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\MachineLogServiceImpl.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\monitor\Monitor.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\base\TableEntity.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\util\ResponseEty.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\controller\VerifyLogController.java

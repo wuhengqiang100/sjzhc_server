@@ -3,10 +3,14 @@ server:
     port: 8088
     tomcat:
       uri-encoding: UTF-8
+## 本地开发ip
 #    address: 192.168.137.200
 #    address: 192.168.137.100
-    address: 192.168.137.2
 #    address: 127.0.0.1
+    address: 192.168.137.2
+## 海南核查现场ip
+#    address: 10.96.120.240
+## 石家庄核查现场ip
 #    address: 10.41.35.150
 #    address: 10.41.35.192
 
@@ -77,9 +81,24 @@ spring:
 
 
 ---
-#生产环境配置
+#海南核查生产环境配置
 spring:
-  profiles: pro
+  profiles: hnHc
+  servlet:
+    multipart:
+      max-file-size: 2048MB
+      max-request-size: 2048MB
+  datasource:
+    url: jdbc:oracle:thin:@10.96.120.240:1521/orcl
+    username: HNHC
+    password: hnhc
+    driver-class-name: oracle.jdbc.OracleDriver
+    maximum-pool-size: 30
+
+---
+#石家庄核查生产环境配置
+spring:
+  profiles: sjzHc
   servlet:
     multipart:
       max-file-size: 2048MB
@@ -90,7 +109,6 @@ spring:
     password: mhhc
     driver-class-name: oracle.jdbc.OracleDriver
     maximum-pool-size: 30
-
 
 ---
 #测试环境配置

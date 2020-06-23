@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.kexin</groupId>
-    <artifactId>sjzhc_server</artifactId>
+    <artifactId>hnhc_server</artifactId>
 <!--    <version>1</version>-->
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>sjzhc_server</name>
+    <name>hnhc_server</name>
     <description>Demo project for Spring Boot</description>
 
     <repositories>

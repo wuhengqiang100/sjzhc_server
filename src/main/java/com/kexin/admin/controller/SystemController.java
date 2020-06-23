@@ -105,7 +105,7 @@ public class SystemController {
             sysFunctionsQueryWrapper.orderByDesc("FUNCTION_ID");
         }
         if (StringUtils.isNotEmpty(query.getUseFlag())){
-            sysFunctionsQueryWrapper.eq("IS_SHOW",query.getUseFlag());
+            sysFunctionsQueryWrapper.eq("USE_FLAG",query.getUseFlag());
         }
         if (StringUtils.isNotEmpty(query.getTitle())){
             sysFunctionsQueryWrapper.like("FUNCTION_TITLE",query.getTitle());

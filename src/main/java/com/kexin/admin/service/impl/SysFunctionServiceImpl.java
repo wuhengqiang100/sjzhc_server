@@ -234,9 +234,11 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
             functonIds[j]=sysRoleMenusList.get(j).getFunctionId();
         }
         QueryWrapper<SysFunctions> sysFunctionsQueryWrapper = new QueryWrapper<>();
-        sysFunctionsQueryWrapper.eq("FUNCTION_TYPE_ID",1)//1是b端菜单类型
-        .isNotNull("FUNCTION_PARENT_ID")//第二级菜单
-        .in("FUNCTION_ID",functonIds) //去重,去掉重复的菜单
+        sysFunctionsQueryWrapper
+                .eq("FUNCTION_TYPE_ID",1)//1是b端菜单类型
+                .isNotNull("FUNCTION_PARENT_ID")//第二级菜单
+                .in("FUNCTION_ID",functonIds)//去重,去掉重复的菜单
+                .eq("USE_FLAG",1)
                 .orderByAsc("FUNCTION_PARENT_ID");
         List<SysFunctions> sysFunctionsList=baseMapper.selectList(sysFunctionsQueryWrapper);
 
@@ -272,7 +274,12 @@ public class SysFunctionServiceImpl extends ServiceImpl<SysFunctionMapper, SysFu
                 menuList.add(getMenuMeta(sysFunctionsList.get(i)));
 
             }
-            if (i==sysFunctionsList.size()-1){
+            if (i==(sysFunctionsList.size()-1)){
+                parentFunctionId=sysFunctionsList.get(i).getParentId();
+                QueryWrapper<SysFunctions> sysMenusChildQueryWrapper = new QueryWrapper<>();
+                sysMenusChildQueryWrapper.eq("FUNCTION_ID",parentFunctionId);
+                parentFunction=baseMapper.selectOne(sysMenusChildQueryWrapper);
+                parentMenu=getMenuMeta(parentFunction);
                 parentMenu.setChildren(menuList);
                 sysMenusList.add(parentMenu);
             }
