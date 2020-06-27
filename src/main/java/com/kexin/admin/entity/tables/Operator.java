@@ -20,6 +20,8 @@ public class Operator {
 
     @TableField(value = "OPERATOR_CODE")
     private String operatorCode; //人员编号
+    @TableField(value = "OPERATOR_CODE_MES")
+    private String operatorCodeMes; //mes人员编号
 
     @TableField(value = "OPERATOR_NAME")
     private String operatorName; //人员名称

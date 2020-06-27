@@ -15,7 +15,6 @@ import java.util.Date;
 public class WorkUnit {
 
 
-
     @TableId(type = IdType.INPUT)
     @TableField(value = "WORK_UNIT_ID")
     private Integer workUnitId;//机台id
@@ -37,13 +36,14 @@ public class WorkUnit {
      */
     @TableField(value = "USE_FLAG")
     private Boolean useFlag;//启用状态
+
     /**
      * 启用时间,写入时间
      */
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @TableField(value = "START_DATE")
     protected Date startDate;
+
     /**
      * 禁用时间,结束时间
      */

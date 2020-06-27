@@ -2,61 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="021d88d3-fb85-4ccf-b86b-80724cbf2d83" name="Default Changelist" comment="更改图片加载从服务器加载">
-      <change afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/debug/log-debug-2020-06-03.0.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/debug/log-debug-2020-06-22.0.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/error/log-error-2020-06-01.0.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/error/log-error-2020-06-22.0.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-06-03.0.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-06-22.0.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/warn/log-warn-2020-06-03.0.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/warn/log-warn-2020-06-22.0.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/debug/log-debug-2020-06-23.0.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-06-23.0.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/warn/log-warn-2020-06-23.0.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kexin/common/util/constantEnum/ConstantEnum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/debug/log-debug-2020-05-17.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/debug/log-debug-2020-05-18.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/debug/log-debug-2020-05-19.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/debug/log-debug-2020-05-20.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/debug/log-debug-2020-05-21.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/debug/log-debug-2020-05-22.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/error/log-error-2020-05-13.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/error/log-error-2020-05-16.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/error/log-error-2020-05-17.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/error/log-error-2020-05-18.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/error/log-error-2020-05-19.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/error/log-error-2020-05-20.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/error/log-error-2020-05-21.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/error/log-error-2020-05-22.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-11.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-12.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-13.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-14.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-15.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-16.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-17.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-18.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-19.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-20.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-21.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-22.0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/debug/log-debug-2020-05-24.0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/debug/log-debug-2020-05-25.0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/debug/log-debug-2020-05-26.0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/debug/log-debug-2020-05-27.0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-24.0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-25.0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-26.0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/info/log-info-2020-05-27.0.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/log_debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/log_debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/log_error.log" beforeDir="false" afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/log_error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/log_info.log" beforeDir="false" afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/log_info.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/log_warn.log" beforeDir="false" afterPath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/log_warn.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/warn/log-warn-2020-05-17.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/warn/log-warn-2020-05-18.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/warn/log-warn-2020-05-19.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/warn/log-warn-2020-05-20.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/warn/log-warn-2020-05-21.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/warn/log-warn-2020-05-22.0.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/warn/log-warn-2020-05-24.0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/warn/log-warn-2020-05-25.0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/warn/log-warn-2020-05-26.0.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LOG_PATH_IS_UNDEFINED/warn/log-warn-2020-05-27.0.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/SystemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/SystemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SysFunctionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/kexin/admin/RedisSpringBootTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/kexin/admin/RedisSpringBootTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/Operator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SystemSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/SystemSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/WorkUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/entity/tables/WorkUnit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/SystemSetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/SystemSetService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SystemSetServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/SystemSetServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/SystemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/controller/SystemController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/SysFunctionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/SysFunctionServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/kexin/admin/RedisSpringBootTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/kexin/admin/RedisSpringBootTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/SystemSet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/entity/tables/SystemSet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/SystemSetService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/SystemSetService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/SystemSetServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/kexin/admin/service/impl/SystemSetServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,23 +129,23 @@
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\kexinwork\sjz\sjzhc_server\src\main\resources\static" />
-      <recent name="E:\kexinwork\sjz\sjzhc_server\src\main\resources\static\admin\img" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.kexin.admin.entity.vo.monitor" />
-      <recent name="com.kexin.admin.entity.vo.query" />
-      <recent name="com.kexin.admin.entity.vo.webQuery" />
-      <recent name="com.kexin.admin.service.impl" />
-      <recent name="com.kexin.admin.service" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\kexinwork\sjz\sjzhc_server\src\main\resources\mapper\admin" />
       <recent name="E:\kexinwork\sjz\sjzhc_server\src\test\java\com\kexin\learn\java1" />
       <recent name="E:\kexinwork\sjz\sjzhc_server\src\test\java\com\kexin\learn\data" />
       <recent name="E:\kexinwork\sjz\sjzhc_server\src\test\java\com\kexin\learn" />
       <recent name="E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\util\redis" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.kexin.common.util.constantEnum" />
+      <recent name="com.kexin.admin.entity.vo.monitor" />
+      <recent name="com.kexin.admin.entity.vo.query" />
+      <recent name="com.kexin.admin.entity.vo.webQuery" />
+      <recent name="com.kexin.admin.service.impl" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\kexinwork\sjz\sjzhc_server\src\main\resources\static" />
+      <recent name="E:\kexinwork\sjz\sjzhc_server\src\main\resources\static\admin\img" />
     </key>
   </component>
   <component name="RequestMappingsEndpointTabSettings">
@@ -418,7 +394,10 @@
       <workItem from="1592818503021" duration="5889000" />
       <workItem from="1592828701116" duration="2900000" />
       <workItem from="1592834092389" duration="1578000" />
-      <workItem from="1592879056736" duration="3686000" />
+      <workItem from="1592879056736" duration="5237000" />
+      <workItem from="1592960518716" duration="600000" />
+      <workItem from="1593174123327" duration="1636000" />
+      <workItem from="1593232747893" duration="11077000" />
     </task>
     <task id="LOCAL-00001" summary="更改图片加载从服务器加载">
       <created>1587543760670</created>
@@ -520,11 +499,11 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="372" y="11" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1589787561021" />
-    <state width="1803" height="775" key="DebuggerActiveHint" timestamp="1592834937078">
+    <state width="1803" height="775" key="DebuggerActiveHint" timestamp="1593270663602">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1442" height="621" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1590117572406" />
-    <state width="1803" height="775" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1592834937078" />
+    <state width="1803" height="775" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1593270663602" />
     <state width="1803" height="782" key="DebuggerActiveHint/0.0.1920.1050@0.0.1920.1050" timestamp="1590642199159" />
     <state x="116" y="116" width="1688" height="809" key="DiffContextDialog" timestamp="1592903409497">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -537,77 +516,77 @@
     </state>
     <state x="673" y="146" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1589646529561" />
     <state x="841" y="182" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591169099685" />
-    <state width="1877" height="244" key="GridCell.Tab.0.bottom" timestamp="1592902758343">
+    <state width="1877" height="211" key="GridCell.Tab.0.bottom" timestamp="1593274237169">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="141" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1590118733737" />
-    <state width="1877" height="244" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592902758343" />
+    <state width="1877" height="211" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1593274237169" />
     <state width="1877" height="442" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1590661771593" />
-    <state width="1877" height="244" key="GridCell.Tab.0.center" timestamp="1592902758343">
+    <state width="1877" height="211" key="GridCell.Tab.0.center" timestamp="1593274237169">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="141" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1590118733737" />
-    <state width="1877" height="244" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592902758343" />
+    <state width="1877" height="211" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1593274237168" />
     <state width="1877" height="442" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1590661771593" />
-    <state width="1877" height="244" key="GridCell.Tab.0.left" timestamp="1592902758342">
+    <state width="1877" height="211" key="GridCell.Tab.0.left" timestamp="1593274237168">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="141" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1590118733737" />
-    <state width="1877" height="244" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592902758342" />
+    <state width="1877" height="211" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1593274237168" />
     <state width="1877" height="442" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1590661771593" />
-    <state width="1877" height="244" key="GridCell.Tab.0.right" timestamp="1592902758343">
+    <state width="1877" height="211" key="GridCell.Tab.0.right" timestamp="1593274237169">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="141" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1590118733737" />
-    <state width="1877" height="244" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592902758343" />
+    <state width="1877" height="211" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1593274237169" />
     <state width="1877" height="442" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1590661771593" />
-    <state width="1877" height="264" key="GridCell.Tab.1.bottom" timestamp="1592902662962">
+    <state width="1877" height="211" key="GridCell.Tab.1.bottom" timestamp="1593274237031">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="141" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1590118777150" />
-    <state width="1877" height="264" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592902662962" />
+    <state width="1877" height="211" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1593274237031" />
     <state width="1877" height="442" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1590661771593" />
-    <state width="1877" height="264" key="GridCell.Tab.1.center" timestamp="1592902662962">
+    <state width="1877" height="211" key="GridCell.Tab.1.center" timestamp="1593274237031">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="141" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1590118777150" />
-    <state width="1877" height="264" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592902662962" />
+    <state width="1877" height="211" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1593274237031" />
     <state width="1877" height="442" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1590661771593" />
-    <state width="1877" height="264" key="GridCell.Tab.1.left" timestamp="1592902662962">
+    <state width="1877" height="211" key="GridCell.Tab.1.left" timestamp="1593274237031">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="141" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1590118777149" />
-    <state width="1877" height="264" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592902662962" />
+    <state width="1877" height="211" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1593274237031" />
     <state width="1877" height="442" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1590661771593" />
-    <state width="1877" height="264" key="GridCell.Tab.1.right" timestamp="1592902662962">
+    <state width="1877" height="211" key="GridCell.Tab.1.right" timestamp="1593274237031">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="141" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1590118777150" />
-    <state width="1877" height="264" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592902662962" />
+    <state width="1877" height="211" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1593274237031" />
     <state width="1877" height="442" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1590661771593" />
-    <state width="1877" height="264" key="GridCell.Tab.2.bottom" timestamp="1592902662962">
+    <state width="1877" height="211" key="GridCell.Tab.2.bottom" timestamp="1593274237032">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="141" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1590118733638" />
-    <state width="1877" height="264" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592902662962" />
+    <state width="1877" height="211" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1593274237032" />
     <state width="1877" height="442" key="GridCell.Tab.2.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1590661771593" />
-    <state width="1877" height="264" key="GridCell.Tab.2.center" timestamp="1592902662962">
+    <state width="1877" height="211" key="GridCell.Tab.2.center" timestamp="1593274237031">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="141" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1590118733638" />
-    <state width="1877" height="264" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592902662962" />
+    <state width="1877" height="211" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1593274237031" />
     <state width="1877" height="442" key="GridCell.Tab.2.center/0.0.1920.1050@0.0.1920.1050" timestamp="1590661771593" />
-    <state width="1877" height="264" key="GridCell.Tab.2.left" timestamp="1592902662962">
+    <state width="1877" height="211" key="GridCell.Tab.2.left" timestamp="1593274237031">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="141" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1590118733638" />
-    <state width="1877" height="264" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592902662962" />
+    <state width="1877" height="211" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1593274237031" />
     <state width="1877" height="442" key="GridCell.Tab.2.left/0.0.1920.1050@0.0.1920.1050" timestamp="1590661771593" />
-    <state width="1877" height="264" key="GridCell.Tab.2.right" timestamp="1592902662962">
+    <state width="1877" height="211" key="GridCell.Tab.2.right" timestamp="1593274237031">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="141" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1590118733638" />
-    <state width="1877" height="264" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592902662962" />
+    <state width="1877" height="211" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1593274237031" />
     <state width="1877" height="442" key="GridCell.Tab.2.right/0.0.1920.1050@0.0.1920.1050" timestamp="1590661771593" />
     <state x="299" y="72" key="Maven.ArtifactSearchDialog" timestamp="1587536931738">
       <screen x="0" y="0" width="1536" height="834" />
@@ -655,10 +634,11 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1589648208961" />
-    <state x="531" y="89" width="840" height="852" key="search.everywhere.popup" timestamp="1590410259585">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="531" y="88" width="840" height="844" key="search.everywhere.popup" timestamp="1593273715019">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="425" y="71" width="672" height="676" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1589896152257" />
+    <state x="531" y="88" width="840" height="844" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1593273715019" />
     <state x="531" y="89" width="840" height="852" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1590410259585" />
     <state x="439" y="100" key="spring file set editor" timestamp="1585810445181">
       <screen x="0" y="0" width="1536" height="834" />
@@ -1331,11 +1311,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/service/impl/AuditParameterServiceImpl.java</url>
           <line>151</line>
           <option name="timeStamp" value="641" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/WorkUnitController.java</url>
-          <line>123</line>
-          <option name="timeStamp" value="646" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kexin/admin/controller/QueryReportController.java</url>

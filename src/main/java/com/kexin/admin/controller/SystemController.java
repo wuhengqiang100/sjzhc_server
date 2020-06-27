@@ -14,6 +14,7 @@ import com.kexin.common.annotation.SysLog;
 import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
 import com.kexin.common.util.ResponseEty;
+import com.kexin.common.util.constantEnum.ConstantEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,6 +41,9 @@ public class SystemController {
 
     @Autowired
     SystemLogService systemLogService;//系统日志记录service
+
+    @Autowired
+    SystemSetService systemSetService;//系统设置sevice
 
     /**
      * 获取网站菜单树list
@@ -253,8 +257,29 @@ public class SystemController {
         return ResponseEty.success("操作成功");
     }
 
-    @Autowired
-    SystemSetService systemSetService;//系统设置sevice
+
+
+
+    /**
+     * 获取系统配置
+     * @return
+     */
+    @GetMapping("systemSet/get")
+    @ResponseBody
+    @SysLog("保存系统设置的数据")
+    public ResponseEty saveSystemSet(@RequestHeader(value="token",required = false) Integer token){
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        SystemSet systemSet=systemSetService.getSystemSetById(ConstantEnum.FACTORY_ID);
+
+        if(systemSet.getFactoryId()==null){
+            return ResponseEty.failure("获取信息出错");
+        }
+//        systemLogService.saveMachineLog(token,"查看","查看了:"+systemSet.getFactoryName()+"系统的配置");
+        responseEty.setAny("systemSet",systemSet);
+        return responseEty;
+    }
+
 
     /**
      * 保存系统设置
@@ -262,23 +287,22 @@ public class SystemController {
      * @param token
      * @return
      */
-    @PostMapping("systemSet")
+    @PostMapping("systemSet/save")
     @ResponseBody
     @SysLog("保存系统设置的数据")
     public ResponseEty saveSystemSet(@RequestBody SystemSet systemSet, @RequestHeader(value="token",required = false) Integer token){
-        if(systemSet.getSystemId()==null){
+        if(systemSet.getFactoryId()==null){
             return ResponseEty.failure("系统ID不能为空");
         }
 
-
-
         systemSetService.updateSystemSet(systemSet);
 
-        if(systemSet.getSystemId()==null){
+        if(systemSet.getFactoryId()==null){
             return ResponseEty.failure("保存信息出错");
         }
-        systemLogService.saveMachineLog(token,"保存","保存了系统:"+systemSet.getSystemName());
+        systemLogService.saveMachineLog(token,"保存","保存了系统:"+systemSet.getFactoryName());
         return ResponseEty.success("操作成功");
     }
+
 
 }

@@ -24,6 +24,9 @@ public class Operation {
     @TableField(value = "OPERATION_CODE")
     private String operationCode; //工序代码
 
+    @TableField(value = "OPERATION_CODE_MES")
+    private String operationCodeMes; //mes人员编号
+
     @TableField(value = "OPERATION_NAME")
     private String operationName; //工序名称
 

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kexin.admin.entity.tables.SystemSet;
 import com.kexin.admin.mapper.SystemSetMapper;
 import com.kexin.admin.service.SystemSetService;
+import com.kexin.common.util.ResponseEty;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,13 +21,18 @@ public class SystemSetServiceImpl extends ServiceImpl<SystemSetMapper, SystemSet
     //@Transactional(rollbackFor = Exception.class)
 
 
+    @Override
+    public SystemSet getSystemSetById(Integer factoryId) {
 
+        SystemSet systemSet=baseMapper.selectById(factoryId);
+        return systemSet;
+    }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void saveSystemSet(SystemSet systemSet) {
 
-    
+
         baseMapper.insert(systemSet);
     }
 

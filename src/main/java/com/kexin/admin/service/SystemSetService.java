@@ -2,6 +2,7 @@ package com.kexin.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kexin.admin.entity.tables.SystemSet;
+import com.kexin.common.util.ResponseEty;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -9,7 +10,14 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface SystemSetService extends IService<SystemSet> {
 
-    
+
+    /**
+     * 获取系统的配置项
+     * @param factoryId
+     * @return
+     */
+    SystemSet getSystemSetById(@Param("factoryId") Integer factoryId);
+
     /**
      * 保存系统配置
      * @param systemSet
@@ -23,5 +31,5 @@ public interface SystemSetService extends IService<SystemSet> {
      */
     void updateSystemSet(@Param("systemSet") SystemSet systemSet);
 
-   
+
 }
