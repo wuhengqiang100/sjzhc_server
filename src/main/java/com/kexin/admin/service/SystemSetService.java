@@ -19,6 +19,12 @@ public interface SystemSetService extends IService<SystemSet> {
     SystemSet getSystemSetById(@Param("factoryId") Integer factoryId);
 
     /**
+     * 系统配置只能有一条
+     * @return
+     */
+    SystemSet getSystemSet();
+
+    /**
      * 保存系统配置
      * @param systemSet
      */

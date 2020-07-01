@@ -33,6 +33,7 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\SystemLogSer
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\config\MySysUser.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\mapper\WorkUnitMapper.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\service\impl\QaInspectMasterServiceImpl.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\util\constantEnum\ConstantEnum.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\AuditParameter\AuditParameterDetail.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\config\ShiroConfig.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\login\TokenUser.java
@@ -176,6 +177,7 @@ E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\vo\query\Quer
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\component\MonitorBigScreenComponent.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\common\config\CorsConfig.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\QaInspectMaster.java
+E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\component\EntityNullComponent.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\monitor\MonitorPub.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\CartNumFirst.java
 E:\kexinwork\sjz\sjzhc_server\src\main\java\com\kexin\admin\entity\tables\OperationLog.java

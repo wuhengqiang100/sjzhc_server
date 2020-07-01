@@ -4,6 +4,7 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kexin.admin.component.EntityNullComponent;
 import com.kexin.admin.entity.tables.Machine;
 import com.kexin.admin.entity.vo.Ftp;
 import com.kexin.admin.service.MachineService;
@@ -29,6 +30,9 @@ public class MachineTemplateController {
 
     @Autowired
     MachineService machineService;
+
+    @Autowired
+    EntityNullComponent entityNullComponent;//外键实体not null判断,并添加外键
 
     @Autowired
     Ftp ftp;

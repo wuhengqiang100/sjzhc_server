@@ -4,6 +4,7 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kexin.admin.component.EntityNullComponent;
 import com.kexin.admin.entity.tables.LoginUser;
 import com.kexin.admin.entity.tables.Role;
 import com.kexin.admin.entity.tables.SysUserRoles;
@@ -43,6 +44,9 @@ public class UserController {
     @Autowired
     SystemLogService systemLogService;//系统日志记录service
 
+    @Autowired
+    EntityNullComponent entityNullComponent;//外键实体not null判断,并添加外键
+
 
     //@CrossOrigin(origins = "http://192.168.0.100:4200", maxAge = 3600)
     @GetMapping("list")
@@ -80,13 +84,7 @@ public class UserController {
 
         IPage<LoginUser> loginUserPage = loginUserService.page(new Page<>(page,limit),loginUserWrapper);
         data.setTotal(loginUserPage.getTotal());
-        loginUserPage.getRecords().forEach(r->{
-            r.setOperator(operatorService.getById(r.getOperatorId()));
-            r.setRoleIds(roleService.getRoleOptionOwn(r.getLoginId()));
-            if (r.getRoleIds()!=null){
-                r.setRoleString( roleService.getRoleString(r.getRoleIds()));
-            }
-            });
+        loginUserPage.getRecords().forEach(r->entityNullComponent.nullCheckUser(r));//外键实体添加
         data.setItems(loginUserPage.getRecords());
         loginUserPageData.setData(data);
         systemLogService.saveMachineLog(token,"查询","查询了用户列表");

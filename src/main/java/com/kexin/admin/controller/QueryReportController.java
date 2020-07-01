@@ -3,6 +3,7 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kexin.admin.component.EntityNullComponent;
 import com.kexin.admin.entity.tables.*;
 import com.kexin.admin.entity.vo.Ftp;
 import com.kexin.admin.entity.vo.SystemWebApi;
@@ -67,7 +68,8 @@ public class QueryReportController {
     QueryReportNckService queryReportNckService;//报表未检视图service
     @Autowired
     QueryReportQaService queryReportQaService;//报表缺陷视图service
-
+    @Autowired
+    EntityNullComponent entityNullComponent;//外键实体not null判断,并添加外键
     @Autowired
     SystemWebApi systemWebApi;
 

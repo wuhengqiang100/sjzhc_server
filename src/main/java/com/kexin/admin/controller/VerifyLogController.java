@@ -3,6 +3,7 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kexin.admin.component.EntityNullComponent;
 import com.kexin.admin.entity.tables.*;
 import com.kexin.admin.entity.vo.query.QaInspectSelect;
 import com.kexin.admin.entity.vo.query.QueryDateParent;
@@ -59,6 +60,9 @@ public class VerifyLogController {
     @Autowired
     OperationService operationService;//工序service
 
+    @Autowired
+    EntityNullComponent entityNullComponent;//外键实体not null判断,并添加外键
+
 
     /**
      * @Title:
@@ -92,7 +96,7 @@ public class VerifyLogController {
         }
         IPage<MachineLog> machineLogPage = machineLogService.page(new Page<>(query.getPage(),query.getLimit()),machineLogWrapper);
         data.setTotal(machineLogPage.getTotal());
-        machineLogPage.getRecords().forEach(r->r.setOperator(operatorService.getById(r.getOperatorId())));
+        machineLogPage.getRecords().forEach(r->entityNullComponent.nullCheckMachineLog(r));//外键实体添加
         data.setItems(machineLogPage.getRecords());
         machineLogPageData.setData(data);
         systemLogService.saveMachineLog(token,"查询","查询了设备日志列表");
@@ -161,13 +165,7 @@ public class VerifyLogController {
         }
         IPage<ProduceLog> produceLogPage = produceLogService.page(new Page<>(query.getPage(),query.getLimit()),produceLogWrapper);
         data.setTotal(produceLogPage.getTotal());
-        produceLogPage.getRecords().forEach(r->{
-            if(productsService.getById(r.getProductId())!=null)
-                r.setProduct(productsService.getById(r.getProductId()));
-            if (r.getOperationId()!=null)
-                if (operationService.getById(r.getOperationId())!=null)
-                    r.setOperation(operationService.getById(r.getOperationId()));
-        });
+        produceLogPage.getRecords().forEach(r->entityNullComponent.nullCheckProduceLog(r));
         data.setItems(produceLogPage.getRecords());
         produceLogPageData.setData(data);
         systemLogService.saveMachineLog(token,"查询","查询了生产日志列表");

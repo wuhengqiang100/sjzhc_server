@@ -4,6 +4,7 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kexin.admin.component.EntityNullComponent;
 import com.kexin.admin.entity.tables.CartNumFirst;
 import com.kexin.admin.entity.tables.Products;
 import com.kexin.admin.service.CartNumFirstService;
@@ -39,6 +40,9 @@ public class ProductController {
     @Autowired
     CartNumFirstService cartNumFirstService;//首字母序号service
 
+    @Autowired
+    EntityNullComponent entityNullComponent;//外键实体not null判断,并添加外键
+
 
     @GetMapping("list")
     @ResponseBody
@@ -69,7 +73,7 @@ public class ProductController {
         }
         IPage<Products> productPage = productService.page(new Page<>(page,limit),productWrapper);
         data.setTotal(productPage.getTotal());
-        productPage.getRecords().forEach(r->r.setCartNumFirst(cartNumFirstService.getById(r.getCartnumFirstId())));//外键实体添加
+        productPage.getRecords().forEach(r->entityNullComponent.nullCheckProduct(r));//外键实体添加
         data.setItems(productPage.getRecords());
         productPageData.setData(data);
         systemLogService.saveMachineLog(token,"查询","查询了产品种类列表");

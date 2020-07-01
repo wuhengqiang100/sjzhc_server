@@ -4,6 +4,7 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kexin.admin.component.EntityNullComponent;
 import com.kexin.admin.entity.tables.WasterReason;
 import com.kexin.admin.service.OperationService;
 import com.kexin.admin.service.SystemLogService;
@@ -34,6 +35,9 @@ public class WasterReasonController {
 
     @Autowired
     SystemLogService systemLogService;//系统日志记录service
+
+    @Autowired
+    EntityNullComponent entityNullComponent;//外键实体not null判断,并添加外键
 
     @GetMapping("list")
     @ResponseBody
@@ -69,11 +73,7 @@ public class WasterReasonController {
         }
 
         IPage<WasterReason> wasterReasonPage = wasterReasonService.page(new Page<>(page,limit),wasterReasonWrapper);
-        wasterReasonPage.getRecords().forEach(r->{
-            if (r.getOperationId()!=null){
-                r.setOperation(operationService.getById(r.getOperationId()));
-            }
-        });//外键实体添加
+        wasterReasonPage.getRecords().forEach(r->entityNullComponent.nullCheckWasterReason(r));//外键实体添加
         data.setTotal(wasterReasonPage.getTotal());
         data.setItems(wasterReasonPage.getRecords());
         wasterReasonPageData.setData(data);

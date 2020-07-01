@@ -7,9 +7,9 @@ server:
 #    address: 192.168.137.200
 #    address: 192.168.137.100
 #    address: 127.0.0.1
-    address: 192.168.137.2
+#    address: 192.168.137.2
 ## 海南核查现场ip
-#    address: 10.96.120.240
+    address: 10.96.120.240
 ## 石家庄核查现场ip
 #    address: 10.41.35.150
 #    address: 10.41.35.192
@@ -40,7 +40,7 @@ ftpserver:
 spring:
     #激活哪一个环境的配置文件
     profiles:
-      active: dev
+      active: hnHc
     jackson:
       default-property-inclusion: USE_DEFAULTS # 全局jackson配置
     devtools:

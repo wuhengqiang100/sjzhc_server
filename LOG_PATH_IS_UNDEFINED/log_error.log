@@ -1,28 +1,28 @@
-2020-06-23 10:40:23.677 [http-nio-192.168.137.2-8088-exec-1] ERROR com.kexin.common.aspect.LogAspect - exception message :======>
-### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: 无法将 NULL 插入 ("SJZMHHC"."DIC_PRODUCTS"."QA_CODE_NAME")
+2020-07-01 21:28:07.140 [http-nio-192.168.137.2-8088-exec-10] ERROR com.kexin.common.aspect.LogAspect - exception message :======>
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 违反完整约束条件 (SJZMHHC.FK1_DIC_PRODUCTS) - 未找到父项关键字
 
 ### The error may exist in com/kexin/admin/mapper/ProductsMapper.java (best guess)
 ### The error may involve com.kexin.admin.mapper.ProductsMapper.insert-Inline
 ### The error occurred while setting parameters
-### SQL: INSERT INTO DIC_PRODUCTS  ( product_id, PRODUCT_CODE, PRODUCT_NAME,    ROW_NUMBER, COL_NUMBER, CONVERT_SHEET_NUMBER, SHEET_WASTER_NUM, USE_FLAG, START_DATE,  NOTE, QA_CODE_NAME, LOCAL_PRODUCT_NAME, PRODUCT_CODE_MES )  VALUES  ( ?, ?, ?,    ?, ?, ?, ?, ?, ?,  ?, ?, ?, ? )
-### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: 无法将 NULL 插入 ("SJZMHHC"."DIC_PRODUCTS"."QA_CODE_NAME")
+### SQL: INSERT INTO DIC_PRODUCTS  ( product_id, PRODUCT_CODE, PRODUCT_NAME,    ROW_NUMBER, COL_NUMBER, CONVERT_SHEET_NUMBER,  USE_FLAG, START_DATE,  NOTE, QA_CODE_NAME, LOCAL_PRODUCT_NAME, PRODUCT_CODE_MES )  VALUES  ( ?, ?, ?,    ?, ?, ?,  ?, ?,  ?, ?, ?, ? )
+### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 违反完整约束条件 (SJZMHHC.FK1_DIC_PRODUCTS) - 未找到父项关键字
 
-; ORA-01400: 无法将 NULL 插入 ("SJZMHHC"."DIC_PRODUCTS"."QA_CODE_NAME")
-; nested exception is java.sql.SQLIntegrityConstraintViolationException: ORA-01400: 无法将 NULL 插入 ("SJZMHHC"."DIC_PRODUCTS"."QA_CODE_NAME")
+; ORA-02291: 违反完整约束条件 (SJZMHHC.FK1_DIC_PRODUCTS) - 未找到父项关键字
+; nested exception is java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 违反完整约束条件 (SJZMHHC.FK1_DIC_PRODUCTS) - 未找到父项关键字
 
-2020-06-23 10:40:23.695 [http-nio-192.168.137.2-8088-exec-1] ERROR o.a.c.c.C.[.[localhost].[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: 
-### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: 无法将 NULL 插入 ("SJZMHHC"."DIC_PRODUCTS"."QA_CODE_NAME")
+2020-07-01 21:28:07.161 [http-nio-192.168.137.2-8088-exec-10] ERROR o.a.c.c.C.[.[localhost].[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 违反完整约束条件 (SJZMHHC.FK1_DIC_PRODUCTS) - 未找到父项关键字
 
 ### The error may exist in com/kexin/admin/mapper/ProductsMapper.java (best guess)
 ### The error may involve com.kexin.admin.mapper.ProductsMapper.insert-Inline
 ### The error occurred while setting parameters
-### SQL: INSERT INTO DIC_PRODUCTS  ( product_id, PRODUCT_CODE, PRODUCT_NAME,    ROW_NUMBER, COL_NUMBER, CONVERT_SHEET_NUMBER, SHEET_WASTER_NUM, USE_FLAG, START_DATE,  NOTE, QA_CODE_NAME, LOCAL_PRODUCT_NAME, PRODUCT_CODE_MES )  VALUES  ( ?, ?, ?,    ?, ?, ?, ?, ?, ?,  ?, ?, ?, ? )
-### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: 无法将 NULL 插入 ("SJZMHHC"."DIC_PRODUCTS"."QA_CODE_NAME")
+### SQL: INSERT INTO DIC_PRODUCTS  ( product_id, PRODUCT_CODE, PRODUCT_NAME,    ROW_NUMBER, COL_NUMBER, CONVERT_SHEET_NUMBER,  USE_FLAG, START_DATE,  NOTE, QA_CODE_NAME, LOCAL_PRODUCT_NAME, PRODUCT_CODE_MES )  VALUES  ( ?, ?, ?,    ?, ?, ?,  ?, ?,  ?, ?, ?, ? )
+### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 违反完整约束条件 (SJZMHHC.FK1_DIC_PRODUCTS) - 未找到父项关键字
 
-; ORA-01400: 无法将 NULL 插入 ("SJZMHHC"."DIC_PRODUCTS"."QA_CODE_NAME")
-; nested exception is java.sql.SQLIntegrityConstraintViolationException: ORA-01400: 无法将 NULL 插入 ("SJZMHHC"."DIC_PRODUCTS"."QA_CODE_NAME")
+; ORA-02291: 违反完整约束条件 (SJZMHHC.FK1_DIC_PRODUCTS) - 未找到父项关键字
+; nested exception is java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 违反完整约束条件 (SJZMHHC.FK1_DIC_PRODUCTS) - 未找到父项关键字
 ] with root cause
-oracle.jdbc.OracleDatabaseException: ORA-01400: 无法将 NULL 插入 ("SJZMHHC"."DIC_PRODUCTS"."QA_CODE_NAME")
+oracle.jdbc.OracleDatabaseException: ORA-02291: 违反完整约束条件 (SJZMHHC.FK1_DIC_PRODUCTS) - 未找到父项关键字
 
 	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:513)
 	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:461)
@@ -47,8 +47,7 @@ oracle.jdbc.OracleDatabaseException: ORA-01400: 无法将 NULL 插入 ("SJZMHHC"
 	at com.sun.proxy.$Proxy204.execute(Unknown Source)
 	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
 	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at jdk.internal.reflect.GeneratedMethodAccessor290.invoke(Unknown Source)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
 	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
@@ -58,16 +57,15 @@ oracle.jdbc.OracleDatabaseException: ORA-01400: 无法将 NULL 插入 ("SJZMHHC"
 	at com.baomidou.mybatisplus.core.executor.MybatisCachingExecutor.update(MybatisCachingExecutor.java:83)
 	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
 	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at jdk.internal.reflect.GeneratedMethodAccessor288.invoke(Unknown Source)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
 	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
-	at com.sun.proxy.$Proxy112.insert(Unknown Source)
+	at com.sun.proxy.$Proxy108.insert(Unknown Source)
 	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:271)
 	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:60)
 	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:96)
-	at com.sun.proxy.$Proxy118.insert(Unknown Source)
+	at com.sun.proxy.$Proxy109.insert(Unknown Source)
 	at com.kexin.admin.service.impl.ProductsServiceImpl.saveProducts(ProductsServiceImpl.java:55)
 	at com.kexin.admin.service.impl.ProductsServiceImpl$$FastClassBySpringCGLIB$$7a224cf3.invoke(<generated>)
 	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
@@ -79,7 +77,7 @@ oracle.jdbc.OracleDatabaseException: ORA-01400: 无法将 NULL 插入 ("SJZMHHC"
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
-	at com.kexin.admin.service.impl.ProductsServiceImpl$$EnhancerBySpringCGLIB$$15f2f965.saveProducts(<generated>)
+	at com.kexin.admin.service.impl.ProductsServiceImpl$$EnhancerBySpringCGLIB$$4b506726.saveProducts(<generated>)
 	at com.kexin.admin.service.impl.ProductsServiceImpl$$FastClassBySpringCGLIB$$7a224cf3.invoke(<generated>)
 	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771)
@@ -90,8 +88,8 @@ oracle.jdbc.OracleDatabaseException: ORA-01400: 无法将 NULL 插入 ("SJZMHHC"
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
-	at com.kexin.admin.service.impl.ProductsServiceImpl$$EnhancerBySpringCGLIB$$eaee1205.saveProducts(<generated>)
-	at com.kexin.admin.controller.ProductController.create(ProductController.java:97)
+	at com.kexin.admin.service.impl.ProductsServiceImpl$$EnhancerBySpringCGLIB$$204b7fc6.saveProducts(<generated>)
+	at com.kexin.admin.controller.ProductController.create(ProductController.java:101)
 	at com.kexin.admin.controller.ProductController$$FastClassBySpringCGLIB$$f44915d0.invoke(<generated>)
 	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771)
@@ -102,8 +100,7 @@ oracle.jdbc.OracleDatabaseException: ORA-01400: 无法将 NULL 插入 ("SJZMHHC"
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
 	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:88)
 	at com.kexin.common.aspect.LogAspect.doAround(LogAspect.java:89)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at jdk.internal.reflect.GeneratedMethodAccessor259.invoke(Unknown Source)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
 	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:644)
@@ -118,7 +115,7 @@ oracle.jdbc.OracleDatabaseException: ORA-01400: 无法将 NULL 插入 ("SJZMHHC"
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
-	at com.kexin.admin.controller.ProductController$$EnhancerBySpringCGLIB$$5b52abe9.create(<generated>)
+	at com.kexin.admin.controller.ProductController$$EnhancerBySpringCGLIB$$6e9f89d2.create(<generated>)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

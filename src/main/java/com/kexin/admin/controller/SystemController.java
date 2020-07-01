@@ -3,6 +3,7 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kexin.admin.component.EntityNullComponent;
 import com.kexin.admin.entity.tables.SysFunctions;
 import com.kexin.admin.entity.tables.SystemSet;
 import com.kexin.admin.entity.vo.query.QueryDateParent;
@@ -44,6 +45,9 @@ public class SystemController {
 
     @Autowired
     SystemSetService systemSetService;//系统设置sevice
+
+    @Autowired
+    EntityNullComponent entityNullComponent;//外键实体not null判断,并添加外键
 
     /**
      * 获取网站菜单树list
@@ -270,8 +274,13 @@ public class SystemController {
     public ResponseEty saveSystemSet(@RequestHeader(value="token",required = false) Integer token){
         ResponseEty responseEty=new ResponseEty();
         responseEty.setSuccess(20000);
-        SystemSet systemSet=systemSetService.getSystemSetById(ConstantEnum.FACTORY_ID);
-
+//        SystemSet systemSet=systemSetService.getSystemSetById(ConstantEnum.FACTORY_ID);
+        SystemSet systemSet= null;
+        try {
+            systemSet = systemSetService.getSystemSet();
+        } catch (Exception e) {
+            return ResponseEty.failure("系统配置表只能一条数据");
+        }
         if(systemSet.getFactoryId()==null){
             return ResponseEty.failure("获取信息出错");
         }

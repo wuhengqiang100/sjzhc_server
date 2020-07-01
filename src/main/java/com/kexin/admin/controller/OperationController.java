@@ -4,6 +4,7 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kexin.admin.component.EntityNullComponent;
 import com.kexin.admin.entity.tables.Operation;
 import com.kexin.admin.service.OperationService;
 import com.kexin.admin.service.OperationTypeService;
@@ -36,6 +37,9 @@ public class OperationController {
     @Autowired
     SystemLogService systemLogService;//系统日志记录service
 
+    @Autowired
+    EntityNullComponent entityNullComponent;//外键实体not null判断,并添加外键
+
     @GetMapping("list")
     @ResponseBody
     @SysLog("工序列表获取")
@@ -65,7 +69,7 @@ public class OperationController {
         }
 
         IPage<Operation> operationPage = operationService.page(new Page<>(page,limit),operationWrapper);
-        operationPage.getRecords().forEach(r->r.setOperationType(operationTypeService.getById(r.getOperationTypeId())));//外键实体添加
+        operationPage.getRecords().forEach(r->entityNullComponent.nullCheckOperation(r));//外键实体添加
         data.setTotal(operationPage.getTotal());
         data.setItems(operationPage.getRecords());
         operationPageData.setData(data);

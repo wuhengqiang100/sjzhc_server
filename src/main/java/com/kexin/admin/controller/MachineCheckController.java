@@ -1,6 +1,7 @@
 package com.kexin.admin.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.kexin.admin.component.EntityNullComponent;
 import com.kexin.admin.entity.tables.LoginUser;
 import com.kexin.admin.entity.tables.Operator;
 import com.kexin.admin.entity.tables.QaInspectMaster;
@@ -22,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Description:设备管理Controller
+ * @Description:机检审核管理Controller
  * @Author: 巫恒强  @Date: 2019/11/7 15:56
  * @Param:
  * @Return: 
@@ -33,12 +34,18 @@ public class MachineCheckController {
 
     @Autowired
     QaInspectMasterService qaInspectMasterService;
+
     @Autowired
     SystemLogService systemLogService;//系统日志记录service
+
     @Autowired
     LoginUserService loginUserService;
+
     @Autowired
     OperatorService operatorService;
+    @Autowired
+
+    EntityNullComponent entityNullComponent;//外键实体not null判断,并添加外键
     /**
      * 获取可以审核的车次数据
      * @return

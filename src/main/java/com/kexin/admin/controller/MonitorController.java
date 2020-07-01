@@ -1,5 +1,6 @@
 package com.kexin.admin.controller;
 
+import com.kexin.admin.component.EntityNullComponent;
 import com.kexin.admin.component.MonitorBigScreenComponent;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.util.ResponseEty;
@@ -18,6 +19,7 @@ public class MonitorController {
 
     @Autowired
     MonitorBigScreenComponent monitorBigScreenComponent; // 大屏数据获取组件
+
 
     @PostMapping("bigScreen")
     @ResponseBody

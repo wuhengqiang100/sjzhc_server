@@ -2,6 +2,7 @@ package com.kexin.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.kexin.admin.entity.tables.QaInspectMaster;
 import com.kexin.admin.entity.tables.SystemSet;
 import com.kexin.admin.mapper.SystemSetMapper;
 import com.kexin.admin.service.SystemSetService;
@@ -25,6 +26,13 @@ public class SystemSetServiceImpl extends ServiceImpl<SystemSetMapper, SystemSet
     public SystemSet getSystemSetById(Integer factoryId) {
 
         SystemSet systemSet=baseMapper.selectById(factoryId);
+        return systemSet;
+    }
+
+    @Override
+    public SystemSet getSystemSet() {
+        QueryWrapper<SystemSet> systemSetQueryWrapper=new QueryWrapper<>();
+        SystemSet systemSet=baseMapper.selectOne(systemSetQueryWrapper);
         return systemSet;
     }
 

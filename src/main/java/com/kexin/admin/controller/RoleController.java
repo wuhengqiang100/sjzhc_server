@@ -3,6 +3,7 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kexin.admin.component.EntityNullComponent;
 import com.kexin.admin.component.SelectOptionComponent;
 import com.kexin.admin.entity.tables.*;
 import com.kexin.admin.entity.vo.QaInspectChange;
@@ -52,6 +53,9 @@ public class RoleController {
 
     @Autowired
     SystemLogService systemLogService;//系统日志记录service
+
+    @Autowired
+    EntityNullComponent entityNullComponent;//外键实体not null判断,并添加外键
 
     @GetMapping("list")
     @ResponseBody

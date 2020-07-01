@@ -1,0 +1,313 @@
+2020-06-30 17:12:23.637 [restartedMain] DEBUG com.kexin.AdminApplication - Running with Spring Boot v2.2.6.RELEASE, Spring v5.2.5.RELEASE
+2020-06-30 17:13:04.836 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.a.mapper.LoginUserMapper.selectLoginUserByName - ==>  Preparing: SELECT * from SYS_LOGIN_USERS WHERE LOGIN_USER_NAME=? 
+2020-06-30 17:13:04.894 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.a.mapper.LoginUserMapper.selectLoginUserByName - ==> Parameters: Admin(String)
+2020-06-30 17:13:04.975 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.a.mapper.LoginUserMapper.selectLoginUserByName - <==      Total: 1
+2020-06-30 17:13:05.006 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==>  Preparing: SELECT login_id,OPERATOR_ID,LOGIN_USER_NAME,LOGIN_USER_PASS FROM SYS_LOGIN_USERS WHERE login_id=? 
+2020-06-30 17:13:05.008 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:05.017 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - <==      Total: 1
+2020-06-30 17:13:05.019 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==>  Preparing: SELECT operator_id,OPERATOR_CODE,OPERATOR_CODE_MES,OPERATOR_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM dic_operators WHERE operator_id=? 
+2020-06-30 17:13:05.019 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:05.023 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - <==      Total: 1
+2020-06-30 17:13:05.025 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - ==>  Preparing: SELECT SQ_LOG_SYS_ACTIONS.NEXTVAL FROM DUAL 
+2020-06-30 17:13:05.025 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - ==> Parameters: 
+2020-06-30 17:13:05.028 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - <==      Total: 1
+2020-06-30 17:13:05.051 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - ==>  Preparing: INSERT INTO LOG_SYS_ACTIONS ( log_sys_id, LOG_DATE, OPERATOR_ID, OPERATOR_NAME, LOG_TYPE, NOTE ) VALUES ( ?, ?, ?, ?, ?, ? ) 
+2020-06-30 17:13:05.053 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - ==> Parameters: 1036(Integer), 2020-06-30 17:13:05.024(Timestamp), 0(Integer), 管理员(String), 登陆(String), 管理员  登陆了系统(String)
+2020-06-30 17:13:05.059 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - <==    Updates: 1
+2020-06-30 17:13:05.168 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==>  Preparing: SELECT login_id,OPERATOR_ID,LOGIN_USER_NAME,LOGIN_USER_PASS FROM SYS_LOGIN_USERS WHERE login_id=? 
+2020-06-30 17:13:05.168 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:05.170 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - <==      Total: 1
+2020-06-30 17:13:05.171 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==>  Preparing: SELECT operator_id,OPERATOR_CODE,OPERATOR_CODE_MES,OPERATOR_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM dic_operators WHERE operator_id=? 
+2020-06-30 17:13:05.172 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:05.174 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - <==      Total: 1
+2020-06-30 17:13:05.213 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.UserRoleMapper.selectList - ==>  Preparing: SELECT user_role_id,LOGIN_ID,ROLE_ID FROM SYS_USER_ROLES WHERE (LOGIN_ID = ?) 
+2020-06-30 17:13:05.213 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.UserRoleMapper.selectList - ==> Parameters: 0(String)
+2020-06-30 17:13:05.215 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.UserRoleMapper.selectList - <==      Total: 1
+2020-06-30 17:13:05.216 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.RoleMapper.selectById - ==>  Preparing: SELECT role_id,ROLE_CODE,ROLE_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM SYS_ROLES WHERE role_id=? 
+2020-06-30 17:13:05.216 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.RoleMapper.selectById - ==> Parameters: 1(Integer)
+2020-06-30 17:13:05.219 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.RoleMapper.selectById - <==      Total: 1
+2020-06-30 17:13:05.276 [http-nio-192.168.137.2-8088-exec-6] DEBUG com.kexin.admin.mapper.SystemSetMapper.selectById - ==>  Preparing: SELECT factory_id,FACTORY_CODE,FACTORY_NAME,FTP_IP,FTP_NAME,FTP_PASS,MACHINE_CODE_MES,MACHINE_WASTE_NO_JUDGE,OPERATION_CODE_MES,OPERATOR_CODE_MES,PRODUCT_CODE_MES,PRODUCT_CARTNUM_FIRST_ID,PRODUCT_CARTNUM_FIRST_DATE,PRODUCT_CARTNUM_FIRST_COUNT,PRODUCT_SHEET_WASTER_NUM,PRODUCT_QA_CODE_NAME,PRODUCT_LOCAL_PRODUCT_NAME,WORK_UNIT_CODE_MES FROM SET_SYSTEM WHERE factory_id=? 
+2020-06-30 17:13:05.276 [http-nio-192.168.137.2-8088-exec-6] DEBUG com.kexin.admin.mapper.SystemSetMapper.selectById - ==> Parameters: 1(Integer)
+2020-06-30 17:13:05.277 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.UserRoleMapper.selectList - ==>  Preparing: SELECT user_role_id,LOGIN_ID,ROLE_ID FROM SYS_USER_ROLES WHERE (LOGIN_ID = ?) 
+2020-06-30 17:13:05.277 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.UserRoleMapper.selectList - ==> Parameters: 0(Integer)
+2020-06-30 17:13:05.279 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.UserRoleMapper.selectList - <==      Total: 1
+2020-06-30 17:13:05.281 [http-nio-192.168.137.2-8088-exec-6] DEBUG com.kexin.admin.mapper.SystemSetMapper.selectById - <==      Total: 1
+2020-06-30 17:13:05.282 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.RoleMenuMapper.selectList - ==>  Preparing: SELECT role_function_id,ROLE_ID,FUNCTION_ID FROM SYS_ROLE_FUNCTIONS WHERE (ROLE_ID IN (?)) 
+2020-06-30 17:13:05.283 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.RoleMenuMapper.selectList - ==> Parameters: 1(Integer)
+2020-06-30 17:13:05.286 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.RoleMenuMapper.selectList - <==      Total: 14
+2020-06-30 17:13:05.292 [http-nio-192.168.137.2-8088-exec-7] DEBUG c.kexin.admin.mapper.SysFunctionMapper.selectList - ==>  Preparing: SELECT function_id,FUNCTION_TYPE_ID,FUNCTION_CODE,FUNCTION_NAME AS name,FUNCTION_TITLE AS title,FUNCTION_PARENT_ID AS parentId,FUNCTION_CHILDREN_IDS AS childrenIds,FUNCTION_SORT AS sort,FUNCTION_HREF AS path,IS_SHOW AS hidden,PERMISSION AS roles,USE_FLAG,COMPONENT,ALWAYS_SHOW,FUNCTION_ICON AS icon,NO_CACHE,BREADCRUMB,REDIRECT,NOTE FROM SYS_FUNCTIONS WHERE (FUNCTION_TYPE_ID = ? AND FUNCTION_PARENT_ID IS NOT NULL AND FUNCTION_ID IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?) AND USE_FLAG = ?) ORDER BY FUNCTION_PARENT_ID ASC 
+2020-06-30 17:13:05.293 [http-nio-192.168.137.2-8088-exec-7] DEBUG c.kexin.admin.mapper.SysFunctionMapper.selectList - ==> Parameters: 1(Integer), 9(Integer), 15(Integer), 28(Integer), 4(Integer), 18(Integer), 6(Integer), 8(Integer), 2(Integer), 3(Integer), 29(Integer), 12(Integer), 16(Integer), 22(Integer), 31(Integer), 1(Integer)
+2020-06-30 17:13:05.306 [http-nio-192.168.137.2-8088-exec-7] DEBUG c.kexin.admin.mapper.SysFunctionMapper.selectList - <==      Total: 14
+2020-06-30 17:13:05.309 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.SysFunctionMapper.selectOne - ==>  Preparing: SELECT function_id,FUNCTION_TYPE_ID,FUNCTION_CODE,FUNCTION_NAME AS name,FUNCTION_TITLE AS title,FUNCTION_PARENT_ID AS parentId,FUNCTION_CHILDREN_IDS AS childrenIds,FUNCTION_SORT AS sort,FUNCTION_HREF AS path,IS_SHOW AS hidden,PERMISSION AS roles,USE_FLAG,COMPONENT,ALWAYS_SHOW,FUNCTION_ICON AS icon,NO_CACHE,BREADCRUMB,REDIRECT,NOTE FROM SYS_FUNCTIONS WHERE (FUNCTION_ID = ?) 
+2020-06-30 17:13:05.309 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.SysFunctionMapper.selectOne - ==> Parameters: 1(Integer)
+2020-06-30 17:13:05.313 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.SysFunctionMapper.selectOne - <==      Total: 1
+2020-06-30 17:13:05.317 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.SysFunctionMapper.selectOne - ==>  Preparing: SELECT function_id,FUNCTION_TYPE_ID,FUNCTION_CODE,FUNCTION_NAME AS name,FUNCTION_TITLE AS title,FUNCTION_PARENT_ID AS parentId,FUNCTION_CHILDREN_IDS AS childrenIds,FUNCTION_SORT AS sort,FUNCTION_HREF AS path,IS_SHOW AS hidden,PERMISSION AS roles,USE_FLAG,COMPONENT,ALWAYS_SHOW,FUNCTION_ICON AS icon,NO_CACHE,BREADCRUMB,REDIRECT,NOTE FROM SYS_FUNCTIONS WHERE (FUNCTION_ID = ?) 
+2020-06-30 17:13:05.317 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.SysFunctionMapper.selectOne - ==> Parameters: 5(Integer)
+2020-06-30 17:13:05.324 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.SysFunctionMapper.selectOne - <==      Total: 1
+2020-06-30 17:13:05.327 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.SysFunctionMapper.selectOne - ==>  Preparing: SELECT function_id,FUNCTION_TYPE_ID,FUNCTION_CODE,FUNCTION_NAME AS name,FUNCTION_TITLE AS title,FUNCTION_PARENT_ID AS parentId,FUNCTION_CHILDREN_IDS AS childrenIds,FUNCTION_SORT AS sort,FUNCTION_HREF AS path,IS_SHOW AS hidden,PERMISSION AS roles,USE_FLAG,COMPONENT,ALWAYS_SHOW,FUNCTION_ICON AS icon,NO_CACHE,BREADCRUMB,REDIRECT,NOTE FROM SYS_FUNCTIONS WHERE (FUNCTION_ID = ?) 
+2020-06-30 17:13:05.328 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.SysFunctionMapper.selectOne - ==> Parameters: 13(Integer)
+2020-06-30 17:13:05.330 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.SysFunctionMapper.selectOne - <==      Total: 1
+2020-06-30 17:13:05.333 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.SysFunctionMapper.selectOne - ==>  Preparing: SELECT function_id,FUNCTION_TYPE_ID,FUNCTION_CODE,FUNCTION_NAME AS name,FUNCTION_TITLE AS title,FUNCTION_PARENT_ID AS parentId,FUNCTION_CHILDREN_IDS AS childrenIds,FUNCTION_SORT AS sort,FUNCTION_HREF AS path,IS_SHOW AS hidden,PERMISSION AS roles,USE_FLAG,COMPONENT,ALWAYS_SHOW,FUNCTION_ICON AS icon,NO_CACHE,BREADCRUMB,REDIRECT,NOTE FROM SYS_FUNCTIONS WHERE (FUNCTION_ID = ?) 
+2020-06-30 17:13:05.334 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.SysFunctionMapper.selectOne - ==> Parameters: 30(Integer)
+2020-06-30 17:13:05.337 [http-nio-192.168.137.2-8088-exec-7] DEBUG com.kexin.admin.mapper.SysFunctionMapper.selectOne - <==      Total: 1
+2020-06-30 17:13:08.159 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.OperatorMapper.selectPage - ==>  Preparing: SELECT COUNT(1) FROM dic_operators 
+2020-06-30 17:13:08.160 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.OperatorMapper.selectPage - ==> Parameters: 
+2020-06-30 17:13:08.167 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.OperatorMapper.selectPage - ==>  Preparing: SELECT * FROM ( SELECT TMP.*, ROWNUM ROW_ID FROM ( SELECT operator_id,OPERATOR_CODE,OPERATOR_CODE_MES,OPERATOR_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM dic_operators ORDER BY START_DATE DESC,OPERATOR_ID ASC ) TMP WHERE ROWNUM <=?) WHERE ROW_ID > ? 
+2020-06-30 17:13:08.168 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.OperatorMapper.selectPage - ==> Parameters: 20(Long), 0(Long)
+2020-06-30 17:13:08.174 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.OperatorMapper.selectPage - <==      Total: 20
+2020-06-30 17:13:08.176 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==>  Preparing: SELECT login_id,OPERATOR_ID,LOGIN_USER_NAME,LOGIN_USER_PASS FROM SYS_LOGIN_USERS WHERE login_id=? 
+2020-06-30 17:13:08.176 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:08.177 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - <==      Total: 1
+2020-06-30 17:13:08.178 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==>  Preparing: SELECT operator_id,OPERATOR_CODE,OPERATOR_CODE_MES,OPERATOR_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM dic_operators WHERE operator_id=? 
+2020-06-30 17:13:08.178 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:08.179 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - <==      Total: 1
+2020-06-30 17:13:08.180 [http-nio-192.168.137.2-8088-exec-9] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - ==>  Preparing: SELECT SQ_LOG_SYS_ACTIONS.NEXTVAL FROM DUAL 
+2020-06-30 17:13:08.180 [http-nio-192.168.137.2-8088-exec-9] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - ==> Parameters: 
+2020-06-30 17:13:08.181 [http-nio-192.168.137.2-8088-exec-9] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - <==      Total: 1
+2020-06-30 17:13:08.182 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - ==>  Preparing: INSERT INTO LOG_SYS_ACTIONS ( log_sys_id, LOG_DATE, OPERATOR_ID, OPERATOR_NAME, LOG_TYPE, NOTE ) VALUES ( ?, ?, ?, ?, ?, ? ) 
+2020-06-30 17:13:08.182 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - ==> Parameters: 1037(Integer), 2020-06-30 17:13:08.179(Timestamp), 0(Integer), 管理员(String), 查询(String), 管理员  查询了人员列表(String)
+2020-06-30 17:13:08.183 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - <==    Updates: 1
+2020-06-30 17:13:09.862 [http-nio-192.168.137.2-8088-exec-2] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectList - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST 
+2020-06-30 17:13:09.862 [http-nio-192.168.137.2-8088-exec-2] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectList - ==> Parameters: 
+2020-06-30 17:13:09.869 [http-nio-192.168.137.2-8088-exec-2] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectList - <==      Total: 25
+2020-06-30 17:13:09.873 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.ProductsMapper.selectPage - ==>  Preparing: SELECT COUNT(1) FROM DIC_PRODUCTS 
+2020-06-30 17:13:09.873 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.ProductsMapper.selectPage - ==> Parameters: 
+2020-06-30 17:13:09.875 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.ProductsMapper.selectPage - ==>  Preparing: SELECT * FROM ( SELECT TMP.*, ROWNUM ROW_ID FROM ( SELECT product_id,PRODUCT_CODE,PRODUCT_NAME,CARTNUM_FIRST_ID,CARTNUM_FIRST_DATE,CARTNUM_FIRST_COUNT,ROW_NUMBER,COL_NUMBER,CONVERT_SHEET_NUMBER,SHEET_WASTER_NUM,USE_FLAG,START_DATE,END_DATE,NOTE,QA_CODE_NAME,LOCAL_PRODUCT_NAME,PRODUCT_CODE_MES FROM DIC_PRODUCTS ORDER BY START_DATE DESC,PRODUCT_ID ASC ) TMP WHERE ROWNUM <=?) WHERE ROW_ID > ? 
+2020-06-30 17:13:09.876 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.ProductsMapper.selectPage - ==> Parameters: 20(Long), 0(Long)
+2020-06-30 17:13:09.882 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.ProductsMapper.selectPage - <==      Total: 18
+2020-06-30 17:13:09.893 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.893 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 1(Integer)
+2020-06-30 17:13:09.895 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.895 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.896 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 2(Integer)
+2020-06-30 17:13:09.897 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.897 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.897 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 3(Integer)
+2020-06-30 17:13:09.898 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.899 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.899 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 2(Integer)
+2020-06-30 17:13:09.900 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.901 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.901 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 2(Integer)
+2020-06-30 17:13:09.903 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.905 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.905 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 2(Integer)
+2020-06-30 17:13:09.906 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.908 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.908 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 2(Integer)
+2020-06-30 17:13:09.909 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.910 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.910 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 2(Integer)
+2020-06-30 17:13:09.911 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.912 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.912 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:09.913 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.913 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.914 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 2(Integer)
+2020-06-30 17:13:09.915 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.916 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.916 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 2(Integer)
+2020-06-30 17:13:09.917 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.917 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.918 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 3(Integer)
+2020-06-30 17:13:09.919 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.920 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.920 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 8(Integer)
+2020-06-30 17:13:09.922 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.923 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.923 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 6(Integer)
+2020-06-30 17:13:09.924 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.925 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.925 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 1(Integer)
+2020-06-30 17:13:09.926 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.927 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.927 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 1(Integer)
+2020-06-30 17:13:09.928 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.929 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.929 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 1(Integer)
+2020-06-30 17:13:09.930 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.931 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==>  Preparing: SELECT num_id,NUM_CODE,START_DATE,END_DATE,NOTE FROM DIC_CARTNUM_FIRST WHERE num_id=? 
+2020-06-30 17:13:09.931 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - ==> Parameters: 1(Integer)
+2020-06-30 17:13:09.932 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.kexin.admin.mapper.CartNumFirstMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.933 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==>  Preparing: SELECT login_id,OPERATOR_ID,LOGIN_USER_NAME,LOGIN_USER_PASS FROM SYS_LOGIN_USERS WHERE login_id=? 
+2020-06-30 17:13:09.933 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:09.934 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.934 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==>  Preparing: SELECT operator_id,OPERATOR_CODE,OPERATOR_CODE_MES,OPERATOR_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM dic_operators WHERE operator_id=? 
+2020-06-30 17:13:09.934 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:09.935 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - <==      Total: 1
+2020-06-30 17:13:09.937 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - ==>  Preparing: SELECT SQ_LOG_SYS_ACTIONS.NEXTVAL FROM DUAL 
+2020-06-30 17:13:09.937 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - ==> Parameters: 
+2020-06-30 17:13:09.939 [http-nio-192.168.137.2-8088-exec-3] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - <==      Total: 1
+2020-06-30 17:13:09.940 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - ==>  Preparing: INSERT INTO LOG_SYS_ACTIONS ( log_sys_id, LOG_DATE, OPERATOR_ID, OPERATOR_NAME, LOG_TYPE, NOTE ) VALUES ( ?, ?, ?, ?, ?, ? ) 
+2020-06-30 17:13:09.940 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - ==> Parameters: 1038(Integer), 2020-06-30 17:13:09.936(Timestamp), 0(Integer), 管理员(String), 查询(String), 管理员  查询了产品种类列表(String)
+2020-06-30 17:13:09.942 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - <==    Updates: 1
+2020-06-30 17:13:11.686 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.MachineMapper.selectPage - ==>  Preparing: SELECT COUNT(1) FROM dic_machines 
+2020-06-30 17:13:11.686 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.MachineMapper.selectPage - ==> Parameters: 
+2020-06-30 17:13:11.689 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.MachineMapper.selectPage - ==>  Preparing: SELECT * FROM ( SELECT TMP.*, ROWNUM ROW_ID FROM ( SELECT machine_id,MACHINE_CODE,MACHINE_CODE_MES,MACHINE_NAME,MACHINE_IP,USE_MACHINE_WASTE_NO_JUDGE,USE_FLAG,START_DATE,END_DATE,NOTE FROM dic_machines ORDER BY START_DATE DESC,MACHINE_ID ASC ) TMP WHERE ROWNUM <=?) WHERE ROW_ID > ? 
+2020-06-30 17:13:11.690 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.MachineMapper.selectPage - ==> Parameters: 20(Long), 0(Long)
+2020-06-30 17:13:11.696 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.MachineMapper.selectPage - <==      Total: 20
+2020-06-30 17:13:11.696 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==>  Preparing: SELECT login_id,OPERATOR_ID,LOGIN_USER_NAME,LOGIN_USER_PASS FROM SYS_LOGIN_USERS WHERE login_id=? 
+2020-06-30 17:13:11.697 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:11.698 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - <==      Total: 1
+2020-06-30 17:13:11.698 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==>  Preparing: SELECT operator_id,OPERATOR_CODE,OPERATOR_CODE_MES,OPERATOR_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM dic_operators WHERE operator_id=? 
+2020-06-30 17:13:11.698 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:11.699 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - <==      Total: 1
+2020-06-30 17:13:11.700 [http-nio-192.168.137.2-8088-exec-5] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - ==>  Preparing: SELECT SQ_LOG_SYS_ACTIONS.NEXTVAL FROM DUAL 
+2020-06-30 17:13:11.700 [http-nio-192.168.137.2-8088-exec-5] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - ==> Parameters: 
+2020-06-30 17:13:11.701 [http-nio-192.168.137.2-8088-exec-5] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - <==      Total: 1
+2020-06-30 17:13:11.702 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - ==>  Preparing: INSERT INTO LOG_SYS_ACTIONS ( log_sys_id, LOG_DATE, OPERATOR_ID, OPERATOR_NAME, LOG_TYPE, NOTE ) VALUES ( ?, ?, ?, ?, ?, ? ) 
+2020-06-30 17:13:11.703 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - ==> Parameters: 1039(Integer), 2020-06-30 17:13:11.7(Timestamp), 0(Integer), 管理员(String), 查询(String), 管理员  查询了设备列表(String)
+2020-06-30 17:13:11.705 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - <==    Updates: 1
+2020-06-30 17:13:13.351 [http-nio-192.168.137.2-8088-exec-8] DEBUG com.kexin.admin.mapper.OperatorMapper.selectList - ==>  Preparing: SELECT operator_id,OPERATOR_CODE,OPERATOR_CODE_MES,OPERATOR_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM dic_operators WHERE (USE_FLAG = ?) 
+2020-06-30 17:13:13.351 [http-nio-192.168.137.2-8088-exec-8] DEBUG com.kexin.admin.mapper.OperatorMapper.selectList - ==> Parameters: 1(Integer)
+2020-06-30 17:13:13.360 [http-nio-192.168.137.2-8088-exec-8] DEBUG com.kexin.admin.mapper.OperatorMapper.selectList - <==      Total: 52
+2020-06-30 17:13:13.366 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.WorkUnitMapper.selectPage - ==>  Preparing: SELECT COUNT(1) FROM DIC_WORK_UNITS 
+2020-06-30 17:13:13.366 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.WorkUnitMapper.selectPage - ==> Parameters: 
+2020-06-30 17:13:13.368 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.WorkUnitMapper.selectPage - ==>  Preparing: SELECT * FROM ( SELECT TMP.*, ROWNUM ROW_ID FROM ( SELECT work_unit_id,WORK_UNIT_CODE,WORK_UNIT_NAME,OPERATOR_ID,USE_FLAG,START_DATE,END_DATE,NOTE,WORK_UNIT_CODE_MES FROM DIC_WORK_UNITS ORDER BY START_DATE DESC,WORK_UNIT_ID ASC ) TMP WHERE ROWNUM <=?) WHERE ROW_ID > ? 
+2020-06-30 17:13:13.368 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.WorkUnitMapper.selectPage - ==> Parameters: 20(Long), 0(Long)
+2020-06-30 17:13:13.377 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.WorkUnitMapper.selectPage - <==      Total: 20
+2020-06-30 17:13:13.378 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==>  Preparing: SELECT operator_id,OPERATOR_CODE,OPERATOR_CODE_MES,OPERATOR_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM dic_operators WHERE operator_id=? 
+2020-06-30 17:13:13.378 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==> Parameters: 24(Integer)
+2020-06-30 17:13:13.380 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - <==      Total: 1
+2020-06-30 17:13:13.381 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==>  Preparing: SELECT login_id,OPERATOR_ID,LOGIN_USER_NAME,LOGIN_USER_PASS FROM SYS_LOGIN_USERS WHERE login_id=? 
+2020-06-30 17:13:13.381 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:13.382 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - <==      Total: 1
+2020-06-30 17:13:13.383 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==>  Preparing: SELECT operator_id,OPERATOR_CODE,OPERATOR_CODE_MES,OPERATOR_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM dic_operators WHERE operator_id=? 
+2020-06-30 17:13:13.383 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:13.385 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - <==      Total: 1
+2020-06-30 17:13:13.385 [http-nio-192.168.137.2-8088-exec-9] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - ==>  Preparing: SELECT SQ_LOG_SYS_ACTIONS.NEXTVAL FROM DUAL 
+2020-06-30 17:13:13.385 [http-nio-192.168.137.2-8088-exec-9] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - ==> Parameters: 
+2020-06-30 17:13:13.388 [http-nio-192.168.137.2-8088-exec-9] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - <==      Total: 1
+2020-06-30 17:13:13.389 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - ==>  Preparing: INSERT INTO LOG_SYS_ACTIONS ( log_sys_id, LOG_DATE, OPERATOR_ID, OPERATOR_NAME, LOG_TYPE, NOTE ) VALUES ( ?, ?, ?, ?, ?, ? ) 
+2020-06-30 17:13:13.390 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - ==> Parameters: 1040(Integer), 2020-06-30 17:13:13.385(Timestamp), 0(Integer), 管理员(String), 查询(String), 管理员  查询了机台列表(String)
+2020-06-30 17:13:13.391 [http-nio-192.168.137.2-8088-exec-9] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - <==    Updates: 1
+2020-06-30 17:13:15.009 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.OperationMapper.selectPage - ==>  Preparing: SELECT COUNT(1) FROM DIC_OPERATIONS 
+2020-06-30 17:13:15.009 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.OperationMapper.selectPage - ==> Parameters: 
+2020-06-30 17:13:15.010 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.OperationMapper.selectPage - ==>  Preparing: SELECT * FROM ( SELECT TMP.*, ROWNUM ROW_ID FROM ( SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS ORDER BY START_DATE DESC,OPERATION_ID ASC ) TMP WHERE ROWNUM <=?) WHERE ROW_ID > ? 
+2020-06-30 17:13:15.010 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.OperationMapper.selectPage - ==> Parameters: 20(Long), 0(Long)
+2020-06-30 17:13:15.012 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.OperationMapper.selectPage - <==      Total: 11
+2020-06-30 17:13:15.021 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==>  Preparing: SELECT operation_type_id,OPERATION_TYPE_CODE,OPERATION_TYPE_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM DIC_OPERATION_TYPES WHERE operation_type_id=? 
+2020-06-30 17:13:15.022 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==> Parameters: 4(Integer)
+2020-06-30 17:13:15.023 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - <==      Total: 1
+2020-06-30 17:13:15.024 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==>  Preparing: SELECT operation_type_id,OPERATION_TYPE_CODE,OPERATION_TYPE_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM DIC_OPERATION_TYPES WHERE operation_type_id=? 
+2020-06-30 17:13:15.024 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==> Parameters: 1(Integer)
+2020-06-30 17:13:15.026 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - <==      Total: 1
+2020-06-30 17:13:15.026 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==>  Preparing: SELECT operation_type_id,OPERATION_TYPE_CODE,OPERATION_TYPE_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM DIC_OPERATION_TYPES WHERE operation_type_id=? 
+2020-06-30 17:13:15.027 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==> Parameters: 1(Integer)
+2020-06-30 17:13:15.028 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - <==      Total: 1
+2020-06-30 17:13:15.028 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==>  Preparing: SELECT operation_type_id,OPERATION_TYPE_CODE,OPERATION_TYPE_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM DIC_OPERATION_TYPES WHERE operation_type_id=? 
+2020-06-30 17:13:15.028 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==> Parameters: 1(Integer)
+2020-06-30 17:13:15.029 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - <==      Total: 1
+2020-06-30 17:13:15.030 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==>  Preparing: SELECT operation_type_id,OPERATION_TYPE_CODE,OPERATION_TYPE_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM DIC_OPERATION_TYPES WHERE operation_type_id=? 
+2020-06-30 17:13:15.030 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==> Parameters: 1(Integer)
+2020-06-30 17:13:15.031 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - <==      Total: 1
+2020-06-30 17:13:15.031 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==>  Preparing: SELECT operation_type_id,OPERATION_TYPE_CODE,OPERATION_TYPE_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM DIC_OPERATION_TYPES WHERE operation_type_id=? 
+2020-06-30 17:13:15.032 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==> Parameters: 1(Integer)
+2020-06-30 17:13:15.032 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - <==      Total: 1
+2020-06-30 17:13:15.033 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==>  Preparing: SELECT operation_type_id,OPERATION_TYPE_CODE,OPERATION_TYPE_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM DIC_OPERATION_TYPES WHERE operation_type_id=? 
+2020-06-30 17:13:15.033 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==> Parameters: 1(Integer)
+2020-06-30 17:13:15.034 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - <==      Total: 1
+2020-06-30 17:13:15.034 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==>  Preparing: SELECT operation_type_id,OPERATION_TYPE_CODE,OPERATION_TYPE_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM DIC_OPERATION_TYPES WHERE operation_type_id=? 
+2020-06-30 17:13:15.035 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==> Parameters: 1(Integer)
+2020-06-30 17:13:15.036 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - <==      Total: 1
+2020-06-30 17:13:15.037 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==>  Preparing: SELECT operation_type_id,OPERATION_TYPE_CODE,OPERATION_TYPE_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM DIC_OPERATION_TYPES WHERE operation_type_id=? 
+2020-06-30 17:13:15.038 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==> Parameters: 1(Integer)
+2020-06-30 17:13:15.039 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - <==      Total: 1
+2020-06-30 17:13:15.039 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==>  Preparing: SELECT operation_type_id,OPERATION_TYPE_CODE,OPERATION_TYPE_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM DIC_OPERATION_TYPES WHERE operation_type_id=? 
+2020-06-30 17:13:15.040 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==> Parameters: 2(Integer)
+2020-06-30 17:13:15.041 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - <==      Total: 1
+2020-06-30 17:13:15.042 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==>  Preparing: SELECT operation_type_id,OPERATION_TYPE_CODE,OPERATION_TYPE_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM DIC_OPERATION_TYPES WHERE operation_type_id=? 
+2020-06-30 17:13:15.042 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - ==> Parameters: 3(Integer)
+2020-06-30 17:13:15.043 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.OperationTypeMapper.selectById - <==      Total: 1
+2020-06-30 17:13:15.044 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==>  Preparing: SELECT login_id,OPERATOR_ID,LOGIN_USER_NAME,LOGIN_USER_PASS FROM SYS_LOGIN_USERS WHERE login_id=? 
+2020-06-30 17:13:15.044 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:15.044 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - <==      Total: 1
+2020-06-30 17:13:15.045 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==>  Preparing: SELECT operator_id,OPERATOR_CODE,OPERATOR_CODE_MES,OPERATOR_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM dic_operators WHERE operator_id=? 
+2020-06-30 17:13:15.045 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:15.046 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - <==      Total: 1
+2020-06-30 17:13:15.047 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - ==>  Preparing: SELECT SQ_LOG_SYS_ACTIONS.NEXTVAL FROM DUAL 
+2020-06-30 17:13:15.047 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - ==> Parameters: 
+2020-06-30 17:13:15.048 [http-nio-192.168.137.2-8088-exec-1] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - <==      Total: 1
+2020-06-30 17:13:15.049 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - ==>  Preparing: INSERT INTO LOG_SYS_ACTIONS ( log_sys_id, LOG_DATE, OPERATOR_ID, OPERATOR_NAME, LOG_TYPE, NOTE ) VALUES ( ?, ?, ?, ?, ?, ? ) 
+2020-06-30 17:13:15.049 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - ==> Parameters: 1041(Integer), 2020-06-30 17:13:15.046(Timestamp), 0(Integer), 管理员(String), 查询(String), 管理员  查询了工序列表(String)
+2020-06-30 17:13:15.050 [http-nio-192.168.137.2-8088-exec-1] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - <==    Updates: 1
+2020-06-30 17:13:18.612 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.OperationMapper.selectList - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE (USE_FLAG = ? AND OPERATION_TYPE_ID = ?) 
+2020-06-30 17:13:18.612 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.OperationMapper.selectList - ==> Parameters: 1(Integer), 1(Integer)
+2020-06-30 17:13:18.613 [http-nio-192.168.137.2-8088-exec-3] DEBUG com.kexin.admin.mapper.OperationMapper.selectList - <==      Total: 3
+2020-06-30 17:13:18.634 [http-nio-192.168.137.2-8088-exec-5] DEBUG c.kexin.admin.mapper.WasterReasonMapper.selectPage - ==>  Preparing: SELECT COUNT(1) FROM DIC_WASTER_REASONS 
+2020-06-30 17:13:18.634 [http-nio-192.168.137.2-8088-exec-5] DEBUG c.kexin.admin.mapper.WasterReasonMapper.selectPage - ==> Parameters: 
+2020-06-30 17:13:18.637 [http-nio-192.168.137.2-8088-exec-5] DEBUG c.kexin.admin.mapper.WasterReasonMapper.selectPage - ==>  Preparing: SELECT * FROM ( SELECT TMP.*, ROWNUM ROW_ID FROM ( SELECT waster_reasons_id,OPERATION_ID,WASTER_REASONS_INDEX,WASTER_REASONS_CODE,WASTER_REASONS_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM DIC_WASTER_REASONS ORDER BY START_DATE DESC,WASTER_REASONS_ID ASC ) TMP WHERE ROWNUM <=?) WHERE ROW_ID > ? 
+2020-06-30 17:13:18.637 [http-nio-192.168.137.2-8088-exec-5] DEBUG c.kexin.admin.mapper.WasterReasonMapper.selectPage - ==> Parameters: 20(Long), 0(Long)
+2020-06-30 17:13:18.642 [http-nio-192.168.137.2-8088-exec-5] DEBUG c.kexin.admin.mapper.WasterReasonMapper.selectPage - <==      Total: 20
+2020-06-30 17:13:18.643 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.643 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.644 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.645 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.645 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.647 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.647 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.647 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.648 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.649 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.649 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.650 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.650 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.650 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.652 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.653 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.654 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.655 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.656 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.656 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.657 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.657 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.657 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.658 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.659 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.659 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.660 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.660 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.660 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.661 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.662 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.662 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.674 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.675 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.675 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.677 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.677 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.678 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.679 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.680 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.680 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.681 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.681 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.681 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.685 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.686 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.686 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.687 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.688 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.688 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.690 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.690 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.690 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.691 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.692 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.692 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.693 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.694 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==>  Preparing: SELECT operation_id,OPERATION_CODE,OPERATION_CODE_MES,OPERATION_NAME,USE_FLAG,START_DATE,END_DATE,NOTE,OPERATION_TYPE_ID FROM DIC_OPERATIONS WHERE operation_id=? 
+2020-06-30 17:13:18.694 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - ==> Parameters: 5(Integer)
+2020-06-30 17:13:18.694 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperationMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.695 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==>  Preparing: SELECT login_id,OPERATOR_ID,LOGIN_USER_NAME,LOGIN_USER_PASS FROM SYS_LOGIN_USERS WHERE login_id=? 
+2020-06-30 17:13:18.695 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:18.696 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.LoginUserMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.697 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==>  Preparing: SELECT operator_id,OPERATOR_CODE,OPERATOR_CODE_MES,OPERATOR_NAME,USE_FLAG,START_DATE,END_DATE,NOTE FROM dic_operators WHERE operator_id=? 
+2020-06-30 17:13:18.697 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - ==> Parameters: 0(Integer)
+2020-06-30 17:13:18.697 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.OperatorMapper.selectById - <==      Total: 1
+2020-06-30 17:13:18.698 [http-nio-192.168.137.2-8088-exec-5] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - ==>  Preparing: SELECT SQ_LOG_SYS_ACTIONS.NEXTVAL FROM DUAL 
+2020-06-30 17:13:18.698 [http-nio-192.168.137.2-8088-exec-5] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - ==> Parameters: 
+2020-06-30 17:13:18.699 [http-nio-192.168.137.2-8088-exec-5] DEBUG c.k.admin.mapper.SystemLogMapper.insert!selectKey - <==      Total: 1
+2020-06-30 17:13:18.700 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - ==>  Preparing: INSERT INTO LOG_SYS_ACTIONS ( log_sys_id, LOG_DATE, OPERATOR_ID, OPERATOR_NAME, LOG_TYPE, NOTE ) VALUES ( ?, ?, ?, ?, ?, ? ) 
+2020-06-30 17:13:18.700 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - ==> Parameters: 1042(Integer), 2020-06-30 17:13:18.698(Timestamp), 0(Integer), 管理员(String), 查询(String), 管理员  查询了错误类型列表(String)
+2020-06-30 17:13:18.701 [http-nio-192.168.137.2-8088-exec-5] DEBUG com.kexin.admin.mapper.SystemLogMapper.insert - <==    Updates: 1

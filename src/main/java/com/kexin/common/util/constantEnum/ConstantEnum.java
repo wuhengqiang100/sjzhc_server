@@ -31,6 +31,7 @@ public class ConstantEnum {
 
     /**
      * 系统id
+     * 5:海南核查
      */
-    public static final int FACTORY_ID=1;
+    public static final int FACTORY_ID=5;
 }

@@ -4,6 +4,7 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kexin.admin.component.EntityNullComponent;
 import com.kexin.admin.entity.tables.*;
 import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDelete;
 import com.kexin.admin.entity.vo.AuditParameter.AuditParameterDetail;
@@ -15,6 +16,7 @@ import com.kexin.common.base.Data;
 import com.kexin.common.base.PageDataBase;
 import com.kexin.common.util.ResponseEty;
 import org.apache.commons.lang3.StringUtils;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +55,9 @@ public class AuditParameterController {
 
     @Autowired
     SystemLogService systemLogService;//系统日志记录service
+
+    @Autowired
+    EntityNullComponent entityNullComponent;//外键实体not null判断,并添加外键
     @GetMapping("list")
     @ResponseBody
     @SysLog("审核参数列表获取")
@@ -94,12 +99,7 @@ public class AuditParameterController {
 
 //        List<Map<String,Object>> mapList= auditParameterService.getAuditParameterSecond();
         IPage<AuditParameter> auditParameterPage = auditParameterService.page(new Page<>(page,limit),auditParameterWrapper);
-        auditParameterPage.getRecords().forEach(r->{
-                    r.setJudgeCheckType(auditParameterTypeService.getById(r.getJudgeCheckTypeId()));
-                    r.setOperation(operationService.getById(r.getOperationId()));
-                    r.setProducts(productsService.getById(r.getProductId()));
-                    r.setMachine(machineService.getById(r.getMachineId()));
-                });//外键实体添加
+        auditParameterPage.getRecords().forEach(r->entityNullComponent.nullCheckAuditParameter(r));//外键实体添加
         List<AuditParameterSelect> auditParameterSelectList = this.handleRecords(auditParameterPage.getRecords());
         data.setTotal(Long.valueOf(auditParameterSelectList.size()));
         data.setItems(auditParameterSelectList);

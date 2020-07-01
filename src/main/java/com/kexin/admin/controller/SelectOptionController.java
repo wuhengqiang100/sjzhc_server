@@ -1,6 +1,7 @@
 package com.kexin.admin.controller;
 
 
+import com.kexin.admin.component.EntityNullComponent;
 import com.kexin.admin.component.SelectOptionComponent;
 import com.kexin.admin.entity.vo.AuditParameter.ParameterByIds;
 import com.kexin.admin.service.LoginUserService;
@@ -34,6 +35,9 @@ public class SelectOptionController {
 
     @Autowired
     MachineCheckQueryService machineCheckQueryService;
+
+    @Autowired
+    EntityNullComponent entityNullComponent;//外键实体not null判断,并添加外键
 
     @PostMapping("all")
     @ResponseBody

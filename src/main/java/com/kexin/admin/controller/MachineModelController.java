@@ -4,6 +4,7 @@ package com.kexin.admin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kexin.admin.component.EntityNullComponent;
 import com.kexin.admin.entity.tables.Machine;
 import com.kexin.admin.entity.tables.MachineModel;
 import com.kexin.admin.entity.tables.Operation;
@@ -41,6 +42,9 @@ public class MachineModelController {
 
     @Autowired
     ProductsService productsService; // 产品service
+
+    @Autowired
+    EntityNullComponent entityNullComponent;//外键实体not null判断,并添加外键
 
 
     @Autowired
@@ -89,11 +93,7 @@ public class MachineModelController {
         }
         IPage<MachineModel> machineModelPage = machineModelService.page(new Page<>(page,limit),machineModelWrapper);
         //外键实体添加
-        machineModelPage.getRecords().forEach(r->{
-            r.setMachine(machineService.getById(r.getMachineId()));
-            r.setOperation(operationService.getById(r.getOperationId()));
-            r.setProduct(productsService.getById(r.getProductId()));
-        });
+        machineModelPage.getRecords().forEach(r-> entityNullComponent.nullCheckMachineModel(r));
         data.setTotal(machineModelPage.getTotal());
         data.setItems(machineModelPage.getRecords());
         machineModelPageData.setData(data);
