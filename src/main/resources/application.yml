@@ -14,6 +14,9 @@ server:
 #    address: 10.41.35.150
 #    address: 10.41.35.192
 
+imgPath: ../file/img
+utilPath: ../file/util
+
 #cxf:
 #  path=/service
 #ftp配置
