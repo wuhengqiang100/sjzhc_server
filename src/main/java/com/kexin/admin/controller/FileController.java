@@ -12,6 +12,9 @@ import java.io.*;
 import java.net.URLEncoder;
 
 
+/**
+ * 文件下载controller
+ */
 @Controller
 @RequestMapping("file")
 public class FileController {
