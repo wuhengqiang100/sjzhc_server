@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kexin.admin.entity.tables.DisplayPlatform;
 import com.kexin.admin.mapper.DisplayPlatformMapper;
 import com.kexin.admin.service.DisplayPlatformService;
+import com.kexin.common.util.ResponseEty;
+import com.kexin.common.util.constantEnum.ConstantEnum;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +22,30 @@ public class DisplayPlatformServiceImpl extends ServiceImpl<DisplayPlatformMappe
     //@Transactional(rollbackFor = Exception.class)
 
 
+    @Override
+    public ResponseEty getDisplayPlatform(Integer id) {
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+
+        QueryWrapper<DisplayPlatform> displayPlatformQueryWrapper=new QueryWrapper<>();
+        switch (id){
+            case 1:
+//                displayPlatformQueryWrapper.eq("DISPLAY_PLATFORM_ID",ConstantEnum.DISPLAY_PLAT_FORM_NC1);
+
+                DisplayPlatform displayPlatformNC1=baseMapper.selectById(ConstantEnum.DISPLAY_PLAT_FORM_NC1);
+                responseEty.setAny("monitorName",displayPlatformNC1.getDisplayPlatformName());
+                break;
+            case 2:
+                DisplayPlatform displayPlatformNC2=baseMapper.selectById(ConstantEnum.DISPLAY_PLAT_FORM_NC2);
+                responseEty.setAny("monitorName",displayPlatformNC2.getDisplayPlatformName());
+                break;
+            case 3:
+                DisplayPlatform displayPlatformNC3=baseMapper.selectById(ConstantEnum.DISPLAY_PLAT_FORM_NC3);
+                responseEty.setAny("monitorName",displayPlatformNC3.getDisplayPlatformName());
+                break;
+        }
+        return responseEty;
+    }
 
     @Override
     public Integer displayPlatformCountByCode(String displayPlatformCode) {

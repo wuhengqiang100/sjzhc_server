@@ -12,7 +12,7 @@ import java.util.Date;
  * 大屏配置实体类
  */
 @TableName("DIC_DISPLAY_PLATFORMS")
-@KeySequence(value = "SQ_DIC_DISPLAY_PLATFORMS", clazz = Integer.class)
+@KeySequence(value = "SQ_DIC_DISPLAY_PLATFORMS")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

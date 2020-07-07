@@ -1,16 +1,12 @@
 package com.kexin.admin.controller;
 
 import com.kexin.admin.component.MonitorBigScreenComponent;
-import com.kexin.admin.service.MachineService;
-import com.kexin.admin.service.MachineWarningService;
-import com.kexin.admin.service.OperatorService;
+import com.kexin.admin.service.*;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.util.ResponseEty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -32,6 +28,20 @@ public class MonitorNcController {
     MachineService machineService;//设备service
     @Autowired
     OperatorService operatorService;//人员service
+
+
+    @Autowired
+    DisplayPlatformInfoService displayPlatformInfoService; // 监控配置详细信息service
+
+    @Autowired
+    DisplayPlatformService displayPlatformService;// 监控大屏配置service
+
+    @GetMapping("monitorName")
+    @ResponseBody
+    @SysLog("获取大屏监控的名称")
+    public ResponseEty getMonitorName(@RequestParam(name = "id") Integer id){
+        return displayPlatformService.getDisplayPlatform(id);
+    }
 
     @GetMapping("cardTop")
     @ResponseBody

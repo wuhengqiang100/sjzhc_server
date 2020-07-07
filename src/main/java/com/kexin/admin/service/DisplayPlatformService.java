@@ -2,6 +2,7 @@ package com.kexin.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.kexin.admin.entity.tables.DisplayPlatform;
+import com.kexin.common.util.ResponseEty;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -9,7 +10,12 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface DisplayPlatformService extends IService<DisplayPlatform> {
 
-
+    /**
+     * 根据配置获取监控表大屏相关配置
+     * @param id
+     * @return
+     */
+    ResponseEty getDisplayPlatform(Integer id);
 
 
     /**
