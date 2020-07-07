@@ -1,7 +1,6 @@
 package com.kexin.admin.controller;
 
 
-import com.kexin.admin.component.EntityNullComponent;
 import com.kexin.admin.component.SelectOptionComponent;
 import com.kexin.admin.entity.vo.AuditParameter.ParameterByIds;
 import com.kexin.admin.service.LoginUserService;
@@ -35,9 +34,6 @@ public class SelectOptionController {
 
     @Autowired
     MachineCheckQueryService machineCheckQueryService;
-
-    @Autowired
-    EntityNullComponent entityNullComponent;//外键实体not null判断,并添加外键
 
     @PostMapping("all")
     @ResponseBody
@@ -116,7 +112,7 @@ public class SelectOptionController {
     public ResponseEty listOptionProduct(){
         ResponseEty responseEty=new ResponseEty();
         responseEty.setSuccess(20000);
-        responseEty.setAny("cartNumFirstOption",selectOptionComponent.getCartNumFirstSelectOption());//前缀字母option
+//        responseEty.setAny("cartNumFirstOption",selectOptionComponent.getCartNumFirstSelectOption());//前缀字母option
         return responseEty;
     }
 
@@ -163,6 +159,31 @@ public class SelectOptionController {
         responseEty.setSuccess(20000);
         responseEty.setAny("productOption",selectOptionComponent.getProductSelectOption());//产品下拉option
         responseEty.setAny("operationOption",selectOptionComponent.getOperationSelectOption());//工序下拉option
+        return responseEty;
+    }
+
+
+    @PostMapping("machineWarningDeal")
+    @ResponseBody
+    @SysLog("获取报警处理页面的查询条件")
+    public ResponseEty listOptionMachineWarningDeal(){
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        responseEty.setAny("machineOption",selectOptionComponent.getMachineSelectOption());//设备下拉option
+        responseEty.setAny("operatorOption",selectOptionComponent.getOperatorSelectOption());//工序下拉option
+        return responseEty;
+    }
+
+
+    @PostMapping("displayPlatformInfo")
+    @ResponseBody
+    @SysLog("获取报警处理页面的查询条件")
+    public ResponseEty listOptionDisplayPlatformInfo(){
+        ResponseEty responseEty=new ResponseEty();
+        responseEty.setSuccess(20000);
+        responseEty.setAny("machineOption",selectOptionComponent.getMachineSelectOption());//设备下拉option
+
+        responseEty.setAny("displayPlatformOption",selectOptionComponent.getDisplayPlatformSelectOption());//工序下拉option
         return responseEty;
     }
 

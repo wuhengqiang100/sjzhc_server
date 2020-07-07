@@ -13,9 +13,19 @@ public class DateUtil {
         Date date = format.parse(strDate);
         return date;
     }
+    public static String dateToString(Date strDate) throws ParseException {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String s = sdf.format(strDate);
+        return s;
+    }
 
     public static void main(String[] args) throws ParseException {
-        Date date=DateUtil.stringToDate("2020-04-01 00:00:00");
+        Date date= DateUtil.stringToDate("2020-04-01 00:00:00");
         System.out.println(date);
+
+        Date d=new Date();
+        String s= DateUtil.dateToString(d);
+        System.out.println(s);
     }
 }

@@ -36,4 +36,7 @@ public class Monitor {
     private Integer machineId;//设备id
 
     private String machineName;//设备名称
+
+    private Integer status;//设备的生产状态枚举值 0:未开机生产 1 开机生产中
+
 }
