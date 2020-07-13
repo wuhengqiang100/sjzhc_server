@@ -35,8 +35,8 @@ public class ConstantEnum {
     /**
      * 报警大屏的一排显示几个设备的数据,防伪是3个,南昌监控为5个
      */
-//    public static final int DISPLAY_PLAT_FORM_COUNT=3;
-    public static final int DISPLAY_PLAT_FORM_COUNT=5;
+    public static final int DISPLAY_PLAT_FORM_COUNT=3;
+//    public static final int DISPLAY_PLAT_FORM_COUNT=5;
 
     /**
      * 系统id

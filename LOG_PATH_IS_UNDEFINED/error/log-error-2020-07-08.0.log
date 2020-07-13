@@ -1,0 +1,1 @@
+2020-07-08 17:05:09.982 [http-nio-127.0.0.1-8088-exec-3] ERROR com.kexin.common.aspect.LogAspect - exception message :======>Could not open JDBC Connection for transaction; nested exception is java.sql.SQLException: HikariPool-1 - Interrupted during connection acquisition
