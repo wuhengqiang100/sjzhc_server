@@ -22,7 +22,7 @@ public class MessageReceiveHandler {
 
     public void messagePush(RedisMessage redisMessage) throws ParseException {
         MachineWarning machineWarning=new MachineWarning();
-        machineWarning.setMachineId(redisMessage.getMachineId());
+        machineWarning.setMachineId(Integer.parseInt(redisMessage.getMachineId()));
         machineWarning.setLogType(redisMessage.getLogType());
         machineWarning.setNote(redisMessage.getNote());
         machineWarning.setLogDate(DateUtil.stringToDate(redisMessage.getLogDate()));

@@ -15,7 +15,7 @@ import java.io.IOException;
 @ToString
 public class RedisMessage {
 
-    private Integer machineId;//设备id
+    private String machineId;//设备id
 
     private String logType;//报警级别 1,2,3 最高三级
 

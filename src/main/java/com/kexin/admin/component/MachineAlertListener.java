@@ -43,7 +43,7 @@ public class MachineAlertListener implements MessageListener {
         MachineWarning machineWarning=new MachineWarning();
         machineWarning.setLogType(redisMessage.getLogType());
         machineWarning.setNote(redisMessage.getNote());
-        machineWarning.setMachineId(redisMessage.getMachineId());
+        machineWarning.setMachineId(Integer.parseInt(redisMessage.getMachineId()));
         machineWarning.setLogState(ConstantEnum.NOT_DEAL_STATE);
         machineWarning.setLogDate(DateUtil.stringToDate(redisMessage.getLogDate()));
         System.out.println(machineWarning.toString());
