@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.kexin.admin.entity.tables.SystemSet;
 import com.kexin.common.util.ResponseEty;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 系统配置配置,service接口层
@@ -38,4 +39,10 @@ public interface SystemSetService extends IService<SystemSet> {
     void updateSystemSet(@Param("systemSet") SystemSet systemSet);
 
 
+    /**
+     * 系统设置上传背景图片
+     * @param file
+     * @return
+     */
+    ResponseEty uploadLoginBg(MultipartFile file);
 }

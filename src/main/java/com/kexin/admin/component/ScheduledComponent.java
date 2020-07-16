@@ -46,10 +46,10 @@ public class ScheduledComponent {
             redisUtil.set("name", "看源码学redis"+new Date());
         System.out.println(redisUtil.get("name"));
     }*/
-    @Scheduled(cron = "0/3 * * * * ?")
+/*    @Scheduled(cron = "0/3 * * * * ?")
     public  void setRedis() throws ParseException {
         Random rm = new Random();
-        for (int i = 0; i <8 ; i++) {
+        for (int i = 2; i <8 ; i++) {
             Monitor monitor=new Monitor(
                     "卷轴"+rm.nextInt(100),"产品"+rm.nextInt(10),"模板"+rm.nextInt(10),
                     "班组"+rm.nextInt(10), DateUtil.dateToString(new Date())
@@ -62,7 +62,7 @@ public class ScheduledComponent {
         }
 
 
-    }
+    }*/
 
     @Resource
     MachineWarningMapper machineWarningMapper;//设备报警信息mapper

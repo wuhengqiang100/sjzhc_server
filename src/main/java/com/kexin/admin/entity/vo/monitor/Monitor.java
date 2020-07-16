@@ -1,12 +1,17 @@
 package com.kexin.admin.entity.vo.monitor;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Monitor {
 
     private String rollNum;//卷轴号
@@ -35,6 +40,7 @@ public class Monitor {
 
     private String machineId;//设备id
 
+    @JsonSerialize
     private String machineName;//设备名称
 
     private String status;//设备的生产状态枚举值 0:未开机生产 1 开机生产中

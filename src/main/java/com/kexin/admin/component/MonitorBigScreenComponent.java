@@ -3,8 +3,10 @@ package com.kexin.admin.component;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kexin.admin.entity.tables.DisplayPlatformInfo;
 import com.kexin.admin.entity.vo.monitor.Monitor;
+import com.kexin.admin.entity.vo.redis.RedisMessage;
 import com.kexin.admin.service.DisplayPlatformInfoService;
 import com.kexin.admin.service.MachineService;
+import com.kexin.common.util.DateUtil.StringUtil;
 import com.kexin.common.util.ResponseEty;
 import com.kexin.common.util.constantEnum.ConstantEnum;
 import com.kexin.common.util.redis.RedisUtil;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +51,7 @@ public class MonitorBigScreenComponent {
         List<Monitor> monitorList=new ArrayList<>();
         for (int i = 0; i <displayPlatformInfoList.size() ; i++) {
             if (i<ConstantEnum.DISPLAY_PLAT_FORM_COUNT){
-                String key="machine:"+displayPlatformInfoList.get(i).getInfoId();
+                String key="machine:"+displayPlatformInfoList.get(i).getMachineId();
                 Map<Object, Object> hmget = redisUtil.hmget(key);
                 ObjectMapper objectMapper = new ObjectMapper();
                 Monitor monitor=objectMapper.convertValue(hmget,Monitor.class);
@@ -62,20 +65,6 @@ public class MonitorBigScreenComponent {
          * 3:在遍历拼接的同时查询根据兼职查询redis数据库,把返回的实时数据monitor实体里面
          * 4:查询到了数据就放在monitorList里返回到页面遍历显示出来
          */
-/*        Map<Object, Object> hmget1 = redisUtil.hmget("machine:1");
-        Map<Object, Object> hmget2 = redisUtil.hmget("machine:2");
-        Map<Object, Object> hmget3 = redisUtil.hmget("machine:3");
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        Monitor monitor1=objectMapper.convertValue(hmget1,Monitor.class);
-        Monitor monitor2=objectMapper.convertValue(hmget2,Monitor.class);
-        Monitor monitor3=objectMapper.convertValue(hmget3,Monitor.class);
-
-
-        List<Monitor> monitorList=new ArrayList<>();
-        monitorList.add(monitor1);
-        monitorList.add(monitor2);
-        monitorList.add(monitor3);*/
         responseEty.setAny("monitorList",monitorList);
         responseEty.setSuccess(20000);
         return  responseEty;
@@ -105,18 +94,6 @@ public class MonitorBigScreenComponent {
          * 3:在遍历拼接的同时查询根据兼职查询redis数据库,把返回的实时数据monitor实体里面
          * 4:查询到了数据就放在monitorList里返回到页面遍历显示出来
          */
-/*        Map<Object, Object> hmget4 = redisUtil.hmget("machine:4");
-        Map<Object, Object> hmget5 = redisUtil.hmget("machine:5");
-        Map<Object, Object> hmget6 = redisUtil.hmget("machine:6");
-        ObjectMapper objectMapper = new ObjectMapper();
-        Monitor monitor4=objectMapper.convertValue(hmget4,Monitor.class);
-        Monitor monitor5=objectMapper.convertValue(hmget5,Monitor.class);
-        Monitor monitor6=objectMapper.convertValue(hmget6,Monitor.class);
-
-        List<Monitor> monitorList=new ArrayList<>();
-        monitorList.add(monitor4);
-        monitorList.add(monitor5);
-        monitorList.add(monitor6);*/
         responseEty.setAny("monitorList",monitorList);
         responseEty.setSuccess(20000);
         return  responseEty;

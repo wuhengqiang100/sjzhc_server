@@ -9,6 +9,11 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+
+        registry.addResourceHandler("/file/**").addResourceLocations("file:E:/kexinwork/sjz/file/");
+//        registry.addResourceHandler("/file/**").addResourceLocations("file:D:/file/");
+
+
     }
 
 }

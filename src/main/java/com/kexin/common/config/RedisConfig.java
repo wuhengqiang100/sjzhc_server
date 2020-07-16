@@ -91,14 +91,16 @@ public class RedisConfig {
         // String 的序列化
         StringRedisSerializer stringRedisSerializer = new
                 StringRedisSerializer();
-        // key采用String的序列化方式
+//         key采用String的序列化方式
         template.setKeySerializer(stringRedisSerializer);
-        // hash的key也采用String的序列化方式
+//         hash的key也采用String的序列化方式
         template.setHashKeySerializer(stringRedisSerializer);
-        // value序列化方式采用jackson
+//         value序列化方式采用jackson
         template.setValueSerializer(jackson2JsonRedisSerializer);
-        // hash的value序列化方式采用jackson
-        template.setHashValueSerializer(jackson2JsonRedisSerializer);
+        template.setValueSerializer(stringRedisSerializer);
+//         hash的value序列化方式采用jackson
+//        template.setHashValueSerializer(jackson2JsonRedisSerializer);
+        template.setHashValueSerializer(stringRedisSerializer);
         template.afterPropertiesSet();
         return template;
     }

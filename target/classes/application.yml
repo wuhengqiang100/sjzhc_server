@@ -54,8 +54,8 @@ spring:
     thymeleaf:
       cache: false    #页面不加载缓存，修改即时生效
     redis:
-      host: 127.0.0.1 #默认就是本地
-#      host: 192.168.10.233 #公司redis
+#      host: 127.0.0.1 #默认就是本地
+      host: 192.168.10.233 #公司redis
       port: 6379
 
 

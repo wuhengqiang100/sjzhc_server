@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Blob;
 
@@ -111,6 +112,11 @@ public class SystemSet {
     @TableField(value = "WORK_UNIT_CODE_MES")
     private Boolean workUnitCodeMes;
 
+    /**
+     * 登陆页面背景
+     */
+    @TableField(value = "LOGIN_BG")
+    private String loginBg;
 
 
 }

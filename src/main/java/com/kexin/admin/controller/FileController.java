@@ -1,7 +1,10 @@
 package com.kexin.admin.controller;
 
+import com.kexin.admin.service.SystemSetService;
 import com.kexin.common.annotation.SysLog;
+import com.kexin.common.util.ResponseEty;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,26 +25,19 @@ public class FileController {
     @Value("${utilPath}")
     private String utilPath;
 
+    @Autowired
+    SystemSetService systemSetService;//系统设置service
+
     /**
      * 处理文件上传
      */
-/*
     @PostMapping(value = "/upload")
     @SysLog("文件上传")
-    public String uploading(@RequestParam("file") MultipartFile file) {
-        File targetFile = new File(utilPath);
-        if (!targetFile.exists()) {
-            targetFile.mkdirs();
-        }
-        try (FileOutputStream out = new FileOutputStream(utilPath + file.getOriginalFilename());){
-            out.write(file.getBytes());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "uploading failure";
-        }
-        return "uploading success";
+    @ResponseBody
+    public ResponseEty uploading(@RequestParam("file") MultipartFile file) {
+//        File targetFile = new File(utilPath);
+        return systemSetService.uploadLoginBg(file);
     }
-*/
 
     /**
      * 文件下载
@@ -81,4 +77,26 @@ public class FileController {
             }
         }
     }
+
+
+
+
+/*    *//**
+     * 处理文件上传
+     *//*
+    @PostMapping(value = "/upload")
+    @SysLog("文件上传")
+    public String uploading(@RequestParam("file") MultipartFile file) {
+        File targetFile = new File(utilPath);
+        if (!targetFile.exists()) {
+            targetFile.mkdirs();
+        }
+        try (FileOutputStream out = new FileOutputStream(utilPath + "/" + file.getOriginalFilename());){
+            out.write(file.getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "uploading failure";
+        }
+        return "uploading success";
+    }*/
 }
