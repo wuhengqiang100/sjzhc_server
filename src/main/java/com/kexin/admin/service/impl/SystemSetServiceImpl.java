@@ -85,16 +85,15 @@ public class SystemSetServiceImpl extends ServiceImpl<SystemSetMapper, SystemSet
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            SystemSet systemSet=baseMapper.selectOne(systemSetQueryWrapper);
-            String loginBg="/file/img/"+ newFileName;
-            systemSet.setLoginBg(loginBg);
-            baseMapper.updateById(systemSet);
+//            SystemSet systemSet=baseMapper.selectOne(systemSetQueryWrapper);
+//            String loginBg="/file/img/"+ newFileName;
+//            systemSet.setLoginBg(loginBg);
+//            baseMapper.updateById(systemSet);
 
             responseEty.setSuccess(20000);
             responseEty.setMessage("上传成功!");
-
         } catch (Exception e) {
-            e.printStackTrace();
+            responseEty.setSuccess(0);
             responseEty.setMessage("系统配置错误,只能有一条数据");
         }finally {
             return responseEty;

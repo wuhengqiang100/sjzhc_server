@@ -115,8 +115,8 @@ public class SystemSet {
     /**
      * 登陆页面背景
      */
-    @TableField(value = "LOGIN_BG")
-    private String loginBg;
+//    @TableField(value = "LOGIN_BG")
+//    private String loginBg;
 
 
 }

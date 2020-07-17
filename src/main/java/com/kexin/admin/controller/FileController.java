@@ -3,7 +3,10 @@ package com.kexin.admin.controller;
 import com.kexin.admin.service.SystemSetService;
 import com.kexin.common.annotation.SysLog;
 import com.kexin.common.util.ResponseEty;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.slf4j.ILoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -24,7 +27,8 @@ public class FileController {
 
     @Value("${utilPath}")
     private String utilPath;
-
+    @Value("${imgPath}")
+    private String imgPath;
     @Autowired
     SystemSetService systemSetService;//系统设置service
 
@@ -81,22 +85,36 @@ public class FileController {
 
 
 
-/*    *//**
-     * 处理文件上传
-     *//*
-    @PostMapping(value = "/upload")
-    @SysLog("文件上传")
-    public String uploading(@RequestParam("file") MultipartFile file) {
-        File targetFile = new File(utilPath);
+    /**
+     * 更改登陆北京文件
+     */
+    @PostMapping(value = "/editBg")
+    @SysLog("修改背景图片")
+    @ResponseBody
+    public ResponseEty editBg(@RequestParam("fileName") String fileName) {
+        ResponseEty responseEty=new ResponseEty();
+        String newFileName=fileName.substring(21);
+        newFileName=".."+newFileName;
+        File targetFile = new File(imgPath);
         if (!targetFile.exists()) {
             targetFile.mkdirs();
         }
-        try (FileOutputStream out = new FileOutputStream(utilPath + "/" + file.getOriginalFilename());){
-            out.write(file.getBytes());
+        try {
+
+            FileInputStream inputFile=new FileInputStream(newFileName);
+//            InputStream inputStream=new FileInputStream(newFileName);
+//            File file=new File(String.valueOf(inputFile));
+            FileOutputStream outFile=new FileOutputStream(imgPath+"/loginBg.jpg");
+            outFile.write(inputFile.readAllBytes());
+
+            responseEty.setMessage("修改成功");
+            responseEty.setSuccess(20000);
+
         } catch (Exception e) {
             e.printStackTrace();
-            return "uploading failure";
+            responseEty.setMessage("修改出错");
         }
-        return "uploading success";
-    }*/
+        return responseEty;
+        }
+
 }
